@@ -1,0 +1,27 @@
+name: '🌟 Feature'
+description: '새로운 기능에 대한 설명을 작성해 주세요.'
+title: '[Feat] '
+
+body:
+  - type: textarea
+    attributes:
+      label: 📄 Description
+      description: 새로운 기능에 대한 설명을 작성해 주세요.
+      placeholder: 구체적으로 작성해 주세요.
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: ✅ To-do
+      description: 해야 하는 일을 작성해 주세요.
+      placeholder: |
+        - [ ] 해야 할 일 1
+        - [ ] 해야 할 일 2
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: 📎 ETC
+      description: 추가로 공유할 사항이 있으면 작성해 주세요.
