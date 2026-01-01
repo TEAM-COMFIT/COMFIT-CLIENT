@@ -109,8 +109,4 @@ jobs:
         uses: hkusu/review-assign-action@v1
         with:
           assignees: ${{github.actor}} # 담당자 설정
-          reviewers: # 리뷰어 설정 (본인자동 제외)
-            - hummingbbird
-            - odukong
-            - u-zzn
-            - qowjdals23
+          reviewers: hummingbbird, odukong, u-zzn, qowjdals23
