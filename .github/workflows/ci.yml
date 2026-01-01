@@ -46,6 +46,7 @@ jobs:
       - name: Check project
         id: check_step
         run: pnpm run lint && pnpm exec tsc --noEmit
+        continue-on-error: true
       # 프로젝트 빌드
       - name: Build project
         id: build_step
@@ -99,7 +100,7 @@ jobs:
                "${{ secrets.DISCORD_WEBHOOK_URL }}"
       # 빌드 실패 시, 종료
       - name: Check Build Status
-        if: steps.build_step.outcome == 'failure'
+        if: steps.check_step.outcome == 'failure' || steps.build_step.outcome == 'failure'
         run: exit 1
   assign:
     runs-on: ubuntu-latest
