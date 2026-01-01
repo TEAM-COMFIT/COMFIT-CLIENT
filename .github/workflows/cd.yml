@@ -22,6 +22,6 @@ jobs:
           destination-repository-name: COMFIT-CLIENT
           user-email: ${{ secrets.EMAIL }}
           commit-message: ${{ github.event.head_commit.message }}
-          target-branch: dev
+          target-branch: ${{ github.ref_name }}
       - name: Test get variable exported by push-to-another-repository
         run: echo $DESTINATION_CLONED_DIRECTORY
