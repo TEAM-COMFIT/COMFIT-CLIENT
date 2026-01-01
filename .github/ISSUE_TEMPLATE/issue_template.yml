@@ -1,19 +1,20 @@
-name: '🐛 Fix'
-description: '버그 수정에 대한 설명을 작성해 주세요.'
-title: '[Fix] '
+name: '✨ Issue'
+description: '이슈를 등록해 주세요.'
+title: '[Type] '
 
 body:
+
   - type: textarea
     attributes:
-      label: 📑 Description
-      description: 버그 수정에 대한 설명을 작성해 주세요.
+      label: '📄 Description'
+      description: 이슈 내용을 작성해 주세요.
       placeholder: 구체적으로 작성해 주세요.
     validations:
       required: true
 
   - type: textarea
     attributes:
-      label: ✅ To-do
+      label: '✅ To-do'
       description: 해야 하는 일을 작성해 주세요.
       placeholder: |
         - [ ] 해야 할 일 1
@@ -23,5 +24,5 @@ body:
 
   - type: textarea
     attributes:
-      label: 📎 ETC
+      label: '📎 ETC'
       description: 추가로 공유할 사항이 있으면 작성해 주세요.
