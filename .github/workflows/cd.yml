@@ -9,8 +9,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-      - name: Install mustache
-        run: sudo apt-get update && sudo apt-get install -y ruby && gem install mustache
       - name: creates output
         run: sh ./build.sh
       - name: Pushes to another repository
