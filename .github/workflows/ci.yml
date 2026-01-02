@@ -43,18 +43,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
       # 프로젝트 린트 검사 및 타입 검사
-      # - name: Check project
-      #   id: check_step
-      #   run: pnpm run lint && pnpm exec tsc --noEmit
-      #   continue-on-error: true
-      - name: Check Lint
-        id: lint_step
-        run: pnpm run lint
-        continue-on-error: true
-
-      - name: Check Types (TSC)
-        id: tsc_step
-        run: pnpm exec tsc --noEmit
+      - name: Check project
+        id: check_step
+        run: pnpm run lint && pnpm exec tsc --noEmit
         continue-on-error: true
       # 프로젝트 빌드
       - name: Build project
@@ -108,14 +99,24 @@ jobs:
                }" \
                "${{ secrets.DISCORD_WEBHOOK_URL }}"
       # 빌드 실패 시, 종료
+      # - name: Check Build Status
+      #   if: steps.check_step.outcome == 'failure' || steps.build_step.outcome == 'failure'
+      #   run: exit 1
       - name: Check Build Status
-        if: steps.check_step.outcome == 'failure' || steps.build_step.outcome == 'failure'
-        run: exit 1
+        if: always() # 실패든 성공이든 무조건 실행해서 상태 확인
+        run: |
+          echo "Check Step Status: ${{ steps.check_step.outcome }}"
+          echo "Build Step Status: ${{ steps.build_step.outcome }}"
+          
+          # 실제 failure일 때만 종료되도록 명시적 처리
+          if [ "${{ steps.check_step.outcome }}" == "failure" ] || [ "${{ steps.build_step.outcome }}" == "failure" ]; then
+            exit 1
+          fi
   assign:
     runs-on: ubuntu-latest
     steps:
       - name: auto-assign-author-and-reviewer
-        if: github.event_name == 'pull_request'&&github.event.action=='opened'
+        if: github.event_name == 'pull_request' && github.event.action == 'opened'
         uses: hkusu/review-assign-action@v1
         with:
           assignees: ${{github.actor}} # 담당자 설정
