@@ -24,23 +24,23 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
 
-    /* Path alias*/
-    "baseUrl": "src",
+    /* Path Alias*/
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["*"],
-      "@app/*": ["app/*"],
-      "@pages/*": ["pages/*"],
-      "@widgets/*": ["widgets/*"],
-      "@shared/*": ["shared/*"],
-
-      "@images/*": ["shared/assets/images/*"],
-      "@icons/*": ["shared/assets/icons/*"],
-      "@api/*": ["shared/api/*"],
-      "@config/*": ["shared/config/*"],
-      "@model/*": ["shared/model/*"],
-      "@styles/*": ["shared/styles/*"],
-      "@types/*": ["shared/types/*"],
-      "@ui/*": ["shared/ui/*"],
+      "@/*": ["./src/*"],
+      "@app/*": ["./src/app/*"],
+      "@pages/*": ["./src/pages/*"],
+      "@widgets/*": ["./src/widgets/*"],
+      "@shared/*": ["./src/shared/*"],
+      "@images/*": ["./src/shared/assets/images/*"],
+      "@icons/*": ["./src/shared/assets/icons/*"],
+      "@api/*": ["./src/shared/api/*"],
+      "@config/*": ["./src/shared/config/*"],
+      "@lib/*": ["./src/shared/lib/*"],
+      "@model/*": ["./src/shared/model/*"],
+      "@styles/*": ["./src/shared/styles/*"],
+      "@types/*": ["./src/shared/types/*"],
+      "@ui/*": ["./src/shared/ui/*"]
     }
   },
   "include": ["src"]
