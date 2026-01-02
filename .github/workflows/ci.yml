@@ -43,9 +43,18 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
       # 프로젝트 린트 검사 및 타입 검사
-      - name: Check project
-        id: check_step
-        run: pnpm run lint && pnpm exec tsc --noEmit
+      # - name: Check project
+      #   id: check_step
+      #   run: pnpm run lint && pnpm exec tsc --noEmit
+      #   continue-on-error: true
+      - name: Check Lint
+        id: lint_step
+        run: pnpm run lint
+        continue-on-error: true
+
+      - name: Check Types (TSC)
+        id: tsc_step
+        run: pnpm exec tsc --noEmit
         continue-on-error: true
       # 프로젝트 빌드
       - name: Build project
