@@ -99,19 +99,9 @@ jobs:
                }" \
                "${{ secrets.DISCORD_WEBHOOK_URL }}"
       # 빌드 실패 시, 종료
-      # - name: Check Build Status
-      #   if: steps.check_step.outcome == 'failure' || steps.build_step.outcome == 'failure'
-      #   run: exit 1
       - name: Check Build Status
-        if: always() # 실패든 성공이든 무조건 실행해서 상태 확인
-        run: |
-          echo "Check Step Status: ${{ steps.check_step.outcome }}"
-          echo "Build Step Status: ${{ steps.build_step.outcome }}"
-          
-          # 실제 failure일 때만 종료되도록 명시적 처리
-          if [ "${{ steps.check_step.outcome }}" == "failure" ] || [ "${{ steps.build_step.outcome }}" == "failure" ]; then
-            exit 1
-          fi
+        if: steps.check_step.outcome == 'failure' || steps.build_step.outcome == 'failure'
+        run: exit 1
   assign:
     runs-on: ubuntu-latest
     steps:

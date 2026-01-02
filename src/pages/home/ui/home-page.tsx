@@ -1,4 +1,4 @@
-import KERORO from "@images/comfit_web_상태.jpg";
+import KERORO from "@images/comfit_web_status.jpg";
 
 const HomePage = () => {
   return (
