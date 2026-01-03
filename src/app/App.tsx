@@ -1,4 +1,4 @@
-import { HomePage } from "@/pages/home/ui/home-page";
+import { HomePage } from "@/pages/home/home-page";
 
 const App = () => {
   return (
