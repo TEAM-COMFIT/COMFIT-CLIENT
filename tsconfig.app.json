@@ -31,6 +31,7 @@
       "@app/*": ["src/app/*"],
       "@pages/*": ["src/pages/*"],
       "@widgets/*": ["src/widgets/*"],
+      "@features/*": ["src/features/*"],
       "@shared/*": ["src/shared/*"],
       "@images/*": ["src/shared/assets/images/*"],
       "@icons/*": ["src/shared/assets/icons/*"],
