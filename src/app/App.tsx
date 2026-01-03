@@ -1,7 +1,9 @@
+import { HomePage } from "@/pages/home/home-page";
+
 const App = () => {
   return (
     <>
-      <p>컴핏 화이팅</p>
+      <HomePage />
     </>
   );
 };

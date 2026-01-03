@@ -106,7 +106,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: auto-assign-author-and-reviewer
-        if: github.event_name == 'pull_request'&&github.event.action=='opened'
+        if: github.event_name == 'pull_request' && github.event.action == 'opened'
         uses: hkusu/review-assign-action@v1
         with:
           assignees: ${{github.actor}} # 담당자 설정
