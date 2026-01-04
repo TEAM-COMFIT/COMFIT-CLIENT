@@ -9,7 +9,7 @@ import typescriptParser from "@typescript-eslint/parser";
 import eslintConfigPrettier from "eslint-config-prettier";
 
 export default defineConfig([
-  { ignores: ["dist", "node_modules", "build", "*.config.js"] },
+  { ignores: ["dist", "node_modules", "build", "*.config.js", "*.config.ts"] },
 
   importPlugin.flatConfigs.recommended,
   importPlugin.flatConfigs.typescript,
@@ -17,6 +17,7 @@ export default defineConfig([
   ...tseslint.configs.recommended,
   reactHooks.configs.flat.recommended,
   reactRefresh.configs.vite,
+
   {
     files: ["**/*.{ts,tsx}"],
     settings: {
@@ -42,11 +43,12 @@ export default defineConfig([
       },
     },
     rules: {
-      "no-var": "error",
-      "no-duplicate-imports": "error",
-      "no-console": ["warn", { allow: ["warn", "error"] }],
+      "no-var": "error", // var 금지
+      "no-console": ["warn", { allow: ["warn", "error"] }], // console.log 경고
+
       "no-unused-vars": "off", // ts 룰로 대체함
       "@typescript-eslint/no-unused-vars": [
+        // 사용하지 않는 변수 경고
         "warn",
         {
           argsIgnorePattern: "^_",
@@ -56,15 +58,17 @@ export default defineConfig([
       ],
 
       "@typescript-eslint/consistent-type-imports": [
+        // type import 사용 권장
         "error",
         { prefer: "type-imports" },
       ],
-      "@typescript-eslint/no-explicit-any": "warn",
-      "@typescript-eslint/no-non-null-assertion": "warn",
+      "@typescript-eslint/no-explicit-any": "warn", // any 사용 경고
+      "@typescript-eslint/no-non-null-assertion": "warn", // non-null assertion 경고
 
-      "react-hooks/rules-of-hooks": "error",
-      "react-hooks/exhaustive-deps": "warn",
+      "react-hooks/rules-of-hooks": "error", // Hooks 규칙 준수
+      "react-hooks/exhaustive-deps": "warn", // useEffect 의존성 배열 검사
 
+      // import 정렬 order 설정
       "import/order": [
         "warn",
         {
@@ -81,12 +85,16 @@ export default defineConfig([
           alphabetize: { order: "asc", caseInsensitive: true },
         },
       ],
+      "import/first": "error", // import문 최상단 위치
+      "import/no-duplicates": "error", // 중복 import 금지
       "import/no-unresolved": "off", // TS resolver가 처리
-      "import/default": "off",
+      "import/default": "off", // default export 불필요한 경고 제거
+      "import/prefer-default-export": "off", // named export 사용(최적화 관점)
 
       // Prettier와 충돌 방지
       "arrow-body-style": "off",
       "prefer-arrow-callback": "off",
     },
   },
+  eslintConfigPrettier,
 ]);
