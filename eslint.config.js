@@ -68,6 +68,13 @@ export default defineConfig([
       "react-hooks/rules-of-hooks": "error", // Hooks 규칙 준수
       "react-hooks/exhaustive-deps": "warn", // useEffect 의존성 배열 검사
 
+      // 화살표 함수 컴포넌트 사용 권장
+      "react/function-component-definition": [
+        "warn",
+        {
+          namedComponents: "arrow-function",
+        },
+      ],
       // import 정렬 order 설정
       "import/order": [
         "warn",
