@@ -43,7 +43,50 @@ export default defineConfig([
     },
     rules: {
       "no-var": "error",
-      "no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
+      "no-duplicate-imports": "error",
+      "no-console": ["warn", { allow: ["warn", "error"] }],
+      "no-unused-vars": "off", // ts 룰로 대체함
+      "@typescript-eslint/no-unused-vars": [
+        "warn",
+        {
+          argsIgnorePattern: "^_",
+          varsIgnorePattern: "^_",
+          caughtErrorsIgnorePattern: "^_",
+        },
+      ],
+
+      "@typescript-eslint/consistent-type-imports": [
+        "error",
+        { prefer: "type-imports" },
+      ],
+      "@typescript-eslint/no-explicit-any": "warn",
+      "@typescript-eslint/no-non-null-assertion": "warn",
+
+      "react-hooks/rules-of-hooks": "error",
+      "react-hooks/exhaustive-deps": "warn",
+
+      "import/order": [
+        "warn",
+        {
+          groups: [
+            "builtin",
+            "external",
+            "internal",
+            "parent",
+            "sibling",
+            "index",
+            "type",
+          ],
+          "newlines-between": "always",
+          alphabetize: { order: "asc", caseInsensitive: true },
+        },
+      ],
+      "import/no-unresolved": "off", // TS resolver가 처리
+      "import/default": "off",
+
+      // Prettier와 충돌 방지
+      "arrow-body-style": "off",
+      "prefer-arrow-callback": "off",
     },
   },
 ]);
