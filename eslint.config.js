@@ -7,6 +7,7 @@ import { defineConfig } from "eslint/config";
 import importPlugin from "eslint-plugin-import";
 import typescriptParser from "@typescript-eslint/parser";
 import eslintConfigPrettier from "eslint-config-prettier";
+import react from "eslint-plugin-react";
 
 export default defineConfig([
   { ignores: ["dist", "node_modules", "build", "*.config.js", "*.config.ts"] },
@@ -20,6 +21,9 @@ export default defineConfig([
 
   {
     files: ["**/*.{ts,tsx}"],
+    plugins: {
+      react,
+    },
     settings: {
       react: {
         version: "detect",
