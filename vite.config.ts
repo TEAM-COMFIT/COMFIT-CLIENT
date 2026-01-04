@@ -5,7 +5,24 @@ import path from "path";
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), svgr()],
+  plugins: [react(), 
+    svgr({
+      svgrOptions: {
+        plugins: ["@svgr/plugin-svgo", "@svgr/plugin-jsx"],
+        svgoConfig: { 
+          plugins: [
+            {
+              name: "preset-default",
+              params: {
+                overrides: {
+                  removeViewBox: false,
+                }
+              }
+            }
+          ]
+        },
+      }
+    })],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
