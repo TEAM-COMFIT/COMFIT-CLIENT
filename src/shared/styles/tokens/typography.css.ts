@@ -20,7 +20,7 @@ export const typography = {
   lineHeight: {
     normal: "150%",
   },
-  // TODO: letterSpacing 수정 필요
+
   letterSpacing: {
     normal: "-0.01em",
   },
