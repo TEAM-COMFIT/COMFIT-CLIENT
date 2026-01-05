@@ -37,3 +37,7 @@ package-lock.json
 # OS
 .DS_Store
 Thumbs.db 
+
+# swagger-typescript-api templates
+src/shared/api/generate/templates/**
+*.ejs
