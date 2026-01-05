@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "gen:swagger-ts-api": "dotenv -e .env cross-var -- swagger-typescript-api generate -p %SWAGGER_URL% -o ./src/shared/api/generate -n http-client.ts --extract-request-body --extract-response-body --type-suffix DTO --axios"
   },
   "dependencies": {
     "eslint-import-resolver-typescript": "^4.4.4",
