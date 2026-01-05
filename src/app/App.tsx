@@ -1,9 +1,10 @@
-import { HomePage } from "@/pages/home/home-page";
+import { RouterProvider } from "react-router-dom";
+// import 
 
 const App = () => {
   return (
     <>
-      <HomePage />
+      <RouterProvider router={/* router 변수 넣기 */} />
     </>
   );
 };
