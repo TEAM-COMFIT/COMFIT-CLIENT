@@ -8,7 +8,7 @@ interface ExperiencePageProps {
   mode: mode;
 }
 
-const ExperiencePage = ({ mode }: ExperiencePageProps) => {
+const ExperienceDetailPage = ({ mode }: ExperiencePageProps) => {
   const { id } = useParams<{ id: string }>();
   switch (mode) {
     case "view":
@@ -20,4 +20,4 @@ const ExperiencePage = ({ mode }: ExperiencePageProps) => {
   }
 };
 
-export { ExperiencePage };
+export { ExperienceDetailPage };

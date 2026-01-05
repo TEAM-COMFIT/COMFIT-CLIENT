@@ -1,4 +1,4 @@
-const ExperienceListPage = () => {
+const ExperiencePage = () => {
   return (
     <div>
       <h1>Experience List Page</h1>
@@ -6,4 +6,4 @@ const ExperienceListPage = () => {
   );
 };
 
-export { ExperienceListPage };
+export { ExperiencePage };

@@ -8,8 +8,8 @@ import { ExperienceMatchingPage } from "@/pages/experience-matching/experience-m
 import { MatchingListPage } from "@/pages/matching-list/matching-list-page";
 import { MatchingDetailPage } from "@/pages/matching-detail/matching-detail-page";
 
-import { ExperienceListPage } from "@/pages/experience/ui/experience-list/experience-list-page";
-import { ExperiencePage } from "@/pages/experience/ui/experience-page/experience-page";
+import { ExperienceDetailPage } from "@/pages/experience-detail/ui/experience-page/experience-detail-page";
+import { ExperiencePage } from "@/pages/experience/experience-page";
 
 import { MyPage } from "@/pages/my-page/my-page";
 import { BookmarkPage } from "@/pages/bookmark/bookmark-page";
@@ -26,16 +26,20 @@ export const protectedRoutes = [
   { path: ROUTES.MATCHING_DETAIL(), element: <MatchingDetailPage /> },
 
   // 경험
-  { path: ROUTES.EXPERIENCE, element: <ExperienceListPage /> },
+  { path: ROUTES.EXPERIENCE, element: <ExperiencePage /> },
   {
     path: ROUTES.EXPERIENCE_CREATE,
-    element: <ExperiencePage mode="create" />,
+    element: <ExperienceDetailPage mode="create" />,
   },
-  { path: ROUTES.EXPERIENCE_DETAIL(), element: <ExperiencePage mode="view" /> },
+  {
+    path: ROUTES.EXPERIENCE_DETAIL(),
+    element: <ExperienceDetailPage mode="view" />,
+  },
   {
     path: ROUTES.EXPERIENCE_EDIT(),
-    element: <ExperiencePage mode="edit" />,
+    element: <ExperienceDetailPage mode="edit" />,
   },
+
   { path: ROUTES.MYPAGE, element: <MyPage /> },
   { path: ROUTES.BOOKMARK, element: <BookmarkPage /> },
 ];
