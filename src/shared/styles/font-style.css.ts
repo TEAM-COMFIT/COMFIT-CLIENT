@@ -1,4 +1,4 @@
-import { typography } from "./typography.css";
+import { typography } from "./tokens/typography.css";
 
 export const fontStyles = {
   // display
