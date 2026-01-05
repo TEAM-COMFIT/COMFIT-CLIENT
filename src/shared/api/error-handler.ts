@@ -1,13 +1,13 @@
 import { isAxiosError } from "axios";
 
+import { ERROR_MESSAGE } from "@/shared/api/types/response";
+
 import type {
   ApiErrorResponse,
   ApiErrorCode,
   RequiredWith,
 } from "@/shared/api/types/response";
 import type { AxiosError } from "axios";
-
-import { ERROR_MESSAGE } from "@/shared/api/types/response";
 
 // 서버 정의 에러 타입 가드
 // 서버가 보낸 에러가 맞는지 확인하는 함수
