@@ -28,7 +28,7 @@ export const protectedRoutes = [
   // 경험
   { path: ROUTES.EXPERIENCE, element: <ExperienceListPage /> },
   {
-    path: ROUTES.EXPERIENCE_NEW,
+    path: ROUTES.EXPERIENCE_CREATE,
     element: <ExperiencePage mode="create" />,
   },
   { path: ROUTES.EXPERIENCE_DETAIL(), element: <ExperiencePage mode="view" /> },

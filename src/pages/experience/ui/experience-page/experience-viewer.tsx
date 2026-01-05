@@ -1,9 +1,12 @@
+import { useParams } from "react-router-dom";
+
 const ExperienceViewer = () => {
-    return (
-        <div>
-            <h1>Experience Viewer</h1>
-        </div>
-    );
+  const { id } = useParams();
+  return (
+    <div>
+      <h1>Experience Viewer - {id}</h1>
+    </div>
+  );
 };
 
 export { ExperienceViewer };

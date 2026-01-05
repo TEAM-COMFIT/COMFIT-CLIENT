@@ -1,10 +1,10 @@
 import { RouterProvider } from "react-router-dom";
-// import 
+import { router } from "./routes/appRoutes";
 
 const App = () => {
   return (
     <>
-      <RouterProvider router={/* router 변수 넣기 */} />
+      <RouterProvider router={router} />
     </>
   );
 };
