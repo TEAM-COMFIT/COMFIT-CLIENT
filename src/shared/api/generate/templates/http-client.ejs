@@ -2,7 +2,7 @@
 const { apiConfig, generateResponses, config } = it;
 %>
 
-import type { AxiosInstance, AxiosRequestConfig, HeadersDefaults, ResponseType, AxiosResponse } from "axios";
+import type { AxiosInstance, AxiosRequestConfig, HeadersDefaults, ResponseType } from "axios";
 import axios from "axios";
 
 export type QueryParamsType = Record<string | number, any>;
@@ -110,7 +110,7 @@ export class HttpClient<SecurityDataType = unknown> {
 <% if (config.unwrapResponseData) { %>
     }: FullRequestParams): Promise<T> => {
 <% } else { %>
-    }: FullRequestParams): Promise<AxiosResponse<T>> => {
+    }: FullRequestParams): Promise<T> => {
 <% } %>
         const secureParams = ((typeof secure === 'boolean' ? secure : this.secure) && this.securityWorker && (await this.securityWorker(this.securityData))) || {};
         const requestParams = this.mergeRequestParams(params, secureParams);
