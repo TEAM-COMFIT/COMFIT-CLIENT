@@ -5,10 +5,10 @@ import type { Preview } from '@storybook/react-vite';
 // 예: import '@/shared/styles/global.css.ts';
 
 const preview: Preview = {
+  tags: ['autodocs'],
+
   parameters: {
     layout: 'padded',
-
-    actions: { argTypesRegex: '^on[A-Z].*' },
 
     controls: {
       matchers: {
