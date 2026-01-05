@@ -1,1 +1,2 @@
-pnpm exec lint-staged
+echo "🐶 Husky pre-commit 실행"
+pnpm exec lint-staged && echo "🎉 lint-staged 통과"
