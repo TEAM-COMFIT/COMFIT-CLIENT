@@ -1,0 +1,20 @@
+
+#!/bin/sh
+
+COMMIT_MSG_FILE=$1
+COMMIT_MSG_HEADER=$(grep -v '^\s*#' "$COMMIT_MSG_FILE" | head -n 1)
+
+# Merge나 Revert 커밋은 검사하지 않고 통과시킴
+if echo "$COMMIT_MSG_HEADER" | grep -Eq "^(Merge|Revert)"; then
+  exit 0
+fi
+
+PATTERN='^(init|feat|fix|design|update|remove|add|move|rename|docs|comment|refactor|test|chore|deploy|): .+ \(#[0-9]+\)$'
+
+# 커밋 컨벤션과 일치하는지 체크
+if ! echo "$COMMIT_MSG_HEADER" | grep -Eq "$PATTERN"; then
+  echo "🚨 [커밋 메시지 에러] 형식이 컨벤션과 다릅니다."
+  echo "👉 규칙: <타입>: <내용> (#<이슈번호>)"
+  echo "👉 예시: feat: 공통 컴포넌트 퍼블리싱 (#1)"
+  exit 1
+fi
