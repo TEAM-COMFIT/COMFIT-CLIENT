@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-import { tokenStorage } from '@shared/lib/auth/token';
+import { tokenStorage } from '@/shared/lib/auth/token-storage';
 
 interface AuthState {
   isLoggedIn: boolean;
