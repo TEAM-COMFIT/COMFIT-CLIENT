@@ -8,6 +8,8 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
     "gen:swagger-ts-api": "dotenv -e .env cross-var -- swagger-typescript-api generate -p %SWAGGER_URL% -o ./src/shared/api/generate -n http-client.ts --extract-request-body --extract-response-body --type-suffix DTO --axios -t ./src/shared/api/generate/templates"
   },
   "dependencies": {
@@ -18,6 +20,10 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
+    "@storybook/addon-a11y": "^10.1.11",
+    "@storybook/addon-docs": "^10.1.11",
+    "@storybook/react-vite": "^10.1.11",
+    "@svgr/plugin-svgo": "^8.1.0",
     "@types/node": "^24.10.1",
     "@types/react": "^19.2.5",
     "@types/react-dom": "^19.2.3",
@@ -33,11 +39,14 @@
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.4.24",
+    "eslint-plugin-storybook": "^10.1.11",
     "globals": "^16.5.0",
+    "storybook": "^10.1.11",
     "prettier": "3.7.4",
     "swagger-typescript-api": "^13.2.16",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.46.4",
-    "vite": "^7.2.4"
+    "vite": "^7.2.4",
+    "vite-plugin-svgr": "^4.5.0"
   }
 }
