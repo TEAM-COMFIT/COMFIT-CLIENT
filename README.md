@@ -1,14 +1,19 @@
 # 🔗 Comfit
 
-> Comfit은 **_을(를) 목표로 하는 _** 서비스입니다.
+### 기업과 나를 연결하는 기준, Comfit
+
+<img width="1510" height="1079" alt="컴핏깅들" src="https://github.com/user-attachments/assets/c9cb3afa-6a16-4dd9-a138-d0ffa62d36c3" />
+
+> Comfit은 기업의 핵심 정보와 나의 경험을 하나로 엮어 지원 기업별 맞춤 자소서 전략을 제안하는 AI 기반 분석 플랫폼입니다.
 
 
 
 ## 👥 Team member
 
-|       ![이채영이미지](https://github.com/user-attachments/assets/1fcb5313-ee37-4e61-a66e-20a3c53c9171)   |    ![오수빈이미지](https://github.com/user-attachments/assets/1fcb5313-ee37-4e61-a66e-20a3c53c9171)  |   ![정유진이미지](https://github.com/user-attachments/assets/1fcb5313-ee37-4e61-a66e-20a3c53c9171)   |  ![배정민이미지](https://github.com/user-attachments/assets/1fcb5313-ee37-4e61-a66e-20a3c53c9171)    |
-| :----------------------------------------------: | :---------------------------------------: | :---------------------------------------: | :------------------------------------------: |
-|    <div align = "center"><b>이채영 👑</b></div>     | <div align = "center"><b>오수빈</b></div> | <div align = "center"><b>정유진</b></div> |  <div align = "center"><b>배정민</b></div>   |
+| <img src="https://github.com/user-attachments/assets/1fcb5313-ee37-4e61-a66e-20a3c53c9171" width="120" /> | <img src="https://github.com/user-attachments/assets/1fcb5313-ee37-4e61-a66e-20a3c53c9171" width="120" /> | <img src="https://github.com/user-attachments/assets/1fcb5313-ee37-4e61-a66e-20a3c53c9171" width="120" /> | <img src="https://github.com/user-attachments/assets/1fcb5313-ee37-4e61-a66e-20a3c53c9171" width="120" /> |
+| :--: | :--: | :--: | :--: |
+| <div align="center"><b>이채영 👑</b></div> | <div align="center"><b>오수빈</b></div> | <div align="center"><b>정유진</b></div> | <div align="center"><b>배정민</b></div> |
+
 | [@hummingbbird](https://github.com/hummingbbird) |  [@odukong](https://github.com/odukong)   |    [@u-zzn](https://github.com/u-zzn)     | [@qowjdals23](https://github.com/qowjdals23) |
 
 <br/>
@@ -136,6 +141,47 @@ const CompanyCard = () => {}  // 파스칼케이스 사용
 - 웹 접근성도 고려하는 개발
 - import 문에서 type은 하단에 입력
 </details>
+
+<br>
+
+## 📂 폴더 구조
+fsd 구조는 표준화된 폴더 구조 방법론으로 이해 관계 파악이 용이하고, 기능을 중점으로 디렉토리가 나뉘어 코드의 위치가 명확하다는 장점이 있어요. Comfit 팀은 이와 같은 이유로 fsd 폴더 구조를 도입하게 되었어요. 더 자세한 도입 이유과 그 과정은 [해당 PR](https://github.com/TEAM-COMFIT/COMFIT-CLIENT/pull/9)에서 확인할 수 있어요.
+```
+src
+ ┣ app // 프로젝트 초기화, 라우팅 설정 등
+ ┃ ┣ layout
+ ┃ ┣ providers
+ ┃ ┣ routes
+ ┃ ┣ styles
+ ┃ ┣ App.tsx
+ ┃ ┗ main.tsx
+ ┣ features // 도메인 단위로 컴포넌트 관리
+ ┃ ┣ bookmark
+ ┃ ┣ company-analyze
+ ┃ ┣ experience
+ ┃ ┣ home
+ ┃ ┣ login
+ ┃ ┣ my-page
+ ┃ ┣ onboarding
+ ┃ ┗ register
+ ┣ pages // 도메인 단위로 페이지 관리
+ ┣ shared // 공유되는 항목들
+ ┃ ┣ assets
+ ┃ ┃ ┣ icons
+ ┃ ┃ ┣ icons
+ ┃ ┃ ┗ images
+ ┃ ┣ config
+ ┃ ┣ lib
+ ┃ ┣ model
+ ┃ ┣ stories
+ ┃ ┣ styles
+ ┃ ┃ ┣ tokens
+ ┃ ┣ types
+ ┃ ┗ ui
+ ┗ widgets // 의미적으로 구분되는 컴포넌트(header, company-card 등)
+```
+
+<br>
 
 ## 👼 Ground Rule
 
