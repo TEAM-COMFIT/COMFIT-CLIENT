@@ -22,6 +22,7 @@
     ]
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.90.16",
     "@vanilla-extract/css": "^1.18.0",
     "@vanilla-extract/vite-plugin": "^5.1.4",
     "eslint-import-resolver-typescript": "^4.4.4",
@@ -36,6 +37,7 @@
     "@storybook/addon-docs": "^10.1.11",
     "@storybook/react-vite": "^10.1.11",
     "@svgr/plugin-svgo": "^8.1.0",
+    "@tanstack/react-query-devtools": "^5.91.2",
     "@types/node": "^24.10.1",
     "@types/react": "^19.2.5",
     "@types/react-dom": "^19.2.3",
@@ -55,6 +57,7 @@
     "lint-staged": "^16.2.7",
     "storybook": "^10.1.11",
     "prettier": "3.7.4",
+    "storybook": "^10.1.11",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.46.4",
     "vite": "^7.2.4",
