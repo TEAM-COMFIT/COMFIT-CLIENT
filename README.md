@@ -6,9 +6,9 @@
 
 ## 👥 Team member
 
-|                                                  |                                           |                                           |                                              |
+|       ![이채영이미지](https://github.com/user-attachments/assets/1fcb5313-ee37-4e61-a66e-20a3c53c9171)   |    ![오수빈이미지](https://github.com/user-attachments/assets/1fcb5313-ee37-4e61-a66e-20a3c53c9171)  |   ![정유진이미지](https://github.com/user-attachments/assets/1fcb5313-ee37-4e61-a66e-20a3c53c9171)   |  ![배정민이미지](https://github.com/user-attachments/assets/1fcb5313-ee37-4e61-a66e-20a3c53c9171)    |
 | :----------------------------------------------: | :---------------------------------------: | :---------------------------------------: | :------------------------------------------: |
-|    <div align = "center"><b>이채영</b></div>     | <div align = "center"><b>오수빈</b></div> | <div align = "center"><b>정유진</b></div> |  <div align = "center"><b>배정민</b></div>   |
+|    <div align = "center"><b>이채영 👑</b></div>     | <div align = "center"><b>오수빈</b></div> | <div align = "center"><b>정유진</b></div> |  <div align = "center"><b>배정민</b></div>   |
 | [@hummingbbird](https://github.com/hummingbbird) |  [@odukong](https://github.com/odukong)   |    [@u-zzn](https://github.com/u-zzn)     | [@qowjdals23](https://github.com/qowjdals23) |
 
 <br/>
@@ -66,6 +66,7 @@ type: description (#이슈 넘버)
 
 ### 👀 Git Convention
 <img width="585" height="682" alt="git flow 이미지" src="https://github.com/user-attachments/assets/e98f22e2-a1a4-4627-b27d-c3b2ffc3651c" />
+
 - 기본 틀: **[type]/#[이슈넘버]/기능 이름** (ex)`feat/#914/company-card-component`)
 - 기능 타입에 맞게 가장 앞단의 키워드를 변경해주세요. (feat / refactor / fix / hotfix/ chore 등)
 - 기능 이름에는 **kebab-case**를 사용합니다.
