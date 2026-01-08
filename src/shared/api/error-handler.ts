@@ -18,8 +18,7 @@ export const isAxiosErrorWithCustomCode = (
     isAxiosError(error) &&
     !!error.response &&
     !!error.response.data &&
-    typeof error.response.data.code === "string" &&
-    error.response.data.code in ERROR_MESSAGE
+    typeof error.response.data.code === "string"
   );
 };
 
@@ -27,7 +26,8 @@ export const isAxiosErrorWithCustomCode = (
 export const handleApiError = (error: unknown) => {
   if (isAxiosErrorWithCustomCode(error)) {
     const { code } = error.response.data;
-    const message = ERROR_MESSAGE[code as ApiErrorCode];
+    const message =
+      ERROR_MESSAGE[code as ApiErrorCode] ?? "알 수 없는 에러가 발생했습니다.";
     console.error(message);
     return message;
   } else if (isAxiosError(error)) {
