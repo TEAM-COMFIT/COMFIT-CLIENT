@@ -3,7 +3,7 @@ import { type ReactNode } from "react";
 import "../styles/reset.css";
 import { themeClass } from "../styles";
 
-export default function ThemeProvider({
+const ThemeProvider = ({
   theme,
   className,
   children,
@@ -11,8 +11,10 @@ export default function ThemeProvider({
   children: ReactNode;
   theme?: string;
   className?: string;
-}) {
+}) => {
   return (
     <div className={`${theme ?? themeClass} ${className}`}>{children}</div>
   );
-}
+};
+
+export { ThemeProvider };
