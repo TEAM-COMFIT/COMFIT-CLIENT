@@ -1,2 +1,5 @@
+#!/bin/sh
+
 echo "🐶 Husky pre-commit 실행"
-pnpm exec lint-staged && echo "🎉 lint-staged 통과"
+pnpm exec lint-staged || exit 1 
+echo "🎉 lint-staged 통과"
