@@ -1,9 +1,21 @@
-import "@styles/text.css";
 import "./reset.css";
 
-import { globalStyle } from "@vanilla-extract/css";
+import { globalStyle, globalFontFace } from "@vanilla-extract/css";
+
+import PretendardWoff2 from "@shared/assets/fonts/PretendardVariable.woff2";
 
 import { themeVars } from "./theme.css";
+
+globalFontFace("Pretendard", {
+  src: `url(${PretendardWoff2}) format("woff2")`,
+  fontWeight: "100 900",
+  fontStyle: "normal",
+  fontDisplay: "swap",
+});
+
+globalStyle("html, body", {
+  fontFamily: "Pretendard",
+});
 
 globalStyle(":root", {
   textRendering: "optimizeLegibility",

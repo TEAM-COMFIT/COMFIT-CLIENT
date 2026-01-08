@@ -7,4 +7,5 @@ export const appContainer = style({
   flexDirection: "column",
   color: themeVars.color.blue300,
   backgroundColor: themeVars.color.blue500,
+  ...themeVars.fontStyles.title_b_28,
 });
