@@ -8,7 +8,9 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "prepare": "husky"
+    "prepare": "husky",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx}": [
@@ -17,9 +19,7 @@
     ],
     "*.{json,md,mdx,css,scss,yml,yaml}": [
       "prettier --write"
-    ],
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    ]
   },
   "dependencies": {
     "eslint-import-resolver-typescript": "^4.4.4",
