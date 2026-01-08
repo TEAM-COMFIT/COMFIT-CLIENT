@@ -13,7 +13,7 @@ export const api = axios.create({
 api.interceptors.request.use(
   async (config) => {
     // TODO: 액세스 토큰 가져오는 로직은 utils/token로 대체 예정
-    const accessToken = localStorage.getItem("access_token") || "temp";
+    const accessToken = localStorage.getItem("access_token") || null;
     if (accessToken) {
       config.headers["authorization"] = `Bearer ${accessToken}`;
     } else {
