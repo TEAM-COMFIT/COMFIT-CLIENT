@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 
 const MatchingDetailPage = () => {
-  const { id } = useParams();
+  const { id } = useParams<{ id: string }>();
   return (
     <div>
       <h1>Welcome to the Matching Detail Page - {id}</h1>
