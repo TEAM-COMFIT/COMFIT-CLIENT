@@ -15,7 +15,7 @@ api.interceptors.request.use(
     // TODO: 액세스 토큰 가져오는 로직은 utils/token로 대체 예정
     const accessToken = localStorage.getItem("access_token") || null;
     if (accessToken) {
-      config.headers["authorization"] = `Bearer ${accessToken}`;
+      config.headers["Authorization"] = `Bearer ${accessToken}`;
     } else {
       // TODO: 로그인이 필요하다는 Toast Message
       console.error("액세스 토큰이 존재하지 않습니다");
@@ -44,6 +44,8 @@ api.interceptors.response.use(
         // 새로 발급 받은 액세스 토큰 저장
         const newAccessToken = data.accessToken;
         localStorage.setItem("access_token", newAccessToken);
+
+        originalRequest.headers["Authorization"] = `Bearer ${newAccessToken}`;
         return api(originalRequest); // 이전 요청 재시도
       } catch (refreshError) {
         // TODO: 재발급 실패시, 로그인 화면으로 이동
