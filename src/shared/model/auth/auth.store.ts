@@ -7,7 +7,6 @@ interface AuthState {
   actions: {
     login: (accessToken: string) => void;
     logout: () => void;
-    syncFromStorage: () => void;
   };
 }
 
@@ -21,10 +20,6 @@ export const useAuthStore = create<AuthState>((set) => ({
     logout: () => {
       tokenStorage.clear();
       set({ isLoggedIn: false });
-    },
-    syncFromStorage: () => {
-      const token = tokenStorage.get();
-      set({ isLoggedIn: Boolean(token) });
     },
   },
 }));
