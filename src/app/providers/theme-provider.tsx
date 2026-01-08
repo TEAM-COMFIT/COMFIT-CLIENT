@@ -17,4 +17,4 @@ const ThemeProvider = ({
   );
 };
 
-export { ThemeProvider };
+export default ThemeProvider;
