@@ -1,10 +1,13 @@
-import { HomePage } from "@/pages/home/home-page";
+import { RouterProvider } from "react-router-dom";
+
+import ThemeProvider from "./providers";
+import { router } from "./routes/app-router";
 
 const App = () => {
   return (
-    <>
-      <HomePage />
-    </>
+    <ThemeProvider>
+      <RouterProvider router={router} />
+    </ThemeProvider>
   );
 };
 
