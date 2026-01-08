@@ -10,7 +10,7 @@
 
 ## 👥 Team member
 
-| <img src="https://github.com/user-attachments/assets/1fcb5313-ee37-4e61-a66e-20a3c53c9171" width="150" /> | <img src="https://github.com/user-attachments/assets/1fcb5313-ee37-4e61-a66e-20a3c53c9171" width="150" /> | <img src="https://github.com/user-attachments/assets/1fcb5313-ee37-4e61-a66e-20a3c53c9171" width="150" /> | <img src="https://github.com/user-attachments/assets/1fcb5313-ee37-4e61-a66e-20a3c53c9171" width="150" /> |
+| <img src="https://avatars.githubusercontent.com/u/84303489?v=4" width="150" /> | <img src="https://avatars.githubusercontent.com/u/91336314?v=4" width="150" /> | <img src="https://avatars.githubusercontent.com/u/108409327?v=4" width="150" /> | <img src="https://avatars.githubusercontent.com/u/101101694?v=4" width="150" /> |
 | :--: | :--: | :--: | :--: |
 | <div align="center"><b>이채영 👑</b></div> | <div align="center"><b>오수빈</b></div> | <div align="center"><b>정유진</b></div> | <div align="center"><b>배정민</b></div> |
 | [@hummingbbird](https://github.com/hummingbbird) |  [@odukong](https://github.com/odukong)   |    [@u-zzn](https://github.com/u-zzn)     | [@qowjdals23](https://github.com/qowjdals23) |
@@ -82,41 +82,39 @@ type: description (#이슈 넘버)
 <summary>📁 파일 및 폴더명</summary>
 
 - **케밥 케이스(kebab-case) 사용**
-  - 예: `company-card.tsx`
-- (예외적으로 컴포넌트 파일은 PascalCase 허용)
+- 예: `company-card.tsx`
 </details>
 
 <details>
-
 <summary>✨ 컴포넌트명</summary>
 
-- **파스칼 케이스 사용**
-```tsx
-const CompanyCard = () => {}  // 파스칼케이스 사용
-```
+- **파스칼 케이스(PascalCase) 사용**
+- 예: `const CompanyCard = () => {};`
 </details>
 
 <details>
 <summary>📛 변수</summary>
 
-- 기본: `var` 금지 !!!
-|  | **규칙** | **예시** |
-| --- | --- | --- |
-| **기본** | camelCase | `hotPostResponseData` |
-| **Boolean 타입** | is 접두사 사용 | `isActive` |
-| **상수** | 대문자 스네이크 케이스 | `VITE_API_KEY`, `ROTATE_DELAY` |
+- 기본: `var` 금지
+
+  |  | **규칙** | **예시** |
+  | --- | --- | --- |
+  | **기본** | camelCase | `hotPostResponseData` |
+  | **Boolean 타입** | is 접두사 사용 | `isActive` |
+  | **상수** | 대문자 스네이크 케이스 | `VITE_API_KEY`, `ROTATE_DELAY` |
+
 </details>
 
 <details>
 <summary>🦾 함수</summary>
 
-> ***가독성, 유지보수성을 고려하여 https://jaketrent.com/ (Jake Trent)의 네이밍 규칙 적용***
+> ***가독성과 유지보수성을 고려하여 [Jake Trent](https://jaketrent.com/)의 네이밍 규칙을 따릅니다.***
 > 
 - 기본: **화살표 함수** 사용
 - 이벤트 핸들러
     - `handle`접두사 사용(단, props는 `on` 접두사 사용)
     - 네이밍 순서는 handle+명사+동사 (ex) `handleButtonClick`)
-    - 2번 이상 사용될 경우 utils 폴더에 생성
+    - 2번 이상 사용될 경우 `shared/lib` 폴더에 생성
     
     ```jsx
     <MyComponent onAlertClick={handleAlertClick} />
@@ -135,8 +133,9 @@ const CompanyCard = () => {}  // 파스칼케이스 사용
 <summary>➕ 그 외</summary>
 
 - **시맨틱 태그** 사용(무지성 div 태그 ❌)
-- border-radius같은 것을 제외하고 단위는 모두 `rem` 사용
-- letter-spacing: em 단위 적용
+- border, border-radius와 같이 크기가 절대적으로 고정되어야 하는 경우 `px` 단위 사용
+- 그 외 모든 것은 `rem` 단위로 통일
+- letter-spacing: `em` 단위 적용
 - 웹 접근성도 고려하는 개발
 - import 문에서 type은 하단에 입력
 </details>
@@ -186,13 +185,13 @@ src
 
 ### 🧩 협업 규칙
 1. 존중하며 말하기
-2. 카카오톡, 디스코드 등 소통 채널 빠른 확인 필수
+2. 카카오톡, 디스코드 등 소통 채널 빠른 확인 필수!
 3. 적극적인 태도로 접근하고 같이 해결하기
 4. 많이 웃기 !!! 😆😆😆😆
 
 ### 🧩 개발 규칙
-1. 작업 전 코드리뷰부터
+1. 작업 전 코드리뷰부터 💨
 2. PR 볼륨 조절하기(너무 큰 PR은 리뷰어에게 부담이 됩니다 😇)
-3. 2인 이상 approve 필수 / LGTM 지양
-4. 근거 있는 개발, 근거 있는 AI 툴 사용 
-5. 컨벤션 잘 지키기
+3. 2인 이상 approve 필수🟢 / LGTM 지양❌
+4. 근거 있는 개발, 근거 있는 AI 툴 사용 🤖
+5. 컨벤션 잘 지키기 👮
