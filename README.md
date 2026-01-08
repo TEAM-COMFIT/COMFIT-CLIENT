@@ -10,10 +10,9 @@
 
 ## 👥 Team member
 
-| <img src="https://github.com/user-attachments/assets/1fcb5313-ee37-4e61-a66e-20a3c53c9171" width="120" /> | <img src="https://github.com/user-attachments/assets/1fcb5313-ee37-4e61-a66e-20a3c53c9171" width="120" /> | <img src="https://github.com/user-attachments/assets/1fcb5313-ee37-4e61-a66e-20a3c53c9171" width="120" /> | <img src="https://github.com/user-attachments/assets/1fcb5313-ee37-4e61-a66e-20a3c53c9171" width="120" /> |
+| <img src="https://github.com/user-attachments/assets/1fcb5313-ee37-4e61-a66e-20a3c53c9171" width="150" /> | <img src="https://github.com/user-attachments/assets/1fcb5313-ee37-4e61-a66e-20a3c53c9171" width="150" /> | <img src="https://github.com/user-attachments/assets/1fcb5313-ee37-4e61-a66e-20a3c53c9171" width="150" /> | <img src="https://github.com/user-attachments/assets/1fcb5313-ee37-4e61-a66e-20a3c53c9171" width="150" /> |
 | :--: | :--: | :--: | :--: |
 | <div align="center"><b>이채영 👑</b></div> | <div align="center"><b>오수빈</b></div> | <div align="center"><b>정유진</b></div> | <div align="center"><b>배정민</b></div> |
-
 | [@hummingbbird](https://github.com/hummingbbird) |  [@odukong](https://github.com/odukong)   |    [@u-zzn](https://github.com/u-zzn)     | [@qowjdals23](https://github.com/qowjdals23) |
 
 <br/>
@@ -99,8 +98,8 @@ const CompanyCard = () => {}  // 파스칼케이스 사용
 
 <details>
 <summary>📛 변수</summary>
-- 기본: `var` 금지 !!!
 
+- 기본: `var` 금지 !!!
 |  | **규칙** | **예시** |
 | --- | --- | --- |
 | **기본** | camelCase | `hotPostResponseData` |
