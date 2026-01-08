@@ -46,3 +46,14 @@ globalStyle("img, picture", {
   height: "auto",
   display: "block",
 });
+
+globalStyle("input", {
+  appearance: "none",
+  background: "transparent",
+  border: "none",
+  outline: "none",
+});
+
+globalStyle("input, button, textarea, select", {
+  fontFamily: "inherit",
+});

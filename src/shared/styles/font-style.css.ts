@@ -40,6 +40,12 @@ export const fontStyles = {
     lineHeight: typography.lineHeight.normal,
     letterSpacing: typography.letterSpacing.normal,
   },
+  title_m_24: {
+    fontSize: typography.fontSize[24],
+    fontWeight: typography.fontWeight.medium,
+    lineHeight: typography.lineHeight.normal,
+    letterSpacing: typography.letterSpacing.normal,
+  },
 
   // heading
   hding_b_22: {
