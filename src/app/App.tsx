@@ -1,4 +1,3 @@
-import { HomePage } from '@pages/home/home-page';
 import { RouterProvider } from "react-router-dom";
 
 import ThemeProvider from "./providers";
