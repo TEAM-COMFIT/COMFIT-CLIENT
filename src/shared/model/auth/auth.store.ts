@@ -12,7 +12,7 @@ interface AuthState {
 }
 
 export const useAuthStore = create<AuthState>((set) => ({
-  isLoggedIn: false,
+  isLoggedIn: Boolean(tokenStorage.get()),
   actions: {
     login: (accessToken) => {
       tokenStorage.set(accessToken);
