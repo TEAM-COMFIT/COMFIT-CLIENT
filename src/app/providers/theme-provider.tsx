@@ -1,6 +1,5 @@
 import { type ReactNode } from "react";
 
-import "../styles/reset.css";
 import { themeClass } from "../styles";
 
 const ThemeProvider = ({

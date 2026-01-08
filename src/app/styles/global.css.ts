@@ -1,4 +1,4 @@
-import "./reset.css";
+import "./reset.css.ts";
 
 import { globalStyle, globalFontFace } from "@vanilla-extract/css";
 
