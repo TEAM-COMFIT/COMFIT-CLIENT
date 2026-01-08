@@ -13,7 +13,6 @@
   },
   "dependencies": {
     "@vanilla-extract/css": "^1.18.0",
-    "@vanilla-extract/sprinkles": "^1.6.5",
     "@vanilla-extract/vite-plugin": "^5.1.4",
     "eslint-import-resolver-typescript": "^4.4.4",
     "react": "^19.2.0",
