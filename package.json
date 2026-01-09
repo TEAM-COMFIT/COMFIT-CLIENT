@@ -10,7 +10,7 @@
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "gen:swagger-ts-api": "dotenv -e .env cross-var -- swagger-typescript-api generate -p %SWAGGER_URL% -o ./src/shared/api/generate -n http-client.ts --extract-request-body --extract-response-body --type-suffix DTO --axios -t ./src/shared/api/generate/templates"
+    "gen:swagger-ts-api": "dotenv -f .env cross-var -- swagger-typescript-api generate -p %SWAGGER_URL% -o ./src/shared/api/generate -n http-client.ts --extract-request-body --extract-response-body --axios -t ./src/shared/api/generate/templates --module-name-index 2"
   },
   "dependencies": {
     "axios": "^1.13.2",
