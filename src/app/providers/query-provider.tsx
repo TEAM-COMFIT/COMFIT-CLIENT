@@ -12,7 +12,7 @@ const ReactQueryDevtools = import.meta.env.DEV
     })
   : null;
 
-export default function QueryProvider({ children }: PropsWithChildren) {
+export const QueryProvider = ({ children }: PropsWithChildren) => {
   return (
     <QueryClientProvider client={queryClient}>
       {children}
@@ -24,4 +24,4 @@ export default function QueryProvider({ children }: PropsWithChildren) {
       ) : null}
     </QueryClientProvider>
   );
-}
+};
