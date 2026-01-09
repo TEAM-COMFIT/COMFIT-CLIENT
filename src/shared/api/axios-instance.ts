@@ -1,5 +1,7 @@
 import axios from "axios";
 
+import { tokenStorage } from "@lib/auth/token-storage";
+
 const SERVER_URL = import.meta.env.VITE_API_URL;
 
 // TODO: 현재는 axios로 instance를 생성하지만, http-client.ts Api 클래스로 instance를 생성하도록 수정할 예정입니다.
@@ -12,8 +14,7 @@ export const api = axios.create({
 
 api.interceptors.request.use(
   async (config) => {
-    // TODO: 액세스 토큰 가져오는 로직은 utils/token로 대체 예정
-    const accessToken = localStorage.getItem("access_token") || null;
+    const accessToken = tokenStorage.get() || null;
     if (accessToken) {
       config.headers["Authorization"] = `Bearer ${accessToken}`;
     } else {
@@ -43,7 +44,7 @@ api.interceptors.response.use(
 
         // 새로 발급 받은 액세스 토큰 저장
         const newAccessToken = data.accessToken;
-        localStorage.setItem("access_token", newAccessToken);
+        tokenStorage.set(newAccessToken);
 
         originalRequest.headers["Authorization"] = `Bearer ${newAccessToken}`;
         return api(originalRequest); // 이전 요청 재시도
