@@ -1,12 +1,12 @@
-# 🔗 Comfit
-
-### 기업과 나를 연결하는 기준, Comfit
-
-<img width="1510" height="1079" alt="컴핏깅들" src="https://github.com/user-attachments/assets/c9cb3afa-6a16-4dd9-a138-d0ffa62d36c3" />
+# Comfit <img width="1440" height="1440" alt="로고 이미지" src="https://github.com/user-attachments/assets/e801c9ea-089c-4bbc-b5df-92790fd7843b" />
+기업과 나를 연결하는 기준
 
 > Comfit은 기업의 핵심 정보와 나의 경험을 하나로 엮어 지원 기업별 맞춤 자소서 전략을 제안하는 AI 기반 분석 플랫폼입니다.
 
+<br/> 
 
+
+ 
 
 ## 👥 Team member
 
