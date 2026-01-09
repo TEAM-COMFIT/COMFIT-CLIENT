@@ -1,17 +1,17 @@
 import { isAxiosError } from "axios";
 
-import { ERROR_MESSAGE } from "@/shared/api/types/response";
+import { ERROR_MESSAGE } from "@/shared/api/types/error-response";
 
 import type {
   ApiErrorResponse,
   ApiErrorCode,
   RequiredWith,
-} from "@/shared/api/types/response";
+} from "@/shared/api/types/error-response";
 import type { AxiosError } from "axios";
 
 // 서버 정의 에러 타입 가드
 // 서버가 보낸 에러가 맞는지 확인하는 함수
-export const isAxiosErrorWithCustomCode = (
+export const isValidCustomError = (
   error: unknown
 ): error is RequiredWith<AxiosError<ApiErrorResponse>, "response"> => {
   return (
@@ -24,7 +24,7 @@ export const isAxiosErrorWithCustomCode = (
 
 // 공통 에러 핸들러
 export const handleApiError = (error: unknown) => {
-  if (isAxiosErrorWithCustomCode(error)) {
+  if (isValidCustomError(error)) {
     const { prefix } = error.response.data;
     const message =
       ERROR_MESSAGE[prefix as ApiErrorCode] ??
