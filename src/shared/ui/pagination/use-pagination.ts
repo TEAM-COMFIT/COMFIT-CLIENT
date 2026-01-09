@@ -4,7 +4,6 @@ import { useMemo } from "react";
 interface UsePaginationArgs {
   currentPage: number;
   totalPages: number;
-  blockSize: number;
   onPageChange: (page: number) => void;
 }
 
@@ -12,19 +11,21 @@ export const usePagination = ({
   currentPage,
   totalPages,
   onPageChange,
-  blockSize,
 }: UsePaginationArgs) => {
+  const BLOCK_SIZE = 10; // 한 블럭에 보여줄 페이지 수(10개로 고정)
+
   // 현재 블럭 계산
-  const blockIndex = Math.floor((currentPage - 1) / blockSize);
-  const blockStart = blockIndex * blockSize + 1;
-  const blockEnd = Math.min(blockStart + blockSize - 1, totalPages);
+  const blockIndex = Math.floor((currentPage - 1) / BLOCK_SIZE);
+  const blockStart = blockIndex * BLOCK_SIZE + 1;
+  const blockEnd = Math.min(blockStart + BLOCK_SIZE - 1, totalPages);
 
   // 이동 가능 여부
   const hasPrevious = currentPage > 1;
   const hasNext = currentPage < totalPages;
 
-  const hasPrevBlock = blockStart > 1;
-  const hasNextBlock = blockEnd < totalPages;
+  // 쌍꺽쇠 disabled 여부
+  const hasPrevDouble = currentPage !== 1;
+  const hasNextDouble = currentPage !== totalPages;
 
   // 페이지 숫자 배열
   const pageNumbers = useMemo(
@@ -43,33 +44,46 @@ export const usePagination = ({
     onPageChange(page);
   };
 
-  const goPrevPage = () => hasPrevious && goToPage(currentPage - 1);
-  const goNextPage = () => hasNext && goToPage(currentPage + 1);
+  const handleArrowLeftClick = () => hasPrevious && goToPage(currentPage - 1);
+  const handleArrowRightClick = () => hasNext && goToPage(currentPage + 1);
 
-  const goPrevBlock = () => {
-    if (!hasPrevBlock) return;
-    goToPage(Math.max(1, blockStart - blockSize));
+  // 쌍꺽쇠 왼쪽 클릭 핸들러
+  const handleDoubleArrowLeftClick = () => {
+    if (currentPage === 1) return;
+
+    const prevBlockStart = blockStart - BLOCK_SIZE;
+    if (prevBlockStart >= 1) {
+      onPageChange(prevBlockStart);
+    } else {
+      onPageChange(1);
+    }
   };
-  const goNextBlock = () => {
-    if (!hasNextBlock) return;
-    goToPage(blockStart + blockSize);
+
+  const handleDoubleArrowRightClick = () => {
+    const nextBlockStart = blockStart + BLOCK_SIZE;
+
+    if (nextBlockStart <= totalPages) {
+      onPageChange(nextBlockStart);
+    } else {
+      onPageChange(totalPages);
+    }
   };
 
   return {
     blockStart,
     blockEnd,
     pageNumbers,
-    showDoubleArrows: totalPages > blockSize,
+    showDoubleArrows: totalPages > BLOCK_SIZE,
 
     hasPrevious,
     hasNext,
-    hasPrevBlock,
-    hasNextBlock,
+    hasPrevDouble,
+    hasNextDouble,
 
     goToPage,
-    goPrevPage,
-    goNextPage,
-    goPrevBlock,
-    goNextBlock,
+    handleArrowLeftClick,
+    handleArrowRightClick,
+    handleDoubleArrowLeftClick,
+    handleDoubleArrowRightClick,
   };
 };

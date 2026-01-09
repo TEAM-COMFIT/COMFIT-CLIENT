@@ -3,11 +3,11 @@ import { useState } from "react";
 
 import { Pagination } from "./pagination";
 
-const ITEMS_PER_PAGE = 8;
+const ITEMS_PER_PAGE = 8; // 한 페이지 당 아이템 수
 
 const CompanyGridContainer = () => {
   const [page, setPage] = useState(1);
-  const totalPages = 15;
+  const totalPages = 27;
 
   return (
     <>
@@ -29,7 +29,6 @@ const CompanyGridContainer = () => {
         currentPage={page}
         totalPages={totalPages}
         onPageChange={setPage}
-        blockSize={8}
       />
     </>
   );

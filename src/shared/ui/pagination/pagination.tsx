@@ -13,7 +13,6 @@ import { usePagination } from "./use-pagination";
 interface PaginationProps {
   currentPage: number;
   totalPages: number;
-  blockSize: number;
   onPageChange: (page: number) => void;
 }
 
@@ -21,21 +20,20 @@ const Pagination = ({
   currentPage,
   totalPages,
   onPageChange,
-  blockSize,
 }: PaginationProps) => {
   const {
     pageNumbers,
-    hasPrevBlock,
-    hasNextBlock,
+    hasPrevDouble,
+    hasNextDouble,
     hasPrevious,
     hasNext,
-    goPrevBlock,
-    goNextBlock,
-    goPrevPage,
-    goNextPage,
+    handleDoubleArrowLeftClick,
+    handleDoubleArrowRightClick,
+    handleArrowLeftClick,
+    handleArrowRightClick,
     goToPage,
     showDoubleArrows,
-  } = usePagination({ currentPage, totalPages, onPageChange, blockSize });
+  } = usePagination({ currentPage, totalPages, onPageChange });
 
   if (totalPages <= 0) return null;
 
@@ -43,17 +41,21 @@ const Pagination = ({
     <div className={styles.paginationWrapper}>
       {showDoubleArrows && (
         <button
-          className={`${styles.iconButton} ${!hasPrevBlock ? styles.iconButtonDisabled : ""}`}
-          onClick={goPrevBlock}
-          disabled={!hasPrevBlock}
+          className={`${styles.iconButton} ${!hasPrevDouble ? styles.iconButtonDisabled : ""}`}
+          onClick={handleDoubleArrowLeftClick}
+          disabled={!hasPrevDouble}
         >
-          {hasPrevBlock ? <IconDoubleArrowLeft /> : <IconDoubleArrowLeftGray />}
+          {hasPrevDouble ? (
+            <IconDoubleArrowLeft />
+          ) : (
+            <IconDoubleArrowLeftGray />
+          )}
         </button>
       )}
 
       <button
         className={`${styles.iconButton} ${!hasPrevious ? styles.iconButtonDisabled : ""}`}
-        onClick={goPrevPage}
+        onClick={handleArrowLeftClick}
         disabled={!hasPrevious}
       >
         {hasPrevious ? <IconArrowLeft /> : <IconArrowLeftGray />}
@@ -71,7 +73,7 @@ const Pagination = ({
 
       <button
         className={`${styles.iconButton} ${!hasNext ? styles.iconButtonDisabled : ""}`}
-        onClick={goNextPage}
+        onClick={handleArrowRightClick}
         disabled={!hasNext}
       >
         {hasNext ? <IconArrowRight /> : <IconArrowRightGray />}
@@ -79,11 +81,11 @@ const Pagination = ({
 
       {showDoubleArrows && (
         <button
-          className={`${styles.iconButton} ${!hasNextBlock ? styles.iconButtonDisabled : ""}`}
-          onClick={goNextBlock}
-          disabled={!hasNextBlock}
+          className={`${styles.iconButton} ${!hasNextDouble ? styles.iconButtonDisabled : ""}`}
+          onClick={handleDoubleArrowRightClick}
+          disabled={!hasNextDouble}
         >
-          {hasNextBlock ? (
+          {hasNextDouble ? (
             <IconDoubleArrowRight />
           ) : (
             <IconDoubleArrowRightGray />
