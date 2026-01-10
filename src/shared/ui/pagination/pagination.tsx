@@ -1,11 +1,7 @@
-import IconArrowLeft from "@icons/arrow_left_black.svg?react";
-import IconArrowLeftGray from "@icons/arrow_left_gray.svg?react";
-import IconArrowRight from "@icons/arrow_right_black.svg?react";
-import IconArrowRightGray from "@icons/arrow_right_gray.svg?react";
-import IconDoubleArrowLeft from "@icons/double_arrow_left_black.svg?react";
-import IconDoubleArrowLeftGray from "@icons/double_arrow_left_gray.svg?react";
-import IconDoubleArrowRight from "@icons/double_arrow_right_black.svg?react";
-import IconDoubleArrowRightGray from "@icons/double_arrow_right_gray.svg?react";
+import IconArrowLeft from "@icons/arrow_left.svg?react";
+import IconArrowRight from "@icons/arrow_right.svg?react";
+import IconDoubleArrowLeft from "@icons/double_arrow_left.svg?react";
+import IconDoubleArrowRight from "@icons/double_arrow_right.svg?react";
 
 import * as styles from "./pagination.css";
 import { usePagination } from "./use-pagination";
@@ -40,56 +36,55 @@ const Pagination = ({
   return (
     <div className={styles.paginationWrapper}>
       {showDoubleArrows && (
-        <button
-          className={`${styles.iconButton} ${!hasPrevDouble ? styles.iconButtonDisabled : ""}`}
-          onClick={handleDoubleArrowLeftClick}
-          disabled={!hasPrevDouble}
-        >
-          {hasPrevDouble ? (
-            <IconDoubleArrowLeft />
-          ) : (
-            <IconDoubleArrowLeftGray />
-          )}
+        <button onClick={handleDoubleArrowLeftClick} disabled={!hasPrevDouble}>
+          <IconDoubleArrowLeft
+            className={styles.buttonVariants({
+              variant: "arrow",
+              active: hasPrevDouble,
+            })}
+          />
         </button>
       )}
 
-      <button
-        className={`${styles.iconButton} ${!hasPrevious ? styles.iconButtonDisabled : ""}`}
-        onClick={handleArrowLeftClick}
-        disabled={!hasPrevious}
-      >
-        {hasPrevious ? <IconArrowLeft /> : <IconArrowLeftGray />}
+      <button onClick={handleArrowLeftClick} disabled={!hasPrevious}>
+        <IconArrowLeft
+          className={styles.buttonVariants({
+            variant: "arrow",
+            active: hasPrevious,
+          })}
+        />
       </button>
 
       {pageNumbers.map((page) => (
         <button
           key={page}
-          className={`${styles.pageButton} ${page === currentPage ? styles.activePage : ""}`}
+          className={styles.buttonVariants({
+            variant: "number",
+            active: page === currentPage,
+          })}
           onClick={() => goToPage(page)}
         >
           {page}
         </button>
       ))}
 
-      <button
-        className={`${styles.iconButton} ${!hasNext ? styles.iconButtonDisabled : ""}`}
-        onClick={handleArrowRightClick}
-        disabled={!hasNext}
-      >
-        {hasNext ? <IconArrowRight /> : <IconArrowRightGray />}
+      <button onClick={handleArrowRightClick} disabled={!hasNext}>
+        <IconArrowRight
+          className={styles.buttonVariants({
+            variant: "arrow",
+            active: hasNext,
+          })}
+        />
       </button>
 
       {showDoubleArrows && (
-        <button
-          className={`${styles.iconButton} ${!hasNextDouble ? styles.iconButtonDisabled : ""}`}
-          onClick={handleDoubleArrowRightClick}
-          disabled={!hasNextDouble}
-        >
-          {hasNextDouble ? (
-            <IconDoubleArrowRight />
-          ) : (
-            <IconDoubleArrowRightGray />
-          )}
+        <button onClick={handleDoubleArrowRightClick} disabled={!hasNextDouble}>
+          <IconDoubleArrowRight
+            className={styles.buttonVariants({
+              variant: "arrow",
+              active: hasNextDouble,
+            })}
+          />
         </button>
       )}
     </div>

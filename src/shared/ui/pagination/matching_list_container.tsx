@@ -1,10 +1,11 @@
+// 임시 컴포넌트(삭제 예정)
 import { useState } from "react";
 
 import { Pagination } from "./pagination";
 
 const ITEMS_PER_PAGE = 5;
 
-export const ExperienceListContainer = () => {
+export const MatchingListContainer = () => {
   const [page, setPage] = useState(1);
   const totalPages = 12;
 
@@ -22,7 +23,6 @@ export const ExperienceListContainer = () => {
         currentPage={page}
         totalPages={totalPages}
         onPageChange={setPage}
-        blockSize={5}
       />
     </>
   );

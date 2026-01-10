@@ -1,5 +1,5 @@
 import { CompanyGridContainer } from "@/shared/ui/pagination/company_list_container";
-import { ExperienceListContainer } from "@/shared/ui/pagination/experience_list_container";
+import { MatchingListContainer } from "@/shared/ui/pagination/matching_list_container";
 import Heart from "@icons/heart.svg?react";
 import KERORO from "@images/comfit_web_status.jpg";
 
@@ -10,7 +10,7 @@ const HomePage = () => {
       <h1>프리텐다드</h1>
       <p>카카오로 시작하기</p>
       <CompanyGridContainer />
-      <ExperienceListContainer />
+      <MatchingListContainer />
       <img src={KERORO} alt="Keroro" width={400} />
       <Heart aria-label="좋아요" />
     </div>

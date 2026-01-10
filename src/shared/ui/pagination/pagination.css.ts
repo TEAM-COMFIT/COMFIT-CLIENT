@@ -1,4 +1,5 @@
 import { style } from "@vanilla-extract/css";
+import { recipe } from "@vanilla-extract/recipes";
 
 import { themeVars } from "@/app/styles";
 
@@ -7,33 +8,54 @@ export const paginationWrapper = style({
   alignItems: "center",
   justifyContent: "center",
   gap: "0.8rem",
-  marginTop: "3rem",
 });
 
-export const iconButton = style({
-  width: "4.4rem",
-  height: "4.4rem",
+export const buttonBase = style({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  cursor: "pointer",
-});
-
-export const iconButtonDisabled = style({
-  cursor: "default",
-});
-
-export const pageButton = style({
   width: "4.4rem",
   height: "4.4rem",
-  padding: "0.8rem",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  color: themeVars.color.gray400,
-  ...themeVars.fontStyles.body_m_16,
 });
 
-export const activePage = style({
-  color: themeVars.color.black,
+export const buttonVariants = recipe({
+  base: buttonBase,
+  variants: {
+    variant: {
+      arrow: {
+        color: themeVars.color.gray200,
+      },
+      number: {
+        color: themeVars.color.gray400,
+        ...themeVars.fontStyles.body_m_16,
+      },
+    },
+    active: {
+      true: {},
+      false: {},
+    },
+  },
+
+  compoundVariants: [
+    {
+      variants: { variant: "arrow", active: true },
+      style: { color: themeVars.color.gray500 },
+    },
+    {
+      variants: { variant: "arrow", active: false },
+      style: { color: themeVars.color.gray200 },
+    },
+    {
+      variants: { variant: "number", active: true },
+      style: { color: themeVars.color.black },
+    },
+    {
+      variants: { variant: "number", active: false },
+      style: { color: themeVars.color.gray400 },
+    },
+  ],
+  defaultVariants: {
+    variant: "number",
+    active: false,
+  },
 });
