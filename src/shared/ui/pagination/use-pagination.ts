@@ -19,15 +19,15 @@ export const usePagination = ({
   const blockStart = blockIndex * BLOCK_SIZE + 1;
   const blockEnd = Math.min(blockStart + BLOCK_SIZE - 1, totalPages);
 
-  // 꺽쇠 버튼 활성화 여부
+  // 꺽쇠 활성화 여부
   const hasPrevious = currentPage > 1;
   const hasNext = currentPage < totalPages;
 
+  // 쌍꺽쇠 버튼 활성화 여부
   const currentBlock = Math.ceil(currentPage / BLOCK_SIZE);
   const totalBlocks = Math.ceil(totalPages / BLOCK_SIZE);
 
-  // 쌍꺽쇠 버튼 활성화 여부
-  const hasPrevDouble = currentBlock > 1;
+  const hasPrevDouble = currentPage !== 1;
   const hasNextDouble = currentBlock < totalBlocks;
 
   // 페이지 숫자 배열
@@ -40,6 +40,7 @@ export const usePagination = ({
     [blockStart, blockEnd]
   );
 
+  // 페이지 이동 함수
   const goToPage = (page: number) => {
     if (page < 1 || page > totalPages) return;
     if (page === currentPage) return;
@@ -62,6 +63,7 @@ export const usePagination = ({
     }
   };
 
+  // 쌍꺽쇠 오른쪽 클릭 핸들러
   const handleDoubleArrowRightClick = () => {
     const nextBlockStart = blockStart + BLOCK_SIZE;
 
