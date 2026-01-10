@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "prepare": "husky",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "gen:swagger-ts-api": "dotenv -f .env cross-var -- swagger-typescript-api generate -p %SWAGGER_URL% -o ./src/shared/api/generate -n http-client.ts --extract-request-body --extract-response-body --axios -t ./src/shared/api/generate/templates --module-name-index 2"
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx}": [
@@ -22,6 +23,7 @@
     ]
   },
   "dependencies": {
+    "axios": "^1.13.2",
     "@tanstack/react-query": "^5.90.16",
     "@vanilla-extract/css": "^1.18.0",
     "@vanilla-extract/recipes": "^0.5.7",
@@ -45,6 +47,8 @@
     "@typescript-eslint/eslint-plugin": "^8.51.0",
     "@typescript-eslint/parser": "^8.51.0",
     "@vitejs/plugin-react-swc": "^4.2.2",
+    "cross-var": "^1.1.0",
+    "dotenv-cli": "^11.0.0",
     "eslint": "^9.39.1",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-import": "^2.32.0",
@@ -57,7 +61,6 @@
     "husky": "^9.1.7",
     "lint-staged": "^16.2.7",
     "prettier": "3.7.4",
-    "storybook": "^10.1.11",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.46.4",
     "vite": "^7.2.4",
