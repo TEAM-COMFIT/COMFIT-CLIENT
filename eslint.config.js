@@ -12,7 +12,16 @@ import eslintConfigPrettier from "eslint-config-prettier";
 import react from "eslint-plugin-react";
 
 export default defineConfig([
-  { ignores: ["dist", "node_modules", "build", "*.config.js", "*.config.ts"] },
+  {
+    ignores: [
+      "dist",
+      "node_modules",
+      "build",
+      "*.config.js",
+      "*.config.ts",
+      "**/*.ejs",
+    ],
+  },
 
   importPlugin.flatConfigs.recommended,
   importPlugin.flatConfigs.typescript,

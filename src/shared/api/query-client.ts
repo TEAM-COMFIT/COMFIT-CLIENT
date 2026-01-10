@@ -1,5 +1,7 @@
 import { MutationCache, QueryCache, QueryClient } from "@tanstack/react-query";
 
+import { handleApiError } from "./error-handler";
+
 export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -10,7 +12,7 @@ export const queryClient = new QueryClient({
       staleTime: 30 * 1000,
       gcTime: 10 * 60 * 1000,
 
-      throwOnError: false,
+      throwOnError: true,
     },
     mutations: {
       retry: 0,
@@ -20,17 +22,13 @@ export const queryClient = new QueryClient({
 
   queryCache: new QueryCache({
     onError: (error: unknown) => {
-      // TODO: API 초기 세팅 PR merge 후 공통 에러 핸들러 연결
-      // handleApiError(error);
-      console.error(error);
+      handleApiError(error, "query");
     },
   }),
 
   mutationCache: new MutationCache({
     onError: (error: unknown) => {
-      // TODO: API 초기 세팅 PR merge 후 공통 에러 핸들러 연결
-      // handleApiError(error);
-      console.error(error);
+      handleApiError(error, "mutation");
     },
   }),
 });

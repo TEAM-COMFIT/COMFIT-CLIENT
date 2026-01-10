@@ -1,4 +1,4 @@
-const ACCESS_TOKEN_KEY = 'accessToken';
+const ACCESS_TOKEN_KEY = "accessToken";
 
 export const tokenStorage = {
   get() {
