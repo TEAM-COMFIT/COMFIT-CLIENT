@@ -9,7 +9,7 @@ export const MatchingListContainer = () => {
   // TODO: 서버에서 받아오는 데이터(추후 해당 값으로 변경 필요)
   const [page, setPage] = useState(1);
   const totalPage = 12;
-  const totalElements = totalPage * ITEMS_PER_PAGE;
+  // const totalElements = totalPage * ITEMS_PER_PAGE;
 
   return (
     <>
