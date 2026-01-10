@@ -58,6 +58,7 @@ const Pagination = ({
       {pageNumbers.map((page) => (
         <button
           key={page}
+          aria-current={page === currentPage ? "page" : undefined}
           className={styles.buttonVariants({
             variant: "number",
             active: page === currentPage,

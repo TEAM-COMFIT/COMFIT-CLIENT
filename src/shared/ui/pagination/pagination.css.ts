@@ -16,19 +16,15 @@ export const buttonBase = style({
   justifyContent: "center",
   width: "4.4rem",
   height: "4.4rem",
+  ...themeVars.fontStyles.body_m_16,
 });
 
 export const buttonVariants = recipe({
   base: buttonBase,
   variants: {
     variant: {
-      arrow: {
-        color: themeVars.color.gray200,
-      },
-      number: {
-        color: themeVars.color.gray400,
-        ...themeVars.fontStyles.body_m_16,
-      },
+      arrow: {},
+      number: {},
     },
     active: {
       true: {},
