@@ -117,9 +117,6 @@ importers:
       prettier:
         specifier: 3.7.4
         version: 3.7.4
-      storybook:
-        specifier: ^10.1.11
-        version: 10.1.11(@testing-library/dom@10.4.1)(prettier@3.7.4)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       typescript:
         specifier: ~5.9.3
         version: 5.9.3
@@ -4315,7 +4312,7 @@ snapshots:
     dependencies:
       '@vanilla-extract/css': 1.18.0
 
-  '@vanilla-extract/vite-plugin@5.1.4(@types/node@24.10.4)(vite@7.3.1(@types/node@24.10.4)(yaml@2.8.2))(yaml@2.8.2)':
+  '@vanilla-extract/vite-plugin@5.1.4(@types/node@24.10.4)(jiti@2.6.1)(vite@7.3.1(@types/node@24.10.4)(jiti@2.6.1)(yaml@2.8.2))(yaml@2.8.2)':
     dependencies:
       '@vanilla-extract/compiler': 0.3.4(@types/node@24.10.4)(jiti@2.6.1)(yaml@2.8.2)
       '@vanilla-extract/integration': 8.0.7
