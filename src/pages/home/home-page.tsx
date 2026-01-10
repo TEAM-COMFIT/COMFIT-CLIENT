@@ -1,5 +1,5 @@
-import { CompanyGridContainer } from "@/shared/ui/pagination/company_list_container";
-import { MatchingListContainer } from "@/shared/ui/pagination/matching_list_container";
+import { CompanyGridContainer } from "@/shared/ui/pagination/company-list-container";
+import { MatchingListContainer } from "@/shared/ui/pagination/matching-list-container";
 import Heart from "@icons/heart.svg?react";
 import KERORO from "@images/comfit_web_status.jpg";
 
