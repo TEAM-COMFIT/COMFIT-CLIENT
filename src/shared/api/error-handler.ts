@@ -11,7 +11,7 @@ import type { AxiosError } from "axios";
 
 /**
  * 서버 정의 에러(Business Error) 타입 가드
- * - HTTP 상태 코드는 정상이지만, 비즈니스 로직상 실패한 경우를 식별합니다.
+ * - 서버가 정의한 error payload 식별
  * - 응답 본문(data)에 'prefix' 필드가 있는지 확인합니다. (추후 TODO)
  */
 export const isValidCustomError = (
