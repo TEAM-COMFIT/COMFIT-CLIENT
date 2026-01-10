@@ -1,4 +1,4 @@
-// 임시 컴포넌트(삭제 예정)
+// 임시 컴포넌트
 import { useState } from "react";
 
 import { Pagination } from "./pagination";
@@ -6,9 +6,10 @@ import { Pagination } from "./pagination";
 const ITEMS_PER_PAGE = 8; // 한 페이지 당 아이템 수
 
 const CompanyGridContainer = () => {
+  // TODO: 서버에서 받아오는 데이터(추후 해당 값으로 변경 필요)
   const [page, setPage] = useState(1);
-  const totalPages = 27;
-
+  const totalPage = 27;
+  const totalElements = totalPage * ITEMS_PER_PAGE;
   return (
     <>
       <div
@@ -27,7 +28,7 @@ const CompanyGridContainer = () => {
 
       <Pagination
         currentPage={page}
-        totalPages={totalPages}
+        totalPage={totalPage}
         onPageChange={setPage}
       />
     </>

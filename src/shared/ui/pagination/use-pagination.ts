@@ -3,13 +3,13 @@ import { useMemo } from "react";
 
 interface UsePaginationArgs {
   currentPage: number;
-  totalPages: number;
+  totalPage: number;
   onPageChange: (page: number) => void;
 }
 
 export const usePagination = ({
   currentPage,
-  totalPages,
+  totalPage,
   onPageChange,
 }: UsePaginationArgs) => {
   const BLOCK_SIZE = 10; // 한 블럭에 보여줄 페이지 수(10개로 고정)
@@ -17,15 +17,16 @@ export const usePagination = ({
   // 현재 블럭 계산
   const blockIndex = Math.floor((currentPage - 1) / BLOCK_SIZE);
   const blockStart = blockIndex * BLOCK_SIZE + 1;
-  const blockEnd = Math.min(blockStart + BLOCK_SIZE - 1, totalPages);
+  const blockEnd = Math.min(blockStart + BLOCK_SIZE - 1, totalPage);
 
   // 꺽쇠 활성화 여부
+  // TODO: 백엔드에서 넘겨줌
   const hasPrevious = currentPage > 1;
-  const hasNext = currentPage < totalPages;
+  const hasNext = currentPage < totalPage;
 
   // 쌍꺽쇠 버튼 활성화 여부
   const currentBlock = Math.ceil(currentPage / BLOCK_SIZE);
-  const totalBlocks = Math.ceil(totalPages / BLOCK_SIZE);
+  const totalBlocks = Math.ceil(totalPage / BLOCK_SIZE);
 
   const hasPrevDouble = currentPage !== 1;
   const hasNextDouble = currentBlock < totalBlocks;
@@ -42,7 +43,7 @@ export const usePagination = ({
 
   // 페이지 이동 함수
   const goToPage = (page: number) => {
-    if (page < 1 || page > totalPages) return;
+    if (page < 1 || page > totalPage) return;
     if (page === currentPage) return;
 
     onPageChange(page);
@@ -67,10 +68,10 @@ export const usePagination = ({
   const handleDoubleArrowRightClick = () => {
     const nextBlockStart = blockStart + BLOCK_SIZE;
 
-    if (nextBlockStart <= totalPages) {
+    if (nextBlockStart <= totalPage) {
       onPageChange(nextBlockStart);
     } else {
-      onPageChange(totalPages);
+      onPageChange(totalPage);
     }
   };
 
@@ -78,7 +79,7 @@ export const usePagination = ({
     blockStart,
     blockEnd,
     pageNumbers,
-    showDoubleArrows: totalPages > BLOCK_SIZE,
+    showDoubleArrows: totalPage > BLOCK_SIZE,
 
     hasPrevious,
     hasNext,

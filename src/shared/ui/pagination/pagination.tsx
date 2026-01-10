@@ -8,13 +8,13 @@ import { usePagination } from "./use-pagination";
 
 interface PaginationProps {
   currentPage: number;
-  totalPages: number;
+  totalPage: number;
   onPageChange: (page: number) => void;
 }
 
 const Pagination = ({
   currentPage,
-  totalPages,
+  totalPage,
   onPageChange,
 }: PaginationProps) => {
   const {
@@ -29,9 +29,9 @@ const Pagination = ({
     handleArrowRightClick,
     goToPage,
     showDoubleArrows,
-  } = usePagination({ currentPage, totalPages, onPageChange });
+  } = usePagination({ currentPage, totalPage, onPageChange });
 
-  if (totalPages <= 0) return null;
+  if (totalPage <= 0) return null;
 
   return (
     <div className={styles.paginationWrapper}>
