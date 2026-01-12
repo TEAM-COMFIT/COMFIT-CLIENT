@@ -23,15 +23,15 @@
     ]
   },
   "dependencies": {
-    "axios": "^1.13.2",
     "@tanstack/react-query": "^5.90.16",
     "@vanilla-extract/css": "^1.18.0",
     "@vanilla-extract/vite-plugin": "^5.1.4",
+    "axios": "^1.13.2",
     "eslint-import-resolver-typescript": "^4.4.4",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "zustand": "^5.0.9",
-    "react-router-dom": "^7.11.0"
+    "react-router-dom": "^7.11.0",
+    "zustand": "^5.0.9"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
@@ -59,8 +59,8 @@
     "globals": "^16.5.0",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.7",
-    "storybook": "^10.1.11",
     "prettier": "3.7.4",
+    "storybook": "^10.1.11",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.46.4",
     "vite": "^7.2.4",
