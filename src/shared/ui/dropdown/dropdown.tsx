@@ -6,7 +6,7 @@ import * as styles from "./dropdown.css";
 
 import type { ReactNode } from "react";
 
-type DropdownSize = "small" | "medium" | "large";
+type DropdownSize = "medium" | "large" | "full";
 
 interface DropdownContextValue {
   isOpen: boolean;
@@ -40,14 +40,18 @@ const Dropdown = ({
         size: type,
       }}
     >
-      <div className={styles.dropdownWrapper}>{children}</div>
+      <div
+        className={`${styles.dropdownWrapper} ${styles.dropdownAlign[type]}`}
+      >
+        {children}
+      </div>
     </DropdownContext.Provider>
   );
 };
 
 /* ---------- Trigger ---------- */
 const Trigger = ({ children }: { children: ReactNode }) => {
-  const { toggle, size } = useDropdown();
+  const { toggle, size, isOpen } = useDropdown();
 
   return (
     <button
@@ -56,7 +60,9 @@ const Trigger = ({ children }: { children: ReactNode }) => {
       className={`${styles.trigger} ${styles.triggerSize[size]}`}
     >
       {children}
-      <ArrowIcon />
+      <ArrowIcon
+        className={`${styles.arrowIcon} ${styles.arrowIconTransition[isOpen ? "open" : "closed"]}`}
+      />
     </button>
   );
 };
