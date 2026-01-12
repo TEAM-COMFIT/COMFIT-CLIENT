@@ -51,7 +51,7 @@ const Dropdown = ({
 
 /* ---------- Trigger ---------- */
 const Trigger = ({ children }: { children: ReactNode }) => {
-  const { toggle, size, isOpen } = useDropdown();
+  const { toggle, isOpen } = useDropdown();
 
   return (
     <button type="button" onClick={toggle} className={`${styles.trigger}`}>
