@@ -41,8 +41,8 @@ export const FILTER_INDUSTRY: IndustryFilterOption[] = [
   { id: 10, code: "FITNESS", label: INDUSTRY.FITNESS },
 ];
 
-// 기업 규모
-export const COMPANY_SIZE = {
+// 기업 규모 (Scale)
+export const SCALE = {
   LARGE: "대기업",
   STARTUP: "스타트업",
   PUBLIC_CORP: "공기업",
@@ -53,33 +53,31 @@ export const COMPANY_SIZE = {
   ETC: "기타",
 } as const;
 
-export type CompanySizeCode = keyof typeof COMPANY_SIZE;
-export type CompanySizeLabel = (typeof COMPANY_SIZE)[CompanySizeCode];
+export type ScaleCode = keyof typeof SCALE;
+export type ScaleLabel = (typeof SCALE)[ScaleCode];
 
-export const COMPANY_SIZE_LABEL_TO_CODE: Record<
-  CompanySizeLabel,
-  CompanySizeCode
-> = Object.entries(COMPANY_SIZE).reduce(
-  (acc, [code, label]) => {
-    acc[label as CompanySizeLabel] = code as CompanySizeCode;
-    return acc;
-  },
-  {} as Record<CompanySizeLabel, CompanySizeCode>
-);
+export const SCALE_LABEL_TO_CODE: Record<ScaleLabel, ScaleCode> =
+  Object.entries(SCALE).reduce(
+    (acc, [code, label]) => {
+      acc[label as ScaleLabel] = code as ScaleCode;
+      return acc;
+    },
+    {} as Record<ScaleLabel, ScaleCode>
+  );
 
-export interface CompanySizeFilterOption {
+export interface ScaleFilterOption {
   id: number;
-  code: CompanySizeCode;
-  label: CompanySizeLabel;
+  code: ScaleCode;
+  label: ScaleLabel;
 }
 
-export const FILTER_COMPANY_SIZE: CompanySizeFilterOption[] = [
-  { id: 2, code: "LARGE", label: COMPANY_SIZE.LARGE },
-  { id: 3, code: "STARTUP", label: COMPANY_SIZE.STARTUP },
-  { id: 4, code: "PUBLIC_CORP", label: COMPANY_SIZE.PUBLIC_CORP },
-  { id: 5, code: "MID_LARGE", label: COMPANY_SIZE.MID_LARGE },
-  { id: 6, code: "SME", label: COMPANY_SIZE.SME },
-  { id: 7, code: "FOREIGN", label: COMPANY_SIZE.FOREIGN },
-  { id: 8, code: "PUBLIC_ORG", label: COMPANY_SIZE.PUBLIC_ORG },
-  { id: 9, code: "ETC", label: COMPANY_SIZE.ETC },
+export const FILTER_SCALE: ScaleFilterOption[] = [
+  { id: 2, code: "LARGE", label: SCALE.LARGE },
+  { id: 3, code: "STARTUP", label: SCALE.STARTUP },
+  { id: 4, code: "PUBLIC_CORP", label: SCALE.PUBLIC_CORP },
+  { id: 5, code: "MID_LARGE", label: SCALE.MID_LARGE },
+  { id: 6, code: "SME", label: SCALE.SME },
+  { id: 7, code: "FOREIGN", label: SCALE.FOREIGN },
+  { id: 8, code: "PUBLIC_ORG", label: SCALE.PUBLIC_ORG },
+  { id: 9, code: "ETC", label: SCALE.ETC },
 ];
