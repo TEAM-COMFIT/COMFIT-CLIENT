@@ -18,7 +18,9 @@ const DropdownContext = createContext<DropdownContextValue | null>(null);
 
 const useDropdown = () => {
   const ctx = useContext(DropdownContext);
-  if (!ctx) throw new Error("Dropdown components must be used within Dropdown");
+  if (!ctx) {
+    throw new Error("Dropdown components must be used within Dropdown");
+  }
   return ctx;
 };
 
@@ -54,10 +56,12 @@ const Trigger = ({ children }: { children: ReactNode }) => {
   const { toggle, isOpen } = useDropdown();
 
   return (
-    <button type="button" onClick={toggle} className={`${styles.trigger}`}>
+    <button type="button" onClick={toggle} className={styles.trigger}>
       {children}
       <ArrowIcon
-        className={`${styles.arrowIcon} ${styles.arrowIconTransition[isOpen ? "open" : "closed"]}`}
+        className={`${styles.arrowIcon} ${
+          styles.arrowIconTransition[isOpen ? "open" : "closed"]
+        }`}
       />
     </button>
   );
@@ -69,7 +73,12 @@ const Menu = ({ children }: { children: ReactNode }) => {
   if (!isOpen) return null;
 
   return (
-    <div className={`${styles.menu} ${styles.menuSize[size]}`}>{children}</div>
+    <ul
+      role="menu"
+      className={`${styles.menu} ${styles.menuSize[size]} ${styles.menuAlign[size]}`}
+    >
+      {children}
+    </ul>
   );
 };
 

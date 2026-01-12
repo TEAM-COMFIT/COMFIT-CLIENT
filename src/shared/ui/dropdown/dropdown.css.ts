@@ -2,26 +2,27 @@ import { style, styleVariants } from "@vanilla-extract/css";
 
 import { themeVars } from "@/app/styles";
 
-/* ---------- base ---------- */
+/* ---------- Wrapper ---------- */
 export const dropdownWrapper = style({
   position: "relative",
   display: "inline-flex",
   flexDirection: "column",
-  gap: "0.8rem",
 });
 
+/* ---------- Trigger alignment ---------- */
 export const dropdownAlign = styleVariants({
   medium: {
-    alignItems: "flex-end", // 왼쪽 정렬
+    alignItems: "flex-end", // 오른쪽 정렬
   },
   large: {
-    alignItems: "center", // 중앙 정렬
+    alignItems: "flex-start", // 왼쪽 정렬
   },
   full: {
-    alignItems: "flex-start", // 오른쪽 정렬
+    alignItems: "flex-start", // 왼쪽 정렬
   },
 });
 
+/* ---------- Trigger ---------- */
 export const trigger = style({
   height: "4.4rem",
   padding: "0.8rem 1.2rem",
@@ -29,35 +30,75 @@ export const trigger = style({
   alignItems: "center",
   justifyContent: "space-between",
   gap: "1.6rem",
+
   color: themeVars.color.gray800,
   backgroundColor: themeVars.color.white,
   border: `1.5px solid ${themeVars.color.normal}`,
   borderRadius: "12px",
+
   ...themeVars.fontStyles.body_r_16,
 });
 
+/* ---------- Arrow Icon ---------- */
+export const arrowIcon = style({
+  width: "1.8rem",
+  height: "1.8rem",
+});
+
+export const arrowIconTransition = styleVariants({
+  closed: {
+    transform: "rotate(180deg)",
+    transition: "transform 0.2s ease",
+  },
+  open: {
+    transform: "rotate(0deg)",
+    transition: "transform 0.2s ease",
+  },
+});
+
+/* ---------- Menu ---------- */
+export const menu = style({
+  position: "absolute",
+  top: "100%",
+  marginTop: "0.8rem", // trigger와 gap
+
+  padding: "0.8rem",
+  backgroundColor: themeVars.color.white,
+  border: `1.5px solid ${themeVars.color.normal}`,
+  borderRadius: "12px",
+  boxShadow: "0 0 8px rgba(0, 0, 0, 0.1)",
+
+  zIndex: 100,
+});
+
+/* ---------- Menu size ---------- */
 export const menuSize = styleVariants({
   medium: { width: "14.4rem" },
   large: { width: "14.4rem" },
   full: { width: "20.5rem" },
 });
 
-export const menu = style({
-  padding: "0.8rem",
-  backgroundColor: themeVars.color.white,
-  border: `1.5px solid ${themeVars.color.normal}`,
-  borderRadius: "12px",
-  display: "flex",
-  flexDirection: "column",
-  gap: "0.4rem",
-  boxShadow: "0 0 8px rgba(0, 0, 0, 0.1)",
+/* ---------- Menu alignment ---------- */
+export const menuAlign = styleVariants({
+  medium: {
+    right: 0,
+    left: "auto",
+  },
+  large: {
+    left: 0,
+  },
+  full: {
+    left: 0,
+  },
 });
 
+/* ---------- Item ---------- */
 export const item = style({
   padding: "1rem 1.2rem",
   borderRadius: "8px",
   textAlign: "left",
   cursor: "pointer",
+
   backgroundColor: themeVars.color.white,
   ...themeVars.fontStyles.body_r_16,
 
@@ -65,20 +106,5 @@ export const item = style({
     "&:hover": {
       backgroundColor: themeVars.color.blue200,
     },
-  },
-});
-
-export const arrowIcon = style({
-  width: "1.8rem",
-  height: "1.8rem",
-  //   border: "1px solid red",
-});
-
-export const arrowIconTransition = styleVariants({
-  closed: {
-    transform: "rotate(180deg)",
-  },
-  open: {
-    transform: "rotate(0deg)",
   },
 });
