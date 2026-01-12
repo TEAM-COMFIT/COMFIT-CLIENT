@@ -54,11 +54,7 @@ const Trigger = ({ children }: { children: ReactNode }) => {
   const { toggle, size, isOpen } = useDropdown();
 
   return (
-    <button
-      type="button"
-      onClick={toggle}
-      className={`${styles.trigger} ${styles.triggerSize[size]}`}
-    >
+    <button type="button" onClick={toggle} className={`${styles.trigger}`}>
       {children}
       <ArrowIcon
         className={`${styles.arrowIcon} ${styles.arrowIconTransition[isOpen ? "open" : "closed"]}`}
@@ -69,10 +65,12 @@ const Trigger = ({ children }: { children: ReactNode }) => {
 
 /* ---------- Menu ---------- */
 const Menu = ({ children }: { children: ReactNode }) => {
-  const { isOpen } = useDropdown();
+  const { isOpen, size } = useDropdown();
   if (!isOpen) return null;
 
-  return <div className={styles.menu}>{children}</div>;
+  return (
+    <div className={`${styles.menu} ${styles.menuSize[size]}`}>{children}</div>
+  );
 };
 
 /* ---------- Item ---------- */

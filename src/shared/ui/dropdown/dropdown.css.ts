@@ -2,13 +2,6 @@ import { style, styleVariants } from "@vanilla-extract/css";
 
 import { themeVars } from "@/app/styles";
 
-/* ---------- size variants ---------- */
-export const triggerSize = styleVariants({
-  medium: { width: "10rem" },
-  large: { width: "14rem" },
-  full: { width: "14rem" },
-});
-
 /* ---------- base ---------- */
 export const dropdownWrapper = style({
   position: "relative",
@@ -35,16 +28,17 @@ export const trigger = style({
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
+  gap: "1.6rem",
   color: themeVars.color.gray800,
   backgroundColor: themeVars.color.white,
-  border: `1px solid ${themeVars.color.normal}`,
+  border: `1.5px solid ${themeVars.color.normal}`,
   borderRadius: "12px",
   ...themeVars.fontStyles.body_r_16,
 });
 
 export const menuSize = styleVariants({
-  medium: { width: "14rem" },
-  large: { width: "14rem" },
+  medium: { width: "14.4rem" },
+  large: { width: "14.4rem" },
   full: { width: "20rem" },
 });
 
