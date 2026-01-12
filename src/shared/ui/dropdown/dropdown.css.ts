@@ -39,7 +39,7 @@ export const trigger = style({
 export const menuSize = styleVariants({
   medium: { width: "14.4rem" },
   large: { width: "14.4rem" },
-  full: { width: "20rem" },
+  full: { width: "20.5rem" },
 });
 
 export const menu = style({
@@ -77,10 +77,8 @@ export const arrowIcon = style({
 export const arrowIconTransition = styleVariants({
   closed: {
     transform: "rotate(180deg)",
-    transition: "transform 0.3s ease",
   },
   open: {
     transform: "rotate(0deg)",
-    transition: "transform 0.3s ease",
   },
 });

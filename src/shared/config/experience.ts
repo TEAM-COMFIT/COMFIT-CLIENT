@@ -9,8 +9,6 @@ export const EXPERIENCE_TYPE = {
 export type ExperienceTypeCode = keyof typeof EXPERIENCE_TYPE;
 export type ExperienceTypeLabel = (typeof EXPERIENCE_TYPE)[ExperienceTypeCode];
 
-type ExperienceFilterValue = ExperienceTypeCode | null;
-
 export const EXPERIENCE_LABEL_TO_CODE: Record<
   ExperienceTypeLabel,
   ExperienceTypeCode

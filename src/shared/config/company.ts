@@ -1,6 +1,5 @@
 // 산업
 export const INDUSTRY = {
-  ALL: "전체",
   CONSUMER_GOODS: "소비재 / FMCG",
   IT: "IT 플랫폼 / IT 서비스",
   MEDIA_CONTENTS: "콘텐츠 / 미디어 / 엔터",
@@ -31,7 +30,6 @@ export interface IndustryFilterOption {
 }
 
 export const FILTER_INDUSTRY: IndustryFilterOption[] = [
-  { id: 1, code: "ALL", label: INDUSTRY.ALL },
   { id: 2, code: "CONSUMER_GOODS", label: INDUSTRY.CONSUMER_GOODS },
   { id: 3, code: "IT", label: INDUSTRY.IT },
   { id: 4, code: "MEDIA_CONTENTS", label: INDUSTRY.MEDIA_CONTENTS },
@@ -45,7 +43,6 @@ export const FILTER_INDUSTRY: IndustryFilterOption[] = [
 
 // 기업 규모
 export const COMPANY_SIZE = {
-  ALL: "전체",
   LARGE: "대기업",
   STARTUP: "스타트업",
   PUBLIC_CORP: "공기업",
@@ -77,7 +74,6 @@ export interface CompanySizeFilterOption {
 }
 
 export const FILTER_COMPANY_SIZE: CompanySizeFilterOption[] = [
-  { id: 1, code: "ALL", label: COMPANY_SIZE.ALL },
   { id: 2, code: "LARGE", label: COMPANY_SIZE.LARGE },
   { id: 3, code: "STARTUP", label: COMPANY_SIZE.STARTUP },
   { id: 4, code: "PUBLIC_CORP", label: COMPANY_SIZE.PUBLIC_CORP },
