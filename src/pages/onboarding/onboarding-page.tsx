@@ -13,6 +13,7 @@ const OnboardingPage = () => {
       >
         푸드/F&B
       </Tag>
+      <Tag type="register">인턴/실무</Tag>
     </div>
   );
 };

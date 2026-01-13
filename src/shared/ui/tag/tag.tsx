@@ -4,7 +4,7 @@ import { tag, cancelIcon } from "./tag.css";
 
 import type { ReactNode } from "react";
 
-export type TagVariant = "label" | "xlabel";
+export type TagVariant = "label" | "xlabel" | "register";
 
 export interface TagProps {
   children: ReactNode;

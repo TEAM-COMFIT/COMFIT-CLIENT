@@ -13,7 +13,6 @@ export const cancelIcon = style({
 
 export const tag = recipe({
   base: {
-    borderRadius: "8px",
     display: "inline-flex",
     alignItems: "center",
     justifyContent: "center",
@@ -25,15 +24,24 @@ export const tag = recipe({
     type: {
       xlabel: {
         border: `1px solid ${themeVars.color.blue400}`,
+        borderRadius: "8px",
         backgroundColor: themeVars.color.blue200,
         color: themeVars.color.blue600,
         padding: "0.4rem 1.2rem",
       },
       label: {
         border: `1px solid ${themeVars.color.purple300}`,
+        borderRadius: "8px",
         backgroundColor: themeVars.color.purple100,
         color: themeVars.color.purple400,
         padding: "0.6rem 1.2rem",
+      },
+      register: {
+        border: `1px solid ${themeVars.color.normal}`,
+        borderRadius: "12px",
+        backgroundColor: themeVars.color.blue200,
+        color: themeVars.color.gray800,
+        padding: "1rem 1.2rem",
       },
     },
   },
