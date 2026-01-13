@@ -6,7 +6,7 @@ import { Avatar, Logo } from "@/shared/assets/icons";
 import * as styles from "./header.css";
 
 const NAV_ITEMS = [
-  { to: "/onboarding", label: "소개" },
+  { to: "/landing", label: "소개" },
   { to: "/experience-matching", label: "경험 매칭 AI" },
   { to: "/experience", label: "경험 등록" },
   { to: "/matching", label: "매칭 경험 목록" },
