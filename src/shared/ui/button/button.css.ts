@@ -22,7 +22,7 @@ const baseStyle = style({
     "&:disabled": {
       backgroundColor: themeVars.color.gray100,
       color: themeVars.color.gray400,
-      borderColor: "var(--Line-normal, rgba(112, 115, 124, 0.22))",
+      borderColor: themeVars.color.normal,
     },
   },
 });
