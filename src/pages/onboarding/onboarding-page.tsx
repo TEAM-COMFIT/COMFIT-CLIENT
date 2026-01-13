@@ -1,7 +1,18 @@
+import { Tag } from "@/shared/ui/tag";
+
 const OnboardingPage = () => {
   return (
     <div>
       <h1>Welcome to the Onboarding Page</h1>
+      <Tag>푸드/F&B</Tag>
+      <Tag
+        type="xlabel"
+        onCancel={() => {
+          console.log("cancel clicked");
+        }}
+      >
+        푸드/F&B
+      </Tag>
     </div>
   );
 };
