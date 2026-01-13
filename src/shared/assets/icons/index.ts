@@ -1,1 +1,1 @@
-export { default as DropdownArrow } from "./dropdown-arrow.svg?react";
+export { default as DropdownArrow } from "./dropdown_up_arrow.svg?react";
