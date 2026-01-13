@@ -1,7 +1,7 @@
 import { createContext, useContext, useState } from "react";
 
+import { DropdownArrow } from "@/shared/assets/icons";
 import useOutsideClick from "@/shared/model/use-outsliceclick";
-import ArrowIcon from "@icons/dropdown_up_arrow.svg?react";
 
 import * as styles from "./dropdown.css";
 
@@ -66,7 +66,7 @@ const Trigger = ({ children }: { children: ReactNode }) => {
   return (
     <button type="button" onClick={toggle} className={styles.trigger}>
       {children}
-      <ArrowIcon
+      <DropdownArrow
         className={`${styles.arrowIcon} ${
           styles.arrowIconTransition[isOpen ? "open" : "closed"]
         }`}
