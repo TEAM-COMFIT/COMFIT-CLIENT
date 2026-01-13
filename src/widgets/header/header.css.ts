@@ -12,12 +12,13 @@ export const headerLayout = style({
   justifyContent: "center",
   backgroundColor: themeVars.color.white,
   border: `1px solid ${themeVars.color.normal}`,
+  padding: "0 17rem",
 });
 
 export const header = style({
   ...flexCenter,
   justifyContent: "space-between",
-  width: "106rem",
+  width: "100%",
   padding: "1.4rem 2rem",
   margin: "0 auto",
 });
