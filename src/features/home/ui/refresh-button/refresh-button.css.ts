@@ -7,7 +7,6 @@ export const buttonWrapper = style({
   flexDirection: "row",
   justifyContent: "center",
   alignItems: "center",
-  border: "1px solid red",
   width: "10rem",
   height: "3rem",
   gap: "0.4rem",
