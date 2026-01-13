@@ -21,76 +21,99 @@ const Pagination = ({
 }: PaginationProps) => {
   const {
     pageNumbers,
-    hasPrevDouble,
-    hasNextDouble,
+    canGoPrevBlock,
+    canGoNextBlock,
     hasPrevious,
     hasNext,
-    handleDoubleArrowLeftClick,
-    handleDoubleArrowRightClick,
-    handleArrowLeftClick,
-    handleArrowRightClick,
     goToPage,
+    pageActions,
     showDoubleArrows,
   } = usePagination({ currentPage, totalPage, onPageChange });
 
   if (totalPage <= 0) return null;
 
   return (
-    <div className={styles.paginationWrapper}>
-      {showDoubleArrows && (
-        <button onClick={handleDoubleArrowLeftClick} disabled={!hasPrevDouble}>
-          <IconDoubleArrowLeft
+    <nav aria-label="페이지네이션">
+      <ul className={styles.paginationWrapper}>
+        {showDoubleArrows && (
+          <li>
+            <button
+              type="button"
+              onClick={pageActions.goPrevBlock}
+              disabled={!canGoPrevBlock}
+              aria-label="이전 블록"
+              className={styles.buttonVariants({
+                variant: "arrow",
+                active: canGoPrevBlock,
+              })}
+            >
+              <IconDoubleArrowLeft />
+            </button>
+          </li>
+        )}
+        <li>
+          <button
+            type="button"
+            onClick={pageActions.goPrevPage}
+            disabled={!hasPrevious}
+            aria-label="이전 페이지"
             className={styles.buttonVariants({
               variant: "arrow",
-              active: hasPrevDouble,
+              active: hasPrevious,
             })}
-          />
-        </button>
-      )}
+          >
+            <IconArrowLeft />
+          </button>
+        </li>
 
-      <button onClick={handleArrowLeftClick} disabled={!hasPrevious}>
-        <IconArrowLeft
-          className={styles.buttonVariants({
-            variant: "arrow",
-            active: hasPrevious,
-          })}
-        />
-      </button>
-
-      {pageNumbers.map((page) => (
-        <button
-          key={page}
-          aria-current={page === currentPage ? "page" : undefined}
-          className={styles.buttonVariants({
-            variant: "number",
-            active: page === currentPage,
-          })}
-          onClick={() => goToPage(page)}
-        >
-          {page}
-        </button>
-      ))}
-
-      <button onClick={handleArrowRightClick} disabled={!hasNext}>
-        <IconArrowRight
-          className={styles.buttonVariants({
-            variant: "arrow",
-            active: hasNext,
-          })}
-        />
-      </button>
-
-      {showDoubleArrows && (
-        <button onClick={handleDoubleArrowRightClick} disabled={!hasNextDouble}>
-          <IconDoubleArrowRight
+        {pageNumbers.map((page) => (
+          <li key={page}>
+            <button
+              type="button"
+              aria-current={page === currentPage ? "page" : undefined}
+              className={styles.buttonVariants({
+                variant: "number",
+                active: page === currentPage,
+              })}
+              onClick={() => goToPage(page)}
+            >
+              {page}
+            </button>
+          </li>
+        ))}
+        <li>
+          <button
+            type="button"
+            onClick={pageActions.goNextPage}
+            disabled={!hasNext}
+            aria-label="다음 페이지"
             className={styles.buttonVariants({
               variant: "arrow",
-              active: hasNextDouble,
+              active: hasNext,
             })}
-          />
-        </button>
-      )}
-    </div>
+          >
+            <IconArrowRight />
+          </button>
+        </li>
+
+        {showDoubleArrows && (
+          <li>
+            <button
+              type="button"
+              onClick={pageActions.goNextBlock}
+              disabled={!canGoNextBlock}
+              aria-label="다음 블록"
+              className={styles.buttonVariants({
+                variant: "arrow",
+                active: canGoNextBlock,
+              })}
+            >
+              <IconDoubleArrowRight />
+            </button>
+          </li>
+        )}
+      </ul>
+    </nav>
   );
 };
 
