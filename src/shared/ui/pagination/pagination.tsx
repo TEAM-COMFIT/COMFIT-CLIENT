@@ -1,7 +1,9 @@
-import IconArrowLeft from "@icons/arrow_left.svg?react";
-import IconArrowRight from "@icons/arrow_right.svg?react";
-import IconDoubleArrowLeft from "@icons/double_arrow_left.svg?react";
-import IconDoubleArrowRight from "@icons/double_arrow_right.svg?react";
+import {
+  IconArrowLeft,
+  IconArrowRight,
+  IconDoubleArrowLeft,
+  IconDoubleArrowRight,
+} from "@/shared/assets/icons";
 
 import * as styles from "./pagination.css";
 import { usePagination } from "./use-pagination";
