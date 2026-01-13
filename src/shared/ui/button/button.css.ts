@@ -8,6 +8,8 @@ const baseStyle = style({
   justifyContent: "center",
   boxSizing: "border-box",
 
+  userSelect: "none",
+
   padding: "0.8rem 1.6rem",
   border: "1.5px solid transparent",
   borderRadius: "12px",
