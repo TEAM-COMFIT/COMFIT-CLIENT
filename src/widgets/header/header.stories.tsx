@@ -24,6 +24,7 @@ const meta = {
 
       useEffect(() => {
         useAuthStore.setState({ isLoggedIn });
+        return () => useAuthStore.setState({ isLoggedIn: false });
       }, [isLoggedIn]);
 
       return (
