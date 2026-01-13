@@ -48,11 +48,9 @@ export const arrowIcon = style({
 export const arrowIconTransition = styleVariants({
   closed: {
     transform: "rotate(180deg)",
-    transition: "transform 0.2s ease",
   },
   open: {
     transform: "rotate(0deg)",
-    transition: "transform 0.2s ease",
   },
 });
 
@@ -95,6 +93,7 @@ export const menuAlign = styleVariants({
 /* ---------- Item ---------- */
 export const item = style({
   padding: "1rem 1.2rem",
+  width: "100%",
   borderRadius: "8px",
   textAlign: "left",
   cursor: "pointer",

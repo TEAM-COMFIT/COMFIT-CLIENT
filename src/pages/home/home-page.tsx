@@ -13,12 +13,12 @@ const HomePage = () => {
   const [scale, setScale] = useState<ScaleCode | null>(null);
   return (
     <div className={appContainer}>
-      <h1>프리텐다드</h1>
-      <p>카카오로 시작하기</p>
       <img src={KERORO} alt="Keroro" width={400} />
       <Heart aria-label="좋아요" />
-      <IndustryFilter value={industry} onChange={setIndustry} />
-      <ScaleFilter value={scale} onChange={setScale} />
+      <div style={{ display: "flex", flexDirection: "row", gap: "1rem" }}>
+        <IndustryFilter value={industry} onChange={setIndustry} />
+        <ScaleFilter value={scale} onChange={setScale} />
+      </div>
     </div>
   );
 };
