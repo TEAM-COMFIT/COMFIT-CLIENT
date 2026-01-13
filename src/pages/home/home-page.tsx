@@ -1,24 +1,27 @@
-import { useState } from "react";
-
-import {
-  Button,
-  KakaoButton,
-  BookmarkButton,
-  CompanyLinkButton,
-  ExpToggleButton,
-  CompanyAnalysisButton,
-  IconOnlyButton,
-} from "@/shared/ui/button";
+import { Button } from "@/shared/ui/button/button";
 import Heart from "@icons/heart.svg?react";
 import KERORO from "@images/comfit_web_status.jpg";
 
 import { appContainer } from "./home-page.css";
 
-const HomePage = () => {
-  const [isBookmarked, setIsBookmarked] = useState(false);
-  const [isLinkActive, setIsLinkActive] = useState(false);
-  const [isExpChecked, setIsExpChecked] = useState(false);
-  const [isTrashToggled, setIsTrashToggled] = useState(false);
+export const HomePage = () => {
+  const sectionHeaderStyle = {
+    fontSize: "20px",
+    fontWeight: "bold",
+    marginBottom: "10px",
+  };
+
+  const rowStyle = {
+    display: "flex",
+    alignItems: "center",
+    gap: "16px",
+  };
+
+  const labelStyle = {
+    minWidth: "80px",
+    fontWeight: "bold",
+    color: "#666",
+  };
 
   return (
     <>
@@ -37,76 +40,86 @@ const HomePage = () => {
           gap: "30px",
         }}
       >
-        {/* 1. 카카오 버튼 */}
-        <section>
-          <h3>1. 카카오 버튼</h3>
-          <KakaoButton />
-        </section>
+        <h1 style={{ fontSize: "24px", fontWeight: "bold" }}>Size & State</h1>
 
-        {/* 2. 기본 버튼 Type */}
-        <section>
-          <h3>2. 기본 버튼 Type</h3>
-          <div style={{ display: "flex", gap: "10px" }}>
-            <Button variant="primary">Primary</Button>
-            <Button variant="secondary">Secondary</Button>
+        {/* Primary Section */}
+        <section
+          style={{ display: "flex", flexDirection: "column", gap: "20px" }}
+        >
+          <h2 style={sectionHeaderStyle}>Primary</h2>
+
+          <div style={rowStyle}>
+            <span style={labelStyle}>Default</span>
             <Button variant="primary" size="full">
               매칭 경험 목록 탭 바로가기
             </Button>
+            <Button variant="primary" size="large">
+              Large
+            </Button>
+            <Button variant="primary" size="medium">
+              선택 완료
+            </Button>
+            <Button variant="primary" size="small">
+              Small
+            </Button>
           </div>
-        </section>
 
-        {/* 3. 기업 분석 */}
-        <section>
-          <h3>3. 기업 분석</h3>
-          <CompanyAnalysisButton />
-        </section>
-
-        {/* 4. 기능 버튼 (small + Icon) */}
-        <section>
-          <h3>4. 기능 버튼 (small + Icon)</h3>
-          <div style={{ display: "flex", gap: "10px" }}>
-            <BookmarkButton
-              isToggled={isBookmarked}
-              onClick={() => setIsBookmarked((prev) => !prev)}
-            />
-
-            <CompanyLinkButton
-              isToggled={isLinkActive}
-              onClick={() => setIsLinkActive((prev) => !prev)}
-            />
-          </div>
-        </section>
-
-        {/* 5. 상태 변경 */}
-        <section>
-          <h3>5. 상태 변경</h3>
-          <ExpToggleButton
-            isToggled={isExpChecked}
-            onClick={() => setIsExpChecked((prev) => !prev)}
-          />
-        </section>
-
-        {/* 6. 아이콘만 (Icon Only) */}
-        <section>
-          <h3>6. 아이콘만 (Icon Only)</h3>
-          <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-            <IconOnlyButton
-              aria-label="삭제"
-              isToggled={isTrashToggled}
-              onClick={() => setIsTrashToggled((prev) => !prev)}
-            />
-          </div>
-        </section>
-
-        {/* 7. 비활성화 (Disabled) */}
-        <section>
-          <h3>7. 비활성화 (Disabled)</h3>
-          <div style={{ display: "flex", gap: "10px" }}>
+          <div style={rowStyle}>
+            <span style={labelStyle}>Disabled</span>
+            <Button variant="primary" size="full" disabled>
+              Full
+            </Button>
             <Button variant="primary" size="large" disabled>
               패션/뷰티/라이프스타일
             </Button>
+            <Button variant="primary" size="medium" disabled>
+              Medium
+            </Button>
+            <Button variant="primary" size="small" disabled>
+              수정하기
+            </Button>
+          </div>
+        </section>
+
+        <hr
+          style={{ border: "0", borderTop: "1px solid #eee", width: "100%" }}
+        />
+
+        {/* Secondary Section */}
+        <section
+          style={{ display: "flex", flexDirection: "column", gap: "20px" }}
+        >
+          <h2 style={sectionHeaderStyle}>Secondary</h2>
+
+          <div style={rowStyle}>
+            <span style={labelStyle}>Default</span>
+            <Button variant="secondary" size="full">
+              Full
+            </Button>
+            <Button variant="secondary" size="large">
+              Large
+            </Button>
+            <Button variant="secondary" size="medium">
+              Medium
+            </Button>
+            <Button variant="secondary" size="small">
+              Small
+            </Button>
+          </div>
+
+          <div style={rowStyle}>
+            <span style={labelStyle}>Disabled</span>
+            <Button variant="secondary" size="full" disabled>
+              Full
+            </Button>
             <Button variant="secondary" size="large" disabled>
-              모빌리티/트레블/O2O
+              Large
+            </Button>
+            <Button variant="secondary" size="medium" disabled>
+              Medium
+            </Button>
+            <Button variant="secondary" size="small" disabled>
+              Small
             </Button>
           </div>
         </section>
@@ -114,5 +127,3 @@ const HomePage = () => {
     </>
   );
 };
-
-export { HomePage };
