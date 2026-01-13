@@ -3,12 +3,12 @@ import Dropdown from "@/shared/ui/dropdown/dropdown";
 
 import type { ScaleCode } from "@/shared/config/company";
 
-interface CompanySizeFilterProps {
+interface ScaleFilterProps {
   value: ScaleCode | null;
   onChange: (value: ScaleCode) => void;
 }
 
-const CompanySizeFilter = ({ value, onChange }: CompanySizeFilterProps) => {
+const ScaleFilter = ({ value, onChange }: ScaleFilterProps) => {
   const triggerLabel = value === null ? "기업 규모" : SCALE[value];
 
   return (
@@ -26,4 +26,4 @@ const CompanySizeFilter = ({ value, onChange }: CompanySizeFilterProps) => {
   );
 };
 
-export default CompanySizeFilter;
+export { ScaleFilter };

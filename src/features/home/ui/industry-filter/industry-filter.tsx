@@ -26,4 +26,4 @@ const IndustryFilter = ({ value, onChange }: IndustryFilterProps) => {
   );
 };
 
-export default IndustryFilter;
+export { IndustryFilter };

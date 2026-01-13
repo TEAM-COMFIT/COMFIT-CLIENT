@@ -1,7 +1,7 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 
 import { DropdownArrow } from "@/shared/assets/icons";
-import useOutsideClick from "@/shared/model/use-outsliceclick";
+import useOutsideClick from "@/shared/model/use-outsideclick";
 
 import * as styles from "./dropdown.css";
 
@@ -21,7 +21,7 @@ const DropdownContext = createContext<DropdownContextValue | null>(null);
 const useDropdown = () => {
   const ctx = useContext(DropdownContext);
   if (!ctx) {
-    throw new Error("Dropdown components must be used within Dropdown");
+    throw new Error("드롭다운 내부에서만 사용 가능합니다!");
   }
   return ctx;
 };
@@ -39,6 +39,19 @@ const Dropdown = ({
   const close = () => setIsOpen(false);
 
   const wrapperRef = useOutsideClick<HTMLDivElement>(isOpen, close);
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        close();
+      }
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [isOpen, close]);
 
   return (
     <DropdownContext.Provider
@@ -98,17 +111,19 @@ const Item = ({
   children: ReactNode;
   onClick?: () => void;
 }) => {
-  const { toggle } = useDropdown();
+  const { close } = useDropdown();
 
   const handleClick = () => {
     onClick?.();
-    toggle();
+    close();
   };
 
   return (
-    <button type="button" onClick={handleClick} className={styles.item}>
-      {children}
-    </button>
+    <li role="none">
+      <button type="button" onClick={handleClick} className={styles.item}>
+        {children}
+      </button>
+    </li>
   );
 };
 

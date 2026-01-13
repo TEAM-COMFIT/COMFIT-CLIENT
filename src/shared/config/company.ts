@@ -30,15 +30,15 @@ export interface IndustryFilterOption {
 }
 
 export const FILTER_INDUSTRY: IndustryFilterOption[] = [
-  { id: 2, code: "CONSUMER_GOODS", label: INDUSTRY.CONSUMER_GOODS },
-  { id: 3, code: "IT", label: INDUSTRY.IT },
-  { id: 4, code: "MEDIA_CONTENTS", label: INDUSTRY.MEDIA_CONTENTS },
-  { id: 5, code: "RETAIL", label: INDUSTRY.RETAIL },
-  { id: 6, code: "LIFE_STYLE", label: INDUSTRY.LIFE_STYLE },
-  { id: 7, code: "FOOD", label: INDUSTRY.FOOD },
-  { id: 8, code: "TRAVEL", label: INDUSTRY.TRAVEL },
-  { id: 9, code: "FINANCE", label: INDUSTRY.FINANCE },
-  { id: 10, code: "FITNESS", label: INDUSTRY.FITNESS },
+  { id: 1, code: "CONSUMER_GOODS", label: INDUSTRY.CONSUMER_GOODS },
+  { id: 2, code: "IT", label: INDUSTRY.IT },
+  { id: 3, code: "MEDIA_CONTENTS", label: INDUSTRY.MEDIA_CONTENTS },
+  { id: 4, code: "RETAIL", label: INDUSTRY.RETAIL },
+  { id: 5, code: "LIFE_STYLE", label: INDUSTRY.LIFE_STYLE },
+  { id: 6, code: "FOOD", label: INDUSTRY.FOOD },
+  { id: 7, code: "TRAVEL", label: INDUSTRY.TRAVEL },
+  { id: 8, code: "FINANCE", label: INDUSTRY.FINANCE },
+  { id: 9, code: "FITNESS", label: INDUSTRY.FITNESS },
 ];
 
 // 기업 규모 (Scale)
@@ -72,12 +72,12 @@ export interface ScaleFilterOption {
 }
 
 export const FILTER_SCALE: ScaleFilterOption[] = [
-  { id: 2, code: "LARGE", label: SCALE.LARGE },
-  { id: 3, code: "STARTUP", label: SCALE.STARTUP },
-  { id: 4, code: "PUBLIC_CORP", label: SCALE.PUBLIC_CORP },
-  { id: 5, code: "MID_LARGE", label: SCALE.MID_LARGE },
-  { id: 6, code: "SME", label: SCALE.SME },
-  { id: 7, code: "FOREIGN", label: SCALE.FOREIGN },
-  { id: 8, code: "PUBLIC_ORG", label: SCALE.PUBLIC_ORG },
-  { id: 9, code: "ETC", label: SCALE.ETC },
+  { id: 1, code: "LARGE", label: SCALE.LARGE },
+  { id: 2, code: "STARTUP", label: SCALE.STARTUP },
+  { id: 3, code: "PUBLIC_CORP", label: SCALE.PUBLIC_CORP },
+  { id: 4, code: "MID_LARGE", label: SCALE.MID_LARGE },
+  { id: 5, code: "SME", label: SCALE.SME },
+  { id: 6, code: "FOREIGN", label: SCALE.FOREIGN },
+  { id: 7, code: "PUBLIC_ORG", label: SCALE.PUBLIC_ORG },
+  { id: 8, code: "ETC", label: SCALE.ETC },
 ];

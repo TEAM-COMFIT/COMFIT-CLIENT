@@ -27,8 +27,8 @@ export interface ExperienceFilterOption {
 }
 
 export const FILTER_EXPERIENCE_TYPE: ExperienceFilterOption[] = [
-  { id: 2, code: "INTERNSHIP", label: EXPERIENCE_TYPE.INTERNSHIP },
-  { id: 3, code: "PROJECT", label: EXPERIENCE_TYPE.PROJECT },
-  { id: 4, code: "EDUCATION", label: EXPERIENCE_TYPE.EDUCATION },
-  { id: 5, code: "ETC", label: EXPERIENCE_TYPE.ETC },
+  { id: 1, code: "INTERNSHIP", label: EXPERIENCE_TYPE.INTERNSHIP },
+  { id: 2, code: "PROJECT", label: EXPERIENCE_TYPE.PROJECT },
+  { id: 3, code: "EDUCATION", label: EXPERIENCE_TYPE.EDUCATION },
+  { id: 4, code: "ETC", label: EXPERIENCE_TYPE.ETC },
 ];

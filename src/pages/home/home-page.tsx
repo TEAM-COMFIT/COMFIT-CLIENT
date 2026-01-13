@@ -1,7 +1,6 @@
 import { useState } from "react";
 
-import { IndustryFilter } from "@/features/home/ui/industry-filter";
-import { ScaleFilter } from "@/features/home/ui/scale-filter";
+import { IndustryFilter, ScaleFilter } from "@/features/home/ui";
 import Heart from "@icons/heart.svg?react";
 import KERORO from "@images/comfit_web_status.jpg";
 
