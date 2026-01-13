@@ -64,8 +64,14 @@ const XButton = () => {
   );
 };
 
-const Content = ({ children }: { children: ReactNode }) => {
-  return <div className={styles.Content}>{children}</div>;
+const Content = ({
+  children,
+  type,
+}: {
+  children: ReactNode;
+  type?: "default" | "auto";
+}) => {
+  return <div className={styles.Content({ type: type })}>{children}</div>;
 };
 
 const Title = ({ children }: { children: ReactNode }) => {

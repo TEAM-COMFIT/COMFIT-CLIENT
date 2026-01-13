@@ -6,7 +6,7 @@ import KERORO from "@images/comfit_web_status.jpg";
 import { appContainer } from "./home-page.css";
 
 const HomePage = () => {
-  const { isOpen, handleModal } = useModal(3000);
+  const { isOpen, handleModal } = useModal();
 
   return (
     <div className={appContainer}>

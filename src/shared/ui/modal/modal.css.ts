@@ -29,13 +29,28 @@ export const XButton = style({
   color: "black",
 });
 
-export const Content = style({
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "center",
-  gap: "1.6rem",
-  flex: 1,
-  textAlign: "center",
+export const Content = recipe({
+  base: {
+    display: "flex",
+    flexDirection: "column",
+    flex: 1,
+    textAlign: "center",
+  },
+  variants: {
+    type: {
+      default: {
+        justifyContent: "center",
+        gap: "1.6rem",
+      },
+      auto: {
+        justifyContent: "flex-end",
+        gap: "0.8rem",
+      },
+    },
+  },
+  defaultVariants: {
+    type: "default",
+  },
 });
 
 export const Title = style({
@@ -51,7 +66,7 @@ export const SubTitle = style({
 });
 
 export const Image = style({
-  margin: "2.4rem 0",
+  margin: "2.4rem 0 3rem 0",
 });
 
 export const Buttons = style({
