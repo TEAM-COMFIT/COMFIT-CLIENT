@@ -5,10 +5,12 @@ import { ExperienceMatchingPage } from "@/pages/experience-matching/experience-m
 import { MatchingDetailPage } from "@/pages/matching-detail/matching-detail-page";
 import { MatchingListPage } from "@/pages/matching-list/matching-list-page";
 import { MyPage } from "@/pages/my-page/my-page";
+import { OnboardingPage } from "@/pages/onboarding/onboarding-page";
 
 import { ROUTES } from "./paths";
 
 export const protectedRoutes = [
+  { path: ROUTES.ONBOARDING, element: <OnboardingPage /> },
   { path: ROUTES.EXPERIENCE_MATCHING, element: <ExperienceMatchingPage /> },
 
   // 매칭 결과
