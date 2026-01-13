@@ -25,11 +25,12 @@ const useModalContext = () => {
 
 interface ModalProps {
   children: ReactNode;
+  autoPlay?: number;
   isOpen: boolean;
   onClose: () => void;
 }
 
-const Modal = ({ children, isOpen, onClose }: ModalProps) => {
+const Modal = ({ children, autoPlay, isOpen, onClose }: ModalProps) => {
   const ref = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
@@ -40,6 +41,7 @@ const Modal = ({ children, isOpen, onClose }: ModalProps) => {
   }, [isOpen]);
 
   const handleBackdropClick = (e: React.MouseEvent<HTMLDialogElement>) => {
+    if (autoPlay) return;
     if (e.target == ref.current) {
       ref.current.close();
       onClose();
