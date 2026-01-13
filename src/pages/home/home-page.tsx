@@ -1,4 +1,4 @@
-import { ModalBasic } from "@/shared/ui/modal/modal-basic";
+import { Modal } from "@/shared/ui/modal/modal";
 import { useModal } from "@/shared/ui/modal/use-modal";
 import Heart from "@icons/heart.svg?react";
 import KERORO from "@images/comfit_web_status.jpg";
@@ -6,7 +6,7 @@ import KERORO from "@images/comfit_web_status.jpg";
 import { appContainer } from "./home-page.css";
 
 const HomePage = () => {
-  const { isOpen, handleModal } = useModal();
+  const { autoPlay, isOpen, handleModal } = useModal(3000);
 
   return (
     <div className={appContainer}>
@@ -16,13 +16,14 @@ const HomePage = () => {
       <Heart aria-label="좋아요" />
       <button onClick={handleModal}>보이게</button>
       {isOpen && (
-        <ModalBasic
-          isOpen={isOpen}
-          onClose={handleModal}
-          onConfirm={() => alert("하이")}
-          title={`작성 중인 내용이 있습니다.\n 정말 나가시겠습니까?`}
-          subTitle={`저장하지 않으면 정보가 사라져요.`}
-        />
+        <Modal autoPlay={autoPlay} isOpen={isOpen} onClose={handleModal}>
+          {/* type(스타일)은 자동 닫힘 모달에서만 사용됩니다. */}
+          <Modal.Content type="auto">
+            <Modal.Title>타이틀</Modal.Title>
+            <Modal.SubTitle>서브 타이틀</Modal.SubTitle>
+          </Modal.Content>
+          <Modal.Image />
+        </Modal>
       )}
     </div>
   );
