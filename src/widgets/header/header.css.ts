@@ -11,7 +11,7 @@ export const headerLayout = style({
   display: "flex",
   justifyContent: "center",
   backgroundColor: themeVars.color.white,
-  border: `1px solid ${themeVars.color.normal}`,
+  borderBottom: `1px solid ${themeVars.color.normal}`,
   padding: "0 17rem",
 });
 
