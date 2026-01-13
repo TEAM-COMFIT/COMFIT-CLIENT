@@ -12,13 +12,13 @@ export const dropdownWrapper = style({
 /* ---------- Trigger alignment ---------- */
 export const dropdownAlign = styleVariants({
   medium: {
-    alignItems: "flex-end", // 오른쪽 정렬
+    alignItems: "flex-end",
   },
   large: {
-    alignItems: "flex-start", // 왼쪽 정렬
+    alignItems: "flex-start",
   },
   full: {
-    alignItems: "flex-start", // 왼쪽 정렬
+    alignItems: "flex-start",
   },
 });
 
@@ -58,7 +58,7 @@ export const arrowIconTransition = styleVariants({
 export const menu = style({
   position: "absolute",
   top: "100%",
-  marginTop: "0.8rem", // trigger와 gap
+  marginTop: "0.8rem",
 
   padding: "0.8rem",
   backgroundColor: themeVars.color.white,
