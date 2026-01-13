@@ -1,7 +1,5 @@
 import { useNavigate } from "react-router-dom";
 
-import keroro from "@images/comfit_web_status.jpg";
-
 import * as styles from "./company-card.css";
 
 interface CompanyCardProps {
@@ -13,7 +11,7 @@ interface CompanyCardProps {
 }
 
 const CompanyCard = ({
-  logoUrl, // TODO: img src 교체 예정
+  logoUrl,
   id,
   companyName,
   industry,
@@ -30,7 +28,7 @@ const CompanyCard = ({
       <section className={styles.header}>
         <div className={styles.logoWrapper}>
           <img
-            src={keroro}
+            src={logoUrl}
             alt={`${companyName} 로고`}
             className={styles.logoImage}
           />

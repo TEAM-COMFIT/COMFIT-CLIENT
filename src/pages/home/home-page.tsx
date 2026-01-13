@@ -10,7 +10,7 @@ const HomePage = () => {
       <h1>프리텐다드</h1>
       <p>카카오로 시작하기</p>
       <CompanyCard
-        logoUrl="https://via.placeholder.com/150"
+        logoUrl={KERORO}
         id={1}
         companyName="LG 전자"
         industry="콘텐츠/미디어/엔터"
