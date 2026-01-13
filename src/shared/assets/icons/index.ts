@@ -1,1 +1,1 @@
-export { default as Avatar } from "@./avatar.svg?react";
+export { default as Avatar } from "./avatar.svg?react";
