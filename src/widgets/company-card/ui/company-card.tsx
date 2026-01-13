@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
+import CompanyAnalyzeButton from "./company-analyze-button";
 import * as styles from "./company-card.css";
-
 interface CompanyCardProps {
   logoUrl: string;
   id: number;
@@ -43,14 +43,15 @@ const CompanyCard = ({
       </section>
 
       <section className={styles.action}>
-        {/* TODO: 버튼 공컴으로 변경  */}
-        <button
+        {/* TODO: 버튼 컴포넌트로 변경  */}
+        <CompanyAnalyzeButton companyId={id} />
+        {/* <button
           type="button"
           className={styles.button}
           onClick={handleAnalyzeClick}
         >
           기업 분석 보기
-        </button>
+        </button> */}
       </section>
     </article>
   );
