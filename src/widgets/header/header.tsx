@@ -15,7 +15,7 @@ const NAV_ITEMS = [
 
 export const Header = () => {
   const { isLoggedIn } = useAuthStore();
-  const name = "김컴피";
+  const name = "김컴피"; // TODO: user store/api 연동 후 교체
 
   return (
     <header className={styles.headerLayout}>
