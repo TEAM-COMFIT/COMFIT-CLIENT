@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 
 import { useAuthStore } from "@/app/store";
-import { Avatar, Logo } from "@/shared/assets/icons";
+import { Avatar } from "@/shared/assets/icons";
+import Logo from "@/shared/assets/images/comfit_logo.png";
 
 import * as styles from "./header.css";
 
@@ -21,7 +22,7 @@ export const Header = () => {
       <div className={styles.header}>
         <div className={styles.menus}>
           <Link to="/" aria-label="메인으로 이동">
-            <Logo className={styles.menu} />
+            <img src={Logo} className={styles.menu} alt="로고" />
           </Link>
           <nav className={styles.textMenus}>
             {NAV_ITEMS.map((item) => (
