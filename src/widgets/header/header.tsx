@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import { ROUTES } from "@/app/routes/paths";
 import { useAuthStore } from "@/app/store";
@@ -22,33 +22,37 @@ export const Header = () => {
     <header className={styles.headerLayout}>
       <div className={styles.header}>
         <div className={styles.menus}>
-          <Link to="/" aria-label="메인으로 이동">
-            <img src={Logo} className={styles.menu} alt="로고" />
-          </Link>
+          <NavLink to="/" aria-label="메인으로 이동">
+            <img src={Logo} className={styles.menu()} alt="로고" />
+          </NavLink>
           <nav className={styles.textMenus}>
             {NAV_ITEMS.map((item) => (
-              <Link key={item.to} to={item.to} className={styles.menu}>
+              <NavLink
+                key={item.to}
+                to={item.to}
+                className={({ isActive }) => styles.menu({ active: isActive })}
+              >
                 {item.label}
-              </Link>
+              </NavLink>
             ))}
           </nav>
         </div>
         <div className={styles.profile}>
           {isLoggedIn ? (
             <>
-              <Link
+              <NavLink
                 to="/mypage"
                 aria-label="탭 메뉴"
                 className={styles.iconLink}
               >
                 <Avatar width={38} height={38} className={styles.avatar} />
-              </Link>
+              </NavLink>
               <span className={styles.name}>{name}님</span>
             </>
           ) : (
-            <Link to="/login" className={styles.name}>
+            <NavLink to="/login" className={styles.name}>
               로그인
-            </Link>
+            </NavLink>
           )}
         </div>
       </div>

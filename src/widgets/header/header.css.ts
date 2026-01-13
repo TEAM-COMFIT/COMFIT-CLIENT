@@ -1,4 +1,5 @@
 import { style } from "@vanilla-extract/css";
+import { recipe } from "@vanilla-extract/recipes";
 
 import { themeVars } from "@/app/styles";
 
@@ -43,13 +44,32 @@ export const textMenus = style([
   },
 ]);
 
-export const menu = style([
-  linkBase,
-  {
-    textAlign: "center",
-    ...themeVars.fontStyles.body_m_16,
+export const menu = recipe({
+  base: [
+    linkBase,
+    {
+      textAlign: "center",
+      transition: "color 0.1s ease-in",
+      ...themeVars.fontStyles.body_m_16,
+      ":hover": {
+        color: themeVars.color.black,
+      },
+    },
+  ],
+  variants: {
+    active: {
+      true: {
+        color: themeVars.color.black,
+      },
+      false: {
+        color: themeVars.color.gray400,
+      },
+    },
   },
-]);
+  defaultVariants: {
+    active: false,
+  },
+});
 
 export const profile = style({
   ...flexCenter,
