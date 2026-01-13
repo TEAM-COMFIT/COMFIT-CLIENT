@@ -56,6 +56,17 @@ export const profile = style({
   gap: "2rem",
 });
 
+export const iconLink = style({
+  ...flexCenter,
+  justifyContent: "center",
+  textDecoration: "none",
+  height: "100%",
+});
+
+export const avatar = style({
+  textAlign: "center",
+});
+
 export const name = style([
   linkBase,
   {

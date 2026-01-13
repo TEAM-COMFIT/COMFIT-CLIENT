@@ -35,8 +35,12 @@ export const Header = () => {
         <div className={styles.profile}>
           {isLoggedIn ? (
             <>
-              <Link to="/mypage" aria-label="탭 메뉴">
-                <Avatar width={38} height={38} />
+              <Link
+                to="/mypage"
+                aria-label="탭 메뉴"
+                className={styles.iconLink}
+              >
+                <Avatar width={38} height={38} className={styles.avatar} />
               </Link>
               <span className={styles.name}>{name}님</span>
             </>
