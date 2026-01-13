@@ -1,5 +1,6 @@
 import { createContext, useContext, useState } from "react";
 
+import useOutsideClick from "@/shared/model/use-outsliceclick";
 import ArrowIcon from "@icons/dropdown_up_arrow.svg?react";
 
 import * as styles from "./dropdown.css";
@@ -11,6 +12,7 @@ type DropdownSize = "medium" | "large" | "full";
 interface DropdownContextValue {
   isOpen: boolean;
   toggle: () => void;
+  close: () => void;
   size: DropdownSize;
 }
 
@@ -33,16 +35,22 @@ const Dropdown = ({
   type?: DropdownSize;
 }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const toggle = () => setIsOpen((prev) => !prev);
+  const close = () => setIsOpen(false);
+
+  const wrapperRef = useOutsideClick<HTMLDivElement>(isOpen, close);
 
   return (
     <DropdownContext.Provider
       value={{
         isOpen,
-        toggle: () => setIsOpen((prev) => !prev),
+        toggle,
+        close,
         size: type,
       }}
     >
       <div
+        ref={wrapperRef}
         className={`${styles.dropdownWrapper} ${styles.dropdownAlign[type]}`}
       >
         {children}
