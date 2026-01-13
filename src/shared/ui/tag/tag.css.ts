@@ -30,7 +30,7 @@ export const tag = recipe({
         padding: "0.4rem 1.2rem",
       },
       label: {
-        border: `1px solid ${themeVars.color.purple300}`,
+        border: `1px solid ${themeVars.color.purple200}`,
         borderRadius: "8px",
         backgroundColor: themeVars.color.purple100,
         color: themeVars.color.purple400,

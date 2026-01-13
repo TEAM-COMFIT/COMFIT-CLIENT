@@ -18,16 +18,20 @@ const Tag = ({ children, type = "label", onCancel }: TagProps) => {
       {children}
 
       {type === "xlabel" && (
-        <CancelIcon
-          className={cancelIcon}
+        <button
+          type="button"
+          aria-label="`태그 삭제"
           onClick={(e) => {
             e.stopPropagation();
             onCancel?.();
           }}
-        />
+          className={cancelIcon}
+        >
+          <CancelIcon />
+        </button>
       )}
     </div>
   );
 };
 
-export default Tag;
+export { Tag };
