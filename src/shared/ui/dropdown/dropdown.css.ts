@@ -66,7 +66,7 @@ export const menu = style({
   borderRadius: "12px",
   boxShadow: "0 0 8px rgba(0, 0, 0, 0.1)",
 
-  zIndex: 100,
+  zIndex: themeVars.zIndex.dropdownMenu,
 });
 
 /* ---------- Menu size ---------- */
