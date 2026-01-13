@@ -2,12 +2,13 @@ import { useState } from "react";
 
 import ExperienceFilter from "@/widgets/experience-filter/ui/experience-filter";
 
-import type { ExperienceTypeCode } from "@/shared/config/experience";
+import { appContainer } from "./experience-page.css";
 
+import type { ExperienceTypeCode } from "@/shared/config/experience";
 const ExperiencePage = () => {
   const [filter, setFilter] = useState<ExperienceTypeCode | null>(null);
   return (
-    <div>
+    <div className={appContainer}>
       <h1>Experience List Page</h1>
       <div
         style={{
