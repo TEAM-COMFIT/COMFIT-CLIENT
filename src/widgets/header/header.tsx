@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 
+import { ROUTES } from "@/app/routes/paths";
 import { useAuthStore } from "@/app/store";
 import { Avatar } from "@/shared/assets/icons";
 import Logo from "@/shared/assets/images/comfit_logo.png";
@@ -7,10 +8,10 @@ import Logo from "@/shared/assets/images/comfit_logo.png";
 import * as styles from "./header.css";
 
 const NAV_ITEMS = [
-  { to: "/landing", label: "소개" },
-  { to: "/experience-matching", label: "경험 매칭 AI" },
-  { to: "/experience", label: "경험 등록" },
-  { to: "/matching", label: "매칭 경험 목록" },
+  { to: ROUTES.LANDING, label: "소개" },
+  { to: ROUTES.EXPERIENCE_MATCHING, label: "경험 매칭 AI" },
+  { to: ROUTES.EXPERIENCE, label: "경험 등록" },
+  { to: ROUTES.MATCHING_LIST, label: "매칭 경험 목록" },
 ];
 
 export const Header = () => {
