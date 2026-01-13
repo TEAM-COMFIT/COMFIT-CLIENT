@@ -1,8 +1,9 @@
-import type { PropsWithChildren } from "react";
-import { Suspense, lazy } from "react";
 import { QueryClientProvider } from "@tanstack/react-query";
+import { Suspense, lazy } from "react";
 
 import { queryClient } from "@/shared/api";
+
+import type { PropsWithChildren } from "react";
 
 const ReactQueryDevtools = import.meta.env.DEV
   ? lazy(async () => {
@@ -11,7 +12,7 @@ const ReactQueryDevtools = import.meta.env.DEV
     })
   : null;
 
-export default function QueryProvider({ children }: PropsWithChildren) {
+export const QueryProvider = ({ children }: PropsWithChildren) => {
   return (
     <QueryClientProvider client={queryClient}>
       {children}
@@ -23,4 +24,4 @@ export default function QueryProvider({ children }: PropsWithChildren) {
       ) : null}
     </QueryClientProvider>
   );
-}
+};
