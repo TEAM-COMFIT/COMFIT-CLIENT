@@ -18,15 +18,23 @@ const Tag = ({ children, type = "label", onCancel }: TagProps) => {
       {children}
 
       {type === "xlabel" && (
-        <span
+        // <span
+        //   className={cancelIcon}
+        //   onClick={(e) => {
+        //     e.stopPropagation();
+        //     onCancel?.();
+        //   }}
+        // >
+        //   <CancelIcon className={cancelIcon} />
+        // </span>
+
+        <CancelIcon
           className={cancelIcon}
           onClick={(e) => {
             e.stopPropagation();
             onCancel?.();
           }}
-        >
-          <CancelIcon />
-        </span>
+        />
       )}
     </div>
   );

@@ -17,8 +17,8 @@ export const tag = recipe({
     display: "inline-flex",
     alignItems: "center",
     justifyContent: "center",
-    gap: "0.4rem",
-    ...themeVars.fontStyles.body_r_16,
+    gap: "0.8rem",
+    ...themeVars.fontStyles.body_r_14,
   },
 
   variants: {
