@@ -9,7 +9,7 @@ export const useModal = (autoPlay?: number) => {
   useEffect(() => {
     if (autoPlay && autoPlay > 0 && isOpen) {
       if (timerRef.current) clearTimeout(timerRef.current);
-      timerRef.current = setTimeout(() => handleModal(), autoPlay);
+      timerRef.current = setTimeout(() => setIsOpen(false), autoPlay);
 
       return () => {
         if (timerRef.current) clearTimeout(timerRef.current);
