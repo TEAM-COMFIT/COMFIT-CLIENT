@@ -1,7 +1,8 @@
 import { useState, type ReactNode } from "react";
 
+import { Button } from "../button/button";
+
 import { Modal } from "./modal";
-import * as styles from "./modal.css";
 
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
@@ -59,8 +60,12 @@ export const Alert: Story = {
         </Modal.SubTitle>
       </Modal.Content>
       <Modal.Buttons>
-        <button className={styles.Button({ type: "outline" })}>취소</button>
-        <button className={styles.Button({ type: "default" })}>삭제</button>
+        <Button variant="secondary" size="large">
+          취소
+        </Button>
+        <Button variant="primary" size="large">
+          삭제
+        </Button>
       </Modal.Buttons>
     </ModalTemplate>
   ),
@@ -75,8 +80,12 @@ export const Confirm: Story = {
         <Modal.Title>선택한 북마크를 삭제하시겠습니까?</Modal.Title>
       </Modal.Content>
       <Modal.Buttons>
-        <button className={styles.Button({ type: "outline" })}>취소</button>
-        <button className={styles.Button({ type: "default" })}>삭제</button>
+        <Button variant="secondary" size="large">
+          취소
+        </Button>
+        <Button variant="primary" size="large">
+          삭제
+        </Button>
       </Modal.Buttons>
     </ModalTemplate>
   ),
