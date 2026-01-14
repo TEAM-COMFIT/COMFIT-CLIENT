@@ -1,6 +1,3 @@
-import { mergeConfig } from "vite";
-import tsconfigPaths from "vite-tsconfig-paths";
-
 import type { StorybookConfig } from "@storybook/react-vite";
 
 const config: StorybookConfig = {
@@ -9,11 +6,6 @@ const config: StorybookConfig = {
   addons: ["@storybook/addon-docs", "@storybook/addon-a11y"],
 
   framework: "@storybook/react-vite",
-
-  viteFinal: async (storybookConfig) =>
-    mergeConfig(storybookConfig, {
-      plugins: [tsconfigPaths()],
-    }),
 
   typescript: {
     reactDocgen: "react-docgen-typescript",
