@@ -1,3 +1,4 @@
+import { assignInlineVars } from "@vanilla-extract/dynamic";
 import { useNavigate } from "react-router-dom";
 
 import { IconMove } from "@/shared/assets/icons";
@@ -8,11 +9,11 @@ import * as styles from "./major-company-card.css";
 export type MajorCompanyCardType = "medium" | "large";
 
 interface MajorCompanyCardProps {
-  id: number | string;
+  id: number;
   companyName: string;
   industry: string;
   type?: MajorCompanyCardType;
-  backgroundImageUrl: string;
+  imgUrl: string;
 }
 
 const MajorCompanyCard = ({
@@ -20,7 +21,7 @@ const MajorCompanyCard = ({
   companyName,
   industry,
   type = "medium",
-  backgroundImageUrl,
+  imgUrl,
 }: MajorCompanyCardProps) => {
   const navigate = useNavigate();
 
@@ -33,11 +34,11 @@ const MajorCompanyCard = ({
       type="button"
       onClick={handleClick}
       className={styles.card({ type })}
-      style={{ backgroundImage: `url(${backgroundImageUrl})` }}
+      style={assignInlineVars({ [styles.bgImageUrl]: `url(${imgUrl})` })}
     >
       <div className={styles.content({ type })}>
         <span className={styles.title({ type })}>{companyName}</span>
-        <Tag>{industry}</Tag>
+        <Tag>#{industry}</Tag>
       </div>
 
       {type === "large" && <IconMove className={styles.detailIcon} />}

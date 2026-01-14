@@ -1,23 +1,24 @@
-import { style } from "@vanilla-extract/css";
+import { style, createVar } from "@vanilla-extract/css";
 import { recipe } from "@vanilla-extract/recipes";
 
 import { themeVars } from "@/app/styles";
 
-/* ---------- Base ---------- */
+export const bgImageUrl = createVar();
 
+/* ---------- Base ---------- */
 export const card = recipe({
   base: {
     position: "relative",
+    backgroundImage: bgImageUrl,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
     display: "flex",
     alignItems: "center",
     justifyContent: "left",
 
     borderRadius: "16px",
     boxShadow: themeVars.shadow.shadow1,
-
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    backgroundRepeat: "no-repeat",
     textAlign: "left",
   },
 
