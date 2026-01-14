@@ -50,6 +50,10 @@ export const arrowIconTransition = styleVariants({
 
 /* ---------- Menu ---------- */
 export const menu = style({
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
   position: "absolute",
   top: "100%",
   width: "100%",
@@ -63,7 +67,7 @@ export const menu = style({
 /* ---------- Item ---------- */
 export const item = style({
   padding: "1rem 1.2rem",
-  width: "100%",
+  width: "87.2rem",
   borderRadius: "8px",
   textAlign: "left",
   cursor: "pointer",
