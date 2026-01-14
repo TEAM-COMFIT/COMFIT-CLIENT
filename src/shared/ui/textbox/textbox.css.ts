@@ -88,6 +88,19 @@ export const viewer = style({
   overflow: "auto",
 });
 
+export const viewerPlaceholder = style({
+  flex: 1,
+  width: "100%",
+  height: "100%",
+  boxSizing: "border-box",
+
+  color: themeVars.color.gray800,
+  ...themeVars.fontStyles.body_m_16,
+
+  whiteSpace: "pre-wrap",
+  overflow: "auto",
+});
+
 /* ---------- Counter (edit only) ---------- */
 export const counter = style({
   position: "absolute",
