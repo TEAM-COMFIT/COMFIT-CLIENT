@@ -1,9 +1,9 @@
 import { useState } from "react";
 
-import { EducationSelect } from "@/features/onboarding/ui/education-select/education-select";
+import { EducationSelect } from "@/features/onboarding";
 import { Tag } from "@/shared/ui/tag/tag";
 
-import type { EducationTypeCode } from "../../features/onboarding/config/education";
+import type { EducationTypeCode } from "@/features/onboarding";
 
 const OnboardingPage = () => {
   const [selectedEducation, setSelectedEducation] =

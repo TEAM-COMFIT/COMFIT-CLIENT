@@ -1,6 +1,5 @@
+import { EDUCATION_TYPE } from "@/features/onboarding/config/education";
 import { Select } from "@/shared/ui";
-
-import { EDUCATION_TYPE } from "../../config/education";
 
 import type { EducationTypeCode } from "../../config/education";
 
