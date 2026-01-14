@@ -1,4 +1,4 @@
-import { Button } from "@/shared/ui/button/Button";
+import { Button } from "@/shared/ui/button/button";
 const MyPage = () => {
   return (
     <div>
