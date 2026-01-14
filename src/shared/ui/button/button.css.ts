@@ -15,7 +15,6 @@ const baseStyle = style({
   borderRadius: "12px",
 
   whiteSpace: "nowrap",
-  cursor: "pointer",
   transition: "all 0.2s ease-in-out",
 
   selectors: {
@@ -52,6 +51,9 @@ export const buttonVariants = styleVariants({
       color: themeVars.color.blue600,
       borderColor: themeVars.color.blue600,
       selectors: {
+        "&:hover:not(:disabled)": {
+          backgroundColor: themeVars.color.blue100,
+        },
         "&:active:not(:disabled)": {
           backgroundColor: themeVars.color.blue200,
         },
