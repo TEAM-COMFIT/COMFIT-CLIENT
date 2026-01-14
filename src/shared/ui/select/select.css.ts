@@ -54,7 +54,6 @@ export const menu = style({
   top: "100%",
   width: "100%",
   marginTop: "0.8rem",
-  padding: "0.8rem",
   backgroundColor: themeVars.color.white,
   border: `1.5px solid ${themeVars.color.normal}`,
   borderRadius: "8px",
