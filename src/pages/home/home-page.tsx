@@ -6,6 +6,7 @@ import { MatchingListContainer } from "@/shared/ui/pagination/matching-list-cont
 import CompanyCard from "@/widgets/company-card/ui/company-card";
 import Heart from "@icons/heart.svg?react";
 import KERORO from "@images/comfit_web_status.jpg";
+import LGLOGO from "@images/lg_logo.png";
 
 import { appContainer } from "./home-page.css";
 
@@ -19,7 +20,7 @@ const HomePage = () => {
       <h1>프리텐다드</h1>
       <p>카카오로 시작하기</p>
       <CompanyCard
-        logoUrl={KERORO}
+        logoUrl={LGLOGO}
         id={1}
         companyName="LG 전자"
         industry={"MEDIA_CONTENTS"}

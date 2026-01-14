@@ -3,12 +3,7 @@ import { getIndustryLabel, getScaleLabel } from "@/shared/config";
 import CompanyAnalyzeButton from "./company-analyze-button";
 import * as styles from "./company-card.css";
 
-import type {
-  INDUSTRY_LABEL_TO_CODE,
-  IndustryCode,
-  SCALE_LABEL_TO_CODE,
-  ScaleCode,
-} from "@/shared/config";
+import type { IndustryCode, ScaleCode } from "@/shared/config";
 
 interface CompanyCardProps {
   logoUrl: string;

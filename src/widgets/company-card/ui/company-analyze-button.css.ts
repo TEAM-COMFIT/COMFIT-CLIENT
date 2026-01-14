@@ -14,9 +14,8 @@ export const button = style({
   borderRadius: "12px",
 
   backgroundColor: themeVars.color.blue100,
-  color: themeVars.color.black,
+  color: themeVars.color.blue600,
   border: "none",
-  cursor: "pointer",
 
   ...themeVars.fontStyles.body_m_16,
 
