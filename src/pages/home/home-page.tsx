@@ -22,8 +22,8 @@ const HomePage = () => {
         logoUrl={KERORO}
         id={1}
         companyName="LG 전자"
-        industry="콘텐츠/미디어/엔터"
-        scale="대기업"
+        industry={"MEDIA_CONTENTS"}
+        scale={"LARGE"}
       />
       <CompanyGridContainer />
       <MatchingListContainer />

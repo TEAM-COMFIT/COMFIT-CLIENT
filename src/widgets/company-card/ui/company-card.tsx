@@ -1,13 +1,21 @@
-import { useNavigate } from "react-router-dom";
+import { getIndustryLabel, getScaleLabel } from "@/shared/config";
 
 import CompanyAnalyzeButton from "./company-analyze-button";
 import * as styles from "./company-card.css";
+
+import type {
+  INDUSTRY_LABEL_TO_CODE,
+  IndustryCode,
+  SCALE_LABEL_TO_CODE,
+  ScaleCode,
+} from "@/shared/config";
+
 interface CompanyCardProps {
   logoUrl: string;
   id: number;
   companyName: string;
-  industry: string;
-  scale: string;
+  industry: IndustryCode;
+  scale: ScaleCode;
 }
 
 const CompanyCard = ({
@@ -17,12 +25,6 @@ const CompanyCard = ({
   industry,
   scale,
 }: CompanyCardProps) => {
-  const navigate = useNavigate();
-
-  const handleAnalyzeClick = () => {
-    navigate(`/company/${id}`);
-  };
-
   return (
     <article className={styles.card} aria-label={`${companyName} 기업 카드`}>
       <section className={styles.header}>
@@ -37,21 +39,12 @@ const CompanyCard = ({
       </section>
 
       <section className={styles.info}>
-        {/* TODO: enum 타입 받아서 변환(company.ts)*/}
-        <span># {scale}</span>
-        <span># {industry}</span>
+        <span># {getScaleLabel(scale)}</span>
+        <span># {getIndustryLabel(industry)}</span>
       </section>
 
       <section className={styles.action}>
-        {/* TODO: 버튼 컴포넌트로 변경  */}
         <CompanyAnalyzeButton companyId={id} />
-        {/* <button
-          type="button"
-          className={styles.button}
-          onClick={handleAnalyzeClick}
-        >
-          기업 분석 보기
-        </button> */}
       </section>
     </article>
   );
