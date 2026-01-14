@@ -1,0 +1,94 @@
+import { style } from "@vanilla-extract/css";
+import { recipe } from "@vanilla-extract/recipes";
+
+import { themeVars } from "@/app/styles";
+
+/* ---------- Base ---------- */
+
+export const card = recipe({
+  base: {
+    position: "relative",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "left",
+
+    borderRadius: "16px",
+    boxShadow: themeVars.shadow.shadow1,
+
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    textAlign: "left",
+  },
+
+  variants: {
+    type: {
+      medium: {
+        width: "43rem",
+        height: "13.2rem",
+        paddingLeft: "2.4rem",
+      },
+      large: {
+        width: "61rem",
+        height: "28rem",
+      },
+    },
+  },
+});
+
+/* ---------- Content ---------- */
+
+export const content = recipe({
+  base: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "0.8rem",
+    color: themeVars.color.white,
+  },
+
+  variants: {
+    type: {
+      medium: {
+        alignItems: "flex-start",
+      },
+      large: {
+        position: "absolute",
+        top: "2.9rem",
+        left: "4rem",
+        alignItems: "flex-start",
+      },
+    },
+  },
+});
+
+/* ---------- Title ---------- */
+
+export const title = recipe({
+  base: {
+    color: themeVars.color.white,
+  },
+  variants: {
+    type: {
+      medium: themeVars.fontStyles.hding_b_20,
+      large: themeVars.fontStyles.title_b_24,
+    },
+  },
+});
+
+/* ---------- Tag ---------- */
+
+export const tag = style({
+  ...themeVars.fontStyles.cap_m_12,
+  color: themeVars.color.white,
+  opacity: 0.9,
+});
+
+/* ---------- Detail Icon ---------- */
+
+export const detailIcon = style({
+  position: "absolute",
+  width: "8rem",
+  height: "8rem",
+  right: "2rem",
+  bottom: "2rem",
+});
