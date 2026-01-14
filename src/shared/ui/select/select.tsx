@@ -64,7 +64,11 @@ const Trigger = ({ children }: { children: ReactNode }) => {
   const { toggle, isOpen } = useSelect();
 
   return (
-    <button type="button" onClick={toggle} className={styles.trigger}>
+    <button
+      type="button"
+      onClick={toggle}
+      className={`${styles.trigger} ${styles.triggerFontColor[isOpen ? "open" : "closed"]}`}
+    >
       {children}
       <DropdownArrow
         className={`${styles.arrowIcon} ${

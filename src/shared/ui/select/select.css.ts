@@ -21,15 +21,17 @@ export const trigger = style({
   backgroundColor: themeVars.color.white,
   border: `1.5px solid ${themeVars.color.normal}`,
   borderRadius: "12px",
-  selectors: {
-    "&:focus": {
-      color: themeVars.color.gray800,
-    },
-  },
-
   ...themeVars.fontStyles.hline_m_18,
 });
 
+export const triggerFontColor = styleVariants({
+  closed: {
+    color: themeVars.color.gray400,
+  },
+  open: {
+    color: themeVars.color.gray800,
+  },
+});
 /* ---------- Arrow Icon ---------- */
 export const arrowIcon = style({
   width: "1.8rem",
