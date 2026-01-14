@@ -10,9 +10,7 @@ export const card = style({
   backgroundColor: themeVars.color.white,
   borderRadius: "16px",
   border: `1.5px solid ${themeVars.color.normal}`,
-  // TODO: dropdown 머지 후 boxShadow 적용
-  // boxShadow: themeVars.shadow.shadow,
-  boxShadow: "0 0 8px 0 rgba(0, 0, 0, 0.1)",
+  boxShadow: themeVars.shadow.shadow1,
   display: "flex",
   flexDirection: "column",
   gap: "4rem",
@@ -31,9 +29,7 @@ export const logoWrapper = style({
   height: "4.8rem",
   borderRadius: "12px",
   backgroundColor: themeVars.color.white,
-  // TODO: dropdown 머지 후 boxShadow 적용
-  //   boxShadow: themeVars.shadow.shadow2,
-  boxShadow: "0 0 8px 0 rgba(0, 0, 0, 0.2)",
+  boxShadow: themeVars.shadow.shadow2,
 
   display: "flex",
   alignItems: "center",
