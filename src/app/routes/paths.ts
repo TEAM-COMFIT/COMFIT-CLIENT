@@ -1,6 +1,7 @@
 export const ROUTES = {
   HOME: "/",
   LOGIN: "/login",
+  LANDING: "/landing",
   ONBOARDING: "/onboarding",
   COMPANY: (id = ":id") => `/company/${id}`, // 기업 상세
   EXPERIENCE_MATCHING: "/experience-matching", // 경험x기업 매칭
