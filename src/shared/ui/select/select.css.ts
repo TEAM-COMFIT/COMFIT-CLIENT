@@ -74,7 +74,7 @@ export const item = style({
     "&:hover": {
       backgroundColor: themeVars.color.blue200,
     },
-    "&:pressed": {
+    "&:active": {
       backgroundColor: themeVars.color.blue600,
       color: themeVars.color.white,
     },

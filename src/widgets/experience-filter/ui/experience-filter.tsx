@@ -1,5 +1,5 @@
 import { EXPERIENCE_TYPE } from "@/shared/config/experience";
-import Dropdown from "@/shared/ui/dropdown/dropdown";
+import { Dropdown } from "@/shared/ui";
 
 import type { ExperienceTypeCode } from "@/shared/config/experience";
 

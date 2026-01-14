@@ -1,12 +1,24 @@
+import { useState } from "react";
+
+import { EducationSelect } from "@/features/onboarding/ui/education-select/education-select";
 import { Tag } from "@/shared/ui/tag/tag";
 
+import type { EducationTypeCode } from "../../features/onboarding/config/education";
+
 const OnboardingPage = () => {
+  const [selectedEducation, setSelectedEducation] =
+    useState<EducationTypeCode | null>(null);
+
   return (
     <div>
       <h1>Welcome to the Onboarding Page</h1>
       <Tag>푸드/F&B</Tag>
       <Tag type="xlabel">푸드/F&B</Tag>
       <Tag type="register">인턴/실무</Tag>
+      <EducationSelect
+        value={selectedEducation}
+        onChange={setSelectedEducation}
+      />
     </div>
   );
 };
