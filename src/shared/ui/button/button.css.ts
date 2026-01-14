@@ -8,6 +8,8 @@ const baseStyle = style({
   justifyContent: "center",
   boxSizing: "border-box",
 
+  userSelect: "none",
+
   padding: "0.8rem 1.6rem",
   border: "1.5px solid transparent",
   borderRadius: "12px",
@@ -18,10 +20,9 @@ const baseStyle = style({
 
   selectors: {
     "&:disabled": {
-      opacity: 1,
       backgroundColor: themeVars.color.gray100,
       color: themeVars.color.gray400,
-      borderColor: "var(--Line-normal, rgba(112, 115, 124, 0.22))",
+      borderColor: themeVars.color.normal,
     },
   },
 });
