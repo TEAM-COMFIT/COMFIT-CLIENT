@@ -25,7 +25,6 @@ const iconBase = style({
   color: themeVars.color.gray500,
 });
 
-/* ---------- icon size variants (help: 20x20, guide: 24x24) ---------- */
 export const icon = styleVariants({
   help: [
     iconBase,
@@ -42,7 +41,8 @@ export const icon = styleVariants({
     },
   ],
 });
-/* ---------- tooltip box ---------- */
+
+/* ---------- tooltipBox ---------- */
 export const tooltipBox = style({
   position: "absolute",
   top: "100%",
@@ -85,6 +85,7 @@ export const tooltipBox = style({
   ...themeVars.fontStyles.cap_m_12,
 });
 
+/* ---------- 타입 별 박스 사이즈 ---------- */
 export const tooltipBoxSize = styleVariants({
   help: {
     width: "29.1rem",
@@ -96,7 +97,7 @@ export const tooltipBoxSize = styleVariants({
   },
 });
 
-/* ---------- gap by type ---------- */
+/* ---------- 타입 별 gap ---------- */
 export const tooltipGap = styleVariants({
   help: {
     marginTop: "0.8rem",
@@ -106,7 +107,7 @@ export const tooltipGap = styleVariants({
   },
 });
 
-/* ---------- hover control ---------- */
+/* ---------- hover 컨트롤 ---------- */
 export const hoverArea = style({
   selectors: {
     [`${wrapper}:hover &`]: {
