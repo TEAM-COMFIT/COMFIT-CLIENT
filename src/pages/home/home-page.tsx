@@ -4,6 +4,7 @@ import Heart from "@icons/heart.svg?react";
 import KERORO from "@images/comfit_web_status.jpg";
 
 import { appContainer } from "./home-page.css";
+
 const HomePage = () => {
   return (
     <div className={appContainer}>
