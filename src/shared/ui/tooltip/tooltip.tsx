@@ -23,7 +23,7 @@ const Tooltip = ({ type, label, children }: TooltipProps) => {
   return (
     <div className={styles.wrapper}>
       <span className={styles.trigger}>
-        <Icon className={`${styles.icon} ${styles.iconSize[type]}`} />
+        <Icon className={styles.icon[type]} />
         <span>{label}</span>
       </span>
 

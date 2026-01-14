@@ -7,7 +7,6 @@ export const wrapper = style({
   position: "relative",
   display: "inline-flex",
   alignItems: "center",
-  gap: "0.4rem",
 });
 
 /* ---------- trigger ---------- */
@@ -21,25 +20,27 @@ export const trigger = style({
 });
 
 /* ---------- icon ---------- */
-export const icon = style({
+const iconBase = style({
   flexShrink: 0,
   color: themeVars.color.gray500,
 });
 
 /* ---------- icon size variants (help: 20x20, guide: 24x24) ---------- */
-export const iconSize = styleVariants({
-  default: {
-    width: "2rem",
-    height: "2rem",
-  },
-  help: {
-    width: "2rem",
-    height: "2rem",
-  },
-  guide: {
-    width: "2.4rem",
-    height: "2.4rem",
-  },
+export const icon = styleVariants({
+  help: [
+    iconBase,
+    {
+      width: "2rem",
+      height: "2rem",
+    },
+  ],
+  guide: [
+    iconBase,
+    {
+      width: "2.4rem",
+      height: "2.4rem",
+    },
+  ],
 });
 /* ---------- tooltip box ---------- */
 export const tooltipBox = style({
@@ -64,6 +65,23 @@ export const tooltipBox = style({
   opacity: 0,
   pointerEvents: "none",
   transition: "opacity 0.3s ease",
+
+  selectors: {
+    [`${wrapper}:hover &`]: {
+      opacity: 1,
+      pointerEvents: "auto",
+    },
+    // 트리거와 툴팁 박스 사이 여백 보완
+    "&::after": {
+      content: '""',
+      position: "absolute",
+      left: 0,
+      right: 0,
+      height: "2rem",
+      top: "-1.5rem",
+      background: "transparent",
+    },
+  },
   ...themeVars.fontStyles.cap_m_12,
 });
 
