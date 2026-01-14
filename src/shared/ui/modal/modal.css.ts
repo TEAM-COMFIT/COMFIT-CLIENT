@@ -80,26 +80,3 @@ export const Buttons = style({
   justifyContent: "center",
   gap: "1.6rem",
 });
-
-// TODO: 버튼 공통 컴포넌트로 대체
-export const Button = recipe({
-  base: {
-    width: "16rem",
-    height: "6rem",
-    padding: "0.8rem 1.6rem",
-    borderRadius: "1.2rem",
-    ...themeVars.fontStyles.body_m_14,
-  },
-  variants: {
-    type: {
-      default: {
-        color: themeVars.color.white,
-        backgroundColor: themeVars.color.blue600,
-      },
-      outline: {
-        color: themeVars.color.blue600,
-        border: `1.5px solid ${themeVars.color.blue600}`,
-      },
-    },
-  },
-});

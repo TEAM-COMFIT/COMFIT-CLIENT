@@ -1,4 +1,4 @@
-import * as styles from "@shared/ui/modal/modal.css";
+import { Button } from "../button/button";
 
 import { Modal } from "./modal";
 
@@ -29,18 +29,12 @@ export const ModalBasic = ({
         {subTitle && <Modal.SubTitle>{subTitle}</Modal.SubTitle>}
       </Modal.Content>
       <Modal.Buttons>
-        <button
-          className={styles.Button({ type: "outline" })}
-          onClick={onClose}
-        >
+        <Button variant="secondary" size="large" onClick={onClose}>
           나가기
-        </button>
-        <button
-          className={styles.Button({ type: "default" })}
-          onClick={onConfirm}
-        >
+        </Button>
+        <Button variant="primary" size="large" onClick={onConfirm}>
           이동하기
-        </button>
+        </Button>
       </Modal.Buttons>
     </Modal>
   );
