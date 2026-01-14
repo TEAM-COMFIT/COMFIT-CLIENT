@@ -45,7 +45,7 @@ const Modal = ({ children, autoPlay, isOpen, onClose }: ModalProps) => {
 
   const handleBackdropClick = (e: React.MouseEvent<HTMLDialogElement>) => {
     if (autoPlay) return;
-    if (e.target == ref.current) {
+    if (e.target === ref.current) {
       onClose();
     }
   };
