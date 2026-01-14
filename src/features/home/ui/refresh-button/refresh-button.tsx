@@ -8,7 +8,7 @@ type RefreshButtonProps = ButtonHTMLAttributes<HTMLButtonElement>;
 
 const RefreshButton = (props: RefreshButtonProps) => {
   return (
-    <button className={styles.buttonWrapper} {...props}>
+    <button type="button" className={styles.buttonWrapper} {...props}>
       <RefreshIcon />
       <span>새로고침</span>
     </button>
