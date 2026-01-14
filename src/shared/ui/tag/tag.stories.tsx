@@ -47,10 +47,17 @@ type Story = StoryObj<typeof Tag>;
  * Stories
  * ========================= */
 
-export const Label: Story = {
+export const Primary: Story = {
   args: {
-    type: "label",
+    type: "primary",
     children: "기본 태그",
+  },
+};
+
+export const Secondary: Story = {
+  args: {
+    type: "secondary",
+    children: "보조 태그",
   },
 };
 
@@ -71,8 +78,8 @@ export const Register: Story = {
 export const MultipleTags: Story = {
   render: () => (
     <>
-      <Tag type="label">Frontend</Tag>
-      <Tag type="label">Backend</Tag>
+      <Tag type="primary">Frontend</Tag>
+      <Tag type="secondary">Backend</Tag>
       <Tag type="xlabel" onCancel={() => console.log("cancel AI")}>
         AI
       </Tag>
