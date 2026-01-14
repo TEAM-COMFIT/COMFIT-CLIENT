@@ -1,7 +1,5 @@
 import { style } from "@vanilla-extract/css";
 
-import { themeVars } from "@/app/styles";
-
 export const experienceMatchingPage = style({
   display: "flex",
   flexDirection: "row",
