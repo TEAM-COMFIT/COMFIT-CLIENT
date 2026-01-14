@@ -1,9 +1,7 @@
 import { BookmarkPage } from "@/pages/bookmark/bookmark-page";
-import { CompanyDetailPage } from "@/pages/company-detail/company-detail-page";
 import { ExperiencePage } from "@/pages/experience/experience-page";
 import { ExperienceDetailPage } from "@/pages/experience-detail/experience-detail-page";
 import { ExperienceMatchingPage } from "@/pages/experience-matching/experience-matching-page";
-import { HomePage } from "@/pages/home/home-page";
 import { MatchingDetailPage } from "@/pages/matching-detail/matching-detail-page";
 import { MatchingListPage } from "@/pages/matching-list/matching-list-page";
 import { MyPage } from "@/pages/my-page/my-page";
@@ -12,10 +10,7 @@ import { OnboardingPage } from "@/pages/onboarding/onboarding-page";
 import { ROUTES } from "./paths";
 
 export const protectedRoutes = [
-  { path: ROUTES.HOME, element: <HomePage /> },
   { path: ROUTES.ONBOARDING, element: <OnboardingPage /> },
-
-  { path: ROUTES.COMPANY(), element: <CompanyDetailPage /> },
   { path: ROUTES.EXPERIENCE_MATCHING, element: <ExperienceMatchingPage /> },
 
   // 매칭 결과
