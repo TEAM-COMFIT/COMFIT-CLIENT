@@ -35,15 +35,17 @@ const Modal = ({ children, autoPlay, isOpen, onClose }: ModalProps) => {
 
   useEffect(() => {
     const dialog = ref.current;
-    if (dialog && !dialog.open && isOpen) {
-      dialog.showModal();
+    if (!dialog) return;
+    if (isOpen) {
+      if (!dialog.open) dialog.showModal();
+    } else {
+      if (dialog.open) dialog.close();
     }
   }, [isOpen]);
 
   const handleBackdropClick = (e: React.MouseEvent<HTMLDialogElement>) => {
     if (autoPlay) return;
     if (e.target == ref.current) {
-      ref.current.close();
       onClose();
     }
   };

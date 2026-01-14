@@ -4,9 +4,14 @@ import { recipe } from "@vanilla-extract/recipes";
 import { themeVars } from "@/app/styles";
 
 export const modal = style({
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
+  display: "none",
+  selectors: {
+    "&[open]": {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+    },
+  },
   width: "100vw",
   height: "100vh",
   border: "none",
