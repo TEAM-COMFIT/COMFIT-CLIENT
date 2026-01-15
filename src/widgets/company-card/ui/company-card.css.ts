@@ -16,14 +16,13 @@ export const card = style({
   gap: "4rem",
 });
 
-/* ---------- Header (Logo + Name) ---------- */
+/* ---------- Header (로고 + 기업명) ---------- */
 export const header = style({
   display: "flex",
   alignItems: "center",
   gap: "2rem",
 });
 
-/* Logo wrapper */
 export const logoWrapper = style({
   width: "4.8rem",
   height: "4.8rem",
@@ -63,25 +62,4 @@ export const action = style({
   marginTop: "auto",
   display: "flex",
   justifyContent: "center",
-});
-
-/* Button */
-export const button = style({
-  width: "21.8rem",
-  height: "4.8rem",
-  borderRadius: "12px",
-
-  backgroundColor: themeVars.color.blue200,
-  color: themeVars.color.blue600,
-  ...themeVars.fontStyles.body_m_16,
-
-  border: "none",
-  cursor: "pointer",
-
-  selectors: {
-    "&:focus-visible": {
-      outline: `2px solid ${themeVars.color.blue400}`,
-      outlineOffset: "2px",
-    },
-  },
 });
