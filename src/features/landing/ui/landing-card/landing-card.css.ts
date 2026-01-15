@@ -36,10 +36,6 @@ export const card = style({
 });
 
 /* ---------- Text Group ---------- */
-/**
- * title width를 고정하지 않고
- * grid를 사용해 "content 시작선"을 정렬
- */
 export const textGroup = style({
   display: "grid",
   gridTemplateColumns: "20.3rem 1fr",
@@ -57,12 +53,11 @@ export const title = style({
 /* ---------- Content ---------- */
 
 export const content = style({
-  ...themeVars.fontStyles.hding_b_20,
+  ...themeVars.fontStyles.hding_m_20,
   whiteSpace: "pre-line",
 });
 
 /* ---------- Image ---------- */
-
 export const sideImage = style({
   width: "18rem",
   height: "16rem",
