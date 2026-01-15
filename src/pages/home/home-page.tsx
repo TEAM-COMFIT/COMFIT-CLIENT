@@ -2,34 +2,39 @@ import { useState } from "react";
 
 import { CompanyGridContainer } from "@/shared/ui/pagination/company-list-container";
 import { MatchingListContainer } from "@/shared/ui/pagination/matching-list-container";
-import { Textbox } from "@/shared/ui/textbox";
+import { Textfield } from "@/shared/ui/textfield";
 import Heart from "@icons/heart.svg?react";
 import KERORO from "@images/comfit_web_status.jpg";
 
 import {
   appContainer,
-  textboxPreviewHeader,
-  textboxPreviewItem,
-  textboxPreviewLabel,
-  textboxPreviewList,
-  textboxPreviewSection,
-  textboxPreviewTitle,
-  textboxPreviewToggle,
-  textboxPreviewToggleButton,
-  textboxPreviewToggleButtonState,
+  textfieldPreviewHeader,
+  textfieldPreviewItem,
+  textfieldPreviewLabel,
+  textfieldPreviewList,
+  textfieldPreviewSection,
+  textfieldPreviewTitle,
+  textfieldPreviewToggle,
+  textfieldPreviewToggleButton,
+  textfieldPreviewToggleButtonState,
 } from "./home-page.css";
 
 import type { ChangeEventHandler } from "react";
 
 type Mode = "edit" | "view";
 
-type TextboxKey = "jobDescription" | "situation" | "task" | "result" | "action";
+type TextfieldKey =
+  | "jobDescription"
+  | "situation"
+  | "task"
+  | "result"
+  | "action";
 
 const PLACEHOLDER =
   "ex) 대학생 마케팅 동아리에서 신규 브랜드 인지도를 높이기 위한 프로젝트를 진행함.";
 
-type TextboxFieldProps = {
-  type: TextboxKey;
+type TextfieldFieldProps = {
+  type: TextfieldKey;
   label: string;
   placeholder?: string;
   mode: Mode;
@@ -37,17 +42,17 @@ type TextboxFieldProps = {
   onChange?: ChangeEventHandler<HTMLTextAreaElement>;
 };
 
-const TextboxField = ({
+const TextfieldField = ({
   label,
   type,
   placeholder,
   mode,
   value,
   onChange,
-}: TextboxFieldProps) => (
-  <div className={textboxPreviewItem}>
-    <p className={textboxPreviewLabel}>{label}</p>
-    <Textbox
+}: TextfieldFieldProps) => (
+  <div className={textfieldPreviewItem}>
+    <p className={textfieldPreviewLabel}>{label}</p>
+    <Textfield
       type={type}
       mode={mode}
       placeholder={placeholder}
@@ -61,7 +66,7 @@ const HomePage = () => {
   const [mode, setMode] = useState<Mode>("edit");
   const isEditable = mode === "edit";
 
-  const [values, setValues] = useState<Record<TextboxKey, string>>({
+  const [values, setValues] = useState<Record<TextfieldKey, string>>({
     jobDescription: "",
     situation: "",
     task: "",
@@ -70,7 +75,7 @@ const HomePage = () => {
   });
 
   const handleChange =
-    (key: TextboxKey): ChangeEventHandler<HTMLTextAreaElement> =>
+    (key: TextfieldKey): ChangeEventHandler<HTMLTextAreaElement> =>
     (e) => {
       setValues((prev) => ({
         ...prev,
@@ -86,16 +91,16 @@ const HomePage = () => {
       <MatchingListContainer />
       <img src={KERORO} alt="Keroro" width={400} />
       <Heart aria-label="좋아요" />]{" "}
-      <section className={textboxPreviewSection}>
-        <div className={textboxPreviewHeader}>
-          <h2 className={textboxPreviewTitle}>Textbox Preview</h2>
+      <section className={textfieldPreviewSection}>
+        <div className={textfieldPreviewHeader}>
+          <h2 className={textfieldPreviewTitle}>Textfield Preview</h2>
 
-          <div className={textboxPreviewToggle}>
+          <div className={textfieldPreviewToggle}>
             <button
               type="button"
               onClick={() => setMode("edit")}
-              className={`${textboxPreviewToggleButton} ${
-                textboxPreviewToggleButtonState[
+              className={`${textfieldPreviewToggleButton} ${
+                textfieldPreviewToggleButtonState[
                   mode === "edit" ? "active" : "inactive"
                 ]
               }`}
@@ -106,8 +111,8 @@ const HomePage = () => {
             <button
               type="button"
               onClick={() => setMode("view")}
-              className={`${textboxPreviewToggleButton} ${
-                textboxPreviewToggleButtonState[
+              className={`${textfieldPreviewToggleButton} ${
+                textfieldPreviewToggleButtonState[
                   mode === "view" ? "active" : "inactive"
                 ]
               }`}
@@ -117,8 +122,8 @@ const HomePage = () => {
           </div>
         </div>
 
-        <div className={textboxPreviewList}>
-          <TextboxField
+        <div className={textfieldPreviewList}>
+          <TextfieldField
             label="직무 설명 (Job Description)"
             type="jobDescription"
             placeholder={PLACEHOLDER}
@@ -126,7 +131,7 @@ const HomePage = () => {
             value={values.jobDescription}
             onChange={isEditable ? handleChange("jobDescription") : undefined}
           />
-          <TextboxField
+          <TextfieldField
             label="Situation"
             type="situation"
             placeholder={PLACEHOLDER}
@@ -134,7 +139,7 @@ const HomePage = () => {
             value={values.situation}
             onChange={isEditable ? handleChange("situation") : undefined}
           />
-          <TextboxField
+          <TextfieldField
             label="Task"
             type="task"
             placeholder={PLACEHOLDER}
@@ -142,7 +147,7 @@ const HomePage = () => {
             value={values.task}
             onChange={isEditable ? handleChange("task") : undefined}
           />
-          <TextboxField
+          <TextfieldField
             label="Result"
             type="result"
             placeholder={PLACEHOLDER}
@@ -150,7 +155,7 @@ const HomePage = () => {
             value={values.result}
             onChange={isEditable ? handleChange("result") : undefined}
           />
-          <TextboxField
+          <TextfieldField
             label="Action"
             type="action"
             placeholder={PLACEHOLDER}

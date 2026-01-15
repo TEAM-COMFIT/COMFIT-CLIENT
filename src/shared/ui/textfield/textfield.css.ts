@@ -15,7 +15,7 @@ export const wrapper = style({
 });
 
 /* ---------- Type  ---------- */
-export const textboxType = styleVariants({
+export const textfieldType = styleVariants({
   jobDescription: {
     width: "61rem",
     height: "38.6rem",
@@ -40,7 +40,7 @@ export const textboxType = styleVariants({
 });
 
 /* ---------- Mode ---------- */
-export const textboxMode = styleVariants({
+export const textfieldMode = styleVariants({
   edit: {
     backgroundColor: themeVars.color.gray100,
   },

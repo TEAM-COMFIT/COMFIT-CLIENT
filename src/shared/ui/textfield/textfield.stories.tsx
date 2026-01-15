@@ -1,10 +1,10 @@
-import { Textbox } from "./textbox";
+import { Textfield } from "./textfield";
 
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 const meta = {
-  title: "Shared/Textbox",
-  component: Textbox,
+  title: "Shared/Textfield",
+  component: Textfield,
   tags: ["autodocs"],
   parameters: {
     componentSubtitle: "Editable/view textarea with size variants",
@@ -19,10 +19,10 @@ const meta = {
       options: ["jobDescription", "situation", "task", "result", "action"],
     },
   },
-} satisfies Meta<typeof Textbox>;
+} satisfies Meta<typeof Textfield>;
 
 export default meta;
-type Story = StoryObj<typeof Textbox>;
+type Story = StoryObj<typeof Textfield>;
 
 export const Default: Story = {
   args: {
@@ -45,15 +45,15 @@ export const ViewMode: Story = {
 export const AllEditTypes: Story = {
   render: () => (
     <div style={{ display: "flex", flexDirection: "column", gap: "2.4rem" }}>
-      <Textbox
+      <Textfield
         type="jobDescription"
         mode="edit"
         placeholder="Job description"
       />
-      <Textbox type="situation" mode="edit" placeholder="Situation" />
-      <Textbox type="task" mode="edit" placeholder="Task" />
-      <Textbox type="result" mode="edit" placeholder="Result" />
-      <Textbox type="action" mode="edit" placeholder="Action" />
+      <Textfield type="situation" mode="edit" placeholder="Situation" />
+      <Textfield type="task" mode="edit" placeholder="Task" />
+      <Textfield type="result" mode="edit" placeholder="Result" />
+      <Textfield type="action" mode="edit" placeholder="Action" />
     </div>
   ),
 };

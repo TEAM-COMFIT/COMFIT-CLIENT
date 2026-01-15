@@ -1,19 +1,19 @@
 import { useMemo, useState } from "react";
 
-import * as styles from "./textbox.css";
+import * as styles from "./textfield.css";
 
 import type { ChangeEvent, TextareaHTMLAttributes } from "react";
 
-export type TextboxMode = "edit" | "view";
+export type TextfieldMode = "edit" | "view";
 
-export type TextboxType =
+export type TextfieldType =
   | "jobDescription"
   | "situation"
   | "task"
   | "result"
   | "action";
 
-const TEXTBOX_MAX_LENGTH: Partial<Record<TextboxType, number>> = {
+const TEXTFIELD_MAX_LENGTH: Partial<Record<TextfieldType, number>> = {
   jobDescription: 300,
   situation: 200,
   task: 200,
@@ -21,18 +21,18 @@ const TEXTBOX_MAX_LENGTH: Partial<Record<TextboxType, number>> = {
   action: 500,
 };
 
-export interface TextboxProps extends Omit<
+export interface TextfieldProps extends Omit<
   TextareaHTMLAttributes<HTMLTextAreaElement>,
   "className" | "style" | "maxLength"
 > {
-  type: TextboxType;
-  mode?: TextboxMode;
+  type: TextfieldType;
+  mode?: TextfieldMode;
 
   value?: string;
   defaultValue?: string;
 }
 
-const Textbox = ({
+const Textfield = ({
   type,
   mode = "edit",
 
@@ -42,12 +42,12 @@ const Textbox = ({
 
   placeholder,
   ...props
-}: TextboxProps) => {
+}: TextfieldProps) => {
   const isControlled = value !== undefined;
 
   const [innerValue, setInnerValue] = useState(defaultValue ?? "");
 
-  const maxLength = TEXTBOX_MAX_LENGTH[type];
+  const maxLength = TEXTFIELD_MAX_LENGTH[type];
 
   const currentValue = isControlled ? (value ?? "") : innerValue;
 
@@ -70,7 +70,7 @@ const Textbox = ({
     onChange?.(e);
   };
 
-  const rootClassName = `${styles.wrapper} ${styles.textboxType[type]} ${styles.textboxMode[mode]}`;
+  const rootClassName = `${styles.wrapper} ${styles.textfieldType[type]} ${styles.textfieldMode[mode]}`;
 
   // 뷰어모드: 흰 배경 / 카운터 없음 / Textfield 작동 X
   if (mode === "view") {
@@ -105,4 +105,4 @@ const Textbox = ({
   );
 };
 
-export { Textbox };
+export { Textfield };
