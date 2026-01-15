@@ -13,7 +13,7 @@ export const typography = {
     56: "5.6rem",
   },
   fontWeight: {
-    regular: "400",
+    regular: "300",
     medium: "500",
     bold: "700",
   },
