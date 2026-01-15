@@ -52,30 +52,56 @@ export function useAutocomplete(
   const [isFetching, setIsFetching] = useState(false);
 
   const requestSeq = useRef(0);
-
   const lastRequestedQueryRef = useRef<string>("");
 
+  const selectedCompanyIdRef = useRef<string | null>(null);
+
+  const queryRef = useRef(query);
+  useEffect(() => {
+    queryRef.current = query;
+  }, [query]);
+
+  const wasOpenRef = useRef(false);
+  useEffect(() => {
+    wasOpenRef.current = isOpen;
+  }, [isOpen]);
+
   const open = useCallback(() => {
+    lastRequestedQueryRef.current = "";
     setIsOpen(true);
   }, []);
 
   const close = useCallback(() => {
     requestSeq.current += 1;
 
+    const wasOpen = wasOpenRef.current;
+    const currentQuery = queryRef.current.trim();
+
+    const isTypingClose = currentQuery.length < minQueryLength;
+
+    if (wasOpen && !isTypingClose) {
+      setQuery((prev) => {
+        if (!selected) return "";
+        return selected.label;
+      });
+    }
+
     setIsOpen(false);
     setItems([]);
     setHighlightedIndex(-1);
     setErrorMessage(undefined);
     setIsFetching(false);
-  }, []);
+  }, [minQueryLength, selected]);
 
   const clearSelected = useCallback(() => {
     setSelected(null);
+    selectedCompanyIdRef.current = null;
   }, []);
 
   const selectItem = useCallback(
     (item: SearchItem) => {
       setSelected(item);
+      selectedCompanyIdRef.current = item.id;
       setQuery(item.label);
       close();
     },
