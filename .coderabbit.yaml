@@ -28,6 +28,8 @@ reviews:
     - "src/**"
     - ".github/**"
     - "package.json"
+    - "vite.config.ts"
+    - "eslint.config.js"
 
     # 제외할 경로 (빌드 산출물 및 바이너리 리소스)
     - "!node_modules/**"
