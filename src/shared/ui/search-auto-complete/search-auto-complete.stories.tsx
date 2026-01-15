@@ -58,6 +58,7 @@ const meta: Meta<typeof SearchAutocomplete> = {
     maxItems: { control: "number" },
     minQueryLength: { control: "number" },
 
+    // 함수 props는 Controls에서 숨김
     fetchItems: { table: { disable: true } },
     onSelect: { table: { disable: true } },
     onClear: { table: { disable: true } },

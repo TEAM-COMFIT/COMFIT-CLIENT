@@ -69,7 +69,7 @@ const HomePage = () => {
           variant="onboarding"
           placeholder="대학교를 검색하세요"
           fetchItems={fetchUniversities}
-          onSelect={(item) => console.log("[onboarding] selected:", item)}
+          onSelect={() => {}}
         />
       </section>
 
@@ -80,7 +80,7 @@ const HomePage = () => {
           variant="home"
           placeholder="지원하고 싶은 기업을 검색해보세요"
           fetchItems={fetchCompanies}
-          onSelect={(item) => console.log("[home] selected:", item)}
+          onSelect={() => {}}
           showSelectedTag={false}
         />
       </section>
@@ -94,9 +94,7 @@ const HomePage = () => {
           variant="matchingExperienceList"
           placeholder="기업명 검색"
           fetchItems={fetchCompanies}
-          onSelect={(item) =>
-            console.log("[matchingExperienceList] selected:", item)
-          }
+          onSelect={() => {}}
           showSelectedTag={false}
         />
       </section>
