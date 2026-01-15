@@ -114,16 +114,56 @@ export const list = style({
   right: 0,
 
   borderRadius: 8,
-  overflow: "hidden",
-
   background: color.white,
   border: `1.5px solid ${color.gray200}`,
   boxShadow: shadow.shadow1,
-
   zIndex: Number(zIndex.dropdownMenu),
 
   maxHeight: "20.8rem",
   overflowY: "auto",
+
+  paddingTop: "0.4rem",
+  paddingLeft: "0.4rem",
+  paddingBottom: "0.4rem",
+  paddingRight: "1.2rem",
+
+  boxSizing: "border-box",
+
+  scrollbarGutter: "stable",
+});
+
+globalStyle(`${list}::-webkit-scrollbar`, {
+  width: "1.2rem",
+});
+
+globalStyle(`${list}::-webkit-scrollbar-track`, {
+  background: "transparent",
+});
+
+globalStyle(`${list}::-webkit-scrollbar-thumb`, {
+  backgroundColor: "transparent",
+  borderRadius: "10rem",
+  minHeight: "4rem",
+
+  borderLeft: "0.4rem solid transparent",
+  borderRight: "0.4rem solid transparent",
+  borderTop: 0,
+  borderBottom: 0,
+  backgroundClip: "padding-box",
+});
+
+globalStyle(`${list}:hover::-webkit-scrollbar-thumb`, {
+  backgroundColor: color.gray300,
+});
+
+globalStyle(`${list}`, {
+  scrollbarWidth: "none",
+  scrollbarColor: "transparent transparent",
+});
+
+globalStyle(`${list}:hover`, {
+  scrollbarWidth: "thin",
+  scrollbarColor: `${color.gray300} transparent`,
 });
 
 export const listTopVariant = styleVariants({
@@ -140,24 +180,27 @@ export const emptyBox = style({
 
   ...fontStyles.cap_m_12,
   color: color.gray500,
+
+  borderRadius: 8,
 });
 
 export const item = style({
   height: "5.2rem",
   display: "flex",
   alignItems: "center",
-  padding: "0 1.6rem",
+  padding: "0 1.2rem",
 
   ...fontStyles.body_m_14,
   color: color.gray800,
 
-  background: color.white,
   cursor: "pointer",
+  borderRadius: 8,
+  background: "transparent",
 });
 
 export const itemState = styleVariants({
-  default: { background: color.white },
-  hover: { background: color.gray100 },
+  default: { background: "transparent" },
+  hover: { background: color.gray200 },
   pressed: { background: color.blue600, color: color.white },
 });
 
