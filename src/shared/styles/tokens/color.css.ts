@@ -30,6 +30,7 @@ export const color = {
   purple100: "#FCF0FF",
   purple200: "#EDCCF8",
   purple300: "#E196F7",
+  purple400: "#BE4FE3",
 
   // White / Black
   white: "#FFFFFF",
