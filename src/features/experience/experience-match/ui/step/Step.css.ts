@@ -22,9 +22,6 @@ const baseStep = style({
     0% 0%
   )`,
 
-  // 이전 스텝의 화살표 머리 위로 올라오지 않도록 겹침 처리
-  //marginLeft: `calc(${arrowSize} * -1)`,
-
   selectors: {
     "&:not(:first-child)": {
       marginLeft: "-0.9rem",
