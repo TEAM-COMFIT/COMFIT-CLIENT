@@ -17,7 +17,8 @@ const HomePage = () => {
       { id: "u-2", label: "서울시립대학교" },
       { id: "u-3", label: "서울과학기술대학교" },
       { id: "u-4", label: "서울여자대학교" },
-      { id: "u-5", label: "명지대학교" },
+      { id: "u-5", label: "서울교육대학교" },
+      { id: "u-6", label: "명지대학교" },
     ],
     []
   );
@@ -28,8 +29,9 @@ const HomePage = () => {
       { id: "c-2", label: "CJ 제일제당" },
       { id: "c-3", label: "CJ 푸드빌" },
       { id: "c-4", label: "CJ 올리브영" },
-      { id: "c-5", label: "카카오" },
-      { id: "c-6", label: "네이버" },
+      { id: "c-5", label: "CJ 프레시웨이" },
+      { id: "c-6", label: "카카오" },
+      { id: "c-7", label: "네이버" },
     ],
     []
   );
