@@ -9,14 +9,14 @@ import type { ButtonHTMLAttributes } from "react";
 interface MatchingItemProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   matchingId: number;
   companyName: string;
-  date: string;
+  updatedAt: string;
   title: string;
 }
 
 export const MatchingItem = ({
   matchingId,
   companyName,
-  date,
+  updatedAt,
   title,
   ...props
 }: MatchingItemProps) => {
@@ -30,13 +30,13 @@ export const MatchingItem = ({
       type="button"
       className={styles.container}
       {...props}
-      aria-label={`${companyName} ${date} ${title}`}
+      aria-label={`${companyName} ${updatedAt} ${title}`}
       onClick={handleClick}
     >
       <div className={styles.left}>
         <div className={styles.companyName}>{companyName}</div>
         <div className={styles.meta}>
-          {date} | {title}
+          {updatedAt} | {title}
         </div>
       </div>
 

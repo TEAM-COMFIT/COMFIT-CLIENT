@@ -6,7 +6,7 @@ const MatchingListPage = () => {
       <MatchingItem
         matchingId={1}
         companyName="기업명"
-        date="2025.12.28"
+        updatedAt="2025-12-28"
         title="하나둘셋다하나둘셋넷다하나둘셋다하나둘셋넷다하나둘셋다하나둘셋넷다30자여도 무너지지 않습니다."
       />
     </div>
