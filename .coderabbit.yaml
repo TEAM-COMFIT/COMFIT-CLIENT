@@ -99,6 +99,11 @@ reviews:
         - 상수: UPPER_SNAKE_CASE
         - Props 타입: 컴포넌트명 + Props
 
+        import 규칙:
+        - @shared, @features, @widgets 등 alias 기반 절대 경로 import 사용 권장
+        - 깊은 상대 경로(../../..) 사용은 가독성과 유지보수 측면에서 지양
+        - index.ts를 통한 공개 API import 여부 함께 검토
+
         API 및 훅 네이밍:
         - API 함수는 동사형(get, fetch, post 등)
         - TanStack Query 훅:
