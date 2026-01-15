@@ -10,3 +10,9 @@ export const appContainer = style({
   color: themeVars.color.blue300,
   ...themeVars.fontStyles.title_b_28,
 });
+
+export const actions = style({
+  marginTop: "1.6rem",
+  display: "flex",
+  alignItems: "center",
+});
