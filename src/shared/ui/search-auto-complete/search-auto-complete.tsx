@@ -87,6 +87,7 @@ export const SearchAutocomplete = ({
   };
 
   const shouldApplyFocusStyle = variant !== "onboarding";
+  const isOnboarding = variant === "onboarding";
 
   return (
     <div className={s.root}>
@@ -173,24 +174,35 @@ export const SearchAutocomplete = ({
             )}
 
             {state === "success" &&
-              items.map((it, idx) => (
-                <div
-                  key={it.id}
-                  className={[
-                    s.item,
-                    idx === highlightedIndex
-                      ? s.itemState.hover
-                      : s.itemState.default,
-                  ].join(" ")}
-                  onMouseEnter={() => setHighlightedIndex(idx)}
-                  onMouseDown={(e) => {
-                    e.preventDefault();
-                    handleSelect(it);
-                  }}
-                >
-                  {it.label}
-                </div>
-              ))}
+              items.map((it, idx) => {
+                const isHighlighted = idx === highlightedIndex;
+
+                return (
+                  <div
+                    key={it.id}
+                    className={[
+                      s.item,
+
+                      isHighlighted
+                        ? isOnboarding
+                          ? s.onboardingItemState.hover
+                          : s.itemState.hover
+                        : isOnboarding
+                          ? s.onboardingItemState.default
+                          : s.itemState.default,
+
+                      isOnboarding ? s.onboardingItemPressed : "",
+                    ].join(" ")}
+                    onMouseEnter={() => setHighlightedIndex(idx)}
+                    onMouseDown={(e) => {
+                      e.preventDefault();
+                      handleSelect(it);
+                    }}
+                  >
+                    {it.label}
+                  </div>
+                );
+              })}
           </div>
         )}
       </div>

@@ -204,6 +204,20 @@ export const itemState = styleVariants({
   pressed: { background: color.blue600, color: color.white },
 });
 
+export const onboardingItemState = styleVariants({
+  default: { background: "transparent" },
+  hover: { background: color.blue200 },
+});
+
+export const onboardingItemPressed = style({
+  selectors: {
+    "&:active": {
+      background: color.blue600,
+      color: color.white,
+    },
+  },
+});
+
 export const selectedTagRow = style({
   marginTop: "1.2rem",
   display: "flex",
