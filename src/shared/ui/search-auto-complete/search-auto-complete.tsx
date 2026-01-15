@@ -139,10 +139,7 @@ export const SearchAutocomplete = ({
             onClick={() => {
               if (disabled) return;
 
-              if (isLocked) {
-                inputRef.current?.focus();
-                return;
-              }
+              if (isLocked) return;
 
               if (rightIconMode === "clear") handleClear();
               else {
