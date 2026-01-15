@@ -3,7 +3,8 @@ import { style } from "@vanilla-extract/css";
 import { themeVars } from "@/app/styles";
 
 export const container = style({
-  width: "106rem",
+  width: "100%",
+  maxWidth: "106rem",
   height: "11rem",
 
   display: "flex",
@@ -15,8 +16,8 @@ export const container = style({
 
   boxSizing: "border-box",
   borderRadius: "16px",
-  backgroundColor: themeVars.color.gray100,
-  border: `1px solid ${themeVars.color.normal}`,
+  backgroundColor: themeVars.color.blue100,
+  border: `1.5px solid ${themeVars.color.normal}`,
 });
 
 export const left = style({
