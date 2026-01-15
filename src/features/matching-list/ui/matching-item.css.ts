@@ -24,7 +24,6 @@ export const left = style({
   flexDirection: "column",
   alignItems: "start",
   gap: "0.4rem",
-  minWidth: 0,
 });
 
 export const companyName = style({
@@ -47,9 +46,10 @@ export const meta = style({
   ...themeVars.fontStyles.body_m_14,
 });
 
-export const right = style({
+export const icon = style({
   width: "2.4rem",
   height: "2.4rem",
   flexShrink: 0,
   rotate: "90deg",
+  color: themeVars.color.gray800,
 });

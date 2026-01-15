@@ -12,13 +12,12 @@ export const MatchingItem = ({
   companyName,
   date,
   title,
-  className,
   ...props
 }: MatchingItemProps) => {
   return (
     <button
       type="button"
-      className={[styles.container, className].filter(Boolean).join(" ")}
+      className={styles.container}
       {...props}
       aria-label={`${companyName} ${date} ${title}`}
     >
@@ -29,7 +28,7 @@ export const MatchingItem = ({
         </div>
       </div>
 
-      <DropdownArrow className={styles.right} />
+      <DropdownArrow className={styles.icon} />
     </button>
   );
 };
