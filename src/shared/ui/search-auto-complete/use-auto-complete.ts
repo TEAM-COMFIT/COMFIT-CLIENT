@@ -51,6 +51,8 @@ export function useAutocomplete(
 
   const requestSeq = useRef(0);
 
+  const lastRequestedQueryRef = useRef<string>("");
+
   const open = useCallback(() => {
     setIsOpen(true);
   }, []);
@@ -94,6 +96,11 @@ export function useAutocomplete(
     if (!isOpen) return;
     if (!canSearch) return;
 
+    const trimmedQuery = debouncedQuery.trim();
+
+    if (lastRequestedQueryRef.current === trimmedQuery) return;
+    lastRequestedQueryRef.current = trimmedQuery;
+
     const seq = ++requestSeq.current;
 
     startTransition(() => {
@@ -101,7 +108,7 @@ export function useAutocomplete(
       setErrorMessage(undefined);
     });
 
-    fetchItems(debouncedQuery.trim())
+    fetchItems(trimmedQuery)
       .then((res) => {
         if (seq !== requestSeq.current) return;
 
