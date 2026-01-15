@@ -34,6 +34,8 @@ export function useAutocomplete(
     maxItems = 4,
   } = options;
 
+  const effectiveMaxItems = Math.min(maxItems, 4);
+
   const [query, setQuery] = useState("");
   const debouncedQuery = useDebouncedValue(query, debounceMs);
 
@@ -112,11 +114,11 @@ export function useAutocomplete(
       .then((res) => {
         if (seq !== requestSeq.current) return;
 
-        const sliced = res.slice(0, maxItems);
+        const nextItems = res;
 
         startTransition(() => {
-          setItems(sliced);
-          setHighlightedIndex(sliced.length ? 0 : -1);
+          setItems(nextItems);
+          setHighlightedIndex(nextItems.length ? 0 : -1);
         });
       })
       .catch(() => {
@@ -135,7 +137,7 @@ export function useAutocomplete(
           setIsFetching(false);
         });
       });
-  }, [canSearch, debouncedQuery, fetchItems, isOpen, maxItems]);
+  }, [canSearch, debouncedQuery, fetchItems, isOpen, effectiveMaxItems]);
 
   const onKeyDown = useCallback(
     (e: React.KeyboardEvent<HTMLInputElement>) => {

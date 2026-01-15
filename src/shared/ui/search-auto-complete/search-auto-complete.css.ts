@@ -121,6 +121,9 @@ export const list = style({
   boxShadow: shadow.shadow1,
 
   zIndex: Number(zIndex.dropdownMenu),
+
+  maxHeight: "20.8rem",
+  overflowY: "auto",
 });
 
 export const listTopVariant = styleVariants({
