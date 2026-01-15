@@ -2,16 +2,19 @@ import { assignInlineVars } from "@vanilla-extract/dynamic";
 import { useNavigate } from "react-router-dom";
 
 import { IconMove } from "@/shared/assets/icons";
+import { getScaleLabel } from "@/shared/config";
 import { Tag } from "@/shared/ui/tag/tag";
 
 import * as styles from "./major-company-card.css";
 
-export type MajorCompanyCardType = "medium" | "large";
+import type { ScaleCode } from "@/shared/config";
+
+type MajorCompanyCardType = "medium" | "large";
 
 interface MajorCompanyCardProps {
   id: number;
   companyName: string;
-  industry: string;
+  industry: ScaleCode;
   type?: MajorCompanyCardType;
   imgUrl: string;
 }
@@ -38,7 +41,7 @@ const MajorCompanyCard = ({
     >
       <div className={styles.content({ type })}>
         <span className={styles.title({ type })}>{companyName}</span>
-        <Tag>#{industry}</Tag>
+        <Tag>#{getScaleLabel(industry)}</Tag>
       </div>
 
       {type === "large" && <IconMove className={styles.detailIcon} />}

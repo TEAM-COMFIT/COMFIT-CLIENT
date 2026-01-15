@@ -81,3 +81,7 @@ export const FILTER_SCALE: ScaleFilterOption[] = [
   { id: 7, code: "PUBLIC_ORG", label: SCALE.PUBLIC_ORG },
   { id: 8, code: "ETC", label: SCALE.ETC },
 ];
+
+export const getScaleLabel = (code: ScaleCode): ScaleLabel => {
+  return SCALE[code];
+};
