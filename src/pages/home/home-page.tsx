@@ -60,7 +60,7 @@ const HomePage = () => {
       <p>카카오로 시작하기</p>
       <img src={KERORO} alt="Keroro" width={400} />
 
-      {/* 온보딩 */}
+      {/* 온보딩 자동완성 search */}
       <section style={{ display: "grid", gap: 10 }}>
         <h2 style={{ margin: 0, fontSize: 14, fontWeight: 600 }}>
           온보딩 Search
@@ -73,7 +73,7 @@ const HomePage = () => {
         />
       </section>
 
-      {/* 홈 */}
+      {/* 홈 자동완성 search */}
       <section style={{ display: "grid", gap: 10 }}>
         <h2 style={{ margin: 0, fontSize: 14, fontWeight: 600 }}>홈 Search</h2>
         <SearchAutocomplete
@@ -85,7 +85,7 @@ const HomePage = () => {
         />
       </section>
 
-      {/* 매칭 경험 목록 */}
+      {/* 매칭 경험 목록 자동완성 search */}
       <section style={{ display: "grid", gap: 10 }}>
         <h2 style={{ margin: 0, fontSize: 14, fontWeight: 600 }}>
           매칭 경험 목록 Search
