@@ -10,6 +10,10 @@ export const container = style({
   gap: "1.6rem",
 });
 
+export const boxWrapper = style({
+  position: "relative",
+});
+
 export const titleRow = style({
   display: "flex",
   alignItems: "center",
@@ -60,6 +64,10 @@ export const placeholder = style([
 ]);
 
 export const selectArea = style({
+  position: "absolute",
+  top: "calc(100% + 0.8rem)",
+  left: 0,
+  zIndex: 10,
   width: "56rem",
   padding: "2.4rem",
   borderRadius: "1.2rem",

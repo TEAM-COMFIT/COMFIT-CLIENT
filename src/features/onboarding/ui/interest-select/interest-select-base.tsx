@@ -26,7 +26,7 @@ export const InterestSelectBase = <T extends string>({
   return (
     <section className={styles.container} data-variant={variant}>
       {/* Onboarding Box */}
-      <div>
+      <div className={styles.boxWrapper}>
         <div className={styles.titleRow}>
           <span className={styles.title}>{title}</span>
           {required && <span className={styles.asterisk}>*</span>}
@@ -62,54 +62,54 @@ export const InterestSelectBase = <T extends string>({
             <span className={styles.placeholder}>선택해주세요</span>
           )}
         </div>
+
+        {/* Select Area */}
+        {isOpen && (
+          <div className={styles.selectArea}>
+            <div className={styles.gridContainer}>
+              {options.map((opt) => {
+                const isSelected = selected === opt;
+
+                const cls = isSelected
+                  ? styles.optionButton.selected
+                  : styles.optionButton.default;
+
+                return (
+                  <button
+                    key={opt}
+                    type="button"
+                    className={cls}
+                    onClick={() => {
+                      // 이미 선택된 항목을 클릭하면 선택 해제 (토글)
+                      if (isSelected) {
+                        setSelected(null);
+                      } else {
+                        setSelected(opt);
+                      }
+                    }}
+                  >
+                    {opt}
+                  </button>
+                );
+              })}
+            </div>
+
+            <div className={styles.buttonContainer}>
+              <Button
+                variant="primary"
+                size="medium"
+                disabled={!selected}
+                onClick={() => {
+                  if (!selected) return;
+                  setIsOpen(false);
+                }}
+              >
+                선택 완료
+              </Button>
+            </div>
+          </div>
+        )}
       </div>
-
-      {/* Select Area */}
-      {isOpen && (
-        <div className={styles.selectArea}>
-          <div className={styles.gridContainer}>
-            {options.map((opt) => {
-              const isSelected = selected === opt;
-
-              const cls = isSelected
-                ? styles.optionButton.selected
-                : styles.optionButton.default;
-
-              return (
-                <button
-                  key={opt}
-                  type="button"
-                  className={cls}
-                  onClick={() => {
-                    // 이미 선택된 항목을 클릭하면 선택 해제 (토글)
-                    if (isSelected) {
-                      setSelected(null);
-                    } else {
-                      setSelected(opt);
-                    }
-                  }}
-                >
-                  {opt}
-                </button>
-              );
-            })}
-          </div>
-
-          <div className={styles.buttonContainer}>
-            <Button
-              variant="primary"
-              size="medium"
-              disabled={!selected}
-              onClick={() => {
-                if (!selected) return;
-                setIsOpen(false);
-              }}
-            >
-              선택 완료
-            </Button>
-          </div>
-        </div>
-      )}
     </section>
   );
 };
