@@ -44,4 +44,3 @@ const Toggle = ({
 };
 
 export { Toggle };
-export type { ToggleProps };
