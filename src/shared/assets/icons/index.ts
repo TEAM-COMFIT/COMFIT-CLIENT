@@ -11,3 +11,5 @@ export { default as IconInformation } from "./icon_information.svg?react";
 export { default as IconQuestion } from "./icon_question.svg?react";
 
 export { default as IconCheck } from "./check.svg?react";
+
+export { default as IconAI } from "./icon_ai.svg?react";

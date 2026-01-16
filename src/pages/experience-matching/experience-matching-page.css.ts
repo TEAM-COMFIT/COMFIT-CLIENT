@@ -1,10 +1,34 @@
 import { style } from "@vanilla-extract/css";
 
-export const experienceMatchingPage = style({
+import { themeVars } from "@/app/styles";
+
+export const container = style({
   display: "flex",
-  flexDirection: "row",
+  flexDirection: "column",
+  margin: "6.1rem auto",
+  maxWidth: "106rem",
+});
+
+export const titleContainer = style({
+  display: "flex",
+  gap: "1.6rem",
+  width: "100%",
+  marginLeft: "auto",
+});
+
+export const wrapper = style({
+  display: "flex",
+  flexDirection: "column",
   justifyContent: "center",
-  alignItems: "center",
-  gap: "10rem",
-  padding: "4rem 2.4rem 8rem",
+  gap: "0.4rem",
+});
+
+export const title = style({
+  color: themeVars.color.gray900,
+  ...themeVars.fontStyles.title_b_24,
+});
+
+export const subTitle = style({
+  color: themeVars.color.gray500,
+  ...themeVars.fontStyles.body_m_16,
 });
