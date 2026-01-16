@@ -7,23 +7,16 @@ interface ToggleProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   onCheckedChange?: (checked: boolean) => void;
 }
 
-const Toggle = ({
-  checked,
-  onCheckedChange,
-  disabled,
-  className,
-  onClick,
-  ...props
-}: ToggleProps) => {
+const Toggle = ({ checked, onCheckedChange, ...props }: ToggleProps) => {
   const handleToggleClick: ToggleProps["onClick"] = (event) => {
-    onClick?.(event);
-    if (event.defaultPrevented || disabled) return;
+    props.onClick?.(event);
+    if (event.defaultPrevented || props.disabled) return;
 
     onCheckedChange?.(!checked);
   };
 
   const mergedClassName =
-    `${styles.toggleTrack} ${styles.toggleTrackState[checked ? "on" : "off"]} ${className ?? ""}`.trim();
+    `${styles.toggleTrack} ${styles.toggleTrackState[checked ? "on" : "off"]} ${props.className ?? ""}`.trim();
 
   return (
     <button
@@ -31,7 +24,7 @@ const Toggle = ({
       type="button"
       role="switch"
       aria-checked={checked}
-      disabled={disabled}
+      disabled={props.disabled}
       onClick={handleToggleClick}
       className={mergedClassName}
     >
