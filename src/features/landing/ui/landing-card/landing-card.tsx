@@ -14,7 +14,12 @@ const LandingCard = ({ title, content, sideImg }: LandingCardProps) => {
         <p className={styles.content}>{content}</p>
       </div>
 
-      <img src={sideImg} alt="" aria-hidden className={styles.sideImage} />
+      <img
+        src={sideImg}
+        alt={`${title} 이미지`}
+        aria-hidden="true"
+        className={styles.sideImage}
+      />
     </div>
   );
 };
