@@ -7,7 +7,7 @@ export const boxBase = style({
   maxWidth: "88.3rem",
 
   backgroundColor: themeVars.color.gray100,
-  border: `0.15rem solid ${themeVars.color.normal}`,
+  border: `1.5px solid ${themeVars.color.normal}`,
   borderRadius: "15px",
 
   padding: "2.8rem 2rem",
