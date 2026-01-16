@@ -2,6 +2,7 @@ import { createTheme } from "@vanilla-extract/css";
 
 import { fontStyles } from "@/shared/styles/font-style.css";
 import { color } from "@/shared/styles/tokens/color.css";
+import { height } from "@/shared/styles/tokens/height.css";
 import { shadow } from "@/shared/styles/tokens/shadow.css";
 import { zIndex } from "@/shared/styles/tokens/z-index.css";
 
@@ -11,6 +12,7 @@ const tokens = {
   fontStyles,
   shadow,
   zIndex,
+  height,
 };
 
 const [themeClass, themeVars] = createTheme(tokens);
