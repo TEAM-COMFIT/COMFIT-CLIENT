@@ -81,41 +81,34 @@ export const content = style({
 });
 
 // 숫자 뱃지 스타일
+const baseBadge = style({
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  width: "2rem",
+  height: "2rem",
+  flexShrink: 0,
+  borderRadius: "50%",
+  ...themeVars.fontStyles.cap_m_12,
+});
+
 export const badge = styleVariants({
-  current: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    width: "2rem",
-    height: "2rem",
-    flexShrink: 0,
-    borderRadius: "50%",
-    background: themeVars.color.blue200,
-    color: themeVars.color.blue600,
-    ...themeVars.fontStyles.cap_m_12,
-  },
-  pending: {
-    flexShrink: 0,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    width: "2rem",
-    height: "2rem",
-    borderRadius: "50%",
-    background: themeVars.color.blue200,
-    color: themeVars.color.blue600,
-    ...themeVars.fontStyles.cap_m_12,
-  },
-  done: {
-    flexShrink: 0,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    width: "2rem",
-    height: "2rem",
-    borderRadius: "50%",
-    background: themeVars.color.blue300,
-    color: themeVars.color.blue600,
-    ...themeVars.fontStyles.cap_m_12,
-  },
+  current: [
+    baseBadge,
+    {
+      background: themeVars.color.blue200,
+      color: themeVars.color.blue600,
+    },
+  ],
+  pending: [
+    baseBadge,
+    { background: themeVars.color.blue200, color: themeVars.color.blue600 },
+  ],
+  done: [
+    baseBadge,
+    {
+      background: themeVars.color.blue300,
+      color: themeVars.color.blue600,
+    },
+  ],
 });
