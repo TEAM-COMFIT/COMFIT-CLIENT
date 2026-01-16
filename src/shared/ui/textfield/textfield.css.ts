@@ -67,7 +67,6 @@ export const textarea = style({
   selectors: {
     "&::placeholder": {
       color: themeVars.color.gray500,
-      opacity: 1,
       ...themeVars.fontStyles.body_m_16,
     },
   },
