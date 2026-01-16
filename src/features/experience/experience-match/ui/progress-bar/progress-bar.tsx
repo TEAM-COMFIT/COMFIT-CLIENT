@@ -19,11 +19,13 @@ export const ProgressBar = ({
   };
 
   return (
-    <div className={styles.layout}>
+    <ul className={styles.layout} aria-label="진행 단계">
       {stepList.map((step, idx) => {
         if (step === stepList[0]) return;
-        return <Step status={isStatus(step)} step={idx} label={step} />;
+        return (
+          <Step key={step} status={isStatus(step)} step={idx} label={step} />
+        );
       })}
-    </div>
+    </ul>
   );
 };

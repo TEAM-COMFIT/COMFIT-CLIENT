@@ -18,7 +18,7 @@ const ExperienceMatchingPage = () => {
   });
 
   return (
-    <div className={styles.container}>
+    <main className={styles.container}>
       {/** 타이틀 */}
       {currentStep !== "기업 선택" && (
         <>
@@ -67,7 +67,7 @@ const ExperienceMatchingPage = () => {
           <div>결과 확인란 입니다</div>
         </Step>
       </Funnel>
-    </div>
+    </main>
   );
 };
 

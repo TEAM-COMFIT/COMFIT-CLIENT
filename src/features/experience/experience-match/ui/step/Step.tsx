@@ -8,11 +8,14 @@ interface StepProps {
 
 export const Step = ({ status, step, label }: StepProps) => {
   return (
-    <div className={styles.stepVariants[status]}>
+    <li
+      className={styles.stepVariants[status]}
+      aria-current={status === "current" ? "step" : undefined}
+    >
       <div className={styles.content}>
         <span className={styles.badge[status]}>{step}</span>
         <span>{label}</span>
       </div>
-    </div>
+    </li>
   );
 };
