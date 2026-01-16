@@ -21,6 +21,7 @@ const HomePage = () => {
       <CompanyGridContainer />
       <MatchingListContainer />
       <img src={KERORO} alt="Keroro" width={400} />
+      <p>하하코드래빗아 한번일해보거라</p>
     </div>
   );
 };
