@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 
 import * as styles from "./textfield.css";
 
@@ -51,10 +51,7 @@ const Textfield = ({
 
   const currentValue = isControlled ? (value ?? "") : innerValue;
 
-  const currentLength = useMemo(
-    () => currentValue.length,
-    [currentValue.length]
-  );
+  const currentLength = currentValue.length;
 
   const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     const raw = e.currentTarget.value;
