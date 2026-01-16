@@ -1,4 +1,7 @@
-import { EDUCATION_TYPE } from "@/features/onboarding/config/education";
+import {
+  EDUCATION_TYPE,
+  FILTER_EDUCATION_TYPE,
+} from "@/features/onboarding/config/education";
 import { Select } from "@/shared/ui";
 
 import type { EducationTypeCode } from "../../config/education";
@@ -17,12 +20,9 @@ const EducationSelect = ({ value, onChange }: EducationSelectProps) => {
       <Select.Trigger>{triggerLabel}</Select.Trigger>
 
       <Select.Menu>
-        {Object.entries(EDUCATION_TYPE).map(([code, label]) => (
-          <Select.Item
-            key={code}
-            onClick={() => onChange(code as EducationTypeCode)}
-          >
-            {label}
+        {FILTER_EDUCATION_TYPE.map((item) => (
+          <Select.Item key={item.id} onClick={() => onChange(item.code)}>
+            {item.label}
           </Select.Item>
         ))}
       </Select.Menu>
