@@ -43,6 +43,7 @@ export const trigger = style({
 export const arrowIcon = style({
   width: "1.8rem",
   height: "1.8rem",
+  color: themeVars.color.gray800,
 });
 
 export const arrowIconTransition = styleVariants({
