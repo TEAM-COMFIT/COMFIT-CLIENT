@@ -9,7 +9,7 @@ const baseStep = style({
 
   width: "27.8rem",
   padding: `2rem calc(${arrowSize}) 2rem calc(${arrowSize} * 2)`,
-  borderRadius: "0.4rem",
+  borderRadius: "4px",
   userSelect: "none",
   ...themeVars.fontStyles.body_b_16,
 
