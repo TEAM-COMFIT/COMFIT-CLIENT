@@ -12,3 +12,5 @@ export { Button } from "./button/button";
 export { Select } from "./select/select";
 
 export { Tag } from "./tag/tag";
+
+export { Tooltip } from "./tooltip/tooltip";
