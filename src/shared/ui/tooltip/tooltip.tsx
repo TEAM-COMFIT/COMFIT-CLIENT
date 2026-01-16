@@ -29,7 +29,7 @@ const Tooltip = ({ type, label, children }: TooltipProps) => {
 
       <div
         role="tooltip"
-        className={`${styles.tooltipBox} ${styles.tooltipGap[type]} ${styles.hoverArea} ${styles.tooltipBoxSize[type]}`}
+        className={`${styles.tooltipBox} ${styles.hoverArea} ${styles.tooltipStyle[type]}`}
       >
         {children}
       </div>

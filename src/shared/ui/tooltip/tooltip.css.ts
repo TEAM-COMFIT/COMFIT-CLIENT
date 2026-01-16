@@ -85,24 +85,16 @@ export const tooltipBox = style({
   ...themeVars.fontStyles.cap_m_12,
 });
 
-/* ---------- 타입 별 박스 사이즈 ---------- */
-export const tooltipBoxSize = styleVariants({
+/* ---------- 타입 별 박스 사이즈 및 여백 ---------- */
+export const tooltipStyle = styleVariants({
   help: {
     width: "29.1rem",
     height: "23rem",
+    marginTop: "0.8rem",
   },
   guide: {
     width: "28.2rem",
     height: "27.2rem",
-  },
-});
-
-/* ---------- 타입 별 gap ---------- */
-export const tooltipGap = styleVariants({
-  help: {
-    marginTop: "0.8rem",
-  },
-  guide: {
     marginTop: "1.2rem",
   },
 });
@@ -110,7 +102,7 @@ export const tooltipGap = styleVariants({
 /* ---------- hover 컨트롤 ---------- */
 export const hoverArea = style({
   selectors: {
-    [`${wrapper}:hover &`]: {
+    [`${wrapper}:hover &, ${wrapper}:focus-within &`]: {
       opacity: 1,
       pointerEvents: "auto",
     },
