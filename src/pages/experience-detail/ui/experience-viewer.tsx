@@ -11,7 +11,8 @@ const ExperienceViewer = () => {
   const { id } = useParams<{ id: string }>();
   const { isOpen, handleModal } = useModal();
 
-  const [isDefault, setIsDefault] = useState(false); // TODO: 서버의 isDefault로 대체 (경험수정 API 활용)
+  // TODO: 서버 isDefault로 대체 (기본경험 설정 API 추가예정)
+  const [isDefault, setIsDefault] = useState(false);
 
   return (
     <main>
@@ -27,6 +28,7 @@ const ExperienceViewer = () => {
               variant="primary"
               size="small"
               onClick={() => {
+                if (!id) return;
                 navigate(`/experience/${id}/edit`);
               }}
             >
