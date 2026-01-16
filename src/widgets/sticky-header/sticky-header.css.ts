@@ -4,8 +4,11 @@ import { recipe } from "@vanilla-extract/recipes";
 import { themeVars } from "@/app/styles";
 
 export const layout = style({
+  position: "sticky",
+  top: "0",
   width: "100%",
   padding: "3rem 19rem",
+  marginTop: themeVars.height.header,
   backgroundColor: themeVars.color.white,
   borderBottom: `1px solid ${themeVars.color.normal}`,
 });
