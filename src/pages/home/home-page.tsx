@@ -1,4 +1,4 @@
-import { CompanyLinkButton } from "@/features/company-detail/ui/company-link-button";
+import { CompanyLinkButton } from "@/features/company-detail";
 import KERORO from "@images/comfit_web_status.jpg";
 
 import { appContainer } from "./home-page.css";
