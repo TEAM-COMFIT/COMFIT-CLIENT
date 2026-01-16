@@ -14,16 +14,8 @@ const HomePage = () => {
       <h1>프리텐다드</h1>
 
       <div className={toggleGroup}>
-        <Toggle
-          aria-label="켜짐"
-          checked={isToggleOn}
-          onCheckedChange={setIsToggleOn}
-        />
-        <Toggle
-          aria-label="꺼짐"
-          checked={isToggleOff}
-          onCheckedChange={setIsToggleOff}
-        />
+        <Toggle checked={isToggleOn} onCheckedChange={setIsToggleOn} />
+        <Toggle checked={isToggleOff} onCheckedChange={setIsToggleOff} />
       </div>
 
       <p>카카오로 시작하기</p>
