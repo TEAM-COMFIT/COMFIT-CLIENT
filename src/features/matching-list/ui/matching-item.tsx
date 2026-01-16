@@ -30,9 +30,8 @@ export const MatchingItem = ({
     <button
       type="button"
       className={styles.container}
-      {...props}
-      aria-label={`${companyName} ${createdAt} ${title}`}
       onClick={handleClick}
+      {...props}
     >
       <div className={styles.left}>
         <span className={styles.companyName}>{companyName}</span>
