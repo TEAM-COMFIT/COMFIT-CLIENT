@@ -1,6 +1,7 @@
 export const ROUTES = {
   HOME: "/",
   LOGIN: "/login",
+  LOGIN_AUTH: "/login/oauth",
   LANDING: "/landing",
   ONBOARDING: "/onboarding",
   COMPANY: (id = ":id") => `/company/${id}`, // 기업 상세
