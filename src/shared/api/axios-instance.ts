@@ -4,16 +4,28 @@ import { tokenStorage } from "@lib/auth/token-storage";
 
 const SERVER_URL = import.meta.env.VITE_API_URL;
 
-// TODO: 현재는 axios로 instance를 생성하지만, http-client.ts Api 클래스로 instance를 생성하도록 수정할 예정입니다.
-export const api = axios.create({
+/**
+ * axios의 기존 AxiosRequestConfig 타입 확장
+ * - accessToken이 필요하고/필요하지 않은 API를 secure속성으로 구분하기 위함.
+ * - [default] secure: true
+ * - true: 토큰 필요, false: 토큰 불필요
+ */
+declare module "axios" {
+  export interface AxiosRequestConfig {
+    secure?: boolean;
+  }
+}
+
+export const axiosInstance = axios.create({
   baseURL: `${SERVER_URL}`,
   headers: {
     "Content-Type": "application/json",
   },
 });
 
-api.interceptors.request.use(
+axiosInstance.interceptors.request.use(
   async (config) => {
+    if (!config.secure) return config;
     const accessToken = tokenStorage.get() || null;
     if (accessToken) {
       config.headers["Authorization"] = `Bearer ${accessToken}`;
@@ -28,7 +40,7 @@ api.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-api.interceptors.response.use(
+axiosInstance.interceptors.response.use(
   (response) => response,
   async (error) => {
     const originalRequest = error.config;
@@ -47,7 +59,7 @@ api.interceptors.response.use(
         tokenStorage.set(newAccessToken);
 
         originalRequest.headers["Authorization"] = `Bearer ${newAccessToken}`;
-        return api(originalRequest); // 이전 요청 재시도
+        return axiosInstance(originalRequest); // 이전 요청 재시도
       } catch (refreshError) {
         // TODO: 재발급 실패시, 로그인 화면으로 이동
         console.error("리프레쉬 토큰 요청에 실패했습니다.", error);
@@ -61,3 +73,12 @@ api.interceptors.response.use(
     return Promise.reject(error);
   }
 );
+
+/**
+ * TODO: http-client.ts Api 클래스로 instance를 생성(+ interceptor가 적용된 api 인스턴스를 주입)
+ * - 아래 코드는 Api 연동 시에 주석 처리를 제거할 예정입니다.
+ */
+// export const api = new Api({
+//   baseUrl: import.meta.env.VITE_API_URL,
+//   instance: axiosInstance,
+// });
