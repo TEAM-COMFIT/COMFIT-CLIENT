@@ -34,10 +34,10 @@ export const MatchingItem = ({
       onClick={handleClick}
     >
       <div className={styles.left}>
-        <div className={styles.companyName}>{companyName}</div>
-        <div className={styles.meta}>
+        <span className={styles.companyName}>{companyName}</span>
+        <p className={styles.meta}>
           {createdAt} | {title}
-        </div>
+        </p>
       </div>
 
       <DropdownArrow className={styles.icon} />

@@ -25,6 +25,9 @@ export const left = style({
   flexDirection: "column",
   alignItems: "start",
   gap: "0.4rem",
+  overflow: "hidden",
+  flex: 1,
+  minWidth: 0,
 });
 
 export const companyName = style({
