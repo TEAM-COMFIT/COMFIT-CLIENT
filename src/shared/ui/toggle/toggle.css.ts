@@ -1,44 +1,50 @@
-import { style, styleVariants } from "@vanilla-extract/css";
+import { recipe } from "@vanilla-extract/recipes";
 
 import { themeVars } from "@/app/styles";
 
-export const toggleTrack = style({
-  width: "4.2rem",
-  height: "2.4rem",
-  padding: "0.2rem",
+export const toggleTrack = recipe({
+  base: {
+    width: "4.2rem",
+    height: "2.4rem",
+    padding: "0.2rem",
 
-  display: "inline-flex",
-  alignItems: "center",
+    display: "inline-flex",
+    alignItems: "center",
 
-  border: "none",
-  borderRadius: "18px",
+    border: "none",
+    borderRadius: "18px",
 
-  transition: "background-color 0.2s ease",
+    transition: "background-color 0.2s ease",
 
-  selectors: {
-    "&:focus-visible": {
-      outline: `0.2rem solid ${themeVars.color.blue400}`,
-      outlineOffset: "0.2rem",
+    selectors: {
+      "&:focus-visible": {
+        outline: `0.2rem solid ${themeVars.color.blue400}`,
+        outlineOffset: "0.2rem",
+      },
+    },
+  },
+  variants: {
+    checked: {
+      true: { backgroundColor: themeVars.color.blue500 },
+      false: { backgroundColor: themeVars.color.blue300 },
     },
   },
 });
 
-export const toggleTrackState = styleVariants({
-  on: { backgroundColor: themeVars.color.blue500 },
-  off: { backgroundColor: themeVars.color.blue300 },
-});
+export const toggleThumb = recipe({
+  base: {
+    width: "2rem",
+    height: "2rem",
+    borderRadius: "50%",
+    backgroundColor: themeVars.color.white,
 
-export const toggleThumb = style({
-  width: "2rem",
-  height: "2rem",
-  borderRadius: "50%",
-  backgroundColor: themeVars.color.white,
-
-  boxShadow: "0 0.2rem 0.4rem 0 rgba(0,0,0,0.25)",
-  transition: "transform 0.2s ease",
-});
-
-export const toggleThumbState = styleVariants({
-  off: { transform: "translateX(0)" },
-  on: { transform: "translateX(1.8rem)" },
+    boxShadow: "0 0.2rem 0.4rem 0 rgba(0,0,0,0.25)",
+    transition: "transform 0.2s ease",
+  },
+  variants: {
+    checked: {
+      true: { transform: "translateX(1.8rem)" },
+      false: { transform: "translateX(0)" },
+    },
+  },
 });

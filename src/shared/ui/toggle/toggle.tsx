@@ -16,7 +16,7 @@ const Toggle = ({ checked, onCheckedChange, ...props }: ToggleProps) => {
   };
 
   const mergedClassName =
-    `${styles.toggleTrack} ${styles.toggleTrackState[checked ? "on" : "off"]} ${props.className ?? ""}`.trim();
+    `${styles.toggleTrack({ checked })} ${props.className ?? ""}`.trim();
 
   return (
     <button
@@ -27,10 +27,7 @@ const Toggle = ({ checked, onCheckedChange, ...props }: ToggleProps) => {
       onClick={handleToggleClick}
       className={mergedClassName}
     >
-      <span
-        aria-hidden="true"
-        className={`${styles.toggleThumb} ${styles.toggleThumbState[checked ? "on" : "off"]}`}
-      />
+      <span aria-hidden="true" className={styles.toggleThumb({ checked })} />
     </button>
   );
 };
