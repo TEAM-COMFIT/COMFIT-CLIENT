@@ -50,7 +50,7 @@ reviews:
     - path: "src/**/ui/**/*.tsx"
       instructions: |
         UI 컴포넌트 파일 리뷰 시:
-        - 파일명이 PascalCase인지 확인
+        - 파일명이 snake-case인지 확인
         - Props 타입명이 '컴포넌트명Props' 형식인지 확인
         - 컴포넌트는 named export 사용을 권장 (팀 가이드 우선)
         - 이벤트 핸들러 함수명이 handle로 시작하는지 확인
@@ -148,6 +148,11 @@ reviews:
 knowledge_base:
   web_search:
     enabled: true # 웹 검색 기반 보조 추론 허용
+    instructions: |
+      웹 검색은 일반적인 React/TypeScript 베스트 프랙티스,
+      공식 문서 수준의 참고 자료 확인 용도로만 사용합니다.
+      최신 실험적 API나 특정 버전(예: React 19)에 대한
+      도입 권장 근거로 사용하지 않습니다.
   code_guidelines:
     enabled: true
     filePatterns:
