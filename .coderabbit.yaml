@@ -150,11 +150,6 @@ reviews:
 knowledge_base:
   web_search:
     enabled: true # 웹 검색 기반 보조 추론 허용
-    instructions: |
-      웹 검색은 일반적인 React/TypeScript 베스트 프랙티스,
-      공식 문서 수준의 참고 자료 확인 용도로만 사용합니다.
-      최신 실험적 API나 특정 버전(예: React 19)에 대한
-      도입 권장 근거로 사용하지 않습니다.
   code_guidelines:
     enabled: true
     filePatterns:
