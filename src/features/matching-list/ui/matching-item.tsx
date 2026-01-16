@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
 import { DropdownArrow } from "@/shared/assets/icons";
+import { formatDateWithDots } from "@/shared/lib";
 
 import * as styles from "./matching-item.css";
 
@@ -36,7 +37,7 @@ export const MatchingItem = ({
       <div className={styles.left}>
         <span className={styles.companyName}>{companyName}</span>
         <p className={styles.meta}>
-          {createdAt} | {title}
+          {formatDateWithDots(createdAt)} | {title}
         </p>
       </div>
 
