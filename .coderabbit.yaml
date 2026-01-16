@@ -23,6 +23,8 @@ reviews:
   poem: false # 시(poem) 생성 비활성화
 
   # 리뷰 대상 파일 필터링 규칙
+  # lockfile(pnpm-lock.yaml)은 일반 PR에서의 리뷰 노이즈를 줄이기 위해 자동 리뷰(CodeRabbit) 대상에서 제외합니다.
+  # 다만 의존성 변경 PR에서는 실제 변경된 dependency tree, major version bump, 보안 취약점 여부를 사람이 직접 확인하는 것을 원칙으로 합니다.
   path_filters:
     # 포함할 경로
     - "src/**"
