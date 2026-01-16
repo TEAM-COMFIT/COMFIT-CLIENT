@@ -57,17 +57,19 @@ const Textfield = ({
   );
 
   const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    const nextValue =
-      maxLength !== undefined
-        ? e.currentTarget.value.slice(0, maxLength)
-        : e.currentTarget.value;
-    if (nextValue !== e.currentTarget.value) {
-      e.currentTarget.value = nextValue;
-    }
-    if (!isControlled) {
-      setInnerValue(nextValue);
-    }
-    onChange?.(e);
+    const raw = e.currentTarget.value;
+    const next = maxLength !== undefined ? raw.slice(0, maxLength) : raw;
+
+    if (!isControlled) setInnerValue(next);
+
+    if (!onChange) return;
+    if (next === raw) return onChange(e);
+
+    onChange({
+      ...e,
+      target: { ...e.currentTarget, value: next },
+      currentTarget: { ...e.currentTarget, value: next },
+    } as ChangeEvent<HTMLTextAreaElement>);
   };
 
   const rootClassName = `${styles.wrapper} ${styles.textfieldType[type]} ${styles.textfieldMode[mode]}`;
