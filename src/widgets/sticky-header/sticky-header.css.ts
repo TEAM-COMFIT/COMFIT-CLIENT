@@ -39,7 +39,7 @@ export const button = recipe({
           "&:hover": {
             backgroundColor: themeVars.color.blue100,
           },
-          "&:active:not": {
+          "&:active:not(:disabled)": {
             backgroundColor: themeVars.color.blue200,
           },
         },
