@@ -39,10 +39,10 @@ const MajorCompanyCard = ({
       className={styles.card({ type })}
       style={assignInlineVars({ [styles.bgImageUrl]: `url(${imgUrl})` })}
     >
-      <div className={styles.content({ type })}>
+      <span className={styles.content({ type })}>
         <span className={styles.title({ type })}>{companyName}</span>
         <Tag>#{getScaleLabel(industry)}</Tag>
-      </div>
+      </span>
 
       {type === "large" && <IconMove className={styles.detailIcon} />}
     </button>

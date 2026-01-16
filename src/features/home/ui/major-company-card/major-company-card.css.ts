@@ -15,7 +15,7 @@ export const card = recipe({
     backgroundRepeat: "no-repeat",
     display: "flex",
     alignItems: "center",
-    justifyContent: "left",
+    justifyContent: "flex-start",
 
     borderRadius: "16px",
     boxShadow: themeVars.shadow.shadow1,
@@ -74,14 +74,6 @@ export const title = recipe({
       large: themeVars.fontStyles.title_b_24,
     },
   },
-});
-
-/* ---------- Tag ---------- */
-
-export const tag = style({
-  ...themeVars.fontStyles.cap_m_12,
-  color: themeVars.color.white,
-  opacity: 0.9,
 });
 
 /* ---------- Detail Icon ---------- */

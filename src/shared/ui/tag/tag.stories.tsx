@@ -63,7 +63,7 @@ export const Secondary: Story = {
 
 export const XLabel: Story = {
   args: {
-    type: "xlabel",
+    xlabel: true,
     children: "삭제 가능 태그",
   },
 };
@@ -80,7 +80,7 @@ export const MultipleTags: Story = {
     <>
       <Tag type="primary">Frontend</Tag>
       <Tag type="secondary">Backend</Tag>
-      <Tag type="xlabel" onCancel={() => console.log("cancel AI")}>
+      <Tag xlabel onCancel={() => console.log("cancel AI")}>
         AI
       </Tag>
       <Tag type="register">인턴/실무</Tag>

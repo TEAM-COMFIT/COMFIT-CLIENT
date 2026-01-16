@@ -29,13 +29,6 @@ export const tag = recipe({
         color: themeVars.color.blue600,
         padding: "0.4rem 1.2rem",
       },
-      xlabel: {
-        border: `1px solid ${themeVars.color.blue400}`,
-        borderRadius: "8px",
-        backgroundColor: themeVars.color.blue200,
-        color: themeVars.color.blue600,
-        padding: "0.4rem 1.2rem",
-      },
       secondary: {
         border: `1px solid ${themeVars.color.purple200}`,
         borderRadius: "8px",
