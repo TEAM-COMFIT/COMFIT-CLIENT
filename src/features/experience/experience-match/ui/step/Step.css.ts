@@ -53,7 +53,7 @@ export const stepVariants = styleVariants({
     baseStep,
     {
       background: themeVars.color.blue600,
-      color: themeVars.color.white,
+      color: themeVars.color.blue100,
     },
   ],
   pending: [
@@ -89,6 +89,7 @@ const baseBadge = style({
   height: "2rem",
   flexShrink: 0,
   borderRadius: "50%",
+  color: themeVars.color.blue600,
   ...themeVars.fontStyles.cap_m_12,
 });
 
@@ -97,18 +98,13 @@ export const badge = styleVariants({
     baseBadge,
     {
       background: themeVars.color.blue200,
-      color: themeVars.color.blue600,
     },
   ],
-  pending: [
-    baseBadge,
-    { background: themeVars.color.blue200, color: themeVars.color.blue600 },
-  ],
+  pending: [baseBadge, { background: themeVars.color.blue200 }],
   done: [
     baseBadge,
     {
       background: themeVars.color.blue300,
-      color: themeVars.color.blue600,
     },
   ],
 });
