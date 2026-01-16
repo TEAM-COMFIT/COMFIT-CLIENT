@@ -24,7 +24,6 @@ const Toggle = ({ checked, onCheckedChange, ...props }: ToggleProps) => {
       type="button"
       role="switch"
       aria-checked={checked}
-      disabled={props.disabled}
       onClick={handleToggleClick}
       className={mergedClassName}
     >
