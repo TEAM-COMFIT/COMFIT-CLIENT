@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 
 import { Button } from "@shared/ui/button/button";
 import { Tag } from "@shared/ui/tag/tag";
@@ -22,12 +22,6 @@ export const InterestSelectBase = <T extends string>({
 }: InterestSelectBaseProps<T>) => {
   const [selected, setSelected] = useState<T | null>(null);
   const [isOpen, setIsOpen] = useState(false);
-
-  const disabledSet = useMemo(() => {
-    // 선택된 값이 있으면, 나머지 버튼 disabled
-    if (!selected) return new Set<T>();
-    return new Set(options.filter((o) => o !== selected));
-  }, [options, selected]);
 
   return (
     <section className={styles.container} data-variant={variant}>
@@ -76,23 +70,23 @@ export const InterestSelectBase = <T extends string>({
           <div className={styles.gridContainer}>
             {options.map((opt) => {
               const isSelected = selected === opt;
-              const isDisabled = disabledSet.has(opt);
 
-              const cls = isDisabled
-                ? styles.optionButton.disabled
-                : isSelected
-                  ? styles.optionButton.selected
-                  : styles.optionButton.default;
+              const cls = isSelected
+                ? styles.optionButton.selected
+                : styles.optionButton.default;
 
               return (
                 <button
                   key={opt}
                   type="button"
                   className={cls}
-                  disabled={isDisabled}
                   onClick={() => {
-                    if (isDisabled) return;
-                    setSelected(opt);
+                    // 이미 선택된 항목을 클릭하면 선택 해제 (토글)
+                    if (isSelected) {
+                      setSelected(null);
+                    } else {
+                      setSelected(opt);
+                    }
                   }}
                 >
                   {opt}
