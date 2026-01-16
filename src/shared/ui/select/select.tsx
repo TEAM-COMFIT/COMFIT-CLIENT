@@ -91,9 +91,9 @@ const Menu = ({ children }: { children: ReactNode }) => {
   if (!isOpen) return null;
 
   return (
-    <ul role="menu" className={styles.menu}>
+    <div role="menu" className={styles.menu}>
       {children}
-    </ul>
+    </div>
   );
 };
 
@@ -113,11 +113,14 @@ const Item = ({
   };
 
   return (
-    <li role="none">
-      <button type="button" onClick={handleClick} className={styles.item}>
-        {children}
-      </button>
-    </li>
+    <button
+      type="button"
+      onClick={handleClick}
+      className={styles.item}
+      role="menuitem"
+    >
+      {children}
+    </button>
   );
 };
 

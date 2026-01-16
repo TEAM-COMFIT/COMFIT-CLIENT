@@ -29,12 +29,10 @@ export interface EducationFilterOption {
   label: EducationTypeLabel;
 }
 
-export const FILTER_EDUCATION_TYPE: EducationFilterOption[] = [
-  { id: 1, code: "HIGH_SCHOOL", label: EDUCATION_TYPE.HIGH_SCHOOL },
-  { id: 2, code: "BACHELOR_STUDENT", label: EDUCATION_TYPE.BACHELOR_STUDENT },
-  { id: 3, code: "BACHELOR", label: EDUCATION_TYPE.BACHELOR },
-  { id: 4, code: "MASTER_STUDENT", label: EDUCATION_TYPE.MASTER_STUDENT },
-  { id: 5, code: "MASTER", label: EDUCATION_TYPE.MASTER },
-  { id: 6, code: "DOCTOR_STUDENT", label: EDUCATION_TYPE.DOCTOR_STUDENT },
-  { id: 7, code: "DOCTOR", label: EDUCATION_TYPE.DOCTOR },
-];
+export const FILTER_EDUCATION_TYPE: EducationFilterOption[] = Object.entries(
+  EDUCATION_TYPE
+).map(([code, label], index) => ({
+  id: index + 1,
+  code: code as EducationTypeCode,
+  label: label as EducationTypeLabel,
+}));

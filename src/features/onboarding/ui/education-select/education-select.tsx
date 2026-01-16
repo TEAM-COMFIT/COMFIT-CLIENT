@@ -20,7 +20,7 @@ const EducationSelect = ({ value, onChange }: EducationSelectProps) => {
         {Object.entries(EDUCATION_TYPE).map(([code, label]) => (
           <Select.Item
             key={code}
-            onClick={() => onChange(code as keyof typeof EDUCATION_TYPE)}
+            onClick={() => onChange(code as EducationTypeCode)}
           >
             {label}
           </Select.Item>
