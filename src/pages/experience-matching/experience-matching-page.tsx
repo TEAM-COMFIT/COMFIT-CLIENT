@@ -1,5 +1,4 @@
-import { useFunnel } from "@/features/experience/experience-match/model/useFunnel";
-import { ProgressBar } from "@/features/experience/experience-match/ui/progress-bar/progress-bar";
+import { useFunnel, ProgressBar } from "@/features/experience/experience-match";
 import { IconAI } from "@/shared/assets/icons";
 
 import * as styles from "./experience-matching-page.css";
