@@ -9,7 +9,7 @@ const HomePage = () => {
       <h1>프리텐다드</h1>
       <p>카카오로 시작하기</p>
       <img src={KERORO} alt="Keroro" width={400} />
-      <Heart aria-label="좋아요" />
+      <p>하하코드래빗아 한번일해보거라</p>
     </div>
   );
 };
