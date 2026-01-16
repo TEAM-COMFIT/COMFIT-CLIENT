@@ -7,15 +7,17 @@ import { appContainer, toggleGroup } from "./home-page.css";
 
 const HomePage = () => {
   const [isToggleOn, setIsToggleOn] = useState(true);
-  const [isToggleOff, setIsToggleOff] = useState(false);
+
+  const handleToggleChange = (checked: boolean) => {
+    setIsToggleOn(checked);
+  };
 
   return (
     <div className={appContainer}>
       <h1>프리텐다드</h1>
 
       <div className={toggleGroup}>
-        <Toggle checked={isToggleOn} onCheckedChange={setIsToggleOn} />
-        <Toggle checked={isToggleOff} onCheckedChange={setIsToggleOff} />
+        <Toggle checked={isToggleOn} onCheckedChange={handleToggleChange} />
       </div>
 
       <p>카카오로 시작하기</p>
