@@ -28,6 +28,8 @@ const CompanyCard = ({
             src={logoUrl}
             alt={`${companyName} 로고`}
             className={styles.logoImage}
+            loading="lazy"
+            decoding="async"
           />
         </div>
         <h3 className={styles.companyName}>{companyName}</h3>
