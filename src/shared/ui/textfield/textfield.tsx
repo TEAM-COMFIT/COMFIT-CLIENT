@@ -73,13 +73,9 @@ const Textfield = ({
 
   // 뷰어모드: 흰 배경 / 카운터 없음 / Textfield 작동 X
   if (mode === "view") {
-    const isEmpty = currentValue.length === 0;
-    const viewValue = isEmpty ? (placeholder ?? "") : currentValue;
-    const viewClassName = isEmpty ? styles.viewerPlaceholder : styles.viewer;
-
     return (
       <div className={rootClassName}>
-        <div className={viewClassName}>{viewValue}</div>
+        <div className={styles.viewer}>{currentValue}</div>
       </div>
     );
   }

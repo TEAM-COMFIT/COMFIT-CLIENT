@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import { Textfield } from "./textfield";
 
 import type { Meta, StoryObj } from "@storybook/react-vite";
@@ -56,4 +58,28 @@ export const AllEditTypes: Story = {
       <Textfield type="action" mode="edit" placeholder="Action" />
     </div>
   ),
+};
+
+const ControlledStory = () => {
+  const [description, setDescription] = useState("");
+  const [isEdit, setIsEdit] = useState(true);
+
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: "1.6rem" }}>
+      <button type="button" onClick={() => setIsEdit((prev) => !prev)}>
+        {isEdit ? "Switch to view" : "Switch to edit"}
+      </button>
+      <Textfield
+        type="jobDescription"
+        placeholder="자기소개를 입력해주세요."
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
+        mode={isEdit ? "edit" : "view"}
+      />
+    </div>
+  );
+};
+
+export const Controlled: Story = {
+  render: () => <ControlledStory />,
 };
