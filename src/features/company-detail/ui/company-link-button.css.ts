@@ -3,7 +3,6 @@ import { style } from "@vanilla-extract/css";
 import { themeVars } from "@/app/styles";
 
 export const button = style({
-  boxSizing: "border-box",
   width: "12rem",
   height: "4rem",
   borderRadius: "8px",
@@ -15,7 +14,7 @@ export const button = style({
 
   padding: "0.8rem 1.6rem",
   border: `1px solid ${themeVars.color.blue600}`,
-  backgroundColor: "transparent",
+  backgroundColor: themeVars.color.white,
 
   color: themeVars.color.blue600,
   textDecoration: "none",
