@@ -17,24 +17,27 @@ export const wrapper = style({
 /* ---------- Type  ---------- */
 export const textfieldType = styleVariants({
   jobDescription: {
-    width: "61rem",
+    width: "clamp(48rem, 61rem, 100%)",
     height: "38.6rem",
   },
 
   situation: {
-    width: "88rem",
+    width: "clamp(64rem, 88rem, 100%)",
     height: "15.4rem",
   },
+
   task: {
-    width: "88rem",
+    width: "clamp(64rem, 88rem, 100%)",
     height: "21.8rem",
   },
+
   result: {
-    width: "88rem",
+    width: "clamp(64rem, 88rem, 100%)",
     height: "22.2rem",
   },
+
   action: {
-    width: "88rem",
+    width: "clamp(64rem, 88rem, 100%)",
     height: "26rem",
   },
 });
