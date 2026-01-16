@@ -1,5 +1,4 @@
-import IconLinkDefault from "@/shared/assets/icons/icon_link_default.svg?react";
-import IconLinkHover from "@/shared/assets/icons/icon_link_hover.svg?react";
+import { IconLinkDefault, IconLinkHover } from "@/shared/assets/icons";
 
 import * as styles from "./company-homepage-button.css";
 
