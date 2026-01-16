@@ -2,11 +2,13 @@ import { Outlet } from "react-router-dom";
 
 import { Header } from "@widgets/header/header";
 
+import { themeVars } from "../styles";
+
 export const RootLayout = () => {
   return (
     <>
       <Header />
-      <main>
+      <main style={{ marginTop: themeVars.height.header }}>
         <Outlet />
       </main>
     </>
