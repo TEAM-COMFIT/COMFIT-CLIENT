@@ -29,4 +29,4 @@ const ExperienceFilter = ({ value, onChange }: ExperienceFilterProps) => {
   );
 };
 
-export default ExperienceFilter;
+export { ExperienceFilter };

@@ -23,4 +23,4 @@ const CompanyAnalyzeButton = ({ companyId }: CompanyAnalyzeButtonProps) => {
   );
 };
 
-export default CompanyAnalyzeButton;
+export { CompanyAnalyzeButton };

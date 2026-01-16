@@ -1,6 +1,6 @@
 import { getIndustryLabel, getScaleLabel } from "@/shared/config";
 
-import CompanyAnalyzeButton from "./company-analyze-button";
+import { CompanyAnalyzeButton } from "./company-analyze-button";
 import * as styles from "./company-card.css";
 
 import type { IndustryCode, ScaleCode } from "@/shared/config";
@@ -45,4 +45,4 @@ const CompanyCard = ({
   );
 };
 
-export default CompanyCard;
+export { CompanyCard };

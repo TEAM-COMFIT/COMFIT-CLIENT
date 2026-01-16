@@ -1,6 +1,6 @@
 import { CompanyGridContainer } from "@/shared/ui/pagination/company-list-container";
 import { MatchingListContainer } from "@/shared/ui/pagination/matching-list-container";
-import CompanyCard from "@/widgets/company-card/ui/company-card";
+import CompanyCard from "@/widgets/company-card/company-card";
 import KERORO from "@images/comfit_web_status.jpg";
 import LGLOGO from "@images/lg_logo.png";
 
