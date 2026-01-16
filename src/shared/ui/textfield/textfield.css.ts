@@ -10,7 +10,7 @@ export const wrapper = style({
   flexDirection: "column",
 
   padding: "2.8rem 2rem",
-  borderRadius: "1.6rem",
+  borderRadius: "16px",
   border: `1px solid ${themeVars.color.normal}`,
 });
 
@@ -54,7 +54,6 @@ export const textarea = style({
   flex: 1,
   width: "100%",
   height: "100%",
-  boxSizing: "border-box",
 
   border: "none",
   outline: "none",
@@ -79,7 +78,6 @@ export const viewer = style({
   flex: 1,
   width: "100%",
   height: "100%",
-  boxSizing: "border-box",
 
   color: themeVars.color.gray800,
   ...themeVars.fontStyles.body_m_16,
@@ -92,7 +90,6 @@ export const viewerPlaceholder = style({
   flex: 1,
   width: "100%",
   height: "100%",
-  boxSizing: "border-box",
 
   color: themeVars.color.gray800,
   ...themeVars.fontStyles.body_m_16,
