@@ -1,6 +1,8 @@
 import { useFunnel, ProgressBar } from "@/features/experience/experience-match";
 import { IconAI } from "@/shared/assets/icons";
 
+import * as styles from "./experience-matching-page.css";
+
 const STEP = [
   "기업 선택",
   "기업 정보 확인",
