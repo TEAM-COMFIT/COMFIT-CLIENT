@@ -20,7 +20,11 @@ export const StickyHeader = ({
     <header className={styles.layout}>
       <div className={styles.header}>
         {/** 기본 경험 설정 버튼 */}
-        <button className={styles.button({ isDefault })} onClick={onToggle}>
+        <button
+          className={styles.button({ isDefault })}
+          onClick={onToggle}
+          aria-pressed={isDefault}
+        >
           <IconCheck
             color={isDefault ? themeVars.color.blue600 : themeVars.color.white}
           />
