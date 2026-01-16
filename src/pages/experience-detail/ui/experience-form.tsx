@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import { Button } from "@/shared/ui/button/button";
-import { StickyHeader } from "@/widgets/sticky-header/sticky-header";
+import { StickyHeader } from "@/widgets/index";
 
 type mode = "create" | "edit";
 

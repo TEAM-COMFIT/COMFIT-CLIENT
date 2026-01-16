@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { ModalBasic } from "@/shared/ui";
 import { Button } from "@/shared/ui/button/button";
 import { useModal } from "@/shared/ui/modal/use-modal";
-import { StickyHeader } from "@/widgets/sticky-header/sticky-header";
+import { StickyHeader } from "@/widgets/index";
 
 const ExperienceViewer = () => {
   const navigate = useNavigate();
