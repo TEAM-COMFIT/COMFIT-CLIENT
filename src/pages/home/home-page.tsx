@@ -1,11 +1,13 @@
+
 import { useState } from "react";
 
 import { Search } from "@/shared/ui/search";
 import Heart from "@icons/heart.svg?react";
+import { RefreshButton } from "@/widgets/refresh-button/refresh-button";
+
 import KERORO from "@images/comfit_web_status.jpg";
 
 import { appContainer } from "./home-page.css";
-
 const HomePage = () => {
   const [value, setValue] = useState("");
 
@@ -33,7 +35,7 @@ const HomePage = () => {
       <Search size="small" placeholder="Small" />
 
       <img src={KERORO} alt="Keroro" width={400} />
-      <Heart aria-label="좋아요" />
+      <RefreshButton onClick={() => console.log("getAPI 이곳에 넘길 예정")} />
     </div>
   );
 };
