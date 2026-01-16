@@ -14,7 +14,7 @@ const ExperienceViewer = () => {
   const [isDefault, setIsDefault] = useState(false); // TODO: 서버의 isDefault로 대체 (경험수정 API 활용)
 
   return (
-    <div>
+    <main>
       <StickyHeader
         isDefault={isDefault}
         onToggle={() => setIsDefault((prev) => !prev)}
@@ -47,7 +47,7 @@ const ExperienceViewer = () => {
           /** TODO: 경험 삭제 API 호출 함수 */
         }}
       />
-    </div>
+    </main>
   );
 };
 

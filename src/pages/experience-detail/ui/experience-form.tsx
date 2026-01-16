@@ -15,7 +15,7 @@ const ExperienceForm = ({ mode, id }: ExperienceFormProps) => {
   const [isDefault, setIsDefault] = useState(false); // TODO: 서버의 isDefault로 대체 (경험수정 API 활용)
 
   return (
-    <div>
+    <main>
       <StickyHeader
         isDefault={isDefault}
         onToggle={() => setIsDefault((prev) => !prev)}
@@ -34,7 +34,7 @@ const ExperienceForm = ({ mode, id }: ExperienceFormProps) => {
       <h1>
         Experience Form - {mode} {mode === "edit" && `${id}`}
       </h1>
-    </div>
+    </main>
   );
 };
 

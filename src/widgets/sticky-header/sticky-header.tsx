@@ -17,7 +17,7 @@ export const StickyHeader = ({
   rightSlot,
 }: StickyHeaderProps) => {
   return (
-    <div className={styles.layout}>
+    <header className={styles.layout}>
       <div className={styles.header}>
         {/** 기본 경험 설정 버튼 */}
         <button className={styles.button({ isDefault })} onClick={onToggle}>
@@ -28,6 +28,6 @@ export const StickyHeader = ({
         </button>
         <div className={styles.right}>{rightSlot}</div>
       </div>
-    </div>
+    </header>
   );
 };
