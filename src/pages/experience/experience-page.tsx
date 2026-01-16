@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import ExperienceFilter from "@/widgets/experience-filter/experience-filter";
+import { ExperienceFilter } from "@/widgets";
 
 import { appContainer } from "./experience-page.css";
 
