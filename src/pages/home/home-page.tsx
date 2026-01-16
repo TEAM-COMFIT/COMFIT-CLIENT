@@ -63,108 +63,12 @@ const TextfieldField = ({
 );
 
 const HomePage = () => {
-  const [mode, setMode] = useState<Mode>("edit");
-  const isEditable = mode === "edit";
-
-  const [values, setValues] = useState<Record<TextfieldKey, string>>({
-    jobDescription: "",
-    situation: "",
-    task: "",
-    result: "",
-    action: "",
-  });
-
-  const handleChange =
-    (key: TextfieldKey): ChangeEventHandler<HTMLTextAreaElement> =>
-    (e) => {
-      setValues((prev) => ({
-        ...prev,
-        [key]: e.target.value,
-      }));
-    };
-
   return (
     <div className={appContainer}>
       <h1>프리텐다드</h1>
       <p>카카오로 시작하기</p>
-      <CompanyGridContainer />
-      <MatchingListContainer />
       <img src={KERORO} alt="Keroro" width={400} />
-      <Heart aria-label="좋아요" />]{" "}
-      <section className={textfieldPreviewSection}>
-        <div className={textfieldPreviewHeader}>
-          <h2 className={textfieldPreviewTitle}>Textfield Preview</h2>
-
-          <div className={textfieldPreviewToggle}>
-            <button
-              type="button"
-              onClick={() => setMode("edit")}
-              className={`${textfieldPreviewToggleButton} ${
-                textfieldPreviewToggleButtonState[
-                  mode === "edit" ? "active" : "inactive"
-                ]
-              }`}
-            >
-              수정모드
-            </button>
-
-            <button
-              type="button"
-              onClick={() => setMode("view")}
-              className={`${textfieldPreviewToggleButton} ${
-                textfieldPreviewToggleButtonState[
-                  mode === "view" ? "active" : "inactive"
-                ]
-              }`}
-            >
-              뷰어모드
-            </button>
-          </div>
-        </div>
-
-        <div className={textfieldPreviewList}>
-          <TextfieldField
-            label="직무 설명 (Job Description)"
-            type="jobDescription"
-            placeholder={PLACEHOLDER}
-            mode={mode}
-            value={values.jobDescription}
-            onChange={isEditable ? handleChange("jobDescription") : undefined}
-          />
-          <TextfieldField
-            label="Situation"
-            type="situation"
-            placeholder={PLACEHOLDER}
-            mode={mode}
-            value={values.situation}
-            onChange={isEditable ? handleChange("situation") : undefined}
-          />
-          <TextfieldField
-            label="Task"
-            type="task"
-            placeholder={PLACEHOLDER}
-            mode={mode}
-            value={values.task}
-            onChange={isEditable ? handleChange("task") : undefined}
-          />
-          <TextfieldField
-            label="Result"
-            type="result"
-            placeholder={PLACEHOLDER}
-            mode={mode}
-            value={values.result}
-            onChange={isEditable ? handleChange("result") : undefined}
-          />
-          <TextfieldField
-            label="Action"
-            type="action"
-            placeholder={PLACEHOLDER}
-            mode={mode}
-            value={values.action}
-            onChange={isEditable ? handleChange("action") : undefined}
-          />
-        </div>
-      </section>
+      <Heart aria-label="좋아요" />
     </div>
   );
 };

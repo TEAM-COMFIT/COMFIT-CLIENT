@@ -1,3 +1,4 @@
+export { default as DropdownArrow } from "./dropdown_up_arrow.svg?react";
 export { default as Avatar } from "./avatar.svg?react";
 
 export { default as IconArrowLeft } from "./arrow_left.svg?react";
