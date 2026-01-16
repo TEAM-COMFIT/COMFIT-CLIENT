@@ -6,14 +6,12 @@ export const toggleTrack = style({
   width: "4.2rem",
   height: "2.4rem",
   padding: "0.2rem",
-  boxSizing: "border-box",
 
   display: "inline-flex",
   alignItems: "center",
 
   border: "none",
-  borderRadius: "18.6828px",
-  cursor: "pointer",
+  borderRadius: "18px",
 
   transition: "background-color 0.2s ease",
 
