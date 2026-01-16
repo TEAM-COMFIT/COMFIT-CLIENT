@@ -1,23 +1,23 @@
 import { IconLinkDefault, IconLinkHover } from "@/shared/assets/icons";
 
-import * as styles from "./company-homepage-button.css";
+import * as styles from "./company-link-button.css";
 
 import type { AnchorHTMLAttributes } from "react";
 
-export interface CompanyHomepageButtonProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
+export interface CompanyLinkButtonProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   href: string;
   label?: string;
   children?: never;
 }
 
-const CompanyHomepageButton = ({
+const CompanyLinkButton = ({
   href,
   label = "기업 홈페이지",
   className,
   target = "_blank",
   rel,
   ...props
-}: CompanyHomepageButtonProps) => {
+}: CompanyLinkButtonProps) => {
   return (
     <a
       href={href}
@@ -35,4 +35,4 @@ const CompanyHomepageButton = ({
   );
 };
 
-export { CompanyHomepageButton };
+export { CompanyLinkButton };

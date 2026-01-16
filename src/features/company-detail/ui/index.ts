@@ -1,2 +1,2 @@
-export { CompanyHomepageButton } from "./company-homepage-button";
-export type { CompanyHomepageButtonProps } from "./company-homepage-button";
+export { CompanyLinkButton } from "./company-link-button";
+export type { CompanyLinkButtonProps } from "./company-link-button";
