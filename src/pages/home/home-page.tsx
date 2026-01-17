@@ -4,8 +4,8 @@ import { MajorCompanyCard } from "@/features/home/ui";
 import { Company, KERORO } from "@/shared/assets/images";
 import { CompanyGridContainer } from "@/shared/ui/pagination/company-list-container";
 import { MatchingListContainer } from "@/shared/ui/pagination/matching-list-container";
-import { CompanyCard } from "@/widgets";
 import { Textfield } from "@/shared/ui/textfield";
+import { CompanyCard } from "@/widgets";
 
 import { appContainer } from "./home-page.css";
 
