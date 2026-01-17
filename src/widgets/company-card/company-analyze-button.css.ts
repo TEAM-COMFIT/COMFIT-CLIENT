@@ -22,7 +22,7 @@ export const button = style({
   transition: "background-color 0.2s ease, color 0.2s ease",
 
   selectors: {
-    "&:active": {
+    "&:hover": {
       backgroundColor: themeVars.color.blue500,
       color: themeVars.color.white,
     },
