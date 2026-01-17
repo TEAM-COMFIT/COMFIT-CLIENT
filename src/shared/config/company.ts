@@ -42,7 +42,12 @@ export const FILTER_INDUSTRY: IndustryFilterOption[] = [
 ];
 
 export const getIndustryLabel = (code: IndustryCode): IndustryLabel => {
-  return INDUSTRY[code];
+  if (code in INDUSTRY) {
+    return INDUSTRY[code];
+  }
+  console.warn(`존재하지 않는 IndustryCode: ${code}`);
+
+  return "알 수 없음" as IndustryLabel;
 };
 
 // 기업 규모 (Scale)
