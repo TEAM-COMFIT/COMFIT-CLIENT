@@ -104,7 +104,7 @@ globalStyle(`${leadingIcon.classNames.base} *`, {
 });
 
 // 텍스트 영역
-export const textArea = style({
+export const textSection = style({
   flex: 1,
   minWidth: 0,
   display: "flex",

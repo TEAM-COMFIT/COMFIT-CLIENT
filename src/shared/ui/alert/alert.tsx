@@ -27,7 +27,7 @@ export const Alert = ({ variant, title, description, onClose }: AlertProps) => {
       >
         <Icon className={styles.leadingIcon({ variant })} aria-hidden="true" />
 
-        <div className={styles.textArea}>
+        <div className={styles.textSection}>
           <p className={styles.title}>{title}</p>
           <p className={styles.description}>{description}</p>
         </div>
