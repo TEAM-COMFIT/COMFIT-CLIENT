@@ -24,8 +24,8 @@ export const header = style({
 });
 
 export const logoWrapper = style({
-  width: "4.8rem",
-  height: "4.8rem",
+  width: "6rem",
+  height: "6rem",
   borderRadius: "12px",
   backgroundColor: themeVars.color.white,
   boxShadow: themeVars.shadow.shadow2,
@@ -44,7 +44,7 @@ export const logoImage = style({
 
 /* Company name */
 export const companyName = style({
-  color: themeVars.color.gray800,
+  color: themeVars.color.black,
   ...themeVars.fontStyles.hding_b_22,
 });
 
