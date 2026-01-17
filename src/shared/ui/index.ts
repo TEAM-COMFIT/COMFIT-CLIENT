@@ -1,4 +1,3 @@
-export { Textbox } from "./textbox/textbox";
 export { Dropdown } from "./dropdown/dropdown";
 
 export { Pagination } from "./pagination/pagination";
