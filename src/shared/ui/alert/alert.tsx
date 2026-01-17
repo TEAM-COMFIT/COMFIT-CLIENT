@@ -34,16 +34,14 @@ export const Alert = ({ variant, title, description, onClose }: AlertProps) => {
           <p className={styles.description}>{description}</p>
         </div>
 
-        {onClose && (
-          <button
-            type="button"
-            className={styles.closeButton}
-            onClick={onClose}
-            aria-label="알림 닫기"
-          >
-            <CloseIcon className={styles.closeIcon} aria-hidden="true" />
-          </button>
-        )}
+        <button
+          type="button"
+          className={styles.closeButton}
+          onClick={onClose}
+          aria-label="알림 닫기"
+        >
+          <CloseIcon className={styles.closeIcon} aria-hidden="true" />
+        </button>
       </div>
     </div>
   );

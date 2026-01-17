@@ -4,5 +4,5 @@ export interface AlertProps {
   variant: AlertVariant;
   title: string;
   description: string;
-  onClose?: () => void;
+  onClose: () => void;
 }
