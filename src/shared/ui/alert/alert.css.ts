@@ -4,29 +4,6 @@ import { recipe } from "@vanilla-extract/recipes";
 import { fontStyles } from "@/shared/styles/font-style.css";
 import { color } from "@/shared/styles/tokens/color.css";
 
-const VARIANT = {
-  warning: {
-    bg: color.toastWarningBg,
-    border: color.toastWarningBorder,
-    icon: color.toastWarningIcon,
-  },
-  info: {
-    bg: color.toastInfoBg,
-    border: color.toastInfoBorder,
-    icon: color.toastInfoIcon,
-  },
-  success: {
-    bg: color.toastSuccessBg,
-    border: color.toastSuccessBorder,
-    icon: color.toastSuccessIcon,
-  },
-  error: {
-    bg: color.toastErrorBg,
-    border: color.toastErrorBorder,
-    icon: color.toastErrorIcon,
-  },
-} as const;
-
 // 우측 하단 고정 위치
 export const alertViewport = style({
   position: "fixed",
@@ -59,20 +36,20 @@ export const alertRoot = recipe({
   variants: {
     variant: {
       warning: {
-        background: VARIANT.warning.bg,
-        borderBottomColor: VARIANT.warning.border,
+        background: color.toastWarningBg,
+        borderBottomColor: color.toastWarningBorder,
       },
       info: {
-        background: VARIANT.info.bg,
-        borderBottomColor: VARIANT.info.border,
+        background: color.toastInfoBg,
+        borderBottomColor: color.toastInfoBorder,
       },
       success: {
-        background: VARIANT.success.bg,
-        borderBottomColor: VARIANT.success.border,
+        background: color.toastSuccessBg,
+        borderBottomColor: color.toastSuccessBorder,
       },
       error: {
-        background: VARIANT.error.bg,
-        borderBottomColor: VARIANT.error.border,
+        background: color.toastErrorBg,
+        borderBottomColor: color.toastErrorBorder,
       },
     },
   },
@@ -89,10 +66,10 @@ export const leadingIcon = recipe({
   },
   variants: {
     variant: {
-      warning: { color: VARIANT.warning.icon },
-      info: { color: VARIANT.info.icon },
-      success: { color: VARIANT.success.icon },
-      error: { color: VARIANT.error.icon },
+      warning: { color: color.toastWarningIcon },
+      info: { color: color.toastInfoIcon },
+      success: { color: color.toastSuccessIcon },
+      error: { color: color.toastErrorIcon },
     },
   },
 });
