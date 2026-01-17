@@ -1,5 +1,5 @@
 import { FILTER_SCALE, SCALE } from "@/shared/config/company";
-import Dropdown from "@/shared/ui/dropdown/dropdown";
+import { Dropdown } from "@/shared/ui/dropdown/dropdown";
 
 import type { ScaleCode } from "@/shared/config/company";
 

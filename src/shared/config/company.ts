@@ -1,14 +1,14 @@
 // 산업
 export const INDUSTRY = {
-  CONSUMER_GOODS: "소비재 / FMCG",
-  IT: "IT 플랫폼 / IT 서비스",
-  MEDIA_CONTENTS: "콘텐츠 / 미디어 / 엔터",
-  RETAIL: "커머스 / 리테일",
-  LIFE_STYLE: "패션 / 뷰티 / 라이프스타일",
-  FOOD: "푸드 / F&B",
-  TRAVEL: "모빌리티 / 트래블 / O2O",
-  FINANCE: "금융 / 핀테크",
-  FITNESS: "헬스케어 / 웰니스",
+  CONSUMER_GOODS: "소비재/FMCG",
+  IT: "IT 플랫폼/IT 서비스",
+  MEDIA_CONTENTS: "콘텐츠/미디어/엔터",
+  RETAIL: "커머스/리테일",
+  LIFE_STYLE: "패션/뷰티/라이프스타일",
+  FOOD: "푸드/F&B",
+  TRAVEL: "모빌리티/트래블/O2O",
+  FINANCE: "금융/핀테크",
+  FITNESS: "헬스케어/웰니스",
 } as const;
 
 export type IndustryCode = keyof typeof INDUSTRY;
@@ -40,6 +40,15 @@ export const FILTER_INDUSTRY: IndustryFilterOption[] = [
   { id: 8, code: "FINANCE", label: INDUSTRY.FINANCE },
   { id: 9, code: "FITNESS", label: INDUSTRY.FITNESS },
 ];
+
+export const getIndustryLabel = (code: IndustryCode): IndustryLabel => {
+  if (code in INDUSTRY) {
+    return INDUSTRY[code];
+  }
+  console.warn(`존재하지 않는 IndustryCode: ${code}`);
+
+  return "알 수 없음" as IndustryLabel;
+};
 
 // 기업 규모 (Scale)
 export const SCALE = {
@@ -81,3 +90,12 @@ export const FILTER_SCALE: ScaleFilterOption[] = [
   { id: 7, code: "PUBLIC_ORG", label: SCALE.PUBLIC_ORG },
   { id: 8, code: "ETC", label: SCALE.ETC },
 ];
+
+export const getScaleLabel = (code: ScaleCode): ScaleLabel => {
+  if (code in SCALE) {
+    return SCALE[code];
+  }
+  console.warn(`존재하지 않는 ScaleCode: ${code}`);
+
+  return "알 수 없음" as ScaleLabel;
+};

@@ -9,10 +9,14 @@ const flexCenter = {
 };
 
 export const headerLayout = style({
+  position: "fixed",
+  top: "0",
   display: "flex",
   justifyContent: "center",
   backgroundColor: themeVars.color.white,
   borderBottom: `1px solid ${themeVars.color.normal}`,
+  width: "100%",
+  height: themeVars.height.header,
   padding: "0 17rem",
 });
 

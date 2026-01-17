@@ -1,0 +1,46 @@
+import { useNavigate } from "react-router-dom";
+
+import { DropdownArrow } from "@/shared/assets/icons";
+import { formatDateWithDots } from "@/shared/lib";
+
+import * as styles from "./matching-item.css";
+
+import type { ButtonHTMLAttributes } from "react";
+
+interface MatchingItemProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  matchingId: number;
+  companyName: string;
+  createdAt: string;
+  title: string;
+}
+
+export const MatchingItem = ({
+  matchingId,
+  companyName,
+  createdAt,
+  title,
+  ...props
+}: MatchingItemProps) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/matching/${matchingId}`);
+  };
+  return (
+    <button
+      type="button"
+      className={styles.container}
+      onClick={handleClick}
+      {...props}
+    >
+      <div className={styles.left}>
+        <span className={styles.companyName}>{companyName}</span>
+        <p className={styles.meta}>
+          {formatDateWithDots(createdAt)} | {title}
+        </p>
+      </div>
+
+      <DropdownArrow className={styles.icon} />
+    </button>
+  );
+};

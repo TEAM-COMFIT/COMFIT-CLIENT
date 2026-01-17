@@ -7,6 +7,9 @@ export const appContainer = style({
   flexDirection: "column",
   alignItems: "center",
   justifyContent: "center",
+  gap: "2rem",
   color: themeVars.color.blue300,
+  backgroundColor: themeVars.color.white,
+
   ...themeVars.fontStyles.title_b_28,
 });
