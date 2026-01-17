@@ -13,4 +13,6 @@ export { Select } from "./select/select";
 
 export { Tag } from "./tag/tag";
 
+export { Toggle } from "./toggle/toggle";
+
 export { Tooltip } from "./tooltip/tooltip";
