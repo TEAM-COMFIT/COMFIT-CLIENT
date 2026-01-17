@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { ROUTES } from "@/app/routes/paths";
 import { useAuthStore } from "@/app/store";
 import { Avatar } from "@/shared/assets/icons";
-import Logo from "@/shared/assets/images/comfit_logo.png";
+import { Logo } from "@/shared/assets/images";
 
 import * as styles from "./header.css";
 
