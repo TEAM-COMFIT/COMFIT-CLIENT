@@ -137,7 +137,7 @@ export const closeButton = style({
   alignItems: "center",
   justifyContent: "center",
 
-  padding: "0.4rem",
+  padding: 0,
   background: "transparent",
   border: 0,
   cursor: "pointer",
@@ -145,9 +145,7 @@ export const closeButton = style({
 });
 
 export const closeIcon = style({
-  width: "1.6rem",
-  height: "1.6rem",
-  color: color.black,
+  color: color.gray800,
 });
 
 globalStyle(`${closeIcon} *`, {
