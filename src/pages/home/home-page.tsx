@@ -1,44 +1,17 @@
-import { useState } from "react";
-
 import { Alert } from "@/shared/ui/alert";
+import { useAlert } from "@/shared/ui/alert/use-alert";
 import Heart from "@icons/heart.svg?react";
 import KERORO from "@images/comfit_web_status.jpg";
 
 import { appContainer } from "./home-page.css";
 
-import type { AlertVariant } from "@/shared/ui/alert";
-
-interface AlertState {
-  open: boolean;
-  variant: AlertVariant;
-  title: string;
-  description: string;
-}
-
 const HomePage = () => {
-  const [alert, setAlert] = useState<AlertState>({
-    open: true,
-    variant: "info",
-    title: "Info",
-    description: "날짜 형식이 올바르지 않습니다.",
+  const { alertState, actions } = useAlert({
+    defaultOpen: true,
+    defaultVariant: "info",
+    defaultTitle: "Info",
+    defaultDescription: "날짜 형식이 올바르지 않습니다.",
   });
-
-  const showAlert = (
-    variant: AlertVariant,
-    title: string,
-    description: string
-  ) => {
-    setAlert({
-      open: true,
-      variant,
-      title,
-      description,
-    });
-  };
-
-  const closeAlert = () => {
-    setAlert((prev) => ({ ...prev, open: false }));
-  };
 
   return (
     <div className={appContainer}>
@@ -51,40 +24,40 @@ const HomePage = () => {
       <div style={{ display: "flex", gap: 8 }}>
         <button
           onClick={() =>
-            showAlert("error", "Error", "날짜 형식이 올바르지 않습니다.")
+            actions.open("error", "Error", "날짜 형식이 올바르지 않습니다.")
           }
         >
           Error
         </button>
         <button
           onClick={() =>
-            showAlert("success", "Success", "저장이 완료되었습니다.")
+            actions.open("success", "Success", "저장이 완료되었습니다.")
           }
         >
           Success
         </button>
         <button
           onClick={() =>
-            showAlert("warning", "Warning", "입력값을 다시 확인해주세요.")
+            actions.open("warning", "Warning", "입력값을 다시 확인해주세요.")
           }
         >
           Warning
         </button>
         <button
           onClick={() =>
-            showAlert("info", "Info", "회원님의 정보를 조회합니다.")
+            actions.open("info", "Info", "회원님의 정보를 조회합니다.")
           }
         >
           Info
         </button>
       </div>
 
-      {alert.open && (
+      {alertState.open && (
         <Alert
-          variant={alert.variant}
-          title={alert.title}
-          description={alert.description}
-          onClose={closeAlert}
+          variant={alertState.variant}
+          title={alertState.title}
+          description={alertState.description}
+          onClose={actions.close}
         />
       )}
     </div>
