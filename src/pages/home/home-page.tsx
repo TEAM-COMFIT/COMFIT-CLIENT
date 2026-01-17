@@ -82,6 +82,7 @@ const HomePage = () => {
           variant="onboarding"
           placeholder="대학교를 검색하세요"
           fetchItems={fetchUniversities}
+          // TODO: 실제 선택 핸들러 연동 필요
           onSelect={() => {}}
         />
       </section>
@@ -92,6 +93,7 @@ const HomePage = () => {
           variant="home"
           placeholder="지원하고 싶은 기업을 검색해보세요"
           fetchItems={fetchCompanies}
+          // TODO: 실제 선택 핸들러 연동 필요
           onSelect={() => {}}
           showSelectedTag={false}
         />
@@ -105,6 +107,7 @@ const HomePage = () => {
           variant="matchingExperienceList"
           placeholder="기업명 검색"
           fetchItems={fetchCompanies}
+          // TODO: 실제 선택 핸들러 연동 필요
           onSelect={() => {}}
           showSelectedTag={false}
         />
