@@ -2,11 +2,15 @@ import { JOB_OPTIONS } from "../../config/interest-select.constants";
 
 import { InterestSelectBase } from "./interest-select-base";
 
-export const JobInterestSelect = () => {
+interface JobInterestSelectProps {
+  priority?: number;
+}
+
+export const JobInterestSelect = ({ priority = 1 }: JobInterestSelectProps) => {
   return (
     <InterestSelectBase
       variant="job"
-      title="1순위 관심 직무"
+      title={`${priority}순위 관심 직무`}
       options={JOB_OPTIONS}
     />
   );
