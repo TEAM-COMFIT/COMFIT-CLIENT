@@ -10,8 +10,6 @@ export const boxBase = style({
   border: `1.5px solid ${themeVars.color.normal}`,
   borderRadius: "15px",
 
-  padding: "2.8rem 2rem",
-
   color: themeVars.color.gray800,
   ...themeVars.fontStyles.body_m_16,
 });
