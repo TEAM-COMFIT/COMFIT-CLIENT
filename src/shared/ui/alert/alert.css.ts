@@ -129,8 +129,8 @@ export const closeButton = style({
   width: "2.4rem",
   height: "2.4rem",
   position: "absolute",
-  top: "1.2rem",
-  right: "1.2rem",
+  top: "0.8rem",
+  right: "0.8rem",
 
   display: "flex",
   alignItems: "center",
