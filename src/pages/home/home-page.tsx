@@ -1,3 +1,4 @@
+// home-page.tsx
 import { useState } from "react";
 
 import { MajorCompanyCard } from "@/features/home/ui";
