@@ -1,25 +1,28 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  useCallback,
+} from "react";
 
 import { DropdownArrow } from "@/shared/assets/icons";
 import useOutsideClick from "@/shared/model/use-outsideclick";
 
-import * as styles from "./dropdown.css";
+import * as styles from "./select.css";
 
 import type { ReactNode } from "react";
 
-type DropdownSize = "medium" | "large" | "full";
-
-interface DropdownContextValue {
+interface SelectContextValue {
   isOpen: boolean;
   toggle: () => void;
   close: () => void;
-  size: DropdownSize;
 }
 
-const DropdownContext = createContext<DropdownContextValue | null>(null);
+const SelectContext = createContext<SelectContextValue | null>(null);
 
-const useDropdown = () => {
-  const ctx = useContext(DropdownContext);
+const useSelect = () => {
+  const ctx = useContext(SelectContext);
   if (!ctx) {
     throw new Error("드롭다운 내부에서만 사용 가능합니다!");
   }
@@ -27,16 +30,10 @@ const useDropdown = () => {
 };
 
 /* ---------- Root ---------- */
-const Dropdown = ({
-  children,
-  type = "medium",
-}: {
-  children: ReactNode;
-  type?: DropdownSize;
-}) => {
+const Select = ({ children }: { children: ReactNode }) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen((prev) => !prev);
-  const close = () => setIsOpen(false);
+  const close = useCallback(() => setIsOpen(false), []);
 
   const wrapperRef = useOutsideClick<HTMLDivElement>(isOpen, close);
 
@@ -54,30 +51,30 @@ const Dropdown = ({
   }, [isOpen, close]);
 
   return (
-    <DropdownContext.Provider
+    <SelectContext.Provider
       value={{
         isOpen,
         toggle,
         close,
-        size: type,
       }}
     >
-      <div
-        ref={wrapperRef}
-        className={`${styles.dropdownWrapper} ${styles.dropdownAlign[type]}`}
-      >
+      <div ref={wrapperRef} className={styles.selectWrapper}>
         {children}
       </div>
-    </DropdownContext.Provider>
+    </SelectContext.Provider>
   );
 };
 
 /* ---------- Trigger ---------- */
 const Trigger = ({ children }: { children: ReactNode }) => {
-  const { toggle, isOpen } = useDropdown();
+  const { toggle, isOpen } = useSelect();
 
   return (
-    <button type="button" onClick={toggle} className={styles.trigger}>
+    <button
+      type="button"
+      onClick={toggle}
+      className={`${styles.trigger} ${styles.triggerFontColor[isOpen ? "open" : "closed"]}`}
+    >
       {children}
       <DropdownArrow
         className={`${styles.arrowIcon} ${
@@ -90,16 +87,13 @@ const Trigger = ({ children }: { children: ReactNode }) => {
 
 /* ---------- Menu ---------- */
 const Menu = ({ children }: { children: ReactNode }) => {
-  const { isOpen, size } = useDropdown();
+  const { isOpen } = useSelect();
   if (!isOpen) return null;
 
   return (
-    <ul
-      role="menu"
-      className={`${styles.menu} ${styles.menuSize[size]} ${styles.menuAlign[size]}`}
-    >
+    <div role="menu" className={styles.menu}>
       {children}
-    </ul>
+    </div>
   );
 };
 
@@ -111,7 +105,7 @@ const Item = ({
   children: ReactNode;
   onClick?: () => void;
 }) => {
-  const { close } = useDropdown();
+  const { close } = useSelect();
 
   const handleClick = () => {
     onClick?.();
@@ -119,16 +113,19 @@ const Item = ({
   };
 
   return (
-    <li role="none">
-      <button type="button" onClick={handleClick} className={styles.item}>
-        {children}
-      </button>
-    </li>
+    <button
+      type="button"
+      onClick={handleClick}
+      className={styles.item}
+      role="menuitem"
+    >
+      {children}
+    </button>
   );
 };
 
-Dropdown.Trigger = Trigger;
-Dropdown.Menu = Menu;
-Dropdown.Item = Item;
+Select.Trigger = Trigger;
+Select.Menu = Menu;
+Select.Item = Item;
 
-export { Dropdown };
+export { Select };

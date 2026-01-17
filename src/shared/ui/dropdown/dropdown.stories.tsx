@@ -1,4 +1,4 @@
-import Dropdown from "./dropdown";
+import { Dropdown } from "./dropdown";
 
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
