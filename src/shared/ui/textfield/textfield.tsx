@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import * as styles from "./textfield.css";
 
-import type { ChangeEvent, TextareaHTMLAttributes } from "react";
+import type { TextareaHTMLAttributes } from "react";
 
 export type TextfieldMode = "edit" | "view";
 
@@ -53,22 +53,6 @@ const Textfield = ({
 
   const currentLength = currentValue.length;
 
-  const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    const raw = e.currentTarget.value;
-    const next = maxLength !== undefined ? raw.slice(0, maxLength) : raw;
-
-    if (!isControlled) setInnerValue(next);
-
-    if (!onChange) return;
-    if (next === raw) return onChange(e);
-
-    onChange({
-      ...e,
-      target: { ...e.currentTarget, value: next },
-      currentTarget: { ...e.currentTarget, value: next },
-    } as ChangeEvent<HTMLTextAreaElement>);
-  };
-
   const rootClassName = `${styles.wrapper} ${styles.textfieldType[type]} ${styles.textfieldMode[mode]}`;
 
   // 뷰어모드: 흰 배경 / 카운터 없음 / Textfield 작동 X
@@ -87,7 +71,10 @@ const Textfield = ({
         value={currentValue}
         placeholder={placeholder}
         maxLength={maxLength}
-        onChange={handleChange}
+        onChange={(e) => {
+          if (!isControlled) setInnerValue(e.currentTarget.value);
+          onChange?.(e);
+        }}
         className={styles.textarea}
         {...props}
       />
