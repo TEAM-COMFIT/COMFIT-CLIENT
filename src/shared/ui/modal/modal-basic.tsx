@@ -8,6 +8,8 @@ interface ModalBasicProps {
   onConfirm: () => void; // 모달 작업 확인 액션
   title: string; // 모달 제목
   subTitle?: string; // 모달 소제목
+  closeText?: string; // 모달 닫기 버튼 텍스트
+  confirmText?: string; // 모달 작업 확인 텍스트
 }
 
 /**
@@ -20,6 +22,8 @@ export const ModalBasic = ({
   onConfirm,
   title,
   subTitle,
+  closeText = "나가기",
+  confirmText = "이동하기",
 }: ModalBasicProps) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
@@ -30,10 +34,10 @@ export const ModalBasic = ({
       </Modal.Content>
       <Modal.Buttons>
         <Button variant="secondary" size="large" onClick={onClose}>
-          나가기
+          {closeText}
         </Button>
         <Button variant="primary" size="large" onClick={onConfirm}>
-          이동하기
+          {confirmText}
         </Button>
       </Modal.Buttons>
     </Modal>

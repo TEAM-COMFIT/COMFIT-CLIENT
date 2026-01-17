@@ -131,4 +131,4 @@ Dropdown.Trigger = Trigger;
 Dropdown.Menu = Menu;
 Dropdown.Item = Item;
 
-export default Dropdown;
+export { Dropdown };
