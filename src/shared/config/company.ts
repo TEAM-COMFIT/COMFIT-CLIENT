@@ -87,5 +87,10 @@ export const FILTER_SCALE: ScaleFilterOption[] = [
 ];
 
 export const getScaleLabel = (code: ScaleCode): ScaleLabel => {
-  return SCALE[code];
+  if (code in SCALE) {
+    return SCALE[code];
+  }
+  console.warn(`존재하지 않는 ScaleCode: ${code}`);
+
+  return "알 수 없음" as ScaleLabel;
 };

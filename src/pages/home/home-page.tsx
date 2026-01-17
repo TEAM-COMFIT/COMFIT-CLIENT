@@ -1,8 +1,8 @@
+import { MajorCompanyCard } from "@/features/home/ui";
+import { Company, KERORO } from "@/shared/assets/images";
 import { CompanyGridContainer } from "@/shared/ui/pagination/company-list-container";
 import { MatchingListContainer } from "@/shared/ui/pagination/matching-list-container";
 import { CompanyCard } from "@/widgets";
-import KERORO from "@images/comfit_web_status.jpg";
-import LGLOGO from "@images/lg_logo.png";
 
 import { appContainer } from "./home-page.css";
 
@@ -12,7 +12,7 @@ const HomePage = () => {
       <h1>프리텐다드</h1>
       <p>카카오로 시작하기</p>
       <CompanyCard
-        logoUrl={LGLOGO}
+        logoUrl={KERORO}
         id={1}
         companyName="LG 전자"
         industry={"MEDIA_CONTENTS"}
@@ -21,6 +21,20 @@ const HomePage = () => {
       <CompanyGridContainer />
       <MatchingListContainer />
       <img src={KERORO} alt="Keroro" width={400} />
+      <MajorCompanyCard
+        id={1}
+        companyName="IBK 기업은행"
+        scale="LARGE"
+        type="medium"
+        imgUrl={Company}
+      />
+      <MajorCompanyCard
+        id={2}
+        companyName="컴핏"
+        scale="PUBLIC_CORP"
+        type="large"
+        imgUrl={Company}
+      />
     </div>
   );
 };

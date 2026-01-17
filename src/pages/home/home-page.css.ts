@@ -12,4 +12,5 @@ export const appContainer = style({
   backgroundColor: themeVars.color.white,
 
   ...themeVars.fontStyles.title_b_28,
+  gap: "2rem",
 });
