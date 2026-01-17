@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import { EducationSelect } from "@/features/onboarding";
-import { Tag } from "@/shared/ui/tag/tag";
+import { Tag } from "@/shared/ui";
 
 import type { EducationTypeCode } from "@/features/onboarding";
 
