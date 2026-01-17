@@ -40,10 +40,9 @@ export const alertRoot = recipe({
   base: {
     width: "41.2rem",
     height: "8rem",
-    boxSizing: "border-box",
 
-    borderRadius: 8,
-    borderBottomWidth: "0.4rem",
+    borderRadius: "8px",
+    borderBottomWidth: "4px",
     borderBottomStyle: "solid",
 
     boxShadow: "0 0.4rem 0.4rem rgba(0,0,0,0.25)",
