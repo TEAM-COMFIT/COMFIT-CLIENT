@@ -1,5 +1,6 @@
-// src/shared/assets/icons/index.ts
+export { default as IconCompany } from "./icon_company.svg?react";
 
+export { default as RefreshIcon } from "./refresh_icon.svg?react";
 export { default as DropdownArrow } from "./dropdown_up_arrow.svg?react";
 export { default as Avatar } from "./avatar.svg?react";
 
@@ -10,3 +11,12 @@ export { default as IconDoubleArrowRight } from "./double_arrow_right.svg?react"
 
 export { default as IconSearch } from "./search.svg?react";
 export { default as IconCancle } from "./cancle.svg?react";
+export { default as IconMove } from "./move_detail_page_icon.svg?react";
+
+export { default as IconLinkDefault } from "./icon_link_default.svg?react";
+export { default as IconInformation } from "./icon_information.svg?react";
+export { default as IconQuestion } from "./icon_question.svg?react";
+
+export { default as IconCheck } from "./check.svg?react";
+
+export { default as IconAI } from "./icon_ai.svg?react";
