@@ -35,6 +35,10 @@ export const card = recipe({
       },
     },
   },
+
+  defaultVariants: {
+    type: "medium",
+  },
 });
 
 /* ---------- Content ---------- */
@@ -60,6 +64,10 @@ export const content = recipe({
       },
     },
   },
+
+  defaultVariants: {
+    type: "medium",
+  },
 });
 
 /* ---------- Title ---------- */
@@ -73,6 +81,9 @@ export const title = recipe({
       medium: themeVars.fontStyles.hding_b_20,
       large: themeVars.fontStyles.title_b_24,
     },
+  },
+  defaultVariants: {
+    type: "medium",
   },
 });
 

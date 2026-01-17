@@ -36,6 +36,7 @@ const MajorCompanyCard = ({
     <button
       type="button"
       onClick={handleClick}
+      aria-label="기업 상세로 이동"
       className={styles.card({ type })}
       style={assignInlineVars({ [styles.bgImageUrl]: `url(${imgUrl})` })}
     >
