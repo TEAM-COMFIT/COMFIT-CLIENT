@@ -1,3 +1,4 @@
+import { CustomDatePicker } from "@/features/experience-detail/ui/custom-date-picker";
 type mode = "create" | "edit";
 
 interface ExperienceFormProps {
@@ -12,6 +13,7 @@ const ExperienceForm = ({ mode, id }: ExperienceFormProps) => {
       <h1>
         Experience Form - {mode} {mode === "edit" && `${id}`}
       </h1>
+      <CustomDatePicker />
     </div>
   );
 };

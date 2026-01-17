@@ -15,5 +15,4 @@ export const ROUTES = {
   EXPERIENCE_EDIT: (id = ":id") => `/experience/${id}/edit`, // 경험 수정
 
   MYPAGE: "/mypage",
-  BOOKMARK: "/bookmark",
 };
