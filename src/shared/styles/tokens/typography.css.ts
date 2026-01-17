@@ -13,9 +13,9 @@ export const typography = {
     56: "5.6rem",
   },
   fontWeight: {
-    regular: "400",
-    medium: "500",
-    bold: "700",
+    regular: "300",
+    medium: "400",
+    bold: "600",
   },
   lineHeight: {
     normal: "150%",
