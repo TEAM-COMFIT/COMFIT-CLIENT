@@ -12,7 +12,7 @@ import type {
   SearchItem,
 } from "./types";
 
-type Props = {
+interface SearchAutocompleteProps {
   variant: SearchAutocompleteVariant;
   placeholder: string;
   disabled?: boolean;
@@ -25,7 +25,7 @@ type Props = {
   maxItems?: number;
   showSelectedTag?: boolean;
   minQueryLength?: number;
-};
+}
 
 export const SearchAutocomplete = ({
   variant,
@@ -36,7 +36,7 @@ export const SearchAutocomplete = ({
   onClear,
   maxItems = 4,
   minQueryLength = 2,
-}: Props) => {
+}: SearchAutocompleteProps) => {
   const {
     query,
     setQuery,
