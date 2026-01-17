@@ -99,11 +99,7 @@ export const SearchAutocomplete = ({
             isFocused && shouldApplyFocusStyle ? s.inputShellFocused : "",
           ].join(" ")}
         >
-          {selected && (
-            <Tag type="xlabel" onCancel={handleClear}>
-              {selected.label}
-            </Tag>
-          )}
+          {selected && <Tag>{selected.label}</Tag>}
 
           <input
             ref={inputRef}
