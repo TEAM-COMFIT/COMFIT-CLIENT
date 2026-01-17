@@ -7,11 +7,14 @@ type TextboxType = "medium" | "large";
 interface TextboxProps {
   type: TextboxType;
   children: ReactNode;
+  className?: string;
 }
 
-const Textbox = ({ type, children }: TextboxProps) => {
+const Textbox = ({ type, children, className }: TextboxProps) => {
   return (
-    <div className={`${styles.boxBase} ${styles.boxPadding[type]}`}>
+    <div
+      className={`${styles.boxBase} ${styles.boxPadding[type]} ${className ?? ""}`}
+    >
       {children}
     </div>
   );
