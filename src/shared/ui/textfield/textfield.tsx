@@ -13,7 +13,7 @@ export type TextfieldType =
   | "result"
   | "action";
 
-const TEXTFIELD_MAX_LENGTH: Partial<Record<TextfieldType, number>> = {
+const TEXTFIELD_MAX_LENGTH: Record<TextfieldType, number> = {
   jobDescription: 300,
   situation: 200,
   task: 200,
