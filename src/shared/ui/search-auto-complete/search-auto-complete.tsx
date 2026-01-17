@@ -1,6 +1,6 @@
 import { useMemo, useRef, useState } from "react";
 
-import { IconCancle, IconSearch } from "@/shared/assets/icons";
+import { IconCancel, IconSearch } from "@/shared/assets/icons";
 import { Tag } from "@shared/ui/tag/tag";
 
 import * as s from "./search-auto-complete.css";
@@ -146,7 +146,7 @@ export const SearchAutocomplete = ({
             }}
             aria-label={rightIconMode === "clear" ? "clear" : "search"}
           >
-            {rightIconMode === "clear" ? <IconCancle /> : <IconSearch />}
+            {rightIconMode === "clear" ? <IconCancel /> : <IconSearch />}
           </button>
         </div>
 
