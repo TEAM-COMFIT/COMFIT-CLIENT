@@ -9,4 +9,5 @@ export const appContainer = style({
   justifyContent: "center",
   color: themeVars.color.blue300,
   ...themeVars.fontStyles.title_b_28,
+  gap: "2rem",
 });
