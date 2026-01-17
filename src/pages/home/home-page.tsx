@@ -1,5 +1,8 @@
 import { MajorCompanyCard } from "@/features/home/ui";
 import { Company, KERORO } from "@/shared/assets/images";
+import { CompanyGridContainer } from "@/shared/ui/pagination/company-list-container";
+import { MatchingListContainer } from "@/shared/ui/pagination/matching-list-container";
+import { CompanyCard } from "@/widgets";
 
 import { appContainer } from "./home-page.css";
 
@@ -8,6 +11,15 @@ const HomePage = () => {
     <div className={appContainer}>
       <h1>프리텐다드</h1>
       <p>카카오로 시작하기</p>
+      <CompanyCard
+        logoUrl={KERORO}
+        id={1}
+        companyName="LG 전자"
+        industry={"MEDIA_CONTENTS"}
+        scale={"LARGE"}
+      />
+      <CompanyGridContainer />
+      <MatchingListContainer />
       <img src={KERORO} alt="Keroro" width={400} />
       <MajorCompanyCard
         id={1}
