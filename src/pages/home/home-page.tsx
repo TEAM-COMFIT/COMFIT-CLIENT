@@ -12,14 +12,14 @@ const HomePage = () => {
       <MajorCompanyCard
         id={1}
         companyName="IBK 기업은행"
-        industry="LARGE"
+        scale="LARGE"
         type="medium"
         imgUrl={Company}
       />
       <MajorCompanyCard
         id={2}
         companyName="컴핏"
-        industry="PUBLIC_CORP"
+        scale="PUBLIC_CORP"
         type="large"
         imgUrl={Company}
       />

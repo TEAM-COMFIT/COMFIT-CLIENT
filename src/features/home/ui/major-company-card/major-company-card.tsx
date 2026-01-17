@@ -14,7 +14,7 @@ type MajorCompanyCardType = "medium" | "large";
 interface MajorCompanyCardProps {
   id: number;
   companyName: string;
-  industry: ScaleCode;
+  scale: ScaleCode;
   type?: MajorCompanyCardType;
   imgUrl: string;
 }
@@ -22,7 +22,7 @@ interface MajorCompanyCardProps {
 const MajorCompanyCard = ({
   id,
   companyName,
-  industry,
+  scale,
   type = "medium",
   imgUrl,
 }: MajorCompanyCardProps) => {
@@ -41,7 +41,7 @@ const MajorCompanyCard = ({
     >
       <span className={styles.content({ type })}>
         <span className={styles.title({ type })}>{companyName}</span>
-        <Tag>#{getScaleLabel(industry)}</Tag>
+        <Tag>#{getScaleLabel(scale)}</Tag>
       </span>
 
       {type === "large" && <IconMove className={styles.detailIcon} />}

@@ -26,7 +26,7 @@ const Tag = ({
       {xlabel && (
         <button
           type="button"
-          aria-label="`태그 삭제"
+          aria-label="태그 삭제"
           onClick={(e) => {
             e.stopPropagation();
             onCancel?.();
