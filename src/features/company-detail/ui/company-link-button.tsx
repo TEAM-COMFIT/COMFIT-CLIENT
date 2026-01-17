@@ -1,4 +1,4 @@
-import { IconLinkDefault, IconLinkHover } from "@/shared/assets/icons";
+import { IconLinkDefault } from "@/shared/assets/icons";
 
 import * as styles from "./company-link-button.css";
 
@@ -27,8 +27,7 @@ const CompanyLinkButton = ({
       {...props}
     >
       <span className={styles.iconWrap} aria-hidden="true">
-        <IconLinkDefault className={styles.defaultIcon} />
-        <IconLinkHover className={styles.hoverIcon} />
+        <IconLinkDefault className={styles.iconBase} />
       </span>
       <span className={styles.text}>{label}</span>
     </a>

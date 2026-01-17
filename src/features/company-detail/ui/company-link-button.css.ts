@@ -38,34 +38,18 @@ export const iconWrap = style({
   flexShrink: 0,
 });
 
-const iconBase = style({
+export const iconBase = style({
   position: "absolute",
   inset: 0,
   width: "100%",
   height: "100%",
   display: "block",
-  transition: "opacity 0.2s ease",
+  color: "currentColor",
+  transition: "background-color 0.2s ease, color 0.2s ease",
+  textDecoration: "none",
+  cursor: "pointer",
+  userSelect: "none",
 });
-
-export const defaultIcon = style([
-  iconBase,
-  {
-    opacity: 1,
-    selectors: {
-      [`${button}:hover &`]: { opacity: 0 },
-    },
-  },
-]);
-
-export const hoverIcon = style([
-  iconBase,
-  {
-    opacity: 0,
-    selectors: {
-      [`${button}:hover &`]: { opacity: 1 },
-    },
-  },
-]);
 
 export const text = style({
   ...themeVars.fontStyles.body_r_14,
