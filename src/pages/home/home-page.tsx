@@ -3,7 +3,6 @@ import { CompanyGridContainer } from "@/shared/ui/pagination/company-list-contai
 import { MatchingListContainer } from "@/shared/ui/pagination/matching-list-container";
 import { CompanyCard } from "@/widgets";
 import { RefreshButton } from "@/widgets/refresh-button/refresh-button";
-
 import KERORO from "@images/comfit_web_status.jpg";
 import LGLOGO from "@images/lg_logo.png";
 
