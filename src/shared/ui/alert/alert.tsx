@@ -1,4 +1,4 @@
-import CancelIcon from "@/shared/assets/icons/cancle.svg?react";
+import CancelIcon from "@/shared/assets/icons/cancel.svg?react";
 import CheckIcon from "@/shared/assets/icons/check2.svg?react";
 import CloseIcon from "@/shared/assets/icons/close.svg?react";
 import ExclamationIcon from "@/shared/assets/icons/exclamation.svg?react";
