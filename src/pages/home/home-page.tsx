@@ -8,12 +8,12 @@ import { appContainer } from "./home-page.css";
 
 import type { AlertVariant } from "@/shared/ui/alert";
 
-type AlertState = {
+interface AlertState {
   open: boolean;
   variant: AlertVariant;
   title: string;
   description: string;
-};
+}
 
 const HomePage = () => {
   const [alert, setAlert] = useState<AlertState>({
