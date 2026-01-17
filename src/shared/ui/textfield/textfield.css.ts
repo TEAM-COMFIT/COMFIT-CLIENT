@@ -3,9 +3,6 @@ import { style, styleVariants } from "@vanilla-extract/css";
 import { themeVars } from "@/app/styles";
 
 export const wrapper = style({
-  position: "relative",
-  boxSizing: "border-box",
-
   display: "flex",
   flexDirection: "column",
 
@@ -90,9 +87,8 @@ export const viewer = style({
 
 /* ---------- Counter (edit only) ---------- */
 export const counter = style({
-  position: "absolute",
-  right: "2rem",
-  bottom: "2.8rem",
+  alignSelf: "flex-end",
+  marginTop: "0.8rem",
 
   color: themeVars.color.gray500,
   ...themeVars.fontStyles.cap_m_12,
