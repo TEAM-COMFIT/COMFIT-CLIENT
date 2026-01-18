@@ -16,6 +16,13 @@ export const container = style({
   padding: "4rem 6rem",
   borderRadius: "12px",
   boxShadow: themeVars.shadow.shadow2,
+  transition: "transform 0.2s linear",
+
+  selectors: {
+    "&:hover": {
+      transform: "scale(0.9)",
+    },
+  },
 });
 
 export const header = style({

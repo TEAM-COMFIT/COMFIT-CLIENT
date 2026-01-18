@@ -5,9 +5,9 @@ import {
   WorryCard,
   PointCard,
   CompanySlider,
+  AlertModal,
 } from "@/features/landing";
 import { LANDING_CARD_ITEMS } from "@/features/landing/config/landing-card.constant";
-import { AlertModal } from "@/features/landing/ui/alert-modal/alert-modal";
 import { CHARACTER, FLOAT_IMG, KEY } from "@/shared/assets/images";
 import { Button } from "@/shared/ui";
 
@@ -15,9 +15,14 @@ import * as styles from "./landing-page.css";
 
 const LandingPage = () => {
   const modalRef = useRef<HTMLDialogElement>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
 
   const handleModal = () => {
     modalRef.current?.showModal();
+  };
+
+  const handleScrollToSection = () => {
+    sectionRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
@@ -29,14 +34,18 @@ const LandingPage = () => {
             <h1 className={styles.gradientTitle}>컴핏으로 완성하는</h1>
             <h1>나만의 커리어 스토리</h1>
           </div>
-          <button type="button" className={styles.button}>
+          <button
+            type="button"
+            className={styles.button}
+            onClick={handleScrollToSection}
+          >
             둘러보기
           </button>
         </div>
         <img className={styles.floatImage} src={FLOAT_IMG} alt="홈 이미지" />
       </div>
       {/** 이런 고민 있으신가요? (Section2) */}
-      <div className={styles.second}>
+      <div className={styles.second} ref={sectionRef}>
         <div className={styles.worryCardLeft}>
           <WorryCard />
         </div>

@@ -1,8 +1,8 @@
-import { globalStyle, style } from "@vanilla-extract/css";
+import { globalStyle, style, styleVariants } from "@vanilla-extract/css";
 
 import { themeVars } from "@/app/styles";
 
-export const container = style({
+export const containerBase = style({
   position: "absolute",
   display: "flex",
   flexDirection: "column",
@@ -12,24 +12,24 @@ export const container = style({
   backgroundColor: themeVars.color.white,
   boxShadow: themeVars.shadow.shadow2,
   gap: "1.6rem",
+});
 
-  selectors: {
-    "&:nth-child(1)": {
-      top: "17.4rem",
-      left: "42.6rem",
-      zIndex: 1,
-    },
-    "&:nth-child(2)": {
-      top: "31.5rem",
-      left: "19rem",
-      zIndex: 2,
-    },
-    "&:last-child": {
-      top: "45.5rem",
-      left: "37rem",
-      backgroundColor: themeVars.color.blue200,
-      zIndex: 3,
-    },
+export const containerVariants = styleVariants({
+  0: {
+    top: "17.4rem",
+    left: "42.6rem",
+    zIndex: 1,
+  },
+  1: {
+    top: "31.5rem",
+    left: "19rem",
+    zIndex: 2,
+  },
+  2: {
+    top: "45.5rem",
+    left: "37rem",
+    zIndex: 3,
+    backgroundColor: themeVars.color.blue200,
   },
 });
 
@@ -60,6 +60,6 @@ export const iconWrapper = style({
   backgroundColor: themeVars.color.blue100,
 });
 
-globalStyle(`${container}:last-child ${iconWrapper}`, {
+globalStyle(`${containerBase}:last-child ${iconWrapper}`, {
   backgroundColor: themeVars.color.blue300,
 });

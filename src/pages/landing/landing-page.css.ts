@@ -1,4 +1,4 @@
-import { style } from "@vanilla-extract/css";
+import { keyframes, style } from "@vanilla-extract/css";
 
 import { themeVars } from "@/app/styles";
 import { BANNER_BG, FOOTER_BG, SECTION_BG } from "@images/index";
@@ -8,10 +8,21 @@ const textAlign = {
   center: { textAlign: "center" },
 } as const;
 
+const suspenseLayout = keyframes({
+  "0%": {
+    opacity: 0,
+  },
+  "100%": {
+    opacity: 1,
+  },
+});
+
 export const layout = style({
   display: "flex",
   flexDirection: "column",
   justifyContent: "center",
+  animation: `${suspenseLayout} 1s linear`,
+  overflow: "hidden",
 });
 
 /** ----- 첫 번째 섹션 ----- */
@@ -25,7 +36,6 @@ export const banner = style({
   width: "100%",
   height: "100rem",
   padding: "0 7.2rem",
-  borderRadius: "32px",
 });
 
 export const bannerWrapper = style({
@@ -37,14 +47,15 @@ export const bannerWrapper = style({
   width: "100%",
   height: "70.9rem",
   background: `url(${BANNER_BG}) no-repeat center/cover`,
-  borderRadius: "8px",
+
+  borderRadius: "32px",
 });
 
 export const title = style({
   marginTop: "8rem",
   textAlign: "center",
   ...themeVars.fontStyles.display_b_40,
-  fontWeight: "700",
+  fontWeight: 700,
 });
 
 export const gradientTitle = style({
@@ -57,11 +68,19 @@ export const gradientTitle = style({
 });
 
 export const button = style({
+  width: "18rem",
   padding: "1.65rem 2.4rem",
-  backgroundColor: themeVars.color.blue600,
+  backgroundColor: themeVars.color.blue500,
   color: themeVars.color.white,
   borderRadius: "200px",
   ...themeVars.fontStyles.hline_b_18,
+  transition: "background-color 0.2s ease-in",
+
+  selectors: {
+    "&:hover": {
+      backgroundColor: themeVars.color.blue600,
+    },
+  },
 });
 
 export const floatImage = style({
@@ -101,7 +120,7 @@ export const worryCardTitle = style({
   color: themeVars.color.gray700,
   ...themeVars.fontStyles.display_b_40,
   ...textAlign.right,
-  fontWeight: "700",
+  fontWeight: 700,
 });
 
 export const blueText = style({

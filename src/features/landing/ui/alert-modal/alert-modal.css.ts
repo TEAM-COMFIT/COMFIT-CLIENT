@@ -38,6 +38,10 @@ export const title = style({
   ...themeVars.fontStyles.title_b_28,
 });
 
+export const blueText = style({
+  color: themeVars.color.blue600,
+});
+
 export const image = style({
   width: "50rem",
   aspectRatio: 1 / 1,
