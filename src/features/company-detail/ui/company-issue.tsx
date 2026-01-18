@@ -33,7 +33,7 @@ const CompanyIssue = ({
       target={target}
       rel={safeRel}
       className={[styles.container, className].filter(Boolean).join(" ")}
-      aria-label={`${date} ${title} 새 탭에서 열기`}
+      aria-label={`${date} ${title}${target === "_blank" ? " 새 탭에서 열기" : ""}`}
       {...props}
     >
       <div className={styles.leftGroup}>
