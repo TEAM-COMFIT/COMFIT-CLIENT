@@ -20,7 +20,7 @@ export const container = recipe({
   variants: {
     size: {
       full: {
-        width: "100%",
+        width: "88rem",
         height: "6rem",
       },
       large: {
