@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 
 import { MajorCompanyCard } from "@/features/home/ui";
 import { Company } from "@/shared/assets/images";
@@ -41,6 +41,13 @@ const HomePage = () => {
     []
   );
 
+  const [selectedUniversity, setSelectedUniversity] =
+    useState<SearchItem | null>(null);
+  const [selectedHomeCompany, setSelectedHomeCompany] =
+    useState<SearchItem | null>(null);
+  const [selectedMatchingCompany, setSelectedMatchingCompany] =
+    useState<SearchItem | null>(null);
+
   // 목업 fetch 함수 (디바운스 + 로딩 상태 확인 가능)
   const fetchUniversities = async (query: string): Promise<SearchItem[]> => {
     await sleep(250);
@@ -78,24 +85,40 @@ const HomePage = () => {
         <h2 style={{ margin: 0, fontSize: 14, fontWeight: 600 }}>
           온보딩 Search
         </h2>
+
         <SearchAutocomplete
           variant="onboarding"
           placeholder="대학교를 검색하세요"
           fetchItems={fetchUniversities}
-          // TODO: 실제 선택 핸들러 연동 필요
-          onSelect={() => {}}
+          selectedItem={selectedUniversity}
+          setSelectedItem={setSelectedUniversity}
+          onSelect={(item) => {
+            // TODO: 실제 선택 핸들러 연동 필요
+            setSelectedUniversity(item);
+          }}
+          onClear={() => {
+            setSelectedUniversity(null);
+          }}
+          // showSelectedTag 기본값 true라 생략 가능
         />
       </section>
       {/* 홈 자동완성 search */}
       <section style={{ display: "grid", gap: 10 }}>
         <h2 style={{ margin: 0, fontSize: 14, fontWeight: 600 }}>홈 Search</h2>
+
         <SearchAutocomplete
           variant="home"
           placeholder="지원하고 싶은 기업을 검색해보세요"
           fetchItems={fetchCompanies}
-          // TODO: 실제 선택 핸들러 연동 필요
-          onSelect={() => {}}
-          showSelectedTag={false}
+          selectedItem={selectedHomeCompany}
+          setSelectedItem={setSelectedHomeCompany}
+          onSelect={(item) => {
+            // TODO: 실제 선택 핸들러 연동 필요
+            setSelectedHomeCompany(item);
+          }}
+          onClear={() => {
+            setSelectedHomeCompany(null);
+          }}
         />
       </section>
       {/* 매칭 경험 목록 자동완성 search */}
@@ -103,13 +126,20 @@ const HomePage = () => {
         <h2 style={{ margin: 0, fontSize: 14, fontWeight: 600 }}>
           매칭 경험 목록 Search
         </h2>
+
         <SearchAutocomplete
           variant="matchingExperienceList"
           placeholder="기업명 검색"
           fetchItems={fetchCompanies}
-          // TODO: 실제 선택 핸들러 연동 필요
-          onSelect={() => {}}
-          showSelectedTag={false}
+          selectedItem={selectedMatchingCompany}
+          setSelectedItem={setSelectedMatchingCompany}
+          onSelect={(item) => {
+            // TODO: 실제 선택 핸들러 연동 필요
+            setSelectedMatchingCompany(item);
+          }}
+          onClear={() => {
+            setSelectedMatchingCompany(null);
+          }}
         />
       </section>
       =======

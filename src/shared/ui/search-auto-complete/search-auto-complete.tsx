@@ -26,6 +26,9 @@ interface SearchAutocompleteProps {
   maxItems?: number;
   showSelectedTag?: boolean;
   minQueryLength?: number;
+
+  selectedItem?: SearchItem | null;
+  setSelectedItem?: (item: SearchItem | null) => void;
 }
 
 export const SearchAutocomplete = ({
@@ -38,6 +41,9 @@ export const SearchAutocomplete = ({
   maxItems = 4,
   showSelectedTag = true,
   minQueryLength = 2,
+
+  selectedItem,
+  setSelectedItem,
 }: SearchAutocompleteProps) => {
   const {
     query,
@@ -51,9 +57,9 @@ export const SearchAutocomplete = ({
     highlightedIndex,
     setHighlightedIndex,
 
-    selected,
-    selectItem,
-    clearSelected,
+    selected: innerSelected,
+    selectItem: innerSelectItem,
+    clearSelected: innerClearSelected,
 
     errorMessage,
     onKeyDown,
@@ -63,6 +69,8 @@ export const SearchAutocomplete = ({
     minQueryLength,
     maxItems,
   });
+
+  const selected = selectedItem ?? innerSelected;
 
   const [isFocused, setIsFocused] = useState(false);
   const inputRef = useRef<HTMLInputElement | null>(null);
@@ -77,19 +85,23 @@ export const SearchAutocomplete = ({
 
   const handleSelect = useCallback(
     (item: SearchItem) => {
-      selectItem(item);
+      innerSelectItem(item);
+      setSelectedItem?.(item);
+
       onSelect?.(item);
     },
-    [selectItem, onSelect]
+    [innerSelectItem, onSelect, setSelectedItem]
   );
 
   const handleClear = useCallback(() => {
     setQuery("");
-    clearSelected();
+    innerClearSelected();
+    setSelectedItem?.(null);
+
     close();
     onClear?.();
     window.setTimeout(() => inputRef.current?.focus(), 0);
-  }, [setQuery, clearSelected, close, onClear]);
+  }, [setQuery, innerClearSelected, close, onClear, setSelectedItem]);
 
   const shouldApplyFocusStyle = variant !== "onboarding";
   const isOnboarding = variant === "onboarding";
@@ -135,7 +147,11 @@ export const SearchAutocomplete = ({
             isFocused && shouldApplyFocusStyle ? s.inputShellFocused : "",
           ].join(" ")}
         >
-          {showSelectedTag && selected && <Tag>{selected.label}</Tag>}
+          {showSelectedTag && selected && (
+            <Tag type="primary" xlabel onCancel={handleClear}>
+              {selected.label}
+            </Tag>
+          )}
 
           <input
             ref={inputRef}
