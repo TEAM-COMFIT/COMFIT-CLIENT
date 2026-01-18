@@ -1,7 +1,12 @@
+import {
+  IndustryInterestSelect,
+  JobInterestSelect,
+} from "@/features/onboarding";
+import KERORO from "@images/comfit_web_status.jpg";
 import { useState } from "react";
 
 import { MajorCompanyCard } from "@/features/home/ui";
-import { Company, KERORO } from "@/shared/assets/images";
+import { Company } from "@/shared/assets/images";
 import { CompanyGridContainer } from "@/shared/ui/pagination/company-list-container";
 import { MatchingListContainer } from "@/shared/ui/pagination/matching-list-container";
 import { Textfield } from "@/shared/ui/textfield";
@@ -27,6 +32,11 @@ const HomePage = () => {
       <CompanyGridContainer />
       <MatchingListContainer />
       <img src={KERORO} alt="Keroro" width={400} />
+      {/* 관심 분야 선택 컴포넌트 확인용 */}
+      <section style={{ marginTop: 40, display: "grid", gap: 40 }}>
+        <IndustryInterestSelect />
+        <JobInterestSelect />
+      </section>
       <Textfield
         type="jobDescription"
         placeholder="자기소개를 입력해주세요."
