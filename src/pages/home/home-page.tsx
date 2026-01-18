@@ -24,8 +24,8 @@ const HomePage = () => {
           value={value}
           onChange={setValue}
           onSearch={(v: string) => {
-            if (process.env.NODE_ENV !== "production") {
-              console.log("search:", v);
+            if (import.meta.env.DEV) {
+              console.warn("search:", v);
             }
           }}
           placeholder="Search"
