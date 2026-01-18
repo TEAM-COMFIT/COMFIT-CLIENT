@@ -26,8 +26,6 @@ const ICON_BY_VARIANT = {
   error: CancelIcon,
 } as const;
 
-const GAP_PX = 12;
-const CARD_HEIGHT_PX = 80;
 const STACK_STEP_PX = 92;
 
 let stack: string[] = [];
