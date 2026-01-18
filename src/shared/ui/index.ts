@@ -1,3 +1,4 @@
+export { Textbox } from "../../widgets/textbox/textbox";
 export { Dropdown } from "./dropdown/dropdown";
 
 export { Pagination } from "./pagination/pagination";
