@@ -10,17 +10,17 @@ export const layout = style({
 export const container = style({
   display: "flex",
   flexDirection: "column",
-  gap: "4rem",
+  gap: "3rem",
   width: "34.3rem",
   height: "25.4rem",
-  padding: "4rem 6rem",
+  padding: "4rem 5rem",
   borderRadius: "12px",
   boxShadow: themeVars.shadow.shadow2,
   transition: "transform 0.2s linear",
 
   selectors: {
     "&:hover": {
-      transform: "scale(0.9)",
+      transform: "scale(1.05)",
     },
   },
 });
@@ -33,7 +33,7 @@ export const header = style({
 export const title = style({
   whiteSpace: "pre-wrap",
   color: themeVars.color.gray700,
-  ...themeVars.fontStyles.hding_b_20,
+  ...themeVars.fontStyles.hding_b_22,
 });
 
 export const blueTitle = style({
@@ -43,11 +43,11 @@ export const blueTitle = style({
 
   backgroundClip: "text",
   color: "transparent",
-  ...themeVars.fontStyles.hding_b_20,
+  ...themeVars.fontStyles.hding_b_22,
 });
 
 export const description = style({
   whiteSpace: "pre-wrap",
   color: themeVars.color.gray500,
-  ...themeVars.fontStyles.cap_m_12,
+  ...themeVars.fontStyles.body_r_16,
 });
