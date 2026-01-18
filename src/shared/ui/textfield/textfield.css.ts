@@ -80,13 +80,7 @@ export const textarea = style({
       borderRadius: "10px",
     },
 
-    // 2. Focus 되었을 때만 스크롤바 막대 색상을 보여줌
     "&:focus::-webkit-scrollbar-thumb": {
-      background: themeVars.color.gray400,
-    },
-
-    // 3. (옵션) 마우스를 올렸을 때(Hover)도 보여주고 싶다면 추가
-    "&:hover::-webkit-scrollbar-thumb": {
       background: themeVars.color.gray400,
     },
   },
