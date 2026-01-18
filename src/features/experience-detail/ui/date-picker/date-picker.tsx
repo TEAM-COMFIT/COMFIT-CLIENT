@@ -57,7 +57,9 @@ const DatePicker = ({
   const menuRef = useRef<HTMLDivElement | null>(null);
 
   const [isOpen, setIsOpen] = useState(false);
-  const [tempDate, setTempDate] = useState<Date | null>(selectedDate);
+
+  const TODAY = new Date();
+  const [tempDate, setTempDate] = useState<Date | null>(selectedDate ?? TODAY);
 
   // 메뉴 열릴 때만 tempDate 초기화
   useEffect(() => {
@@ -121,7 +123,7 @@ const DatePicker = ({
       {isOpen && (
         <div ref={menuRef} className={styles.menuWrapper}>
           {/* 1번 영역 */}
-          <div className={styles.menuHeader}>
+          <div className={styles.calendar}>
             <Calendar
               value={tempDate}
               onChange={(value) => {

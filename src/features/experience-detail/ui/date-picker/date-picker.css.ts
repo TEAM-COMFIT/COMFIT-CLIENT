@@ -44,13 +44,6 @@ export const menuWrapper = style({
   width: "31.2rem",
 });
 
-export const menuHeader = style({
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  padding: "1.2rem",
-});
-
 export const monthLabel = style({
   ...themeVars.fontStyles.body_b_14,
   color: themeVars.color.gray800,
@@ -62,11 +55,22 @@ export const navIcon = style({
 });
 
 // calendar 스타일링(globalStyle 사용) (react-calendar 라이브러리의 클래스명을 사용해야 함)
-export const calendar = style({});
+export const calendar = style({
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
+  border: "1px solid blue",
+});
 
 globalStyle(`${calendar} .react-calendar`, {
-  border: "1px sold red",
-  width: "100%",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
+  border: "1px solid red",
+  width: "27.4rem",
+  paddingTop: "2.3rem",
 });
 
 // 달력 네비게이션
@@ -91,7 +95,6 @@ globalStyle(`${calendar} .react-calendar__month-view__weekdays`, {
   display: "flex",
   gap: "0.6rem",
   width: "27.4rem",
-  border: "1px solid blue",
 });
 
 // 요일 텍스트 밑줄 제거 및 커서 변경
@@ -99,7 +102,6 @@ globalStyle(`${calendar} .react-calendar__month-view__weekdays__weekday`, {
   width: "3.3rem",
   textAlign: "center",
   color: themeVars.color.gray500,
-  border: "1px solid red",
   ...themeVars.fontStyles.cap_m_12,
 });
 
