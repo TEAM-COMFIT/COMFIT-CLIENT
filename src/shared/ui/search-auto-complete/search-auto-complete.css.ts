@@ -69,7 +69,6 @@ export const input = style({
 export const iconButton = style({
   width: "4.8rem",
   height: "4.8rem",
-  borderRadius: 999,
 
   display: "grid",
   placeItems: "center",
