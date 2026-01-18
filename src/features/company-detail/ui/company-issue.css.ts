@@ -20,6 +20,9 @@ export const container = style({
 
   cursor: "pointer",
   textAlign: "left",
+
+  color: "inherit",
+  textDecoration: "none",
 });
 
 export const leftGroup = style({
