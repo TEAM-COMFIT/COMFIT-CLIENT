@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import { Search } from ".";
 
-import type { SearchSize } from "./search.types";
+import type { SearchSize } from "./search";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 const meta: Meta<typeof Search> = {

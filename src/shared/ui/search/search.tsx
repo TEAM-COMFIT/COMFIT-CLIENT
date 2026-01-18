@@ -3,7 +3,25 @@ import { IconSearch } from "@/shared/assets/icons";
 import * as styles from "./search.css";
 import { useSearch } from "./use-search";
 
-import type { SearchProps } from "./search.types";
+export type SearchSize = "full" | "large" | "medium" | "small";
+
+export interface SearchProps {
+  size?: SearchSize;
+  placeholder?: string;
+
+  // controlled
+  value?: string;
+  onChange?: (value: string) => void;
+
+  // uncontrolled
+  defaultValue?: string;
+
+  // 엔터 / 아이콘 클릭 시 실행
+  onSearch?: (value: string) => void;
+
+  // 접근성
+  inputAriaLabel?: string;
+}
 
 export const Search = ({
   size = "full",
