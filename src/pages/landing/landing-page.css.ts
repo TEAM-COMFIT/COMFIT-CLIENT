@@ -88,7 +88,7 @@ export const floatImage = style({
   aspectRatio: 1 / 1,
 
   position: "absolute",
-  top: "34.6rem",
+  top: "35.4rem",
 });
 
 /** ------ 두 번째 섹션 ------- */
