@@ -57,9 +57,6 @@ export const input = style({
   flex: 1,
   minWidth: 0,
   height: "100%",
-  border: "none",
-  outline: "none",
-  background: "transparent",
   color: themeVars.color.black,
 
   ...fontStyles.body_m_16,
