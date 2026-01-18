@@ -8,9 +8,9 @@ import {
 import { Company } from "@/shared/assets/images";
 import { Alert } from "@/shared/ui/alert";
 import { useAlert } from "@/shared/ui/alert/use-alert";
+import { Search } from "@/shared/ui/index";
 import { CompanyGridContainer } from "@/shared/ui/pagination/company-list-container";
 import { MatchingListContainer } from "@/shared/ui/pagination/matching-list-container";
-import { Search } from "@/shared/ui/search";
 import { Textfield } from "@/shared/ui/textfield";
 import { CompanyCard } from "@/widgets";
 import Heart from "@icons/heart.svg?react";
