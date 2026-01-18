@@ -34,19 +34,19 @@ export const inputShell = style({
 export const inputShellVariant = styleVariants({
   onboarding: {
     height: "6rem",
-    padding: "0 1.8rem 0 1.6rem",
+    padding: "0 0.8rem 0 1.6rem",
     borderRadius: 16,
     borderColor: color.normal,
   },
   home: {
     height: "6rem",
-    padding: "0.6rem 1.8rem 0.6rem 1.6rem",
+    padding: "0.6rem 0.8rem 0.6rem 1.6rem",
     borderRadius: 12,
     borderColor: color.blue600,
   },
   matchingExperienceList: {
     height: "4.8rem",
-    padding: "0 1.8rem 0 1.6rem",
+    padding: "0 0.8rem 0 1.6rem",
     borderRadius: 12,
     borderColor: color.blue600,
   },
