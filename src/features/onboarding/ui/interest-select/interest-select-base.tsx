@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useId, useState } from "react";
 
 import { Button } from "@shared/ui/button/button";
 import { Tag } from "@shared/ui/tag/tag";
@@ -14,14 +14,64 @@ interface InterestSelectBaseProps<T extends string> {
   options: readonly T[];
 }
 
+const OPEN_EVENT_NAME = "interest-select:open";
+
+let lockedInstanceId: string | null = null;
+
 export const InterestSelectBase = <T extends string>({
   variant,
   title,
   required = true,
   options,
 }: InterestSelectBaseProps<T>) => {
+  const instanceId = useId();
+
   const [selected, setSelected] = useState<T | null>(null);
   const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const ce = e as CustomEvent<{ instanceId: string }>;
+      const openedId = ce.detail?.instanceId;
+
+      if (openedId && openedId !== instanceId) {
+        setIsOpen(false);
+      }
+    };
+
+    window.addEventListener(OPEN_EVENT_NAME, handler as EventListener);
+    return () => {
+      window.removeEventListener(OPEN_EVENT_NAME, handler as EventListener);
+
+      if (lockedInstanceId === instanceId) {
+        lockedInstanceId = null;
+      }
+    };
+  }, [instanceId]);
+
+  const openOnlyThis = () => {
+    if (lockedInstanceId && lockedInstanceId !== instanceId) return;
+
+    if (isOpen) return;
+
+    lockedInstanceId = instanceId;
+
+    window.dispatchEvent(
+      new CustomEvent(OPEN_EVENT_NAME, {
+        detail: { instanceId },
+      })
+    );
+
+    setIsOpen(true);
+  };
+
+  const closeAndUnlock = () => {
+    setIsOpen(false);
+
+    if (lockedInstanceId === instanceId) {
+      lockedInstanceId = null;
+    }
+  };
 
   return (
     <section className={styles.container} data-variant={variant}>
@@ -33,15 +83,13 @@ export const InterestSelectBase = <T extends string>({
 
         <div
           className={styles.inputBox({ isOpen })}
-          onClick={() => {
-            if (!isOpen) setIsOpen(true);
-          }}
+          onClick={openOnlyThis}
           role="button"
           tabIndex={0}
           onKeyDown={(e) => {
             if (e.key === "Enter" || e.key === " ") {
               e.preventDefault();
-              if (!isOpen) setIsOpen(true);
+              openOnlyThis();
             }
           }}
         >
@@ -99,7 +147,7 @@ export const InterestSelectBase = <T extends string>({
                 disabled={!selected}
                 onClick={() => {
                   if (!selected) return;
-                  setIsOpen(false);
+                  closeAndUnlock();
                 }}
               >
                 선택 완료
