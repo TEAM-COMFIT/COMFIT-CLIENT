@@ -3,13 +3,17 @@ import { recipe } from "@vanilla-extract/recipes";
 
 import { fontStyles } from "@/shared/styles/font-style.css";
 import { color } from "@/shared/styles/tokens/color.css";
-
 // 우측 하단 고정 위치
 export const alertViewport = style({
   position: "fixed",
   right: "6.7rem",
-  bottom: "5.3rem",
-  zIndex: 1000,
+  bottom: "calc(5.3rem + var(--alert-offset-y, 0px))",
+  zIndex: "var(--alert-z, 1000)" as unknown as number,
+  pointerEvents: "none",
+
+  transitionProperty: "bottom",
+  transitionDuration: "420ms",
+  transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
 });
 
 // 카드
@@ -31,6 +35,15 @@ export const alertRoot = recipe({
 
     padding: "1.6rem",
     position: "relative",
+
+    opacity: 0,
+    transform: "translateY(8px)",
+
+    transitionProperty: "opacity, transform",
+    transitionDuration: "420ms",
+    transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
+
+    pointerEvents: "auto",
   },
 
   variants: {
@@ -53,6 +66,16 @@ export const alertRoot = recipe({
       },
     },
   },
+});
+
+globalStyle(`${alertRoot.classNames.base}[data-state="open"]`, {
+  opacity: 1,
+  transform: "translateY(0px)",
+});
+
+globalStyle(`${alertRoot.classNames.base}[data-state="closing"]`, {
+  opacity: 0,
+  transform: "translateY(8px)",
 });
 
 // 좌측 아이콘
