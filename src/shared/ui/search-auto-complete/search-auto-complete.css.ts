@@ -77,8 +77,6 @@ export const iconButton = style({
   background: "transparent",
   cursor: "pointer",
 
-  color: themeVars.color.gray400,
-
   selectors: {
     "&:disabled": {
       opacity: 0.6,
@@ -93,14 +91,10 @@ export const iconButtonVariant = styleVariants({
   matchingExperienceList: { color: themeVars.color.blue600 },
 });
 
-globalStyle(`${iconButton} svg`, {
+export const icon = style({
   width: "2.4rem",
   height: "2.4rem",
-});
-
-globalStyle(`${iconButton} svg *`, {
-  fill: "currentColor",
-  stroke: "currentColor",
+  color: "currentColor",
 });
 
 export const list = style({
