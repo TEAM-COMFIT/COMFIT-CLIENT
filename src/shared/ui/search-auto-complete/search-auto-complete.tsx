@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
 
 import { IconCancel, IconSearch } from "@/shared/assets/icons";
 import { Tag } from "@shared/ui/tag/tag";
@@ -11,6 +11,7 @@ import type {
   SearchAutocompleteVariant,
   SearchItem,
 } from "./types";
+import type { KeyboardEvent } from "react";
 
 interface SearchAutocompleteProps {
   variant: SearchAutocompleteVariant;
@@ -35,6 +36,7 @@ export const SearchAutocomplete = ({
   onSelect,
   onClear,
   maxItems = 4,
+  showSelectedTag = true,
   minQueryLength = 2,
 }: SearchAutocompleteProps) => {
   const {
@@ -73,21 +75,55 @@ export const SearchAutocomplete = ({
     return hasValue ? "clear" : "search";
   }, [hasValue, isLocked]);
 
-  const handleSelect = (item: SearchItem) => {
-    selectItem(item);
-    onSelect?.(item);
-  };
+  const handleSelect = useCallback(
+    (item: SearchItem) => {
+      selectItem(item);
+      onSelect?.(item);
+    },
+    [selectItem, onSelect]
+  );
 
-  const handleClear = () => {
+  const handleClear = useCallback(() => {
     setQuery("");
     clearSelected();
     close();
     onClear?.();
     window.setTimeout(() => inputRef.current?.focus(), 0);
-  };
+  }, [setQuery, clearSelected, close, onClear]);
 
   const shouldApplyFocusStyle = variant !== "onboarding";
   const isOnboarding = variant === "onboarding";
+
+  const handleOptionKeyDown = useCallback(
+    (e: KeyboardEvent<HTMLDivElement>, item: SearchItem, idx: number) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        handleSelect(item);
+        return;
+      }
+
+      if (e.key === "ArrowDown") {
+        e.preventDefault();
+        const nextIdx = Math.min(idx + 1, items.length - 1);
+        setHighlightedIndex(nextIdx);
+        return;
+      }
+
+      if (e.key === "ArrowUp") {
+        e.preventDefault();
+        const prevIdx = Math.max(idx - 1, 0);
+        setHighlightedIndex(prevIdx);
+        return;
+      }
+
+      if (e.key === "Escape") {
+        e.preventDefault();
+        close();
+        inputRef.current?.focus();
+      }
+    },
+    [handleSelect, items.length, setHighlightedIndex, close]
+  );
 
   return (
     <div className={s.root}>
@@ -99,7 +135,7 @@ export const SearchAutocomplete = ({
             isFocused && shouldApplyFocusStyle ? s.inputShellFocused : "",
           ].join(" ")}
         >
-          {selected && <Tag>{selected.label}</Tag>}
+          {showSelectedTag && selected && <Tag>{selected.label}</Tag>}
 
           <input
             ref={inputRef}
@@ -135,7 +171,6 @@ export const SearchAutocomplete = ({
             disabled={disabled}
             onClick={() => {
               if (disabled) return;
-
               if (isLocked) return;
 
               if (rightIconMode === "clear") handleClear();
@@ -152,7 +187,10 @@ export const SearchAutocomplete = ({
 
         {/* 드롭다운 */}
         {isOpen && !disabled && !isLocked && (
-          <div className={[s.list, s.listTopVariant[variant]].join(" ")}>
+          <div
+            role="listbox"
+            className={[s.list, s.listTopVariant[variant]].join(" ")}
+          >
             {state === "error" && (
               <div className={s.emptyBox}>
                 {errorMessage ?? "기업 검색에 실패했습니다. 다시 시도해주세요."}
@@ -176,9 +214,11 @@ export const SearchAutocomplete = ({
                 return (
                   <div
                     key={it.id}
+                    role="option"
+                    aria-selected={isHighlighted}
+                    tabIndex={isHighlighted ? 0 : -1}
                     className={[
                       s.item,
-
                       isHighlighted
                         ? isOnboarding
                           ? s.onboardingItemState.hover
@@ -186,7 +226,6 @@ export const SearchAutocomplete = ({
                         : isOnboarding
                           ? s.onboardingItemState.default
                           : s.itemState.default,
-
                       isOnboarding ? s.onboardingItemPressed : "",
                     ].join(" ")}
                     onMouseEnter={() => setHighlightedIndex(idx)}
@@ -194,6 +233,7 @@ export const SearchAutocomplete = ({
                       e.preventDefault();
                       handleSelect(it);
                     }}
+                    onKeyDown={(e) => handleOptionKeyDown(e, it, idx)}
                   >
                     {it.label}
                   </div>
