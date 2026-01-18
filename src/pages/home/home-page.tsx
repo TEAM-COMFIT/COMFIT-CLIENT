@@ -23,7 +23,11 @@ const HomePage = () => {
           size="full"
           value={value}
           onChange={setValue}
-          onSearch={(v: string) => console.log("search:", v)}
+          onSearch={(v: string) => {
+            if (process.env.NODE_ENV !== "production") {
+              console.log("search:", v);
+            }
+          }}
           placeholder="Search"
         />
       </div>
