@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { Search } from ".";
+import { Search } from "./search";
 
 import type { SearchSize } from "./search";
 import type { Meta, StoryObj } from "@storybook/react-vite";
