@@ -3,6 +3,7 @@ import { recipe } from "@vanilla-extract/recipes";
 
 import { themeVars } from "@/app/styles";
 import { fontStyles } from "@shared/styles/font-style.css";
+import { shadow } from "@shared/styles/tokens/shadow.css";
 import { typography } from "@shared/styles/tokens/typography.css";
 
 export const container = style({
@@ -75,6 +76,7 @@ export const selectArea = style({
   padding: "2.4rem",
   borderRadius: "12px",
   background: themeVars.color.white,
+  boxShadow: shadow.shadow1,
 });
 
 export const gridContainer = style({
