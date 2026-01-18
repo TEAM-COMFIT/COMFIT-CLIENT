@@ -1,11 +1,10 @@
+import { useState } from "react";
+
+import { MajorCompanyCard } from "@/features/home/ui";
 import {
   IndustryInterestSelect,
   JobInterestSelect,
 } from "@/features/onboarding";
-import KERORO from "@images/comfit_web_status.jpg";
-import { useState } from "react";
-
-import { MajorCompanyCard } from "@/features/home/ui";
 import { Company } from "@/shared/assets/images";
 import { Alert } from "@/shared/ui/alert";
 import { useAlert } from "@/shared/ui/alert/use-alert";
