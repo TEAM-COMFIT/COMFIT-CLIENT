@@ -108,7 +108,7 @@ export const list = style({
   left: 0,
   right: 0,
 
-  borderRadius: 8,
+  borderRadius: 10,
   background: themeVars.color.white,
   border: `1.5px solid ${themeVars.color.gray200}`,
   boxShadow: themeVars.shadow.shadow1,
