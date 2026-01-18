@@ -76,8 +76,6 @@ export const selectArea = style({
   padding: "2.4rem",
   borderRadius: "12px",
   background: color.white,
-  border: `1px solid ${color.gray200}`,
-  boxShadow: shadow.shadow2,
 });
 
 export const gridContainer = style({
