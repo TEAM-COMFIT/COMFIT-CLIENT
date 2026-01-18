@@ -85,11 +85,6 @@ export const icon = style({
   color: themeVars.color.blue600,
 });
 
-globalStyle(`${icon} *`, {
-  fill: "currentColor",
-  stroke: "currentColor",
-});
-
 globalStyle(`${container.classNames.base}:has(${input}:focus)`, {
   borderColor: themeVars.color.blue600,
   boxShadow: `0 0 0 0.3rem ${themeVars.color.blue100}`,
