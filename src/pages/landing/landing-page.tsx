@@ -1,12 +1,14 @@
 import { LANDING_CARD_ITEMS } from "@/features/landing/config/landing-card.constant";
 import { LandingCard } from "@/features/landing/ui/landing-card/landing-card";
-import { FLOAT_IMG } from "@/shared/assets/images";
+import { WorryCard } from "@/features/landing/ui/worry-card/worry-card";
+import { CHARACTER, FLOAT_IMG } from "@/shared/assets/images";
 
 import * as styles from "./landing-page.css";
 
 const LandingPage = () => {
   return (
-    <div>
+    <div className={styles.layout}>
+      {/** 배너 섹션 (Section1) */}
       <div className={styles.banner}>
         <div className={styles.bannerWrapper}>
           <div className={styles.title}>
@@ -19,7 +21,22 @@ const LandingPage = () => {
         </div>
         <img className={styles.floatImage} src={FLOAT_IMG} alt="홈 이미지" />
       </div>
-      <div className="섹션1"></div>
+      {/** 이런 고민 있으신가요? (Section2) */}
+      <div className={styles.second}>
+        <div className={styles.worryCardLeft}>
+          <WorryCard />
+        </div>
+        <div className={styles.worryCardRight}>
+          <div className={styles.worryCardTitle}>
+            <span className={styles.blueText}>이런 고민</span>, 하고 계신가요?
+          </div>
+          <div className={styles.worryCardContent}>
+            마케팅 취준의 가장 큰 어려움은 방향성입니다
+          </div>
+          <img src={CHARACTER} alt="컴핏 캐릭터" />
+        </div>
+      </div>
+      {/** 세 번째 섹션 */}
       <div className="섹션2"></div>
       <div className="섹션3">
         {LANDING_CARD_ITEMS.map((item) => (

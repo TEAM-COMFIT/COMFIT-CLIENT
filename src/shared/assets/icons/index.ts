@@ -18,3 +18,7 @@ export { default as IconQuestion } from "./icon_question.svg?react";
 export { default as IconCheck } from "./check.svg?react";
 
 export { default as IconAI } from "./icon_ai.svg?react";
+
+export { default as IconMatchBefore } from "./icon_match_before.svg?react";
+export { default as IconAIBefore } from "./icon_ai_before.svg?react";
+export { default as IconEXPBefore } from "./icon_exp_before.svg?react";
