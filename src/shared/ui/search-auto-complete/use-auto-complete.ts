@@ -79,8 +79,8 @@ export function useAutocomplete(
 
     const isTypingClose = currentQuery.length < minQueryLength;
 
-    if (wasOpen && !isTypingClose) {
-      setQuery(selected ? selected.label : "");
+    if (wasOpen && !isTypingClose && selected) {
+      setQuery(selected.label);
     }
 
     setIsOpen(false);

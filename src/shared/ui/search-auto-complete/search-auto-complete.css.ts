@@ -85,6 +85,10 @@ export const iconButton = style({
   },
 });
 
+export const iconButtonCursorDefault = style({
+  cursor: "default",
+});
+
 export const iconButtonVariant = styleVariants({
   onboarding: { color: themeVars.color.gray400 },
   home: { color: themeVars.color.blue600 },
@@ -219,6 +223,10 @@ export const item = recipe({
     mode: "normal",
     state: "default",
   },
+});
+
+export const highlight = style({
+  fontWeight: 700,
 });
 
 export const selectedTagRow = style({

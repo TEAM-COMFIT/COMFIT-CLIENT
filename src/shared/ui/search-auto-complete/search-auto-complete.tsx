@@ -122,6 +122,30 @@ export const SearchAutocomplete = ({
     !isLocked &&
     (state === "error" || state === "success");
 
+  const renderHighlightedLabel = useCallback(
+    (label: string) => {
+      const q = query.trim();
+      if (!q) return label;
+
+      const lowerLabel = label.toLowerCase();
+      const lowerQ = q.toLowerCase();
+
+      const start = lowerLabel.indexOf(lowerQ);
+      if (start < 0) return label;
+
+      const end = start + q.length;
+
+      return (
+        <>
+          {label.slice(0, start)}
+          <span className={s.highlight}>{label.slice(start, end)}</span>
+          {label.slice(end)}
+        </>
+      );
+    },
+    [query]
+  );
+
   return (
     <div className={s.root}>
       <div className={[s.wrapper, s.wrapperVariant[variant]].join(" ")}>
@@ -160,7 +184,13 @@ export const SearchAutocomplete = ({
 
           <button
             type="button"
-            className={[s.iconButton, s.iconButtonVariant[variant]].join(" ")}
+            className={[
+              s.iconButton,
+              s.iconButtonVariant[variant],
+              rightIconMode === "search" ? s.iconButtonCursorDefault : "",
+            ]
+              .filter(Boolean)
+              .join(" ")}
             disabled={disabled}
             onClick={() => {
               if (disabled) return;
@@ -217,7 +247,7 @@ export const SearchAutocomplete = ({
                       handleSelect(it);
                     }}
                   >
-                    {it.label}
+                    {renderHighlightedLabel(it.label)}
                   </button>
                 );
               })}
