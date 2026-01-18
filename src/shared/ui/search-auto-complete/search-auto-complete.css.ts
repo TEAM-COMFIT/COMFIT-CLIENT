@@ -130,7 +130,6 @@ globalStyle(`${list}::-webkit-scrollbar-track`, {
 });
 
 globalStyle(`${list}::-webkit-scrollbar-thumb`, {
-  backgroundColor: "transparent",
   borderRadius: "10rem",
   minHeight: "4rem",
   borderLeft: "0.4rem solid transparent",
@@ -140,17 +139,7 @@ globalStyle(`${list}::-webkit-scrollbar-thumb`, {
   backgroundClip: "padding-box",
 });
 
-globalStyle(`${list}:hover::-webkit-scrollbar-thumb`, {
-  backgroundColor: themeVars.color.gray300,
-});
-
 globalStyle(`${list}`, {
-  scrollbarWidth: "none",
-  scrollbarColor: "transparent transparent",
-});
-
-globalStyle(`${list}:hover`, {
-  scrollbarWidth: "thin",
   scrollbarColor: `${themeVars.color.gray300} transparent`,
 });
 
