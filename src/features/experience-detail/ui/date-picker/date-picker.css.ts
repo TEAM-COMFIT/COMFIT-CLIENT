@@ -1,6 +1,13 @@
+import { glob } from "fs";
+
 import { globalStyle, style } from "@vanilla-extract/css";
 
 import { themeVars } from "@/app/styles";
+
+export const container = style({
+  position: "relative",
+  display: "inline-block",
+});
 
 export const trigger = style({
   width: "16rem",
@@ -13,13 +20,6 @@ export const trigger = style({
   border: `1px solid ${themeVars.color.gray200}`,
   backgroundColor: themeVars.color.white,
   cursor: "pointer",
-
-  selectors: {
-    "&:disabled": {
-      cursor: "not-allowed",
-      opacity: 0.6,
-    },
-  },
 });
 
 export const triggerText = style({
@@ -27,40 +27,28 @@ export const triggerText = style({
   color: themeVars.color.gray400,
 });
 
-export const triggerTextSelected = style({
-  ...themeVars.fontStyles.body_m_14,
-  color: themeVars.color.gray800,
-});
-
 export const triggerIcon = style({
-  width: "2.4rem",
-  height: "2.4rem",
   color: themeVars.color.gray600,
 });
 
-// 실제 IconCalendar 연결 전 임시 표현
-export const fallbackCalendarIcon = style({
-  width: "2rem",
-  height: "2rem",
-  borderRadius: "4px",
-  backgroundColor: themeVars.color.gray600,
-  opacity: 0.35,
-});
-
-// Menu Wrapper
 export const menuWrapper = style({
   position: "absolute",
+  top: "calc(100% + 0.8rem)",
+  left: 0,
   zIndex: themeVars.zIndex.dropdownMenu,
   borderRadius: "12px",
-  border: `1px solid ${themeVars.color.gray200}`, // normal
+  border: `1px solid ${themeVars.color.gray200}`,
   boxShadow: themeVars.shadow.shadow1,
   backgroundColor: themeVars.color.white,
   overflow: "hidden",
+  width: "31.2rem",
 });
 
-// 1번 영역(헤더/네비게이션)
 export const menuHeader = style({
-  padding: "1.2rem 1.2rem 0.8rem 1.2rem",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  padding: "1.2rem",
 });
 
 export const monthLabel = style({
@@ -69,106 +57,97 @@ export const monthLabel = style({
 });
 
 export const navIcon = style({
+  width: "2.4rem",
+  height: "2.4rem",
   display: "inline-flex",
   alignItems: "center",
   justifyContent: "center",
-  width: "2.4rem",
-  height: "2.4rem",
-});
-
-// 2번 영역(캘린더)
-export const calendar = style({
-  // react-calendar root에 className으로 들어감
-});
-
-// react-calendar 기본 스타일(클래스) 커스텀 (필요 최소만)
-globalStyle(`${calendar} .react-calendar`, {
-  border: "none",
-  width: "auto",
-  background: "transparent",
-});
-
-globalStyle(`${calendar} .react-calendar__navigation`, {
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "space-between",
-  marginBottom: "0.8rem",
-});
-
-globalStyle(`${calendar} .react-calendar__navigation button`, {
-  background: "transparent",
-  border: "none",
-  padding: 0,
   cursor: "pointer",
 });
 
-globalStyle(`${calendar} .react-calendar__navigation__label`, {
-  flexGrow: "0 !important",
+// calendar 스타일링(globalStyle 사용) (react-calendar 라이브러리의 클래스명을 사용해야 함)
+export const calendar = style({});
+
+globalStyle(`${calendar} .react-calendar`, {
+  border: "1px sold red",
+  width: "100%",
 });
 
-globalStyle(`${calendar} .react-calendar__month-view__weekdays`, {
-  display: "grid",
-  gridTemplateColumns: "repeat(7, 3.5rem)",
-  gap: "0.4rem",
-  marginBottom: "0.6rem",
+// 달력 헤더
+globalStyle(`${calendar} .react-calendar__month-view__header`, {
+  marginBottom: "1.2rem",
 });
 
-globalStyle(`${calendar} .react-calendar__month-view__weekdays__weekday`, {
-  height: "1.6rem",
+// 달력 네비게이션
+globalStyle(`${calendar} .react-calendar__navigation`, {
   display: "flex",
+  flexDirection: "row",
   alignItems: "center",
   justifyContent: "center",
-  ...themeVars.fontStyles.cap_m_12,
+  color: themeVars.color.gray800,
+  ...themeVars.fontStyles.body_b_14,
+});
+
+globalStyle(`${calendar} .react-calendar__navigation__label`, {
+  width: "auto",
+  cursor: "default",
+});
+
+// 요일 행 스타일링
+globalStyle(`${calendar} .react-calendar__month-view__weekdays`, {
+  display: "flex",
+  gap: "0.6rem",
+  width: "27.4rem",
+  border: "1px solid blue",
+});
+
+// 요일 텍스트 밑줄 제거 및 커서 변경
+globalStyle(`${calendar} .react-calendar__month-view__weekdays__weekday`, {
+  width: "3.3rem",
+  textAlign: "center",
   color: themeVars.color.gray500,
+  border: "1px solid red",
+  ...themeVars.fontStyles.cap_m_12,
 });
 
 globalStyle(`${calendar} .react-calendar__month-view__weekdays__weekday abbr`, {
   textDecoration: "none",
+  borderBottom: "none",
+  cursor: "default",
 });
 
 globalStyle(`${calendar} .react-calendar__month-view__days`, {
   display: "grid",
   gridTemplateColumns: "repeat(7, 3.5rem)",
+  justifyContent: "center",
   gap: "0.4rem",
 });
 
-// 날짜 타일(3.5rem x 3.5rem)
-export const dayTile = style({
-  width: "3.5rem",
-  height: "3.5rem",
-  border: "none",
-  background: "transparent",
-  cursor: "pointer",
-  borderRadius: "9999px",
-  ...themeVars.fontStyles.cap_m_12,
-  color: themeVars.color.gray800,
+globalStyle(`${calendar} .react-calendar__month-view__weekNumbers`, {
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-
-  selectors: {
-    "&:disabled": {
-      cursor: "not-allowed",
-      color: themeVars.color.gray300,
-      background: "transparent",
-    },
-    "&:hover:not(:disabled)": {
-      background: themeVars.color.gray100,
-    },
-  },
 });
 
-// 선택된 날짜: blue200 + 완전 원형
-export const daySelected = style({
+// 기본 타일
+globalStyle(`${calendar} .react-calendar__tile`, {
+  width: "3.5rem",
+  height: "3.5rem",
+  cursor: "pointer",
+  ...themeVars.fontStyles.cap_m_12,
+  color: themeVars.color.gray800,
+  borderRadius: "100%",
+});
+
+// 선택된 날짜
+globalStyle(`${calendar} .react-calendar__tile--active`, {
   background: themeVars.color.blue200,
 });
 
-// 3번 영역(푸터)
 export const menuFooter = style({
-  borderTop: `1px solid ${themeVars.color.gray200}`, // normal
+  borderTop: `1px solid ${themeVars.color.gray200}`,
   padding: "1.1rem 1.9rem",
   display: "flex",
-  flexDirection: "row",
   justifyContent: "space-between",
   alignItems: "center",
 });
