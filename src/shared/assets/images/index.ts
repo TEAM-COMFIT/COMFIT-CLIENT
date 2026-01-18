@@ -13,12 +13,11 @@ export { default as BANNER_BG } from "./banner-bg.png";
 export { default as SECTION_BG } from "./section-bg.png";
 export { default as FOOTER_BG } from "./footer-img.png";
 
-export { default as AIfRICA } from "./aifrica.png";
+export { default as AIFRICA } from "./aifrica.png";
 export { default as BUNKERKIDS } from "./bunkerkids.png";
 export { default as CJENM } from "./cjenm.png";
 export { default as COMPUZONE } from "./compuzone.png";
 export { default as COUPANG } from "./coupang.png";
-export { default as ELIMNET } from "./elimnet.png";
 export { default as POLARIS } from "./polaris.png";
 export { default as SARAMIN } from "./saramin.png";
 export { default as SK } from "./sk.png";

@@ -1,4 +1,9 @@
-import { LandingCard, WorryCard, PointCard } from "@/features/landing";
+import {
+  LandingCard,
+  WorryCard,
+  PointCard,
+  CompanySlider,
+} from "@/features/landing";
 import { LANDING_CARD_ITEMS } from "@/features/landing/config/landing-card.constant";
 import { CHARACTER, FLOAT_IMG, KEY } from "@/shared/assets/images";
 
@@ -69,7 +74,15 @@ const LandingPage = () => {
         </div>
         <PointCard />
       </div>
-      <div className={styles.fifth}></div>
+      {/** 다섯 번째 섹션 */}
+      <div className={styles.fifth}>
+        <h2 className={styles.fifthTitle}>
+          플랫폼·콘텐츠·커머스까지
+          <br />
+          마케터가 지원하는 기업을 한 곳에
+        </h2>
+        <CompanySlider />
+      </div>
       <div className="푸터1"></div>
     </div>
   );

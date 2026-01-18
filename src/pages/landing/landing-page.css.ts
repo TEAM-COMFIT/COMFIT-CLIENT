@@ -177,5 +177,18 @@ export const fourthSubtitle = style({
 
 /**-------- 다섯 번째 섹션-------- */
 export const fifth = style({
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  gap: "4rem",
+  height: "60rem",
+  padding: "7.2rem 0",
   backgroundColor: themeVars.color.blue100,
+});
+
+export const fifthTitle = style({
+  color: themeVars.color.gray700,
+  ...themeVars.fontStyles.title_b_28,
+  ...textAlign.center,
+  fontWeight: 700,
 });
