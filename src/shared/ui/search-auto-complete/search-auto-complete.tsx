@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useRef, useState } from "react";
+import { useCallback, useMemo, useRef } from "react";
 
 import { IconCancel, IconSearch } from "@/shared/assets/icons";
 import { Tag } from "@shared/ui/tag/tag";
@@ -73,7 +73,6 @@ export const SearchAutocomplete = ({
 
   const selected = selectedItem ?? innerSelected;
 
-  const [isFocused, setIsFocused] = useState(false);
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   const isLocked = Boolean(selected) && showSelectedTag;
@@ -113,19 +112,12 @@ export const SearchAutocomplete = ({
     window.setTimeout(() => inputRef.current?.focus(), 0);
   }, [setQuery, innerClearSelected, close, onClear, setSelectedItem]);
 
-  const shouldApplyFocusStyle = variant !== "onboarding";
   const isOnboarding = variant === "onboarding";
 
   return (
     <div className={s.root}>
       <div className={[s.wrapper, s.wrapperVariant[variant]].join(" ")}>
-        <div
-          className={[
-            s.inputShell,
-            s.inputShellVariant[variant],
-            isFocused && shouldApplyFocusStyle ? s.inputShellFocused : "",
-          ].join(" ")}
-        >
+        <div className={[s.inputShell, s.inputShellVariant[variant]].join(" ")}>
           {showSelectedTag && selected && (
             <Tag type="primary" xlabel onCancel={handleClear}>
               {selected.label}
@@ -149,12 +141,9 @@ export const SearchAutocomplete = ({
             }}
             onFocus={() => {
               if (disabled || isLocked) return;
-              setIsFocused(true);
-
               if (query.trim().length >= minQueryLength) open();
             }}
             onBlur={() => {
-              setIsFocused(false);
               window.setTimeout(() => close(), 120);
             }}
             onKeyDown={onKeyDown}

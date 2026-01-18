@@ -52,11 +52,6 @@ export const inputShellVariant = styleVariants({
   },
 });
 
-export const inputShellFocused = style({
-  borderColor: color.blue600,
-  boxShadow: `0 0 0 3px rgba(90, 129, 250, 0.18)`,
-});
-
 export const input = style({
   flex: 1,
   minWidth: 0,
