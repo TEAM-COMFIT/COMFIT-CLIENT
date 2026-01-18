@@ -1,6 +1,5 @@
-import { INDUSTRY_OPTIONS } from "../../config/interest-select.constants";
-
-import { InterestSelectBase } from "./interest-select-base";
+import { INDUSTRY_OPTIONS } from "@features/onboarding/config/interest-select.constants";
+import { InterestSelectBase } from "@features/onboarding/ui/interest-select/interest-select-base";
 
 interface IndustryInterestSelectProps {
   priority?: number;
