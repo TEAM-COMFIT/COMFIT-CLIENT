@@ -16,7 +16,8 @@ export const typography = {
     regular: "300",
     medium: "500",
     semibold: "600",
-    bold: "700",
+    medium: "400",
+    bold: "600",
   },
   lineHeight: {
     normal: "150%",
