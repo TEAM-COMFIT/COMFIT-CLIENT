@@ -174,7 +174,11 @@ export const SearchAutocomplete = ({
             }}
             aria-label={rightIconMode === "clear" ? "지우기" : "검색"}
           >
-            {rightIconMode === "clear" ? <IconCancel /> : <IconSearch />}
+            {rightIconMode === "clear" ? (
+              <IconCancel className={s.icon} />
+            ) : (
+              <IconSearch className={s.icon} />
+            )}
           </button>
         </div>
         {/* 드롭다운 */}{" "}
