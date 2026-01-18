@@ -36,7 +36,7 @@ export const inputShellVariant = styleVariants({
     height: "6rem",
     padding: "0 1.8rem 0 1.6rem",
     borderRadius: 16,
-    borderColor: color.gray200,
+    borderColor: color.normal,
   },
   home: {
     height: "6rem",
@@ -88,7 +88,10 @@ export const iconButton = style({
   color: color.gray400,
 
   selectors: {
-    "&:disabled": { opacity: 0.6, cursor: "not-allowed" },
+    "&:disabled": {
+      opacity: 0.6,
+      cursor: "not-allowed",
+    },
   },
 });
 
