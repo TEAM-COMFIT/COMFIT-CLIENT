@@ -120,7 +120,7 @@ export const SearchAutocomplete = ({
     isOpen &&
     !disabled &&
     !isLocked &&
-    (state === "error" || (state === "success" && items.length > 0));
+    (state === "error" || state === "success");
 
   return (
     <div className={s.root}>
@@ -181,7 +181,8 @@ export const SearchAutocomplete = ({
             )}
           </button>
         </div>
-        {/* 드롭다운 */}{" "}
+
+        {/* 드롭다운 */}
         {shouldShowDropdown && (
           <div className={[s.list, s.listTopVariant[variant]].join(" ")}>
             {state === "error" && (
@@ -190,7 +191,14 @@ export const SearchAutocomplete = ({
               </div>
             )}
 
+            {state === "success" && items.length === 0 && (
+              <div className={s.emptyBox}>
+                해당 키워드가 포함된 결과가 없습니다.
+              </div>
+            )}
+
             {state === "success" &&
+              items.length > 0 &&
               items.map((it, idx) => {
                 const isHighlighted = idx === highlightedIndex;
 
