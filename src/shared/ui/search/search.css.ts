@@ -1,4 +1,4 @@
-import { globalStyle, style } from "@vanilla-extract/css";
+import { style } from "@vanilla-extract/css";
 import { recipe } from "@vanilla-extract/recipes";
 
 import { themeVars } from "@/app/styles";
@@ -14,6 +14,13 @@ export const container = recipe({
     borderRadius: "16px",
     border: `2px solid ${themeVars.color.blue600}`,
     background: themeVars.color.white,
+
+    selectors: {
+      "&:focus-within": {
+        borderColor: themeVars.color.blue600,
+        boxShadow: `0 0 0 0.3rem ${themeVars.color.blue100}`,
+      },
+    },
   },
 
   variants: {
@@ -35,6 +42,7 @@ export const container = recipe({
         height: "4.8rem",
       },
     },
+
     disabled: {
       true: {
         opacity: 0.6,
@@ -60,8 +68,10 @@ export const input = style({
 
   ...themeVars.fontStyles.body_m_16,
 
-  "::placeholder": {
-    color: themeVars.color.gray400,
+  selectors: {
+    "&::placeholder": {
+      color: themeVars.color.gray400,
+    },
   },
 });
 
@@ -79,18 +89,15 @@ export const iconButton = style({
   border: 0,
   background: "transparent",
   cursor: "pointer",
+
+  selectors: {
+    [`${container.classNames.variants.disabled.true} &`]: {
+      cursor: "not-allowed",
+      opacity: 0.5,
+    },
+  },
 });
 
 export const icon = style({
   color: themeVars.color.blue600,
-});
-
-globalStyle(`${container.classNames.base}:has(${input}:focus)`, {
-  borderColor: themeVars.color.blue600,
-  boxShadow: `0 0 0 0.3rem ${themeVars.color.blue100}`,
-});
-
-globalStyle(`${container.classNames.variants.disabled.true} ${iconButton}`, {
-  cursor: "not-allowed",
-  opacity: 0.5,
 });
