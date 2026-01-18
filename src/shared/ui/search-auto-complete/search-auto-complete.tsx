@@ -11,7 +11,6 @@ import type {
   SearchAutocompleteVariant,
   SearchItem,
 } from "./types";
-import type { KeyboardEvent } from "react";
 
 interface SearchAutocompleteProps {
   variant: SearchAutocompleteVariant;
@@ -29,6 +28,8 @@ interface SearchAutocompleteProps {
 
   selectedItem?: SearchItem | null;
   setSelectedItem?: (item: SearchItem | null) => void;
+
+  ariaLabel?: string;
 }
 
 export const SearchAutocomplete = ({
@@ -75,7 +76,7 @@ export const SearchAutocomplete = ({
   const [isFocused, setIsFocused] = useState(false);
   const inputRef = useRef<HTMLInputElement | null>(null);
 
-  const isLocked = Boolean(selected);
+  const isLocked = Boolean(selected) && showSelectedTag;
   const hasValue = query.trim().length > 0;
 
   const rightIconMode = useMemo<"search" | "clear">(() => {
@@ -83,11 +84,20 @@ export const SearchAutocomplete = ({
     return hasValue ? "clear" : "search";
   }, [hasValue, isLocked]);
 
+  const inputValue = useMemo(() => {
+    if (showSelectedTag) return selected ? "" : query;
+    return selected ? selected.label : query;
+  }, [query, selected, showSelectedTag]);
+
+  const inputPlaceholder = useMemo(() => {
+    if (showSelectedTag) return selected ? "" : placeholder;
+    return placeholder;
+  }, [placeholder, selected, showSelectedTag]);
+
   const handleSelect = useCallback(
     (item: SearchItem) => {
       innerSelectItem(item);
       setSelectedItem?.(item);
-
       onSelect?.(item);
     },
     [innerSelectItem, onSelect, setSelectedItem]
@@ -105,37 +115,6 @@ export const SearchAutocomplete = ({
 
   const shouldApplyFocusStyle = variant !== "onboarding";
   const isOnboarding = variant === "onboarding";
-
-  const handleOptionKeyDown = useCallback(
-    (e: KeyboardEvent<HTMLDivElement>, item: SearchItem, idx: number) => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        handleSelect(item);
-        return;
-      }
-
-      if (e.key === "ArrowDown") {
-        e.preventDefault();
-        const nextIdx = Math.min(idx + 1, items.length - 1);
-        setHighlightedIndex(nextIdx);
-        return;
-      }
-
-      if (e.key === "ArrowUp") {
-        e.preventDefault();
-        const prevIdx = Math.max(idx - 1, 0);
-        setHighlightedIndex(prevIdx);
-        return;
-      }
-
-      if (e.key === "Escape") {
-        e.preventDefault();
-        close();
-        inputRef.current?.focus();
-      }
-    },
-    [handleSelect, items.length, setHighlightedIndex, close]
-  );
 
   return (
     <div className={s.root}>
@@ -156,8 +135,8 @@ export const SearchAutocomplete = ({
           <input
             ref={inputRef}
             className={s.input}
-            placeholder={selected ? "" : placeholder}
-            value={selected ? "" : query}
+            placeholder={inputPlaceholder}
+            value={inputValue}
             disabled={disabled || isLocked}
             onChange={(e) => {
               if (disabled || isLocked) return;
@@ -195,7 +174,7 @@ export const SearchAutocomplete = ({
                 if (query.trim().length >= minQueryLength) open();
               }
             }}
-            aria-label={rightIconMode === "clear" ? "clear" : "search"}
+            aria-label={rightIconMode === "clear" ? "지우기" : "검색"}
           >
             {rightIconMode === "clear" ? <IconCancel /> : <IconSearch />}
           </button>
@@ -203,10 +182,7 @@ export const SearchAutocomplete = ({
 
         {/* 드롭다운 */}
         {isOpen && !disabled && !isLocked && (
-          <div
-            role="listbox"
-            className={[s.list, s.listTopVariant[variant]].join(" ")}
-          >
+          <div className={[s.list, s.listTopVariant[variant]].join(" ")}>
             {state === "error" && (
               <div className={s.emptyBox}>
                 {errorMessage ?? "기업 검색에 실패했습니다. 다시 시도해주세요."}
@@ -230,8 +206,6 @@ export const SearchAutocomplete = ({
                 return (
                   <div
                     key={it.id}
-                    role="option"
-                    aria-selected={isHighlighted}
                     tabIndex={isHighlighted ? 0 : -1}
                     className={[
                       s.item,
@@ -249,7 +223,6 @@ export const SearchAutocomplete = ({
                       e.preventDefault();
                       handleSelect(it);
                     }}
-                    onKeyDown={(e) => handleOptionKeyDown(e, it, idx)}
                   >
                     {it.label}
                   </div>
