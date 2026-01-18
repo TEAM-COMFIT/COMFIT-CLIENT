@@ -69,6 +69,26 @@ export const textarea = style({
       color: themeVars.color.gray500,
       ...themeVars.fontStyles.body_m_16,
     },
+    "&::-webkit-scrollbar": {
+      width: "6px",
+    },
+    "&::-webkit-scrollbar-track": {
+      background: "transparent",
+    },
+    "&::-webkit-scrollbar-thumb": {
+      background: "transparent",
+      borderRadius: "10px",
+    },
+
+    // 2. Focus 되었을 때만 스크롤바 막대 색상을 보여줌
+    "&:focus::-webkit-scrollbar-thumb": {
+      background: themeVars.color.gray400,
+    },
+
+    // 3. (옵션) 마우스를 올렸을 때(Hover)도 보여주고 싶다면 추가
+    "&:hover::-webkit-scrollbar-thumb": {
+      background: themeVars.color.gray400,
+    },
   },
 });
 
