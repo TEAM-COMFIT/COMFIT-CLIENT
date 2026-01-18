@@ -51,7 +51,6 @@ export const InterestSelectBase = <T extends string>({
 
   const openOnlyThis = () => {
     if (lockedInstanceId && lockedInstanceId !== instanceId) return;
-
     if (isOpen) return;
 
     lockedInstanceId = instanceId;
@@ -94,7 +93,7 @@ export const InterestSelectBase = <T extends string>({
           }}
         >
           {selected ? (
-            <Tag type="xlabel" onCancel={() => setSelected(null)}>
+            <Tag xlabel onCancel={() => setSelected(null)}>
               {selected}
             </Tag>
           ) : (
@@ -121,11 +120,8 @@ export const InterestSelectBase = <T extends string>({
                           : "default",
                     })}
                     onClick={() => {
-                      if (isSelected) {
-                        setSelected(null);
-                      } else {
-                        setSelected(opt);
-                      }
+                      if (isSelected) setSelected(null);
+                      else setSelected(opt);
                     }}
                   >
                     {opt}
