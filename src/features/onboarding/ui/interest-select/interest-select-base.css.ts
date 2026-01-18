@@ -1,4 +1,5 @@
 import { style, styleVariants } from "@vanilla-extract/css";
+import { recipe } from "@vanilla-extract/recipes";
 
 import { fontStyles } from "@shared/styles/font-style.css";
 import { color } from "@shared/styles/tokens/color.css";
@@ -36,24 +37,27 @@ export const asterisk = style({
   color: color.orange500,
 });
 
-export const inputBox = style({
-  width: "88rem",
-  height: "6rem",
-  borderRadius: "16px",
-  padding: "1.4rem 1.6rem",
-  background: color.gray100,
-  border: `1px solid ${color.gray200}`,
-  display: "flex",
-  alignItems: "center",
-  gap: "0.8rem",
-});
-
-export const inputBoxClickable = style({
-  cursor: "pointer",
-});
-
-export const inputBoxDefault = style({
-  cursor: "default",
+export const inputBox = recipe({
+  base: {
+    width: "88rem",
+    height: "6rem",
+    borderRadius: "16px",
+    padding: "1.4rem 1.6rem",
+    background: color.gray100,
+    border: `1px solid ${color.gray200}`,
+    display: "flex",
+    alignItems: "center",
+    gap: "0.8rem",
+  },
+  variants: {
+    isOpen: {
+      true: { cursor: "default" },
+      false: { cursor: "pointer" },
+    },
+  },
+  defaultVariants: {
+    isOpen: false,
+  },
 });
 
 export const placeholder = style([

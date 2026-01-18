@@ -25,7 +25,6 @@ export const InterestSelectBase = <T extends string>({
 
   return (
     <section className={styles.container} data-variant={variant}>
-      {/* Onboarding Box */}
       <div className={styles.boxWrapper}>
         <div className={styles.titleRow}>
           <span className={styles.title}>{title}</span>
@@ -33,9 +32,7 @@ export const InterestSelectBase = <T extends string>({
         </div>
 
         <div
-          className={`${styles.inputBox} ${
-            !isOpen ? styles.inputBoxClickable : styles.inputBoxDefault
-          }`}
+          className={styles.inputBox({ isOpen })}
           onClick={() => {
             if (!isOpen) setIsOpen(true);
           }}
@@ -63,7 +60,6 @@ export const InterestSelectBase = <T extends string>({
           )}
         </div>
 
-        {/* Select Area */}
         {isOpen && (
           <div className={styles.selectArea}>
             <div className={styles.gridContainer}>
@@ -80,7 +76,6 @@ export const InterestSelectBase = <T extends string>({
                     type="button"
                     className={cls}
                     onClick={() => {
-                      // 이미 선택된 항목을 클릭하면 선택 해제 (토글)
                       if (isSelected) {
                         setSelected(null);
                       } else {
