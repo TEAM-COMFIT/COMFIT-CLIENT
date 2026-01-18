@@ -40,7 +40,7 @@ const CompanyIssue = ({
         <time className={styles.date}>{date}</time>
 
         <div className={styles.content}>
-          <div className={styles.title}>{title}</div>
+          <h3 className={styles.title}>{title}</h3>
           <p className={styles.description}>{description}</p>
         </div>
       </div>
