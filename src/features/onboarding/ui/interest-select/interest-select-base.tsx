@@ -65,13 +65,18 @@ export const InterestSelectBase = <T extends string>({
             <div className={styles.gridContainer}>
               {options.map((opt) => {
                 const isSelected = selected === opt;
+                const hasSelected = Boolean(selected);
 
                 return (
                   <button
                     key={opt}
                     type="button"
                     className={styles.optionButton({
-                      state: isSelected ? "selected" : "default",
+                      state: isSelected
+                        ? "selected"
+                        : hasSelected
+                          ? "inactive"
+                          : "default",
                     })}
                     onClick={() => {
                       if (isSelected) {

@@ -102,17 +102,24 @@ export const optionButton = recipe({
       cursor: "pointer",
       border: `1.5px solid ${themeVars.color.gray300}`,
       background: themeVars.color.gray100,
-      color: themeVars.color.gray400,
+
+      color: themeVars.color.gray600,
     },
   ],
   variants: {
     state: {
       default: {},
+
+      inactive: {
+        color: themeVars.color.gray400,
+      },
+
       selected: {
         background: themeVars.color.blue200,
         border: `1.5px solid ${themeVars.color.blue400}`,
         color: themeVars.color.blue600,
       },
+
       disabled: {
         cursor: "not-allowed",
         opacity: 0.6,
