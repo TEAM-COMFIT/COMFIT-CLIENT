@@ -2,7 +2,6 @@ import { globalStyle, style } from "@vanilla-extract/css";
 import { recipe } from "@vanilla-extract/recipes";
 
 import { themeVars } from "@/app/styles";
-import { fontStyles } from "@/shared/styles/font-style.css";
 
 export const container = recipe({
   base: {
@@ -59,7 +58,7 @@ export const input = style({
   height: "100%",
   color: themeVars.color.black,
 
-  ...fontStyles.body_m_16,
+  ...themeVars.fontStyles.body_m_16,
 
   "::placeholder": {
     color: themeVars.color.gray400,
