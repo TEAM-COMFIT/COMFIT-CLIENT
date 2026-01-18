@@ -10,6 +10,9 @@ import KERORO from "@/shared/assets/images/comfit_web_status.jpg";
 import { Alert } from "@/shared/ui/alert";
 import { useAlert } from "@/shared/ui/alert/use-alert";
 import { SearchAutocomplete } from "@/shared/ui/search-auto-complete/search-auto-complete";
+import { Search } from "@/shared/ui/index";
+import { CompanyGridContainer } from "@/shared/ui/pagination/company-list-container";
+import { MatchingListContainer } from "@/shared/ui/pagination/matching-list-container";
 import { Textfield } from "@/shared/ui/textfield";
 import { CompanyCard } from "@/widgets";
 import Heart from "@icons/heart.svg?react";
@@ -21,6 +24,7 @@ import type { SearchItem } from "@/shared/ui/search-auto-complete/types";
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 const HomePage = () => {
+
   // 목업 데이터 (UI 확인용)
   const universities = useMemo<SearchItem[]>(
     () => [
@@ -68,6 +72,7 @@ const HomePage = () => {
     if (!q) return [];
     return companies.filter((x) => x.label.toLowerCase().includes(q));
   };
+  const [value, setValue] = useState("");
   const { alertState, actions } = useAlert({
     defaultOpen: true,
     defaultVariant: "info",
@@ -85,6 +90,28 @@ const HomePage = () => {
       <h1>프리텐다드</h1>
       <p>카카오로 시작하기</p>
 
+      {/* Search 공통 컴포넌트 임시 확인 영역 */}
+      <div style={{ margin: "2.4rem 0" }}>
+        <Search
+          size="full"
+          value={value}
+          onChange={setValue}
+          onSearch={(v: string) => {
+            if (import.meta.env.DEV) {
+              console.warn("search:", v);
+            }
+          }}
+          placeholder="Search"
+        />
+      </div>
+
+      {/* 사이즈별 확인 */}
+      <Search size="large" placeholder="Large" />
+      <div style={{ height: "1.2rem" }} />
+      <Search size="medium" placeholder="Medium" />
+      <div style={{ height: "1.2rem" }} />
+      <Search size="small" placeholder="Small" />
+
       <CompanyCard
         logoUrl={KERORO}
         id={1}
@@ -92,6 +119,9 @@ const HomePage = () => {
         industry={"MEDIA_CONTENTS"}
         scale={"LARGE"}
       />
+
+      <CompanyGridContainer />
+      <MatchingListContainer />
 
       <img src={KERORO} alt="Keroro" width={400} />
 
