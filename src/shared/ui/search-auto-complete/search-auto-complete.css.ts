@@ -119,10 +119,6 @@ export const list = style({
 
   paddingTop: "0.4rem",
   paddingLeft: "0.4rem",
-  paddingBottom: "0.4rem",
-  paddingRight: "1.2rem",
-
-  boxSizing: "border-box",
 
   scrollbarGutter: "stable",
 });
