@@ -114,6 +114,12 @@ export const SearchAutocomplete = ({
 
   const isOnboarding = variant === "onboarding";
 
+  const shouldShowDropdown =
+    isOpen &&
+    !disabled &&
+    !isLocked &&
+    (state === "error" || (state === "success" && items.length > 0));
+
   return (
     <div className={s.root}>
       <div className={[s.wrapper, s.wrapperVariant[variant]].join(" ")}>
@@ -147,6 +153,7 @@ export const SearchAutocomplete = ({
               window.setTimeout(() => close(), 120);
             }}
             onKeyDown={onKeyDown}
+            aria-label={placeholder}
           />
 
           <button
@@ -170,21 +177,11 @@ export const SearchAutocomplete = ({
         </div>
 
         {/* 드롭다운 */}
-        {isOpen && !disabled && !isLocked && (
+        {shouldShowDropdown && (
           <div className={[s.list, s.listTopVariant[variant]].join(" ")}>
             {state === "error" && (
               <div className={s.emptyBox}>
                 {errorMessage ?? "기업 검색에 실패했습니다. 다시 시도해주세요."}
-              </div>
-            )}
-
-            {state === "loading" && (
-              <div className={s.emptyBox}>검색 중...</div>
-            )}
-
-            {state === "success" && items.length === 0 && (
-              <div className={s.emptyBox}>
-                해당 키워드가 포함된 결과가 없습니다.
               </div>
             )}
 
