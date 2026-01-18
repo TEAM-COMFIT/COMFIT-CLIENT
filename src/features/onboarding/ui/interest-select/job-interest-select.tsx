@@ -1,6 +1,5 @@
-import { JOB_OPTIONS } from "../../config/interest-select.constants";
-
-import { InterestSelectBase } from "./interest-select-base";
+import { JOB_OPTIONS } from "@features/onboarding/config/interest-select.constants";
+import { InterestSelectBase } from "@features/onboarding/ui/interest-select/interest-select-base";
 
 interface JobInterestSelectProps {
   priority?: number;
