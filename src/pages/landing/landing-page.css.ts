@@ -1,10 +1,11 @@
 import { style } from "@vanilla-extract/css";
 
 import { themeVars } from "@/app/styles";
-import { BANNER_BG } from "@images/index";
+import { BANNER_BG, SECTION_BG } from "@images/index";
 
 const textAlign = {
   right: { textAlign: "right" },
+  center: { textAlign: "center" },
 } as const;
 
 export const layout = style({
@@ -25,7 +26,6 @@ export const banner = style({
   height: "100rem",
   padding: "0 7.2rem",
   borderRadius: "32px",
-  //backgroundColor: themeVars.color.white,
 });
 
 export const bannerWrapper = style({
@@ -115,3 +115,25 @@ export const worryCardContent = style({
 });
 
 /** ------ 세 번째 섹션------ */
+export const third = style({
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  alignItems: "center",
+  gap: "8rem",
+
+  height: "100rem",
+  background: `url(${SECTION_BG}) no-repeat center/cover`,
+});
+
+export const thirdTitle = style({
+  ...textAlign.center,
+  ...themeVars.fontStyles.title_b_36,
+  fontWeight: 700,
+});
+
+export const landingCard = style({
+  display: "flex",
+  flexDirection: "column",
+  gap: "3.2rem",
+});

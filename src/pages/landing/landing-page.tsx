@@ -37,17 +37,24 @@ const LandingPage = () => {
         </div>
       </div>
       {/** 세 번째 섹션 */}
-      <div className="섹션2"></div>
-      <div className="섹션3">
-        {LANDING_CARD_ITEMS.map((item) => (
-          <LandingCard
-            key={item.title}
-            title={item.title}
-            content={item.content}
-            sideImg={item.sideImg}
-          />
-        ))}
+      <div className={styles.third}>
+        <h1 className={styles.thirdTitle}>
+          <span className={styles.blueText}>컴핏이 제공하는 솔루션</span>
+          <br />
+          체계적인 프로세스로 준비 방향을 명확하게 잡아드립니다
+        </h1>
+        <div className={styles.landingCard}>
+          {LANDING_CARD_ITEMS.map((item) => (
+            <LandingCard
+              key={item.title}
+              title={item.title}
+              content={item.content}
+              sideImg={item.sideImg}
+            />
+          ))}
+        </div>
       </div>
+      <div className="섹션3"></div>
       <div className="섹션4"></div>
       <div className="푸터1"></div>
     </div>
