@@ -24,7 +24,7 @@ export const inputShell = style({
 
   background: themeVars.color.white,
   borderStyle: "solid",
-  borderWidth: 2,
+  borderWidth: "2px",
 
   transition: "border-color 120ms ease, box-shadow 120ms ease",
 });
@@ -33,28 +33,28 @@ export const inputShellVariant = styleVariants({
   onboarding: {
     height: "6rem",
     padding: "0 0.8rem 0 1.6rem",
-    borderRadius: 16,
+    borderRadius: "16px",
     borderColor: themeVars.color.normal,
   },
   home: {
     height: "6rem",
     padding: "0.6rem 0.8rem 0.6rem 1.6rem",
-    borderRadius: 12,
+    borderRadius: "12px",
     borderColor: themeVars.color.blue600,
   },
   matchingExperienceList: {
     height: "4.8rem",
     padding: "0 0.8rem 0 1.6rem",
-    borderRadius: 12,
+    borderRadius: "12px",
     borderColor: themeVars.color.blue600,
   },
 });
 
 export const input = style({
   flex: 1,
-  minWidth: 0,
+  minWidth: "0rem",
 
-  border: 0,
+  border: "0px",
   outline: "none",
   background: "transparent",
 
@@ -73,7 +73,7 @@ export const iconButton = style({
   display: "grid",
   placeItems: "center",
 
-  border: 0,
+  border: "0px",
   background: "transparent",
   cursor: "pointer",
 
@@ -105,10 +105,10 @@ globalStyle(`${iconButton} svg *`, {
 
 export const list = style({
   position: "absolute",
-  left: 0,
-  right: 0,
+  left: "0rem",
+  right: "0rem",
 
-  borderRadius: 10,
+  borderRadius: "10px",
   background: themeVars.color.white,
   border: `1.5px solid ${themeVars.color.gray200}`,
   boxShadow: themeVars.shadow.shadow1,
@@ -141,8 +141,8 @@ globalStyle(`${list}::-webkit-scrollbar-thumb`, {
   minHeight: "4rem",
   borderLeft: "0.4rem solid transparent",
   borderRight: "0.4rem solid transparent",
-  borderTop: 0,
-  borderBottom: 0,
+  borderTop: "0px",
+  borderBottom: "0px",
   backgroundClip: "padding-box",
 });
 
@@ -175,7 +175,7 @@ export const emptyBox = style({
   ...themeVars.fontStyles.cap_m_12,
   color: themeVars.color.gray500,
 
-  borderRadius: 8,
+  borderRadius: "8px",
 });
 
 export const item = recipe({
@@ -189,10 +189,10 @@ export const item = recipe({
     ...themeVars.fontStyles.body_m_14,
     color: themeVars.color.gray800,
 
-    borderRadius: 8,
+    borderRadius: "8px",
     background: "transparent",
 
-    border: 0,
+    border: "0px",
     textAlign: "left",
     cursor: "pointer",
   },
