@@ -48,7 +48,7 @@ export const title = style({
 });
 
 export const gradientTitle = style({
-  backgroundColor: themeVars.gradient.bluePrimary,
+  background: themeVars.gradient.bluePrimary,
   WebkitBackgroundClip: "text",
   WebkitTextFillColor: "transparent",
 
@@ -136,4 +136,46 @@ export const landingCard = style({
   display: "flex",
   flexDirection: "column",
   gap: "3.2rem",
+});
+
+/** -------- 네 번째 섹션-------- */
+export const fourth = style({
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  alignItems: "center",
+  gap: "8rem",
+
+  padding: "15.6rem",
+});
+
+export const fourthHeader = style({
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  alignItems: "center",
+  gap: "4rem",
+});
+
+export const fourtTitleWrapper = style({
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  gap: "0.4rem",
+});
+
+export const fourthTitle = style({
+  color: themeVars.color.gray800,
+  ...themeVars.fontStyles.title_b_36,
+  fontWeight: 700,
+});
+
+export const fourthSubtitle = style({
+  color: themeVars.color.gray500,
+  ...themeVars.fontStyles.hline_m_18,
+});
+
+/**-------- 다섯 번째 섹션-------- */
+export const fifth = style({
+  backgroundColor: themeVars.color.blue100,
 });

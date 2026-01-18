@@ -1,7 +1,6 @@
+import { LandingCard, WorryCard, PointCard } from "@/features/landing";
 import { LANDING_CARD_ITEMS } from "@/features/landing/config/landing-card.constant";
-import { LandingCard } from "@/features/landing/ui/landing-card/landing-card";
-import { WorryCard } from "@/features/landing/ui/worry-card/worry-card";
-import { CHARACTER, FLOAT_IMG } from "@/shared/assets/images";
+import { CHARACTER, FLOAT_IMG, KEY } from "@/shared/assets/images";
 
 import * as styles from "./landing-page.css";
 
@@ -54,8 +53,23 @@ const LandingPage = () => {
           ))}
         </div>
       </div>
-      <div className="섹션3"></div>
-      <div className="섹션4"></div>
+      {/** 네 번째 섹션 */}
+      <div className={styles.fourth}>
+        <div className={styles.fourthHeader}>
+          <img src={KEY} alt="키 캐릭터" />
+          <div className={styles.fourtTitleWrapper}>
+            <h1 className={styles.fourthTitle}>
+              <span className={styles.blueText}>컴핏과 함께하면</span> 확실하게
+              달라집니다!
+            </h1>
+            <p className={styles.fourthSubtitle}>
+              내가 지원하고 싶은 기업과 나, 이렇게 연결해드려요!
+            </p>
+          </div>
+        </div>
+        <PointCard />
+      </div>
+      <div className={styles.fifth}></div>
       <div className="푸터1"></div>
     </div>
   );
