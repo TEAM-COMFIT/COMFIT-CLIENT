@@ -2,15 +2,13 @@ import { useMemo, useState } from "react";
 
 import { MajorCompanyCard } from "@/features/home/ui";
 import { Company } from "@/shared/assets/images";
-import { CompanyGridContainer } from "@/shared/ui/pagination/company-list-container";
-import { MatchingListContainer } from "@/shared/ui/pagination/matching-list-container";
+import KERORO from "@/shared/assets/images/comfit_web_status.jpg";
+import { SearchAutocomplete } from "@/shared/ui/search-auto-complete/search-auto-complete";
 import { CompanyCard } from "@/widgets";
-import KERORO from "@images/comfit_web_status.jpg";
-import { SearchAutocomplete } from "@shared/ui/search-auto-complete/search-auto-complete";
 
 import { appContainer } from "./home-page.css";
 
-import type { SearchItem } from "@shared/ui/search-auto-complete/types";
+import type { SearchItem } from "@/shared/ui/search-auto-complete/types";
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
@@ -70,6 +68,7 @@ const HomePage = () => {
     >
       <h1>프리텐다드</h1>
       <p>카카오로 시작하기</p>
+
       <CompanyCard
         logoUrl={KERORO}
         id={1}
@@ -77,9 +76,9 @@ const HomePage = () => {
         industry={"MEDIA_CONTENTS"}
         scale={"LARGE"}
       />
-      <CompanyGridContainer />
-      <MatchingListContainer />
+
       <img src={KERORO} alt="Keroro" width={400} />
+
       {/* 온보딩 자동완성 search */}
       <section style={{ display: "grid", gap: 10 }}>
         <h2 style={{ margin: 0, fontSize: 14, fontWeight: 600 }}>
@@ -92,16 +91,11 @@ const HomePage = () => {
           fetchItems={fetchUniversities}
           selectedItem={selectedUniversity}
           setSelectedItem={setSelectedUniversity}
-          onSelect={(item) => {
-            // TODO: 실제 선택 핸들러 연동 필요
-            setSelectedUniversity(item);
-          }}
-          onClear={() => {
-            setSelectedUniversity(null);
-          }}
-          // showSelectedTag 기본값 true라 생략 가능
+          onSelect={setSelectedUniversity}
+          onClear={() => setSelectedUniversity(null)}
         />
       </section>
+
       {/* 홈 자동완성 search */}
       <section style={{ display: "grid", gap: 10 }}>
         <h2 style={{ margin: 0, fontSize: 14, fontWeight: 600 }}>홈 Search</h2>
@@ -112,15 +106,11 @@ const HomePage = () => {
           fetchItems={fetchCompanies}
           selectedItem={selectedHomeCompany}
           setSelectedItem={setSelectedHomeCompany}
-          onSelect={(item) => {
-            // TODO: 실제 선택 핸들러 연동 필요
-            setSelectedHomeCompany(item);
-          }}
-          onClear={() => {
-            setSelectedHomeCompany(null);
-          }}
+          onSelect={setSelectedHomeCompany}
+          onClear={() => setSelectedHomeCompany(null)}
         />
       </section>
+
       {/* 매칭 경험 목록 자동완성 search */}
       <section style={{ display: "grid", gap: 10 }}>
         <h2 style={{ margin: 0, fontSize: 14, fontWeight: 600 }}>
@@ -133,15 +123,11 @@ const HomePage = () => {
           fetchItems={fetchCompanies}
           selectedItem={selectedMatchingCompany}
           setSelectedItem={setSelectedMatchingCompany}
-          onSelect={(item) => {
-            // TODO: 실제 선택 핸들러 연동 필요
-            setSelectedMatchingCompany(item);
-          }}
-          onClear={() => {
-            setSelectedMatchingCompany(null);
-          }}
+          onSelect={setSelectedMatchingCompany}
+          onClear={() => setSelectedMatchingCompany(null)}
         />
       </section>
+
       <MajorCompanyCard
         id={1}
         companyName="IBK 기업은행"
@@ -149,6 +135,7 @@ const HomePage = () => {
         type="medium"
         imgUrl={Company}
       />
+
       <MajorCompanyCard
         id={2}
         companyName="컴핏"
