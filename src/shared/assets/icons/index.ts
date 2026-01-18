@@ -16,7 +16,6 @@ export { default as IconArrowRight } from "./arrow_right.svg?react";
 export { default as IconDoubleArrowLeft } from "./double_arrow_left.svg?react";
 export { default as IconDoubleArrowRight } from "./double_arrow_right.svg?react";
 
-export { default as IconSearch } from "./search.svg?react";
 export { default as IconCancel } from "./cancel.svg?react";
 export { default as IconMove } from "./move_detail_page_icon.svg?react";
 
