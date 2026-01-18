@@ -21,11 +21,17 @@ const CompanyIssue = ({
   rel,
   ...props
 }: CompanyIssueProps) => {
+  const safeRel =
+    target === "_blank"
+      ? Array.from(
+          new Set(["noopener", "noreferrer", ...(rel?.split(" ") ?? [])])
+        ).join(" ")
+      : rel;
   return (
     <a
       href={href}
       target={target}
-      rel={rel ?? "noopener noreferrer"}
+      rel={safeRel}
       className={[styles.container, className].filter(Boolean).join(" ")}
       aria-label={`${date} ${title} 새 탭에서 열기`}
       {...props}
