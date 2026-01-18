@@ -23,7 +23,7 @@ export const Header = () => {
       <div className={styles.header}>
         <div className={styles.menus}>
           <NavLink to="/" aria-label="메인으로 이동">
-            <img src={Logo} className={styles.menu()} alt="로고" />
+            <img src={Logo} className={styles.logo} alt="로고" />
           </NavLink>
           <nav className={styles.textMenus}>
             {NAV_ITEMS.map((item) => (

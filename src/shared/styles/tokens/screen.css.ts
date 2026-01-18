@@ -7,7 +7,7 @@ export const screenBreakpoints = {
 export const screen = {
   mobile: (css: CSSProperties) => ({
     "@media": {
-      "(min-width: 375px)": css,
+      "(max-width: 375px)": css,
     },
   }),
 } as const;
