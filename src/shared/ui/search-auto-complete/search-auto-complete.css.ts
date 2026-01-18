@@ -1,9 +1,6 @@
 import { globalStyle, style, styleVariants } from "@vanilla-extract/css";
 
-import { fontStyles } from "@/shared/styles/font-style.css";
-import { color } from "@/shared/styles/tokens/color.css";
-import { shadow } from "@/shared/styles/tokens/shadow.css";
-import { zIndex } from "@/shared/styles/tokens/z-index.css";
+import { themeVars } from "@/app/styles";
 
 export const root = style({ width: "100%" });
 
@@ -24,7 +21,7 @@ export const inputShell = style({
   alignItems: "center",
   justifyContent: "space-between",
 
-  background: color.white,
+  background: themeVars.color.white,
   borderStyle: "solid",
   borderWidth: 2,
 
@@ -36,19 +33,19 @@ export const inputShellVariant = styleVariants({
     height: "6rem",
     padding: "0 0.8rem 0 1.6rem",
     borderRadius: 16,
-    borderColor: color.normal,
+    borderColor: themeVars.color.normal,
   },
   home: {
     height: "6rem",
     padding: "0.6rem 0.8rem 0.6rem 1.6rem",
     borderRadius: 12,
-    borderColor: color.blue600,
+    borderColor: themeVars.color.blue600,
   },
   matchingExperienceList: {
     height: "4.8rem",
     padding: "0 0.8rem 0 1.6rem",
     borderRadius: 12,
-    borderColor: color.blue600,
+    borderColor: themeVars.color.blue600,
   },
 });
 
@@ -60,11 +57,11 @@ export const input = style({
   outline: "none",
   background: "transparent",
 
-  ...fontStyles.hline_m_18,
-  color: color.gray800,
+  ...themeVars.fontStyles.hline_m_18,
+  color: themeVars.color.gray800,
 
   "::placeholder": {
-    color: color.gray400,
+    color: themeVars.color.gray400,
   },
 });
 
@@ -80,7 +77,7 @@ export const iconButton = style({
   background: "transparent",
   cursor: "pointer",
 
-  color: color.gray400,
+  color: themeVars.color.gray400,
 
   selectors: {
     "&:disabled": {
@@ -91,9 +88,9 @@ export const iconButton = style({
 });
 
 export const iconButtonVariant = styleVariants({
-  onboarding: { color: color.gray400 },
-  home: { color: color.blue600 },
-  matchingExperienceList: { color: color.blue600 },
+  onboarding: { color: themeVars.color.gray400 },
+  home: { color: themeVars.color.blue600 },
+  matchingExperienceList: { color: themeVars.color.blue600 },
 });
 
 globalStyle(`${iconButton} svg`, {
@@ -112,10 +109,10 @@ export const list = style({
   right: 0,
 
   borderRadius: 8,
-  background: color.white,
-  border: `1.5px solid ${color.gray200}`,
-  boxShadow: shadow.shadow1,
-  zIndex: Number(zIndex.dropdownMenu),
+  background: themeVars.color.white,
+  border: `1.5px solid ${themeVars.color.gray200}`,
+  boxShadow: themeVars.shadow.shadow1,
+  zIndex: themeVars.zIndex.dropdownMenu,
 
   maxHeight: "20.8rem",
   overflowY: "auto",
@@ -151,7 +148,7 @@ globalStyle(`${list}::-webkit-scrollbar-thumb`, {
 });
 
 globalStyle(`${list}:hover::-webkit-scrollbar-thumb`, {
-  backgroundColor: color.gray300,
+  backgroundColor: themeVars.color.gray300,
 });
 
 globalStyle(`${list}`, {
@@ -161,7 +158,7 @@ globalStyle(`${list}`, {
 
 globalStyle(`${list}:hover`, {
   scrollbarWidth: "thin",
-  scrollbarColor: `${color.gray300} transparent`,
+  scrollbarColor: `${themeVars.color.gray300} transparent`,
 });
 
 export const listTopVariant = styleVariants({
@@ -176,8 +173,8 @@ export const emptyBox = style({
   placeItems: "center",
   textAlign: "center",
 
-  ...fontStyles.cap_m_12,
-  color: color.gray500,
+  ...themeVars.fontStyles.cap_m_12,
+  color: themeVars.color.gray500,
 
   borderRadius: 8,
 });
@@ -188,8 +185,8 @@ export const item = style({
   alignItems: "center",
   padding: "0 1.2rem",
 
-  ...fontStyles.body_m_14,
-  color: color.gray800,
+  ...themeVars.fontStyles.body_m_14,
+  color: themeVars.color.gray800,
 
   cursor: "pointer",
   borderRadius: 8,
@@ -198,20 +195,23 @@ export const item = style({
 
 export const itemState = styleVariants({
   default: { background: "transparent" },
-  hover: { background: color.gray200 },
-  pressed: { background: color.blue600, color: color.white },
+  hover: { background: themeVars.color.gray200 },
+  pressed: {
+    background: themeVars.color.blue600,
+    color: themeVars.color.white,
+  },
 });
 
 export const onboardingItemState = styleVariants({
   default: { background: "transparent" },
-  hover: { background: color.blue200 },
+  hover: { background: themeVars.color.blue200 },
 });
 
 export const onboardingItemPressed = style({
   selectors: {
     "&:active": {
-      background: color.blue600,
-      color: color.white,
+      background: themeVars.color.blue600,
+      color: themeVars.color.white,
     },
   },
 });
