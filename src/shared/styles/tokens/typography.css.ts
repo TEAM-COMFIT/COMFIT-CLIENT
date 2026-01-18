@@ -15,6 +15,7 @@ export const typography = {
   fontWeight: {
     regular: "300",
     medium: "500",
+    semibold: "600",
     bold: "700",
   },
   lineHeight: {

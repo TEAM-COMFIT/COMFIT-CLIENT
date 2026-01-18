@@ -24,14 +24,14 @@ export const titleRow = style({
 export const title = style([
   fontStyles.body_m_16,
   {
-    fontWeight: "600",
+    fontWeight: typography.fontWeight.semibold,
     color: color.black,
   },
 ]);
 
 export const asterisk = style({
   fontSize: typography.fontSize[14],
-  fontWeight: "600",
+  fontWeight: typography.fontWeight.semibold,
   lineHeight: "normal",
   color: color.orange500,
 });
