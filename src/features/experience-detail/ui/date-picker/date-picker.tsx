@@ -1,7 +1,11 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import Calendar from "react-calendar";
 
-import { IconCalendar } from "@/shared/assets/icons";
+import {
+  IconCalendar,
+  DateLeftArrow,
+  DateRightArrow,
+} from "@/shared/assets/icons";
 import { Button } from "@/shared/ui/button/button";
 
 import * as styles from "./date-picker.css";
@@ -36,11 +40,6 @@ const formatFooterText = (date: Date) => {
   const d = pad2(date.getDate());
   return `${y}년 ${m}월 ${d}일`;
 };
-
-const isSameDay = (a: Date, b: Date) =>
-  a.getFullYear() === b.getFullYear() &&
-  a.getMonth() === b.getMonth() &&
-  a.getDate() === b.getDate();
 
 const DatePicker = ({
   label,
@@ -130,15 +129,14 @@ const DatePicker = ({
               }}
               view="month"
               calendarType="gregory"
-              showNeighboringMonth={false}
               selectRange={false}
               prev2Label={null}
               next2Label={null}
               prevLabel={
-                <span className={styles.navIcon}>{prevMonthIcon ?? "<"}</span>
+                prevMonthIcon ?? <DateLeftArrow className={styles.navIcon} />
               }
               nextLabel={
-                <span className={styles.navIcon}>{nextMonthIcon ?? ">"}</span>
+                nextMonthIcon ?? <DateRightArrow className={styles.navIcon} />
               }
               navigationLabel={({ date }) => (
                 <span className={styles.monthLabel}>
@@ -161,12 +159,7 @@ const DatePicker = ({
                 : (placeholder ?? "날짜를 선택해 주세요")}
             </span>
 
-            <Button
-              variant="primary"
-              size="small"
-              onClick={handleConfirm}
-              disabled={!tempDate}
-            >
+            <Button variant="primary" size="small" onClick={handleConfirm}>
               선택
             </Button>
           </div>

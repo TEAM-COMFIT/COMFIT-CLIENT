@@ -59,10 +59,6 @@ export const monthLabel = style({
 export const navIcon = style({
   width: "2.4rem",
   height: "2.4rem",
-  display: "inline-flex",
-  alignItems: "center",
-  justifyContent: "center",
-  cursor: "pointer",
 });
 
 // calendar 스타일링(globalStyle 사용) (react-calendar 라이브러리의 클래스명을 사용해야 함)
@@ -73,24 +69,21 @@ globalStyle(`${calendar} .react-calendar`, {
   width: "100%",
 });
 
-// 달력 헤더
-globalStyle(`${calendar} .react-calendar__month-view__header`, {
-  marginBottom: "1.2rem",
-});
-
 // 달력 네비게이션
 globalStyle(`${calendar} .react-calendar__navigation`, {
   display: "flex",
   flexDirection: "row",
   alignItems: "center",
   justifyContent: "center",
+  width: "31rem",
+  padding: "1rem 1.6rem",
   color: themeVars.color.gray800,
   ...themeVars.fontStyles.body_b_14,
 });
 
 globalStyle(`${calendar} .react-calendar__navigation__label`, {
-  width: "auto",
   cursor: "default",
+  border: "1px solid red",
 });
 
 // 요일 행 스타일링
@@ -138,6 +131,13 @@ globalStyle(`${calendar} .react-calendar__tile`, {
   color: themeVars.color.gray800,
   borderRadius: "100%",
 });
+
+globalStyle(
+  `${calendar} .react-calendar__month-view__days__day--neighboringMonth`,
+  {
+    color: themeVars.color.gray300,
+  }
+);
 
 // 선택된 날짜
 globalStyle(`${calendar} .react-calendar__tile--active`, {
