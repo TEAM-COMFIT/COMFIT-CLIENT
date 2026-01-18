@@ -1,6 +1,6 @@
-import { Tag } from "./tag";
-
 import type { Meta, StoryObj } from "@storybook/react-vite";
+
+import { Tag } from "./tag";
 
 const meta = {
   title: "Shared/Tag",
@@ -12,8 +12,12 @@ const meta = {
   argTypes: {
     type: {
       control: "radio",
-      options: ["label", "xlabel", "register"],
+      options: ["primary", "secondary", "register"],
       description: "태그 타입",
+    },
+    xlabel: {
+      control: "boolean",
+      description: "취소 아이콘 포함 여부(xlabel 타입일 때 사용)",
     },
     children: {
       control: "text",
@@ -80,7 +84,9 @@ export const MultipleTags: Story = {
     <>
       <Tag type="primary">Frontend</Tag>
       <Tag type="secondary">Backend</Tag>
-      <Tag xlabel onCancel={() => console.log("cancel AI")}>
+      <Tag>Frontend</Tag>
+      <Tag>Backend</Tag>
+      <Tag xlabel onCancel={() => console.warn("cancel AI")}>
         AI
       </Tag>
       <Tag type="register">인턴/실무</Tag>
