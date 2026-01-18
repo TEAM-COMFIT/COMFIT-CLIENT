@@ -96,7 +96,12 @@ const DatePicker = ({
               onChange={(value) => {
                 if (value instanceof Date) setTempDate(value);
               }}
+              onActiveStartDateChange={({ activeStartDate }) => {
+                if (activeStartDate) setTempDate(activeStartDate);
+              }}
               view="month"
+              minDetail="month"
+              maxDetail="month"
               calendarType="gregory"
               selectRange={false}
               showNeighboringMonth
@@ -117,15 +122,15 @@ const DatePicker = ({
                   {formatYearMonthKorean(date)}
                 </span>
               )}
-              formatShortWeekday={(_l, d) =>
+              formatShortWeekday={(_, d) =>
                 ["일", "월", "화", "수", "목", "금", "토"][d.getDay()]
               }
-              formatDay={(_l, d) => String(d.getDate())}
+              formatDay={(_, d) => String(d.getDate())}
               className={styles.calendar}
             />
           </div>
 
-          {/* 3번 영역: Footer */}
+          {/* Footer */}
           <div className={styles.menuFooter}>
             <span className={styles.selectedText}>
               {formatDateKorean(tempDate)}

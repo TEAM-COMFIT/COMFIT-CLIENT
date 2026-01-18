@@ -67,7 +67,6 @@ export const calendar = style({
 globalStyle(`${calendar}.react-calendar`, {
   width: "27.4rem",
   margin: "1.4rem 2rem 2.6rem 2rem",
-  boxSizing: "border-box",
 });
 
 // 달력 네비게이션
@@ -80,7 +79,7 @@ globalStyle(`${calendar} .react-calendar__navigation`, {
   height: "4.4rem",
   color: themeVars.color.gray800,
   ...themeVars.fontStyles.body_b_14,
-  // border: "1px solid blue",
+  cursor: "default",
 });
 
 globalStyle(`${calendar} .react-calendar__navigation__arrow`, {
@@ -89,19 +88,7 @@ globalStyle(`${calendar} .react-calendar__navigation__arrow`, {
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  cursor: "pointer",
-});
-
-globalStyle(`${calendar} .react-calendar__navigation__prev-button`, {
-  border: "1px solid red",
-});
-
-globalStyle(`${calendar} .react-calendar__navigation__next-button`, {
-  border: "1px solid red",
-});
-
-globalStyle(`${calendar} .react-calendar__navigation__label`, {
-  cursor: "default",
+  zIndex: themeVars.zIndex.dropdownMenu,
 });
 
 globalStyle(`${calendar} .react-calendar__month-view__weekdays`, {
@@ -142,7 +129,6 @@ globalStyle(`${calendar} .react-calendar__month-view__weekNumbers`, {
 
 // 기본 타일
 globalStyle(`${calendar} .react-calendar__tile`, {
-  padding: 0,
   borderRadius: "50%",
 });
 
@@ -151,8 +137,6 @@ globalStyle(`${calendar} .react-calendar__month-view__days__day`, {
   height: "3.5rem",
   minWidth: "3.5rem",
   maxWidth: "3.5rem",
-  padding: 0,
-  boxSizing: "border-box",
 });
 
 globalStyle(
