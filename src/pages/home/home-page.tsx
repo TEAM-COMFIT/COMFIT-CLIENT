@@ -1,6 +1,6 @@
-import { CompanyIssue } from "@/features/company-detail";
 import { useState } from "react";
 
+import { CompanyIssue } from "@/features/company-detail";
 import { MajorCompanyCard } from "@/features/home/ui";
 import {
   IndustryInterestSelect,
