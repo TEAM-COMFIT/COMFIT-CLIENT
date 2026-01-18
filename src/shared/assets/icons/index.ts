@@ -8,8 +8,6 @@ export { default as IconCompany } from "./icon_company.svg?react";
 
 export { default as RefreshIcon } from "./refresh_icon.svg?react";
 
-export { default as IconCompany } from "./icon_company.svg?react";
-
 export { default as DropdownArrow } from "./dropdown_up_arrow.svg?react";
 export { default as Avatar } from "./avatar.svg?react";
 
