@@ -16,8 +16,9 @@ import { Button } from "@/shared/ui/button/button";
 
 import * as styles from "./date-picker.css";
 
-export type DatePickerTriggerLabel = "시작일" | "종료일" | string;
+import type { CalendarProps } from "react-calendar";
 
+export type DatePickerTriggerLabel = "시작일" | "종료일" | string;
 export interface DatePickerProps {
   label: DatePickerTriggerLabel;
   selectedDate: Date | null;
@@ -49,25 +50,44 @@ const DatePicker = ({
   const containerRef = useRef<HTMLDivElement | null>(null);
   const menuRef = useOutsideClick<HTMLDivElement>(isOpen, close);
 
+  const textVariant = !selectedDate ? "placeholder" : "selected";
   // 임시 선택 날짜 (항상 오늘 기준으로 초기화)
   const [tempDate, setTempDate] = useState<Date>(selectedDate ?? TODAY);
-
-  // 메뉴 열릴 때 tempDate를 selectedDate 또는 오늘로 동기화
-  useEffect(() => {
-    if (!isOpen) return;
-    const next = selectedDate ?? TODAY;
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setTempDate((prev) => (prev.getTime() === next.getTime() ? prev : next));
-  }, [isOpen, selectedDate]);
 
   const triggerText = useMemo(() => {
     if (!selectedDate) return placeholder ?? label;
     return formatDateDot(selectedDate);
   }, [label, placeholder, selectedDate]);
 
-  const handleConfirm = () => {
+  const handleConfirmClick = () => {
     onChangeSelectedDate(tempDate);
     setIsOpen(false);
+  };
+
+  const handleTriggerClick = () => {
+    if (disabled) return;
+
+    if (!isOpen) {
+      // 메뉴를 열 때 현재 선택된 날짜로 tempDate 동기화
+      setTempDate(selectedDate ?? TODAY);
+    }
+    setIsOpen((prev) => !prev);
+  };
+
+  const calendarProps: CalendarProps = {
+    value: tempDate,
+    activeStartDate: tempDate,
+
+    view: "month",
+    minDetail: "month",
+    maxDetail: "month",
+
+    calendarType: "gregory",
+    selectRange: false,
+    showNeighboringMonth: true,
+
+    prev2Label: null,
+    next2Label: null,
   };
 
   return (
@@ -76,37 +96,29 @@ const DatePicker = ({
       <button
         type="button"
         className={styles.trigger}
-        onClick={() => !disabled && setIsOpen((p) => !p)}
+        onClick={handleTriggerClick}
         aria-haspopup="dialog"
         aria-expanded={isOpen}
         disabled={disabled}
       >
-        <span className={styles.triggerText}>{triggerText}</span>
+        <span className={styles.triggerTextVariants[textVariant]}>
+          {triggerText}
+        </span>
         <IconCalendar className={styles.triggerIcon} aria-hidden />
       </button>
 
       {/* Menu */}
       {isOpen && (
         <div ref={menuRef} className={styles.menuWrapper}>
-          {/* 1번 영역: Calendar */}
           <div className={styles.calendar}>
             <Calendar
-              value={tempDate}
-              activeStartDate={tempDate}
+              {...calendarProps}
               onChange={(value) => {
                 if (value instanceof Date) setTempDate(value);
               }}
               onActiveStartDateChange={({ activeStartDate }) => {
                 if (activeStartDate) setTempDate(activeStartDate);
               }}
-              view="month"
-              minDetail="month"
-              maxDetail="month"
-              calendarType="gregory"
-              selectRange={false}
-              showNeighboringMonth
-              prev2Label={null}
-              next2Label={null}
               prevLabel={
                 <span className={styles.navButton}>
                   <DateLeftArrow />
@@ -130,13 +142,12 @@ const DatePicker = ({
             />
           </div>
 
-          {/* Footer */}
           <div className={styles.menuFooter}>
             <span className={styles.selectedText}>
               {formatDateKorean(tempDate)}
             </span>
 
-            <Button variant="primary" size="small" onClick={handleConfirm}>
+            <Button variant="primary" size="small" onClick={handleConfirmClick}>
               선택
             </Button>
           </div>
