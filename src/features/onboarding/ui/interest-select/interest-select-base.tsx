@@ -94,13 +94,7 @@ export const InterestSelectBase = <T extends string>({
           }}
         >
           {selected ? (
-            <Tag
-              type="xlabel"
-              onCancel={(e?: unknown) => {
-                void e;
-                setSelected(null);
-              }}
-            >
+            <Tag type="xlabel" onCancel={() => setSelected(null)}>
               {selected}
             </Tag>
           ) : (
