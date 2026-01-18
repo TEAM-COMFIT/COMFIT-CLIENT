@@ -8,7 +8,6 @@ import type { SearchProps } from "./search.types";
 export const Search = ({
   size = "full",
   placeholder = "Search",
-  disabled = false,
   value,
   defaultValue,
   onChange,
@@ -23,23 +22,21 @@ export const Search = ({
   });
 
   return (
-    <div className={styles.container({ size, disabled })}>
+    <div className={styles.container({ size })}>
       <input
         className={styles.input}
         value={currentValue}
         onChange={actions.onInputChange}
         onKeyDown={actions.onKeyDown}
         placeholder={placeholder}
-        disabled={disabled}
         aria-label={inputAriaLabel}
       />
 
       <button
         type="button"
         className={styles.iconButton}
-        onClick={disabled ? undefined : actions.onClickIcon}
+        onClick={actions.onClickIcon}
         aria-label="검색"
-        disabled={disabled}
       >
         <IconSearch className={styles.icon} aria-hidden="true" />
       </button>
