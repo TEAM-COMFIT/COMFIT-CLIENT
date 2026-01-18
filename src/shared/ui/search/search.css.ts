@@ -59,7 +59,7 @@ export const input = style({
   height: "100%",
   color: themeVars.color.black,
 
-  ...themeVars.fontStyles.body_m_16,
+  ...themeVars.fontStyles.hline_m_18,
 
   selectors: {
     "&::placeholder": {
