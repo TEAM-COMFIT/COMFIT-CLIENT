@@ -23,6 +23,14 @@ export const container = style({
 
   color: "inherit",
   textDecoration: "none",
+
+  "@media": {
+    "screen and (max-width: 768px)": {
+      height: "auto",
+      gap: "2rem",
+      padding: "2rem 1.6rem",
+    },
+  },
 });
 
 export const leftGroup = style({
@@ -32,6 +40,14 @@ export const leftGroup = style({
   paddingLeft: "2.15rem",
 
   minWidth: 0,
+
+  "@media": {
+    "screen and (max-width: 768px)": {
+      gap: "2rem",
+      paddingLeft: 0,
+      flexWrap: "wrap",
+    },
+  },
 });
 
 export const date = style({
@@ -51,6 +67,12 @@ export const content = style({
   textAlign: "left",
 
   minWidth: 0,
+
+  "@media": {
+    "screen and (max-width: 768px)": {
+      width: "100%",
+    },
+  },
 });
 
 export const title = style({
