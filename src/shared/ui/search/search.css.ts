@@ -35,21 +35,10 @@ export const container = recipe({
         height: "4.8rem",
       },
     },
-
-    disabled: {
-      true: {
-        opacity: 0.6,
-        cursor: "not-allowed",
-        background: themeVars.color.gray100,
-        borderColor: themeVars.color.gray300,
-      },
-      false: {},
-    },
   },
 
   defaultVariants: {
     size: "full",
-    disabled: false,
   },
 });
 
@@ -82,13 +71,6 @@ export const iconButton = style({
   border: 0,
   background: "transparent",
   cursor: "pointer",
-
-  selectors: {
-    [`${container.classNames.variants.disabled.true} &`]: {
-      cursor: "not-allowed",
-      opacity: 0.5,
-    },
-  },
 });
 
 export const icon = style({
