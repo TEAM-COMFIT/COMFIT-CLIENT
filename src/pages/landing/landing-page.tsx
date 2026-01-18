@@ -1,3 +1,5 @@
+import { useRef } from "react";
+
 import {
   LandingCard,
   WorryCard,
@@ -5,11 +7,19 @@ import {
   CompanySlider,
 } from "@/features/landing";
 import { LANDING_CARD_ITEMS } from "@/features/landing/config/landing-card.constant";
+import { AlertModal } from "@/features/landing/ui/alert-modal/alert-modal";
 import { CHARACTER, FLOAT_IMG, KEY } from "@/shared/assets/images";
+import { Button } from "@/shared/ui";
 
 import * as styles from "./landing-page.css";
 
 const LandingPage = () => {
+  const modalRef = useRef<HTMLDialogElement>(null);
+
+  const handleModal = () => {
+    modalRef.current?.showModal();
+  };
+
   return (
     <div className={styles.layout}>
       {/** 배너 섹션 (Section1) */}
@@ -20,7 +30,7 @@ const LandingPage = () => {
             <h1>나만의 커리어 스토리</h1>
           </div>
           <button type="button" className={styles.button}>
-            지금 바로 시작하기
+            둘러보기
           </button>
         </div>
         <img className={styles.floatImage} src={FLOAT_IMG} alt="홈 이미지" />
@@ -83,7 +93,20 @@ const LandingPage = () => {
         </h2>
         <CompanySlider />
       </div>
-      <div className="푸터1"></div>
+      <div className={styles.footer}>
+        <div className={styles.footerTitleWrapper}>
+          <h2 className={styles.footerTitle}>지금 바로 시작하세요</h2>
+          <p className={styles.footerSubTitle}>
+            첫 커리어 준비, 누구에게나 낯설고 막연합니다.
+            <br /> 하지만 올바른 방향과 전략이 있다면 충분히 해낼 수 있습니다
+          </p>
+        </div>
+        <Button size="large" onClick={handleModal}>
+          경험 매칭하기
+        </Button>
+      </div>
+      {/** 모달  */}
+      <AlertModal ref={modalRef} />
     </div>
   );
 };

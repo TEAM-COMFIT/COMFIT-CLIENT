@@ -1,7 +1,7 @@
 import { style } from "@vanilla-extract/css";
 
 import { themeVars } from "@/app/styles";
-import { BANNER_BG, SECTION_BG } from "@images/index";
+import { BANNER_BG, FOOTER_BG, SECTION_BG } from "@images/index";
 
 const textAlign = {
   right: { textAlign: "right" },
@@ -191,4 +191,36 @@ export const fifthTitle = style({
   ...themeVars.fontStyles.title_b_28,
   ...textAlign.center,
   fontWeight: 700,
+});
+
+/** ------- 푸터 섹션 -------- */
+export const footer = style({
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  gap: "6rem",
+  height: "60rem",
+  padding: "18rem 0",
+  background: `url(${FOOTER_BG}) no-repeat center/cover`,
+});
+
+export const footerTitleWrapper = style({
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  alignItems: "center",
+  gap: "1.6rem",
+  textAlign: "center",
+});
+
+export const footerTitle = style({
+  color: themeVars.color.gray700,
+  ...themeVars.fontStyles.title_b_36,
+  fontWeight: 700,
+});
+
+export const footerSubTitle = style({
+  color: themeVars.color.gray500,
+  ...themeVars.fontStyles.body_r_16,
+  fontWeight: 400,
 });
