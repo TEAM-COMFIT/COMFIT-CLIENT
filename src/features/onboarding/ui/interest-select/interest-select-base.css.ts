@@ -1,9 +1,8 @@
-import { style, styleVariants } from "@vanilla-extract/css";
+import { style } from "@vanilla-extract/css";
 import { recipe } from "@vanilla-extract/recipes";
 
 import { fontStyles } from "@shared/styles/font-style.css";
 import { color } from "@shared/styles/tokens/color.css";
-import { shadow } from "@shared/styles/tokens/shadow.css";
 import { typography } from "@shared/styles/tokens/typography.css";
 
 export const container = style({
@@ -84,51 +83,43 @@ export const gridContainer = style({
   gap: "1.6rem",
 });
 
-const baseOptionButton = style([
-  fontStyles.body_m_16,
-  {
-    width: "16rem",
-    height: "6rem",
-    padding: "0.8rem 1.6rem",
-    borderRadius: "12px",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    textAlign: "center",
-    whiteSpace: "nowrap",
-    userSelect: "none",
+export const optionButton = recipe({
+  base: [
+    fontStyles.body_m_16,
+    {
+      width: "16rem",
+      height: "6rem",
+      padding: "0.8rem 1.6rem",
+      borderRadius: "12px",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      textAlign: "center",
+      whiteSpace: "nowrap",
+      userSelect: "none",
+      cursor: "pointer",
+      border: `1.5px solid ${color.gray300}`,
+      background: color.gray100,
+      color: color.gray400,
+    },
+  ],
+  variants: {
+    state: {
+      default: {},
+      selected: {
+        background: color.blue200,
+        border: `1.5px solid ${color.blue400}`,
+        color: color.blue600,
+      },
+      disabled: {
+        cursor: "not-allowed",
+        opacity: 0.6,
+      },
+    },
   },
-]);
-
-export const optionButton = styleVariants({
-  default: [
-    baseOptionButton,
-    {
-      background: color.gray100,
-      border: `1.5px solid ${color.gray300}`,
-      color: color.gray400,
-      cursor: "pointer",
-    },
-  ],
-  selected: [
-    baseOptionButton,
-    {
-      background: color.blue200,
-      border: `1.5px solid ${color.blue400}`,
-      color: color.blue600,
-      cursor: "pointer",
-    },
-  ],
-  disabled: [
-    baseOptionButton,
-    {
-      background: color.gray100,
-      border: `1.5px solid ${color.gray300}`,
-      color: color.gray400,
-      cursor: "not-allowed",
-      opacity: 0.6,
-    },
-  ],
+  defaultVariants: {
+    state: "default",
+  },
 });
 
 export const buttonContainer = style({

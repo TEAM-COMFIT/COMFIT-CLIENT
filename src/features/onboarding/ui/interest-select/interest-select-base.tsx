@@ -66,15 +66,13 @@ export const InterestSelectBase = <T extends string>({
               {options.map((opt) => {
                 const isSelected = selected === opt;
 
-                const cls = isSelected
-                  ? styles.optionButton.selected
-                  : styles.optionButton.default;
-
                 return (
                   <button
                     key={opt}
                     type="button"
-                    className={cls}
+                    className={styles.optionButton({
+                      state: isSelected ? "selected" : "default",
+                    })}
                     onClick={() => {
                       if (isSelected) {
                         setSelected(null);
