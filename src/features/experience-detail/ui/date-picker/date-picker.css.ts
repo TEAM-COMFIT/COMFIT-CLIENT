@@ -83,6 +83,23 @@ globalStyle(`${calendar} .react-calendar__navigation`, {
   // border: "1px solid blue",
 });
 
+globalStyle(`${calendar} .react-calendar__navigation__arrow`, {
+  width: "2.4rem",
+  height: "2.4rem",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  cursor: "pointer",
+});
+
+globalStyle(`${calendar} .react-calendar__navigation__prev-button`, {
+  border: "1px solid red",
+});
+
+globalStyle(`${calendar} .react-calendar__navigation__next-button`, {
+  border: "1px solid red",
+});
+
 globalStyle(`${calendar} .react-calendar__navigation__label`, {
   cursor: "default",
 });
@@ -98,7 +115,7 @@ globalStyle(`${calendar} .react-calendar__month-view__weekdays__weekday`, {
   justifyContent: "center",
 });
 
-// abbr (text 데코레이션 제거, 실제 크기는 여기서 담당)
+// abbr (text 데코레이션 제거)
 globalStyle(`${calendar} .react-calendar__month-view__weekdays__weekday abbr`, {
   display: "block",
   width: "3.3rem",
@@ -129,7 +146,6 @@ globalStyle(`${calendar} .react-calendar__tile`, {
   borderRadius: "50%",
 });
 
-/* ⭐ 실제 width를 잡아먹는 놈 */
 globalStyle(`${calendar} .react-calendar__month-view__days__day`, {
   width: "3.5rem",
   height: "3.5rem",

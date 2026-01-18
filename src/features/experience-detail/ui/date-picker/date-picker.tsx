@@ -6,6 +6,12 @@ import {
   DateLeftArrow,
   DateRightArrow,
 } from "@/shared/assets/icons";
+import {
+  formatDateKorean,
+  formatDateDot,
+  formatYearMonthKorean,
+} from "@/shared/lib";
+import useOutsideClick from "@/shared/model/use-outsideclick";
 import { Button } from "@/shared/ui/button/button";
 
 import * as styles from "./date-picker.css";
@@ -26,89 +32,42 @@ export interface DatePickerProps {
   placeholder?: string;
 }
 
-/** 기준 날짜: 오늘 (컴포넌트 외부에 고정) */
+// 기준 날짜: 오늘
 const TODAY = new Date();
-
-const pad2 = (n: number) => String(n).padStart(2, "0");
-
-const formatTriggerText = (date: Date) => {
-  const y = date.getFullYear();
-  const m = pad2(date.getMonth() + 1);
-  const d = pad2(date.getDate());
-  return `${y}.${m}.${d}`;
-};
-
-const formatFooterText = (date: Date) => {
-  const y = date.getFullYear();
-  const m = pad2(date.getMonth() + 1);
-  const d = pad2(date.getDate());
-  return `${y}년 ${m}월 ${d}일`;
-};
 
 const DatePicker = ({
   label,
   selectedDate,
   onChangeSelectedDate,
 
-  prevMonthIcon,
-  nextMonthIcon,
-
   placeholder,
-  closeOnOutsideClick = true,
   disabled = false,
 }: DatePickerProps) => {
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const menuRef = useRef<HTMLDivElement | null>(null);
-
   const [isOpen, setIsOpen] = useState(false);
+  const close = () => setIsOpen(false);
 
-  /** 임시 선택 날짜 (항상 오늘 기준으로 초기화) */
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const menuRef = useOutsideClick<HTMLDivElement>(isOpen, close);
+
+  // 임시 선택 날짜 (항상 오늘 기준으로 초기화)
   const [tempDate, setTempDate] = useState<Date>(selectedDate ?? TODAY);
 
-  /** 메뉴 열릴 때 tempDate를 selectedDate 또는 오늘로 동기화 */
+  // 메뉴 열릴 때 tempDate를 selectedDate 또는 오늘로 동기화
   useEffect(() => {
     if (!isOpen) return;
-
     const next = selectedDate ?? TODAY;
-
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setTempDate((prev) => (prev.getTime() === next.getTime() ? prev : next));
   }, [isOpen, selectedDate]);
 
-  /** 외부 클릭 시 닫기 */
-  useEffect(() => {
-    if (!isOpen || !closeOnOutsideClick) return;
-
-    const onPointerDown = (e: PointerEvent) => {
-      const t = e.target as Node | null;
-      if (!t) return;
-
-      if (containerRef.current?.contains(t)) return;
-      if (menuRef.current?.contains(t)) return;
-
-      setIsOpen(false);
-    };
-
-    document.addEventListener("pointerdown", onPointerDown, true);
-    return () =>
-      document.removeEventListener("pointerdown", onPointerDown, true);
-  }, [isOpen, closeOnOutsideClick]);
-
-  /** trigger 텍스트는 항상 날짜 */
   const triggerText = useMemo(() => {
     if (!selectedDate) return placeholder ?? label;
-    return formatTriggerText(selectedDate);
+    return formatDateDot(selectedDate);
   }, [label, placeholder, selectedDate]);
 
   const handleConfirm = () => {
     onChangeSelectedDate(tempDate);
     setIsOpen(false);
-  };
-
-  const formatMonthYear = (_locale: string | undefined, date: Date) => {
-    const y = date.getFullYear();
-    const m = pad2(date.getMonth() + 1);
-    return `${y}년 ${m}월`;
   };
 
   return (
@@ -155,7 +114,7 @@ const DatePicker = ({
               }
               navigationLabel={({ date }) => (
                 <span className={styles.monthLabel}>
-                  {formatMonthYear(undefined, date)}
+                  {formatYearMonthKorean(date)}
                 </span>
               )}
               formatShortWeekday={(_l, d) =>
@@ -169,7 +128,7 @@ const DatePicker = ({
           {/* 3번 영역: Footer */}
           <div className={styles.menuFooter}>
             <span className={styles.selectedText}>
-              {formatFooterText(tempDate)}
+              {formatDateKorean(tempDate)}
             </span>
 
             <Button variant="primary" size="small" onClick={handleConfirm}>
