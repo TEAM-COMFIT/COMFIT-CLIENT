@@ -62,14 +62,11 @@ export const calendar = style({
   flexDirection: "column",
   alignItems: "center",
   justifyContent: "center",
-  border: "1px solid red",
 });
 
 globalStyle(`${calendar}.react-calendar`, {
-  border: "1px solid blue",
   width: "27.4rem",
-  marginTop: "1.6rem",
-  padding: 0,
+  margin: "1.4rem 2rem 2.6rem 2rem",
   boxSizing: "border-box",
 });
 
@@ -83,6 +80,7 @@ globalStyle(`${calendar} .react-calendar__navigation`, {
   height: "4.4rem",
   color: themeVars.color.gray800,
   ...themeVars.fontStyles.body_b_14,
+  // border: "1px solid blue",
 });
 
 globalStyle(`${calendar} .react-calendar__navigation__label`, {
@@ -91,6 +89,7 @@ globalStyle(`${calendar} .react-calendar__navigation__label`, {
 
 globalStyle(`${calendar} .react-calendar__month-view__weekdays`, {
   overflow: "hidden",
+  margin: "1.4rem 0 1.2rem 0",
 });
 
 // 요일 아이템
@@ -154,13 +153,13 @@ globalStyle(`${calendar} .react-calendar__tile--active`, {
 
 export const menuFooter = style({
   borderTop: `1px solid ${themeVars.color.gray200}`,
-  padding: "1.1rem 1.9rem",
+  padding: "1.1rem 2rem",
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
 });
 
 export const selectedText = style({
-  ...themeVars.fontStyles.cap_m_12,
+  ...themeVars.fontStyles.body_m_14,
   color: themeVars.color.gray800,
 });
