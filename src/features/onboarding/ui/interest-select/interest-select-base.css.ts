@@ -1,8 +1,8 @@
 import { style } from "@vanilla-extract/css";
 import { recipe } from "@vanilla-extract/recipes";
 
+import { themeVars } from "@/app/styles";
 import { fontStyles } from "@shared/styles/font-style.css";
-import { color } from "@shared/styles/tokens/color.css";
 import { typography } from "@shared/styles/tokens/typography.css";
 
 export const container = style({
@@ -25,7 +25,7 @@ export const title = style([
   fontStyles.body_m_16,
   {
     fontWeight: typography.fontWeight.semibold,
-    color: color.black,
+    color: themeVars.color.black,
   },
 ]);
 
@@ -33,7 +33,7 @@ export const asterisk = style({
   fontSize: typography.fontSize[14],
   fontWeight: typography.fontWeight.semibold,
   lineHeight: "normal",
-  color: color.orange500,
+  color: themeVars.color.orange500,
 });
 
 export const inputBox = recipe({
@@ -42,8 +42,8 @@ export const inputBox = recipe({
     height: "6rem",
     borderRadius: "16px",
     padding: "1.4rem 1.6rem",
-    background: color.gray100,
-    border: `1px solid ${color.gray200}`,
+    background: themeVars.color.gray100,
+    border: `1px solid ${themeVars.color.gray200}`,
     display: "flex",
     alignItems: "center",
     gap: "0.8rem",
@@ -62,7 +62,7 @@ export const inputBox = recipe({
 export const placeholder = style([
   fontStyles.body_m_16,
   {
-    color: color.gray400,
+    color: themeVars.color.gray400,
   },
 ]);
 
@@ -74,7 +74,7 @@ export const selectArea = style({
   width: "56rem",
   padding: "2.4rem",
   borderRadius: "12px",
-  background: color.white,
+  background: themeVars.color.white,
 });
 
 export const gridContainer = style({
@@ -98,18 +98,18 @@ export const optionButton = recipe({
       whiteSpace: "nowrap",
       userSelect: "none",
       cursor: "pointer",
-      border: `1.5px solid ${color.gray300}`,
-      background: color.gray100,
-      color: color.gray400,
+      border: `1.5px solid ${themeVars.color.gray300}`,
+      background: themeVars.color.gray100,
+      color: themeVars.color.gray400,
     },
   ],
   variants: {
     state: {
       default: {},
       selected: {
-        background: color.blue200,
-        border: `1.5px solid ${color.blue400}`,
-        color: color.blue600,
+        background: themeVars.color.blue200,
+        border: `1.5px solid ${themeVars.color.blue400}`,
+        color: themeVars.color.blue600,
       },
       disabled: {
         cursor: "not-allowed",
