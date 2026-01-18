@@ -119,6 +119,10 @@ export const list = style({
 
   paddingTop: "0.4rem",
   paddingLeft: "0.4rem",
+  paddingRight: "1.2rem",
+  paddingBottom: "0.4rem",
+
+  boxSizing: "border-box",
 
   scrollbarGutter: "stable",
 });
@@ -135,7 +139,6 @@ globalStyle(`${list}::-webkit-scrollbar-thumb`, {
   backgroundColor: "transparent",
   borderRadius: "10rem",
   minHeight: "4rem",
-
   borderLeft: "0.4rem solid transparent",
   borderRight: "0.4rem solid transparent",
   borderTop: 0,
