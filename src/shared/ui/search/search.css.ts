@@ -14,13 +14,6 @@ export const container = recipe({
     borderRadius: "16px",
     border: `2px solid ${themeVars.color.blue600}`,
     background: themeVars.color.white,
-
-    selectors: {
-      "&:focus-within": {
-        borderColor: themeVars.color.blue600,
-        boxShadow: `0 0 0 0.3rem ${themeVars.color.blue100}`,
-      },
-    },
   },
 
   variants: {
