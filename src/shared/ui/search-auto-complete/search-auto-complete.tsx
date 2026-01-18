@@ -45,6 +45,8 @@ export const SearchAutocomplete = ({
 
   selectedItem,
   setSelectedItem,
+
+  ariaLabel,
 }: SearchAutocompleteProps) => {
   const {
     query,
@@ -112,7 +114,7 @@ export const SearchAutocomplete = ({
     window.setTimeout(() => inputRef.current?.focus(), 0);
   }, [setQuery, innerClearSelected, close, onClear, setSelectedItem]);
 
-  const isOnboarding = variant === "onboarding";
+  const mode = variant === "onboarding" ? "onboarding" : "normal";
 
   const shouldShowDropdown =
     isOpen &&
@@ -153,7 +155,7 @@ export const SearchAutocomplete = ({
               window.setTimeout(() => close(), 120);
             }}
             onKeyDown={onKeyDown}
-            aria-label={placeholder}
+            aria-label={ariaLabel ?? placeholder}
           />
 
           <button
@@ -175,8 +177,7 @@ export const SearchAutocomplete = ({
             {rightIconMode === "clear" ? <IconCancel /> : <IconSearch />}
           </button>
         </div>
-
-        {/* 드롭다운 */}
+        {/* 드롭다운 */}{" "}
         {shouldShowDropdown && (
           <div className={[s.list, s.listTopVariant[variant]].join(" ")}>
             {state === "error" && (
@@ -190,20 +191,14 @@ export const SearchAutocomplete = ({
                 const isHighlighted = idx === highlightedIndex;
 
                 return (
-                  <div
+                  <button
                     key={it.id}
+                    type="button"
                     tabIndex={isHighlighted ? 0 : -1}
-                    className={[
-                      s.item,
-                      isHighlighted
-                        ? isOnboarding
-                          ? s.onboardingItemState.hover
-                          : s.itemState.hover
-                        : isOnboarding
-                          ? s.onboardingItemState.default
-                          : s.itemState.default,
-                      isOnboarding ? s.onboardingItemPressed : "",
-                    ].join(" ")}
+                    className={s.item({
+                      mode,
+                      state: isHighlighted ? "hover" : "default",
+                    })}
                     onMouseEnter={() => setHighlightedIndex(idx)}
                     onMouseDown={(e) => {
                       e.preventDefault();
@@ -211,7 +206,7 @@ export const SearchAutocomplete = ({
                     }}
                   >
                     {it.label}
-                  </div>
+                  </button>
                 );
               })}
           </div>

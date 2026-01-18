@@ -1,4 +1,5 @@
 import { globalStyle, style, styleVariants } from "@vanilla-extract/css";
+import { recipe } from "@vanilla-extract/recipes";
 
 import { themeVars } from "@/app/styles";
 
@@ -178,40 +179,63 @@ export const emptyBox = style({
   borderRadius: 8,
 });
 
-export const item = style({
-  height: "5.2rem",
-  display: "flex",
-  alignItems: "center",
-  padding: "0 1.2rem",
+export const item = recipe({
+  base: {
+    width: "100%",
+    height: "5.2rem",
+    display: "flex",
+    alignItems: "center",
+    padding: "0 1.2rem",
 
-  ...themeVars.fontStyles.body_m_14,
-  color: themeVars.color.gray800,
+    ...themeVars.fontStyles.body_m_14,
+    color: themeVars.color.gray800,
 
-  cursor: "pointer",
-  borderRadius: 8,
-  background: "transparent",
-});
+    borderRadius: 8,
+    background: "transparent",
 
-export const itemState = styleVariants({
-  default: { background: "transparent" },
-  hover: { background: themeVars.color.gray200 },
-  pressed: {
-    background: themeVars.color.blue600,
-    color: themeVars.color.white,
+    border: 0,
+    textAlign: "left",
+    cursor: "pointer",
   },
-});
 
-export const onboardingItemState = styleVariants({
-  default: { background: "transparent" },
-  hover: { background: themeVars.color.blue200 },
-});
-
-export const onboardingItemPressed = style({
-  selectors: {
-    "&:active": {
-      background: themeVars.color.blue600,
-      color: themeVars.color.white,
+  variants: {
+    mode: {
+      normal: {},
+      onboarding: {},
     },
+
+    state: {
+      default: {
+        background: "transparent",
+      },
+
+      hover: {},
+
+      pressed: {
+        background: themeVars.color.blue600,
+        color: themeVars.color.white,
+      },
+    },
+  },
+
+  compoundVariants: [
+    {
+      variants: { mode: "normal", state: "hover" },
+      style: {
+        background: themeVars.color.gray200,
+      },
+    },
+    {
+      variants: { mode: "onboarding", state: "hover" },
+      style: {
+        background: themeVars.color.blue200,
+      },
+    },
+  ],
+
+  defaultVariants: {
+    mode: "normal",
+    state: "default",
   },
 });
 
