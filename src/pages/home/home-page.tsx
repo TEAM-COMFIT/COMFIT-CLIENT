@@ -142,7 +142,6 @@ const HomePage = () => {
           }}
         />
       </section>
-      =======
       <MajorCompanyCard
         id={1}
         companyName="IBK 기업은행"
