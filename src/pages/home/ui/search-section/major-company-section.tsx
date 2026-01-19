@@ -7,6 +7,15 @@ import { RefreshButton } from "@/widgets";
 import * as styles from "./major-company-section.css";
 
 import type { ScaleCode } from "@/shared/config";
+interface MockData {
+  id: number;
+  name: string;
+  industry: string;
+  scale: ScaleCode;
+  logo: string;
+  photoUrl: string;
+}
+
 const MajorCompanySection = () => {
   // TODO: rank 키값으로 사용 예정
   const [, setRank] = useState<number>(1);
@@ -18,14 +27,6 @@ const MajorCompanySection = () => {
   // TODO: api 연동 후 삭제 예정
   // const { data } = useGetMajorCompany({ rank });
 
-  interface MockData {
-    id: number;
-    name: string;
-    industry: string;
-    scale: ScaleCode;
-    logo: string;
-    photoUrl: string;
-  }
   const data: MockData[] = [
     {
       id: 2,
