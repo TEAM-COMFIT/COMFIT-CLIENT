@@ -3,8 +3,8 @@ import { style } from "@vanilla-extract/css";
 import { themeVars } from "@/app/styles";
 
 export const container = style({
-  width: "883px",
-  height: "140px",
+  width: "88.3rem",
+  height: "14rem",
   borderRadius: "14px",
   backgroundColor: themeVars.color.blue600,
 
@@ -16,14 +16,14 @@ export const container = style({
   alignItems: "center",
   justifyContent: "space-between",
 
-  paddingLeft: "39.5px",
-  paddingRight: "46px",
+  paddingLeft: "3.95rem",
+  paddingRight: "4.6rem",
 });
 
 export const left = style({
   display: "flex",
   flexDirection: "column",
-  gap: "6.5px",
+  gap: "0.65rem",
   minWidth: 0,
   zIndex: 2,
 });
@@ -47,7 +47,7 @@ export const right = style({
 export const bookImage = style({
   position: "absolute",
   left: "50%",
-  bottom: "-44px",
+  bottom: "-4.4rem",
   transform: "translateX(-34.5%)",
 
   width: "25.2rem",
