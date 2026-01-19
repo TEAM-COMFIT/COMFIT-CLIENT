@@ -26,3 +26,7 @@ export { default as IconQuestion } from "./icon_question.svg?react";
 export { default as IconCheck } from "./check.svg?react";
 
 export { default as IconAI } from "./icon_ai.svg?react";
+
+export { default as IconSummary } from "./icon_summary.svg?react";
+export { default as IconIdeal } from "./icon_ideal.svg?react";
+export { default as IconIssue } from "./icon_issue.svg?react";
