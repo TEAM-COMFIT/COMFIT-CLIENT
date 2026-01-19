@@ -6,6 +6,7 @@ import {
   IndustryInterestSelect,
   JobInterestSelect,
 } from "@/features/onboarding";
+import { IconIdeal } from "@/shared/assets/icons";
 import { Company } from "@/shared/assets/images";
 import KERORO from "@/shared/assets/images/comfit_web_status.jpg";
 import { Alert } from "@/shared/ui/alert";
