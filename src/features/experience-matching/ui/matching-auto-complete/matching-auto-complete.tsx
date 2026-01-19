@@ -1,54 +1,55 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 
 import { IconSearch, IconCancel } from "@/shared/assets/icons";
 import { useDebounce } from "@/shared/model";
 import { Button, Tag } from "@/shared/ui";
 
 import * as styles from "./matching-auto-complete.css";
-import { MOCK_AUTOCOMPLETE } from "./mock";
 
 interface MatchingAutoCompleteProps {
-  value: string;
-  onChange: (value: string) => void;
+  value: string; // 실시간 입력값
+  onChange: (value: string) => void; // 실시간 입력값 변경 함수
+  results: string[]; // 부모가 API로 받아온 검색 결과 리스트
+  onDebounceChange: (debouncedValue: string) => void; // 디바운스된 값을 부모에게 전달
   placeholder?: string;
-  onSearch?: (selectedValue?: string) => void;
+  onSearch?: (selectedValue: string) => void;
 }
 
 const MatchingAutoComplete = ({
   value,
   onChange,
+  results,
+  onDebounceChange,
   placeholder = "기업명을 입력해주세요",
   onSearch,
 }: MatchingAutoCompleteProps) => {
   const [isFocused, setIsFocused] = useState(false);
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
+  // 내부 디바운스 로직: 300ms 후 부모의 검색 키워드 상태를 변경
   const debouncedValue = useDebounce(value, 300);
 
-  const results = useMemo(() => {
-    if (!value || value.length < 2) return [];
+  useEffect(() => {
+    onDebounceChange(debouncedValue); // 부모에게 전달하여 API 호출 유도
+  }, [debouncedValue, onDebounceChange]);
 
-    if (debouncedValue.length >= 2) {
-      return MOCK_AUTOCOMPLETE.filter((item) =>
-        item.toLowerCase().includes(debouncedValue.toLowerCase())
-      );
-    }
-    return [];
-  }, [debouncedValue, value]); // value를 의존성에 추가
-
+  // 검색 결과가 없는 상태 정의 (2자 이상 입력 & API 결과가 0개)
   const hasNoResult =
     value.length >= 2 && debouncedValue.length >= 2 && results.length === 0;
 
   const handleClear = () => {
-    onChange(""); // 입력값 즉시 비움 -> useMemo가 즉시 [] 반환
+    onChange("");
     setSelectedItem(null);
     setIsFocused(true);
+    onDebounceChange(""); // 부모 검색어도 초기화
+    setTimeout(() => inputRef.current?.focus(), 0);
   };
 
   const handleItemClick = (item: string) => {
     setSelectedItem(item);
     onChange(item);
-    setIsFocused(false); // 아이템 선택 시에는 메뉴를 닫기 위해 포커스 해제
+    setIsFocused(false);
   };
 
   return (
@@ -62,16 +63,15 @@ const MatchingAutoComplete = ({
           </div>
         ) : (
           <input
+            ref={inputRef}
             className={[
               styles.input,
               isFocused ? styles.inputFocused : "",
             ].join(" ")}
             value={value}
             placeholder={placeholder}
-            autoFocus={isFocused} // 태그 삭제 후 바로 입력 가능하도록 추가
             onFocus={() => setIsFocused(true)}
             onBlur={() => {
-              // 메뉴 클릭 등을 고려해 지연 후 닫기
               setTimeout(() => {
                 if (value === "" && !selectedItem) setIsFocused(false);
               }, 200);
@@ -88,12 +88,12 @@ const MatchingAutoComplete = ({
                 e.preventDefault();
                 handleClear();
               }}
-              aria-hidden
             />
           ) : (
             <IconSearch className={styles.icon} aria-hidden />
           ))}
 
+        {/* 자동완성 메뉴: 부모가 내려준 results를 사용 */}
         {!selectedItem && isFocused && (results.length > 0 || hasNoResult) && (
           <div className={styles.menu}>
             {results.length > 0 ? (
