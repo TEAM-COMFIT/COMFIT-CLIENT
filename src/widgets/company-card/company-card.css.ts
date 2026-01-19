@@ -34,6 +34,7 @@ export const logoWrapper = style({
   alignItems: "center",
   justifyContent: "center",
   overflow: "hidden",
+  flexShrink: 0,
 });
 
 export const logoImage = style({
