@@ -27,7 +27,7 @@ export const subText = style({
 
 export const mainText = style({
   color: themeVars.color.gray700,
-  fontWeight: "800",
+  fontWeight: "600",
   fontSize: "3.6rem",
   fontFamily: "NanumSquareNeo",
   lineHeight: "1.5",

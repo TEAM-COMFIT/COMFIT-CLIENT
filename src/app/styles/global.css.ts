@@ -16,7 +16,7 @@ globalFontFace("Pretendard", {
 
 globalFontFace("NanumSquareNeo", {
   src: `url(${NanumSquareNeoWoff2}) format("woff2")`,
-  fontWeight: "normal",
+  fontWeight: "100 900",
   fontStyle: "normal",
   fontDisplay: "swap",
 });
