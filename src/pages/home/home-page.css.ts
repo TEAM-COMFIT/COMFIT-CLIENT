@@ -5,9 +5,14 @@ import { themeVars } from "@/app/styles";
 export const container = style({
   display: "flex",
   flexDirection: "column",
+  justifyContent: "center",
+  alignItems: "center",
+  width: "100%",
 });
 
 export const heroSection = style({
+  display: "flex",
+  justifyContent: "center",
   width: "100%",
   height: "50rem",
   backgroundRepeat: "no-repeat",
@@ -16,12 +21,10 @@ export const heroSection = style({
 });
 
 export const heroContent = style({
-  height: "100%",
   display: "flex",
   flexDirection: "column",
   justifyContent: "center",
-  alignItems: "flex-start",
-  paddingLeft: "18.8rem",
+  width: "106rem",
 });
 
 export const subText = style({
@@ -66,10 +69,11 @@ export const companyListSection = style({
 export const majorSection = style({
   display: "flex",
   flexDirection: "column",
-  gap: "3.2rem",
+  gap: "5.2rem",
   alignItems: "center",
   justifyContent: "center",
-  padding: "6rem 19rem 6rem 19rem",
+  width: "106rem",
+  marginBottom: "12rem",
 });
 
 export const header = style({
