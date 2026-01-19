@@ -52,7 +52,6 @@ export const companyListSection = style({
   flexDirection: "column",
   alignItems: "center",
   justifyContent: "center",
-  padding: "10rem 19rem 6rem 19rem",
+  padding: "9rem 19rem 6rem 19rem",
   width: "100%",
-  // border: "1px solid black",
 });

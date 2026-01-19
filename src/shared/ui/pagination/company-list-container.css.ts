@@ -29,7 +29,5 @@ export const companyGridStyle = style({
   gridTemplateColumns: "repeat(4, 1fr)",
   rowGap: "4rem",
   columnGap: "2rem",
-  paddingBottom: "6rem",
-  // border: "1px solid red",
-  // width: "100%",
+  paddingBottom: "3rem",
 });

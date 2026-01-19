@@ -9,7 +9,8 @@ export const majorSection = style({
   alignItems: "center",
   justifyContent: "center",
   width: "106rem",
-  marginBottom: "12rem",
+  marginTop: "7rem",
+  marginBottom: "16rem",
 });
 
 export const header = style({
