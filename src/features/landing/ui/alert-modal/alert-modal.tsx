@@ -1,4 +1,4 @@
-import { forwardRef } from "react";
+import { forwardRef, type MouseEvent } from "react";
 
 import { IconX } from "@/shared/assets/icons";
 import { CHARACTER } from "@/shared/assets/images";
@@ -6,7 +6,7 @@ import { CHARACTER } from "@/shared/assets/images";
 import * as styles from "./alert-modal.css";
 
 export const AlertModal = forwardRef<HTMLDialogElement>((_, ref) => {
-  const handleBackdropClick = (e: React.MouseEvent<HTMLDialogElement>) => {
+  const handleBackdropClick = (e: MouseEvent<HTMLDialogElement>) => {
     if (e.target === e.currentTarget) {
       e.currentTarget.close();
     }
@@ -19,7 +19,7 @@ export const AlertModal = forwardRef<HTMLDialogElement>((_, ref) => {
       onClick={handleBackdropClick}
     >
       <form method="dialog" className={styles.buttonHandler}>
-        <button className={styles.closeButton}>
+        <button type="button" aria-label="닫기" className={styles.closeButton}>
           <IconX className={styles.closeIcon} />
         </button>
       </form>

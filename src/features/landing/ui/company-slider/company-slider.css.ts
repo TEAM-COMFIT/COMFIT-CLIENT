@@ -34,6 +34,12 @@ export const track = style({
   width: "max-content",
   animation: `${scrollRight} 20s linear infinite`,
   willChange: "transform",
+
+  "@media": {
+    "(prefers-reduced-motion: reduce)": {
+      animation: "none",
+    },
+  },
 });
 
 export const slide = style({

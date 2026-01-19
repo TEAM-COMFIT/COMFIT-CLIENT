@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 
+const RESIZE_DEBOUNCE_MS = 100;
 const screen = {
   mobile: 375,
 } as const;
@@ -8,16 +9,22 @@ const useDevice = () => {
   const [isMobile, setIsMobile] = useState<boolean>(false);
 
   useEffect(() => {
-    const init = () => {
-      if (screen.mobile >= window.innerWidth) {
-        setIsMobile(true);
-      } else {
-        setIsMobile(false);
-      }
+    const checkDevice = () => {
+      setIsMobile(screen.mobile >= window.innerWidth);
     };
-    init();
-    window.addEventListener("resize", init);
-    return () => window.removeEventListener("resize", init);
+
+    let timeoutId: number;
+    const debouncedCheck = () => {
+      clearTimeout(timeoutId);
+      timeoutId = window.setTimeout(checkDevice, RESIZE_DEBOUNCE_MS);
+    };
+
+    checkDevice();
+    window.addEventListener("resize", debouncedCheck);
+    return () => {
+      window.removeEventListener("resize", debouncedCheck);
+      clearTimeout(timeoutId);
+    };
   }, []);
 
   return { isMobile };

@@ -389,6 +389,7 @@ export const footerButton = style({
   color: themeVars.color.white,
   backgroundColor: themeVars.color.blue500,
   borderRadius: "12px",
+  transition: "background-color 0.2s ease-in",
   ...themeVars.fontStyles.body_m_16,
 
   selectors: {

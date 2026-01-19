@@ -29,11 +29,11 @@ const LandingPage = () => {
   return (
     <div className={styles.layout}>
       {/** 배너 섹션 (Section1) */}
-      <div className={styles.banner}>
+      <section className={styles.banner}>
         <div className={styles.bannerWrapper}>
           <div className={styles.title}>
-            <h1 className={styles.gradientTitle}>컴핏으로 완성하는</h1>
-            <h1>나만의 커리어 스토리</h1>
+            <h2 className={styles.gradientTitle}>컴핏으로 완성하는</h2>
+            <h2>나만의 커리어 스토리</h2>
           </div>
           <button
             type="button"
@@ -44,9 +44,9 @@ const LandingPage = () => {
           </button>
         </div>
         <img className={styles.floatImage} src={FLOAT_IMG} alt="홈 이미지" />
-      </div>
+      </section>
       {/** 이런 고민 있으신가요? (Section2) */}
-      <div className={styles.second} ref={sectionRef}>
+      <section className={styles.second} ref={sectionRef}>
         <div className={styles.worryCardLeft}>
           <WorryCard />
         </div>
@@ -59,15 +59,15 @@ const LandingPage = () => {
           </div>
           {!isMobile && <img src={CHARACTER} alt="코니와 키니" />}
         </div>
-      </div>
+      </section>
       {/** 세 번째 섹션 */}
-      <div className={styles.third}>
-        <h1 className={styles.thirdTitle}>
+      <section className={styles.third}>
+        <h2 className={styles.thirdTitle}>
           <span className={styles.blueText}>컴핏이 제공하는 솔루션</span>
           <br />
           체계적인 프로세스로 {isMobile && <br />}준비 방향을 명확하게
           잡아드립니다
-        </h1>
+        </h2>
         <div className={styles.landingCard}>
           {LANDING_CARD_ITEMS.map((item) => (
             <LandingCard
@@ -78,35 +78,35 @@ const LandingPage = () => {
             />
           ))}
         </div>
-      </div>
+      </section>
       {/** 네 번째 섹션 */}
-      <div className={styles.fourth}>
+      <section className={styles.fourth}>
         <div className={styles.fourthHeader}>
           <img className={styles.key} src={KEY} alt="키 캐릭터" />
           <div className={styles.fourtTitleWrapper}>
-            <h1 className={styles.fourthTitle}>
+            <h2 className={styles.fourthTitle}>
               <span className={styles.blueText}>
                 컴핏과 함께하면{isMobile && <br />}
               </span>{" "}
               확실하게 달라집니다!
-            </h1>
+            </h2>
             <p className={styles.fourthSubtitle}>
               내가 지원하고 싶은 기업과 나, 이렇게 연결해드려요!
             </p>
           </div>
         </div>
         <PointCard />
-      </div>
+      </section>
       {/** 다섯 번째 섹션 */}
-      <div className={styles.fifth}>
+      <section className={styles.fifth}>
         <h2 className={styles.fifthTitle}>
           플랫폼·콘텐츠·커머스까지
           <br />
           마케터가 지원하는 기업을 한 곳에
         </h2>
         <CompanySlider />
-      </div>
-      <div className={styles.footer}>
+      </section>
+      <footer className={styles.footer}>
         <div className={styles.footerTitleWrapper}>
           <h2 className={styles.footerTitle}>지금 바로 시작하세요</h2>
           <p className={styles.footerSubTitle}>
@@ -117,7 +117,7 @@ const LandingPage = () => {
         <button className={styles.footerButton} onClick={handleModal}>
           경험 매칭하기
         </button>
-      </div>
+      </footer>
       {/** 모달  */}
       <AlertModal ref={modalRef} />
     </div>

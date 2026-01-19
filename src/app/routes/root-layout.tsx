@@ -12,7 +12,7 @@ export const RootLayout = () => {
       <Header />
       <main
         style={{
-          marginTop: !isMobile ? themeVars.height.header : 0,
+          marginTop: !isMobile ? themeVars.height.header : "0",
         }}
       >
         <Outlet />
