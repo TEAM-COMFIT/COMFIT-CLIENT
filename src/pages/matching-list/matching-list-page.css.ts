@@ -51,22 +51,3 @@ export const subTitle = style({
   ...themeVars.fontStyles.body_m_16,
   color: themeVars.color.gray500,
 });
-
-export const listWrapper = style({
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  justifyContent: "center",
-  width: "100%",
-  marginTop: "4rem",
-  gap: "6rem",
-});
-
-export const list = style({
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  justifyContent: "center",
-  gap: "1.6rem",
-  width: "100%",
-});

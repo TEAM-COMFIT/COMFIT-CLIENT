@@ -1,12 +1,12 @@
 import { useState } from "react";
 
-import { MatchingItem } from "@/features/matching-list/ui/matching-item";
 import { ICON_MATCH } from "@/shared/assets/images";
-import { Search, Pagination } from "@/shared/ui";
+import { Search } from "@/shared/ui";
 
 import * as styles from "./matching-list-page.css";
+import { ListSection } from "./ui/list-section";
 
-interface MatchingItemDto {
+export interface MatchingItemDto {
   id: number;
   companyName: string;
   experienceTitle: string;
@@ -41,18 +41,32 @@ const MOCK_MATCHING_LIST: MatchingItemDto[] = [
 ];
 
 const MatchingListPage = () => {
-  const [searchTerm, setSearchTerm] = useState("");
+  interface MatchingListParams {
+    keyword?: string;
+    page: number;
+  }
+
+  const [params, setParams] = useState<MatchingListParams>({
+    keyword: "",
+    page: 1,
+  });
 
   // TODO: api 연동 예정
-  // const { data } = useGetMatchingList(searchTerm);
+  // const { data } = useGetMatchingList(params);
 
-  const handleSearch = (term: string) => {
-    setSearchTerm(term);
+  const handleSearch = (keyword: string) => {
+    setParams({ keyword, page: 1 });
+    console.log("검색어:", params);
+  };
+
+  const handlePageChange = (page: number) => {
+    setParams((prev) => ({
+      ...prev,
+      page,
+    }));
   };
 
   // TODO: 서버에서 받아오는 데이터(추후 해당 값으로 변경 필요)
-  const [page, setPage] = useState(1);
-  const totalPage = 1;
   // const totalElements = MOCK_MATCHING_LIST.length;
 
   return (
@@ -74,30 +88,19 @@ const MatchingListPage = () => {
         <Search
           placeholder="기업명 검색"
           size="small"
-          value={searchTerm}
-          onChange={setSearchTerm}
+          value={params.keyword}
+          onChange={(keyword) => setParams((prev) => ({ ...prev, keyword }))}
           onSearch={handleSearch}
         />
       </div>
       {/* 매칭 아이템 리스트 섹션 */}
-      <div className={styles.listWrapper}>
-        <div className={styles.list}>
-          {MOCK_MATCHING_LIST.map((item) => (
-            <MatchingItem
-              key={item.id}
-              companyName={item.companyName}
-              matchingId={item.id}
-              createdAt={item.createdAt}
-              title={item.experienceTitle}
-            />
-          ))}
-        </div>
-        <Pagination
-          currentPage={page}
-          totalPage={totalPage}
-          onPageChange={setPage}
-        />
-      </div>
+      <ListSection
+        matchingList={MOCK_MATCHING_LIST}
+        totalElements={5}
+        totalPage={1}
+        currentPage={params.page}
+        onPageChange={handlePageChange}
+      />
     </main>
   );
 };
