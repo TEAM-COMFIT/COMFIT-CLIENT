@@ -6,6 +6,7 @@ export const container = style({
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
+  width: "100%",
 });
 
 export const filterWrapper = style({
@@ -29,4 +30,6 @@ export const companyGridStyle = style({
   rowGap: "4rem",
   columnGap: "2rem",
   paddingBottom: "6rem",
+  // border: "1px solid red",
+  // width: "100%",
 });
