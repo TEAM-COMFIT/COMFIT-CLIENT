@@ -18,6 +18,13 @@ export const container = style({
   border: `1.5px solid ${themeVars.color.normal}`,
   backgroundColor: themeVars.color.gray100,
 
+  selectors: {
+    "&:focus-visible": {
+      outline: `2px solid ${themeVars.color.blue600}`,
+      outlineOffset: "2px",
+    },
+  },
+
   cursor: "pointer",
   textAlign: "left",
 
@@ -81,6 +88,7 @@ export const title = style({
 
   whiteSpace: "nowrap",
   overflow: "hidden",
+  textOverflow: "ellipsis",
 });
 
 export const description = style({
