@@ -38,3 +38,5 @@ export { default as IconEXPBefore } from "./icon_exp_before.svg?react";
 export { default as IconX } from "./x.svg?react";
 
 export { default as LOGO } from "./comfit_logo.svg?react";
+
+export { default as IconExpandMore } from "./icon_expand_more.svg?react";
