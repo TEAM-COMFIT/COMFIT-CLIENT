@@ -17,11 +17,8 @@ import { Button } from "@/shared/ui/button/button";
 import * as styles from "./date-picker.css";
 
 import type { CalendarProps } from "react-calendar";
-
-// 기준 날짜: 오늘
-const TODAY = new Date();
 export interface DatePickerProps {
-  selectedDate: Date | null;
+  selectedDate: Date;
   onChangeSelectedDate: (date: Date) => void;
   disabled?: boolean;
 
@@ -46,7 +43,7 @@ const DatePicker = ({
   const textVariant = !selectedDate ? "placeholder" : "selected";
 
   // 임시 선택 날짜 (항상 오늘 기준으로 초기화)
-  const [tempDate, setTempDate] = useState<Date>(selectedDate ?? TODAY);
+  const [tempDate, setTempDate] = useState<Date>(selectedDate);
 
   const triggerText = useMemo(() => {
     return selectedDate ? formatDateDot(selectedDate) : placeholder;
@@ -61,8 +58,9 @@ const DatePicker = ({
     if (disabled) return;
     if (!isOpen) {
       // 열릴 때 현재 선택된 값으로 동기화 (없으면 minDate 혹은 오늘)
+      const today = new Date();
       setTempDate(
-        selectedDate ?? (minDate && minDate > TODAY ? minDate : TODAY)
+        selectedDate ?? (minDate && minDate > today ? minDate : today)
       );
     }
     setIsOpen((prev) => !prev);
