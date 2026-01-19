@@ -19,7 +19,7 @@ export const AlertModal = forwardRef<HTMLDialogElement>((_, ref) => {
       onClick={handleBackdropClick}
     >
       <form method="dialog" className={styles.buttonHandler}>
-        <button type="button" aria-label="닫기" className={styles.closeButton}>
+        <button type="submit" aria-label="닫기" className={styles.closeButton}>
           <IconX className={styles.closeIcon} />
         </button>
       </form>
