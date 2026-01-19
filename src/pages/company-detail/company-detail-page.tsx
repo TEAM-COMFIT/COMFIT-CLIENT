@@ -11,16 +11,16 @@ import {
   type ScaleCode,
 } from "@/shared/config";
 
-import * as styles from "./company-detail-page.css.ts";
+import * as styles from "./company-detail-page.css";
 
-type IssueItem = {
+interface IssueItem {
   href: string;
   date: string;
   title: string;
   description: string;
-};
+}
 
-type CompanyDetail = {
+interface CompanyDetail {
   companyId: number;
   name: string;
   status: string;
@@ -31,15 +31,15 @@ type CompanyDetail = {
   summary: string;
   talentProfile: string;
   issueList: IssueItem[];
-};
+}
 
-type RecommendCompanyItem = {
+interface RecommendCompanyItem {
   id: number;
   companyName: string;
   logoUrl: string;
   industry: IndustryCode;
   scale: ScaleCode;
-};
+}
 
 const CompanyDetailPage = () => {
   const { id } = useParams<{ id: string }>();
