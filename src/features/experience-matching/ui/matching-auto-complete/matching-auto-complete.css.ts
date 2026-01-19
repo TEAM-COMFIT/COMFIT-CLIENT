@@ -61,9 +61,8 @@ export const menu = style({
   border: `1.5px solid ${themeVars.color.normal}`,
   zIndex: themeVars.zIndex.dropdownMenu,
   overflowY: "auto",
-  overflowX: "hidden", // 가로 스크롤을 원천 차단
-  padding: "0.4rem", // 우측 패딩을 줄여 스크롤바와 아이템 사이 간격 확보
-  boxSizing: "border-box", // 패딩과 보더가 너비에 포함되도록 설정
+  overflowX: "hidden",
+  padding: "0.4rem",
 
   selectors: {
     "&::-webkit-scrollbar": {
@@ -75,7 +74,7 @@ export const menu = style({
     },
     "&::-webkit-scrollbar-track": {
       backgroundColor: "transparent",
-      margin: "0.4rem 0", // 스크롤바가 끝까지 붙지 않게 여유 부여
+      margin: "0.4rem 0",
     },
   },
 });
@@ -83,15 +82,14 @@ export const menu = style({
 export const menuItem = style({
   display: "flex",
   alignItems: "center",
-  padding: "1rem 1.2rem", // 좌우 패딩 균형
-  width: "100%", // 고정 수치 대신 100% 사용
+  padding: "1rem 1.2rem",
+  width: "100%",
   height: "4.4rem",
   borderRadius: "8px",
   cursor: "pointer",
   ...themeVars.fontStyles.body_m_14,
   color: themeVars.color.gray800,
   transition: "background-color 0.2s",
-  boxSizing: "border-box", // 패딩이 너비를 넘지 않게 함
 
   selectors: {
     "&:hover": {
@@ -116,7 +114,7 @@ export const noResult = style({
   alignItems: "center",
   justifyContent: "center",
   width: "100%",
-  height: "4.4rem", // 최소 높이 확보
+  height: "4.4rem",
   color: themeVars.color.gray500,
   ...themeVars.fontStyles.cap_m_12,
 });
