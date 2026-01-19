@@ -11,6 +11,7 @@ export const layout = style({
   marginTop: themeVars.height.header,
   backgroundColor: themeVars.color.white,
   borderBottom: `1px solid ${themeVars.color.normal}`,
+  zIndex: themeVars.zIndex.sticky,
 });
 
 export const header = style({
