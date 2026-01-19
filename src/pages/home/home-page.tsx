@@ -16,7 +16,6 @@ import { MatchingListContainer } from "@/shared/ui/pagination/matching-list-cont
 import { SearchAutocomplete } from "@/shared/ui/search-auto-complete/search-auto-complete";
 import { Textfield } from "@/shared/ui/textfield";
 import { CompanyCard } from "@/widgets";
-import { RefreshButton } from "@/widgets/refresh-button/refresh-button";
 import Heart from "@icons/heart.svg?react";
 import KERORO from "@images/comfit_web_status.jpg";
 
