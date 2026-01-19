@@ -35,10 +35,9 @@ const CompanyCard = ({
         <h3 className={styles.companyName}>{companyName}</h3>
       </section>
 
-      <section className={styles.info}>
-        <span># {getScaleLabel(scale)}</span>
-        <span># {getIndustryLabel(industry)}</span>
-      </section>
+      <span className={styles.info}>
+        # {getScaleLabel(scale)} <br /> # {getIndustryLabel(industry)}
+      </span>
 
       <section className={styles.action}>
         <CompanyAnalyzeButton companyId={id} />
