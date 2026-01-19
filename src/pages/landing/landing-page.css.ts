@@ -389,11 +389,11 @@ export const footerButton = style({
   color: themeVars.color.white,
   backgroundColor: themeVars.color.blue500,
   borderRadius: "12px",
+  ...themeVars.fontStyles.body_m_16,
 
   selectors: {
     "&:hover": {
       backgroundColor: themeVars.color.blue600,
-      ...themeVars.fontStyles.body_m_16,
     },
   },
 
