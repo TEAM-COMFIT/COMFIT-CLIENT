@@ -1,16 +1,6 @@
 import type { EducationTypeCode } from "@/features/onboarding";
 import type { SearchItem } from "@/shared/ui/search-auto-complete/types";
 
-const hasAllPriorities = (
-  map: Record<number, unknown>,
-  maxPriority: number = 3,
-) => {
-  for (let p = 1; p <= maxPriority; p += 1) {
-    if (!map[p]) return false;
-  }
-  return true;
-};
-
 export const isOnboardingFormComplete = (params: {
   selectedEducation: EducationTypeCode | null;
   selectedUniversity: SearchItem | null;
@@ -22,8 +12,8 @@ export const isOnboardingFormComplete = (params: {
   const hasEducation = Boolean(selectedEducation);
   const hasUniversity = Boolean(selectedUniversity);
 
-  const hasIndustryAll = hasAllPriorities(industry, 3);
-  const hasJobAll = hasAllPriorities(job, 3);
+  const hasIndustry1 = Boolean(industry[1]);
+  const hasJob1 = Boolean(job[1]);
 
-  return hasEducation && hasUniversity && hasIndustryAll && hasJobAll;
+  return hasEducation && hasUniversity && hasIndustry1 && hasJob1;
 };
