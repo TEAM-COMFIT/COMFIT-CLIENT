@@ -12,10 +12,14 @@ interface InterestSelectBaseProps<T extends string> {
   title: string;
   required?: boolean;
   options: readonly T[];
+
+  selected: T | null;
+  onSelect: (value: T | null) => void;
+
+  disabledOptions?: readonly T[];
 }
 
 const OPEN_EVENT_NAME = "interest-select:open";
-
 let lockedInstanceId: string | null = null;
 
 export const InterestSelectBase = <T extends string>({
@@ -23,10 +27,12 @@ export const InterestSelectBase = <T extends string>({
   title,
   required = true,
   options,
+
+  selected,
+  onSelect,
+  disabledOptions = [],
 }: InterestSelectBaseProps<T>) => {
   const instanceId = useId();
-
-  const [selected, setSelected] = useState<T | null>(null);
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
@@ -58,7 +64,7 @@ export const InterestSelectBase = <T extends string>({
     window.dispatchEvent(
       new CustomEvent(OPEN_EVENT_NAME, {
         detail: { instanceId },
-      })
+      }),
     );
 
     setIsOpen(true);
@@ -66,10 +72,7 @@ export const InterestSelectBase = <T extends string>({
 
   const closeAndUnlock = () => {
     setIsOpen(false);
-
-    if (lockedInstanceId === instanceId) {
-      lockedInstanceId = null;
-    }
+    if (lockedInstanceId === instanceId) lockedInstanceId = null;
   };
 
   return (
@@ -93,7 +96,7 @@ export const InterestSelectBase = <T extends string>({
           }}
         >
           {selected ? (
-            <Tag xlabel onCancel={() => setSelected(null)}>
+            <Tag xlabel onCancel={() => onSelect(null)}>
               {selected}
             </Tag>
           ) : (
@@ -106,22 +109,27 @@ export const InterestSelectBase = <T extends string>({
             <div className={styles.gridContainer}>
               {options.map((opt) => {
                 const isSelected = selected === opt;
+                const isDisabled = !isSelected && disabledOptions.includes(opt);
                 const hasSelected = Boolean(selected);
 
                 return (
                   <button
                     key={opt}
                     type="button"
+                    disabled={isDisabled}
                     className={styles.optionButton({
-                      state: isSelected
-                        ? "selected"
-                        : hasSelected
-                          ? "inactive"
-                          : "default",
+                      state: isDisabled
+                        ? "disabled"
+                        : isSelected
+                          ? "selected"
+                          : hasSelected
+                            ? "inactive"
+                            : "default",
                     })}
                     onClick={() => {
-                      if (isSelected) setSelected(null);
-                      else setSelected(opt);
+                      if (isDisabled) return;
+                      if (isSelected) onSelect(null);
+                      else onSelect(opt);
                     }}
                   >
                     {opt}
