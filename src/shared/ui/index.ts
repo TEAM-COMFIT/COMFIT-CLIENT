@@ -17,3 +17,5 @@ export { Tag } from "./tag/tag";
 export { Toggle } from "./toggle/toggle";
 
 export { Tooltip } from "./tooltip/tooltip";
+
+export { Search } from "./search/search";
