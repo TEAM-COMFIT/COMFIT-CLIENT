@@ -18,7 +18,7 @@ import * as styles from "./date-picker.css";
 
 import type { CalendarProps } from "react-calendar";
 export interface DatePickerProps {
-  selectedDate: Date;
+  selectedDate: Date | null;
   onChangeSelectedDate: (date: Date) => void;
   disabled?: boolean;
 
@@ -43,7 +43,7 @@ const DatePicker = ({
   const textVariant = !selectedDate ? "placeholder" : "selected";
 
   // 임시 선택 날짜 (항상 오늘 기준으로 초기화)
-  const [tempDate, setTempDate] = useState<Date>(selectedDate);
+  const [tempDate, setTempDate] = useState<Date>(new Date());
 
   const triggerText = useMemo(() => {
     return selectedDate ? formatDateDot(selectedDate) : placeholder;
