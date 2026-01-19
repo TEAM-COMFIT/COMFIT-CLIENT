@@ -9,7 +9,7 @@ import * as styles from "./major-company-section.css";
 import type { ScaleCode } from "@/shared/config";
 const MajorCompanySection = () => {
   // TODO: rank 키값으로 사용 예정
-  const [rank, setRank] = useState<number>(1);
+  const [, setRank] = useState<number>(1);
 
   const generateRank = () => {
     return Math.floor(Math.random() * 100) + 1;

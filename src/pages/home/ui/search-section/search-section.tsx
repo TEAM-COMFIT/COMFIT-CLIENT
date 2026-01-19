@@ -1,4 +1,4 @@
-import { useMemo, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 import { ScaleFilter, IndustryFilter } from "@/features/home/ui";
 import { homeBanner, Logo } from "@/shared/assets/images";
@@ -21,7 +21,7 @@ interface CompanySearchParamsType {
 
 const SearchSection = () => {
   // TODO: 서버에서 받아오는 데이터(추후 해당 값으로 변경 필요) -> queryparams로 페이지네이션 처리
-  const [page, setPage] = useState(1);
+  const [page] = useState(1);
   const totalPage = 11;
   const totalElements = 105;
 
@@ -36,16 +36,16 @@ const SearchSection = () => {
   };
 
   // TODO: API 호출용 파라미터. 실제 API 연동 시 사용 예정
-  const requestParams = useMemo(() => {
-    return {
-      keyword: params.keyword,
-      industry: params.industry,
-      scale: params.scale,
-      sort: params.sort,
-      page: params.page,
-      isRecruited: params.isRecruited,
-    };
-  }, [params]);
+  // const requestParams = useMemo(() => {
+  //   return {
+  //     keyword: params.keyword,
+  //     industry: params.industry,
+  //     scale: params.scale,
+  //     sort: params.sort,
+  //     page: params.page,
+  //     isRecruited: params.isRecruited,
+  //   };
+  // }, [params]);
 
   // TODO: mock 데이터. api 연동 후 삭제 예정
   interface MockCompany {
