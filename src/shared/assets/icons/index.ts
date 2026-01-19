@@ -14,3 +14,4 @@ export { default as IconCalendar } from "./icon_date.svg?react";
 
 export { default as DateLeftArrow } from "./date_arrow_left.svg?react";
 export { default as DateRightArrow } from "./date_arrow_right.svg?react";
+export { default as IconDash } from "./line.svg?react";
