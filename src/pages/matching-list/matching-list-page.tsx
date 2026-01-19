@@ -6,8 +6,45 @@ import { Search, Pagination } from "@/shared/ui";
 
 import * as styles from "./matching-list-page.css";
 
+interface MatchingItemDto {
+  id: number;
+  companyName: string;
+  experienceTitle: string;
+  createdAt: string; // YYYY-MM-DD
+}
+
+const MOCK_MATCHING_LIST: MatchingItemDto[] = [
+  {
+    id: 1,
+    companyName: "LG 전자",
+    experienceTitle: "인스타그램 마케팅 콘텐츠 기획 및 운영",
+    createdAt: "2025-04-21",
+  },
+  {
+    id: 2,
+    companyName: "LG 전자",
+    experienceTitle: "브랜드 캠페인 성과 분석",
+    createdAt: "2025-04-20",
+  },
+  {
+    id: 3,
+    companyName: "삼성전자",
+    experienceTitle: "SNS 광고 집행 및 리포트 작성",
+    createdAt: "2025-04-18",
+  },
+  {
+    id: 4,
+    companyName: "카카오",
+    experienceTitle: "카카오 채널 운영 및 이벤트 기획",
+    createdAt: "2025-04-17",
+  },
+];
+
 const MatchingListPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
+
+  // TODO: api 연동 예정
+  // const { data } = useGetMatchingList(searchTerm);
 
   const handleSearch = (term: string) => {
     setSearchTerm(term);
@@ -15,7 +52,8 @@ const MatchingListPage = () => {
 
   // TODO: 서버에서 받아오는 데이터(추후 해당 값으로 변경 필요)
   const [page, setPage] = useState(1);
-  const totalPage = 12;
+  const totalPage = 1;
+  // const totalElements = MOCK_MATCHING_LIST.length;
 
   return (
     <main className={styles.container}>
@@ -44,30 +82,15 @@ const MatchingListPage = () => {
       {/* 매칭 아이템 리스트 섹션 */}
       <div className={styles.listWrapper}>
         <div className={styles.list}>
-          <MatchingItem
-            matchingId={1}
-            companyName="기업명"
-            createdAt="2025-12-28"
-            title="하나둘셋다하나둘셋넷다하나둘셋다하나둘셋넷다하나둘셋다하나둘셋넷다"
-          />
-          <MatchingItem
-            matchingId={1}
-            companyName="기업명"
-            createdAt="2025-12-28"
-            title="저는 지금 이채영입니다. 나는 지금 진유빈입니다. "
-          />
-          <MatchingItem
-            matchingId={1}
-            companyName="(주) 레진엔터테인ㅇ먼트언쩌구"
-            createdAt="2025-12-28"
-            title="래블업 인턴 경험"
-          />
-          <MatchingItem
-            matchingId={1}
-            companyName="기업명"
-            createdAt="2025-12-28"
-            title="하나둘셋다하나둘셋넷다하나둘셋다하나둘셋넷다하나둘셋다하나둘셋넷다30자여도 무너지지 않습니다."
-          />
+          {MOCK_MATCHING_LIST.map((item) => (
+            <MatchingItem
+              key={item.id}
+              companyName={item.companyName}
+              matchingId={item.id}
+              createdAt={item.createdAt}
+              title={item.experienceTitle}
+            />
+          ))}
         </div>
         <Pagination
           currentPage={page}
