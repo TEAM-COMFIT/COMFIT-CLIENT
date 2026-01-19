@@ -7,7 +7,6 @@ import { shadow } from "@/shared/styles/tokens/shadow.css";
 export const page = style({
   minHeight: "100vh",
   background: color.gray100,
-
   padding: "8.8rem 0 8.8rem",
   overflowX: "hidden",
 });
@@ -30,20 +29,20 @@ export const card = style({
   padding: "6.4rem 0",
 
   position: "relative",
-  left: "50%",
-  transform: "translateX(-50%)",
+  margin: "0 auto",
 });
 
 export const inner = style({
-  width: "100%",
-  maxWidth: "88rem",
+  width: "88rem",
   margin: "0 auto",
-  padding: "0 4rem",
 
   display: "flex",
   flexDirection: "column",
   alignItems: "stretch",
-  gap: "8rem",
+
+  gap: "4rem",
+
+  paddingBottom: "12rem",
 });
 
 export const titleBlock = style({
@@ -53,6 +52,10 @@ export const titleBlock = style({
 
   alignItems: "flex-start",
   textAlign: "left",
+
+  marginTop: "8rem",
+
+  marginBottom: "4rem",
 });
 
 export const title = style([
@@ -69,6 +72,7 @@ export const title = style([
 export const logo = style({
   width: "14rem",
   height: "2.959rem",
+  display: "block",
 });
 
 export const subtitle = style([
@@ -86,12 +90,16 @@ export const field = style({
 });
 
 export const label = style([
-  fontStyles.body_b_14,
+  fontStyles.body_b_16,
   {
-    color: color.gray900,
+    color: color.gray800,
+
     display: "flex",
     alignItems: "center",
-    gap: "0.4rem",
+
+    gap: "2rem",
+
+    minHeight: "2.4rem",
   },
 ]);
 
@@ -106,6 +114,13 @@ export const sectionGroup = style({
 });
 
 export const buttonWrap = style({
-  width: "28rem",
-  margin: "0 auto",
+  width: "34rem",
+
+  position: "absolute",
+  left: "36rem",
+  right: "36rem",
+  bottom: "8.3rem",
+
+  marginLeft: "auto",
+  marginRight: "auto",
 });
