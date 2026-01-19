@@ -21,6 +21,7 @@ export const JobInterestSelect = ({ priority = 1 }: JobInterestSelectProps) => {
     <InterestSelectBase
       variant="job"
       title={`${priority}순위 관심 직무`}
+      required={priority === 1}
       options={JOB_OPTIONS}
       selected={selected as (typeof JOB_OPTIONS)[number] | null}
       disabledOptions={disabledOptions as (typeof JOB_OPTIONS)[number][]}

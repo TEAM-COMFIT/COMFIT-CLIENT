@@ -23,6 +23,7 @@ export const IndustryInterestSelect = ({
     <InterestSelectBase
       variant="industry"
       title={`${priority}순위 관심 산업`}
+      required={priority === 1}
       options={INDUSTRY_OPTIONS}
       selected={selected as (typeof INDUSTRY_OPTIONS)[number] | null}
       disabledOptions={disabledOptions as (typeof INDUSTRY_OPTIONS)[number][]}
