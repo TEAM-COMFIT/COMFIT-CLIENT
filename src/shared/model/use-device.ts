@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 const RESIZE_DEBOUNCE_MS = 100;
 const screen = {
-  mobile: 425,
+  mobile: 452,
 } as const;
 
 const useDevice = () => {
