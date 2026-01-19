@@ -20,7 +20,7 @@ export const AlertModal = forwardRef<HTMLDialogElement>((_, ref) => {
     >
       <form method="dialog" className={styles.buttonHandler}>
         <button className={styles.closeButton}>
-          <IconX />
+          <IconX className={styles.closeIcon} />
         </button>
       </form>
       <h2 className={styles.title}>

@@ -1,10 +1,12 @@
 import { style } from "@vanilla-extract/css";
 
 import { themeVars } from "@/app/styles";
+import { screen } from "@/shared/styles/tokens/screen.css";
 
 /* ---------- Card ---------- */
 
 export const card = style({
+  position: "relative",
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
@@ -33,6 +35,11 @@ export const card = style({
       color: themeVars.color.white,
     },
   },
+
+  ...screen.mobile({
+    width: "34.9rem",
+    padding: "2rem 1rem 2rem 2rem",
+  }),
 });
 
 /* ---------- Text Group ---------- */
@@ -41,6 +48,13 @@ export const textGroup = style({
   gridTemplateColumns: "20.3rem 1fr",
   columnGap: "2.4rem",
   alignItems: "start",
+
+  ...screen.mobile({
+    display: "flex",
+    flexDirection: "column",
+    gap: "1.5rem",
+    maxWidth: "30.9rem",
+  }),
 });
 
 /* ---------- Title ---------- */
@@ -48,6 +62,11 @@ export const textGroup = style({
 export const title = style({
   ...themeVars.fontStyles.title_b_24,
   whiteSpace: "pre-line",
+
+  ...screen.mobile({
+    fontSize: "2rem",
+    zIndex: 1,
+  }),
 });
 
 /* ---------- Content ---------- */
@@ -55,6 +74,9 @@ export const title = style({
 export const content = style({
   ...themeVars.fontStyles.hding_m_20,
   whiteSpace: "pre-line",
+  ...screen.mobile({
+    fontSize: "1.3rem",
+  }),
 });
 
 /* ---------- Image ---------- */
@@ -68,6 +90,23 @@ export const sideImage = style({
   selectors: {
     [`${card}:hover &`]: {
       opacity: 1,
+      ...screen.mobile({ opacity: 0.3 }),
+    },
+
+    [`${card}:nth-child(2) &`]: {
+      width: "16rem",
+      height: "14rem",
+      padding: "1rem",
+      boxSizing: "content-box",
+    },
+
+    [`${card}:last-child &`]: {
+      paddingRight: "1rem",
     },
   },
+
+  ...screen.mobile({
+    position: "absolute",
+    right: 0,
+  }),
 });

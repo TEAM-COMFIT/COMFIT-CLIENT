@@ -1,7 +1,7 @@
 import type { CSSProperties } from "react";
 
 export const screenBreakpoints = {
-  mobile: "(min-width: 375px)",
+  mobile: "(max-width: 375px)",
 } as const;
 
 export const screen = {

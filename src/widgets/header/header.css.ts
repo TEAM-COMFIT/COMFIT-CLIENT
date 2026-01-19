@@ -22,6 +22,7 @@ export const headerLayout = style({
   zIndex: themeVars.zIndex.header,
 
   ...screen.mobile({
+    position: "relative",
     height: themeVars.height.mobile_header,
     padding: "5.8rem 0 1.1rem 1.6rem",
   }),

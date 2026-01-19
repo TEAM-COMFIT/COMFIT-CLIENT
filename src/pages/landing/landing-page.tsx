@@ -9,11 +9,12 @@ import {
 } from "@/features/landing";
 import { LANDING_CARD_ITEMS } from "@/features/landing/config/landing-card.constant";
 import { CHARACTER, FLOAT_IMG, KEY } from "@/shared/assets/images";
-import { Button } from "@/shared/ui";
+import useDevice from "@/shared/model/use-device";
 
 import * as styles from "./landing-page.css";
 
 const LandingPage = () => {
+  const { isMobile } = useDevice();
   const modalRef = useRef<HTMLDialogElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
 
@@ -56,7 +57,7 @@ const LandingPage = () => {
           <div className={styles.worryCardContent}>
             마케팅 취준의 가장 큰 어려움은 방향성입니다
           </div>
-          <img src={CHARACTER} alt="컴핏 캐릭터" />
+          {!isMobile && <img src={CHARACTER} alt="코니와 키니" />}
         </div>
       </div>
       {/** 세 번째 섹션 */}
@@ -64,7 +65,8 @@ const LandingPage = () => {
         <h1 className={styles.thirdTitle}>
           <span className={styles.blueText}>컴핏이 제공하는 솔루션</span>
           <br />
-          체계적인 프로세스로 준비 방향을 명확하게 잡아드립니다
+          체계적인 프로세스로 {isMobile && <br />}준비 방향을 명확하게
+          잡아드립니다
         </h1>
         <div className={styles.landingCard}>
           {LANDING_CARD_ITEMS.map((item) => (
@@ -80,11 +82,13 @@ const LandingPage = () => {
       {/** 네 번째 섹션 */}
       <div className={styles.fourth}>
         <div className={styles.fourthHeader}>
-          <img src={KEY} alt="키 캐릭터" />
+          <img className={styles.key} src={KEY} alt="키 캐릭터" />
           <div className={styles.fourtTitleWrapper}>
             <h1 className={styles.fourthTitle}>
-              <span className={styles.blueText}>컴핏과 함께하면</span> 확실하게
-              달라집니다!
+              <span className={styles.blueText}>
+                컴핏과 함께하면{isMobile && <br />}
+              </span>{" "}
+              확실하게 달라집니다!
             </h1>
             <p className={styles.fourthSubtitle}>
               내가 지원하고 싶은 기업과 나, 이렇게 연결해드려요!
@@ -110,9 +114,9 @@ const LandingPage = () => {
             <br /> 하지만 올바른 방향과 전략이 있다면 충분히 해낼 수 있습니다
           </p>
         </div>
-        <Button size="large" onClick={handleModal}>
+        <button className={styles.footerButton} onClick={handleModal}>
           경험 매칭하기
-        </Button>
+        </button>
       </div>
       {/** 모달  */}
       <AlertModal ref={modalRef} />

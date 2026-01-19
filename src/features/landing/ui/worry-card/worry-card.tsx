@@ -17,7 +17,7 @@ export const WorryCard = () => {
             transition={{
               ease: [0.25, 0.4, 0.25, 1],
               duration: 2,
-              delay: index * 0.5,
+              delay: index * 0.3,
             }}
             key={worry.title}
             className={`${styles.containerBase} ${styles.containerVariants[Index]}`}
