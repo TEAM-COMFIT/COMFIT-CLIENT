@@ -73,11 +73,13 @@ const DatePicker = ({
     setIsOpen((prev) => !prev);
   };
 
+  // 캘린더에만 사용되는 props
   const calendarProps: CalendarProps = {
     value: tempDate,
     activeStartDate: tempDate,
     minDate: minDate ?? undefined,
 
+    // calendar 타입 설정
     view: "month",
     minDetail: "month",
     maxDetail: "month",
@@ -86,6 +88,7 @@ const DatePicker = ({
     selectRange: false,
     showNeighboringMonth: true,
 
+    // 쌍꺽쇠 버튼 비활성화
     prev2Label: null,
     next2Label: null,
   };
