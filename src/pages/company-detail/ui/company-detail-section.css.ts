@@ -61,7 +61,7 @@ export const companyName = style({
 export const dot = style({
   width: "0.4rem",
   height: "0.4rem",
-  borderRadius: "50%",
+  borderRadius: "999px",
   backgroundColor: themeVars.color.gray800,
   display: "inline-block",
   flexShrink: 0,

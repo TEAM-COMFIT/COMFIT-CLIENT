@@ -44,7 +44,11 @@ interface RecommendCompanyItem {
 const CompanyDetailPage = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const companyId = Number(id ?? 1);
+  const parsedId = Number(id);
+  const companyId = Number.isFinite(parsedId) ? parsedId : 1;
+  const handleCtaClick = () => {
+    navigate(ROUTES.EXPERIENCE_MATCHING);
+  };
 
   const company = useMemo<CompanyDetail>(() => {
     const issueList: IssueItem[] = [
@@ -141,7 +145,7 @@ const CompanyDetailPage = () => {
           industryLabel={industryLabel}
           scaleLabel={scaleLabel}
           issueItems={issueItems}
-          onCtaClick={() => navigate(ROUTES.EXPERIENCE_MATCHING)}
+          onCtaClick={handleCtaClick}
         />
       </div>
 

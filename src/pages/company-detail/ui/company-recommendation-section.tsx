@@ -4,7 +4,7 @@ import { ROUTES } from "@/app/routes/paths";
 import { KERORO } from "@/shared/assets/images/index.ts";
 import { CompanyCard, RefreshButton } from "@/widgets";
 
-import * as styles from "./company-recommendation-section.css.ts";
+import * as styles from "./company-recommendation-section.css";
 
 import type { IndustryCode, ScaleCode } from "@/shared/config";
 

@@ -5,7 +5,7 @@ import CompanyDetailImage from "@/shared/assets/images/company_detail.png";
 
 export const recommendSection = style({
   width: "100%",
-  height: "80rem",
+  minHeight: "80rem",
   marginTop: "20rem",
   padding: "6rem 0",
   position: "relative",

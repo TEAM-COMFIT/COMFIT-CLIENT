@@ -55,7 +55,7 @@ const CompanyDetailSection = ({
           <div className={styles.headerMeta}>
             <div className={styles.nameRow}>
               <h1 className={styles.companyName}>{company.name}</h1>
-              <span className={styles.dot} aria-hidden />
+              <span className={styles.dot} aria-hidden="true" />
               <span className={styles.hireStatus}>{company.status}</span>
             </div>
 
