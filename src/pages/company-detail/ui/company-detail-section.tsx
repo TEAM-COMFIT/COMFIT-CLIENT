@@ -137,7 +137,7 @@ const CompanyDetailSection = ({
         </div>
       </section>
 
-      <CompanyCtaBanner className={styles.ctaBanner} onClick={onCtaClick} />
+      <CompanyCtaBanner className={styles.ctaBanner} onCtaClick={onCtaClick} />
     </div>
   );
 };

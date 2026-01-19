@@ -4,11 +4,11 @@ import { Button } from "@/shared/ui";
 import * as styles from "./company-cta-banner.css";
 
 export interface CompanyCtaBannerProps {
-  onClick?: () => void;
+  onCtaClick?: () => void;
   className?: string;
 }
 
-const CompanyCtaBanner = ({ onClick, className }: CompanyCtaBannerProps) => {
+const CompanyCtaBanner = ({ onCtaClick, className }: CompanyCtaBannerProps) => {
   return (
     <section
       className={[styles.container, className].filter(Boolean).join(" ")}
@@ -22,7 +22,7 @@ const CompanyCtaBanner = ({ onClick, className }: CompanyCtaBannerProps) => {
       </div>
 
       <div className={styles.right}>
-        <Button variant="secondary" onClick={onClick}>
+        <Button variant="secondary" onClick={onCtaClick}>
           시작하기
         </Button>
       </div>
