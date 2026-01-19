@@ -1,4 +1,10 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  useCallback,
+} from "react";
 
 import { DropdownArrow } from "@/shared/assets/icons";
 import useOutsideClick from "@/shared/model/use-outsideclick";
@@ -36,7 +42,7 @@ const Dropdown = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen((prev) => !prev);
-  const close = () => setIsOpen(false);
+  const close = useCallback(() => setIsOpen(false), []);
 
   const wrapperRef = useOutsideClick<HTMLDivElement>(isOpen, close);
 
@@ -131,4 +137,4 @@ Dropdown.Trigger = Trigger;
 Dropdown.Menu = Menu;
 Dropdown.Item = Item;
 
-export default Dropdown;
+export { Dropdown };

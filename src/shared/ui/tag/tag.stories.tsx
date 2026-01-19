@@ -12,8 +12,12 @@ const meta = {
   argTypes: {
     type: {
       control: "radio",
-      options: ["label", "xlabel", "register"],
+      options: ["primary", "secondary", "register"],
       description: "태그 타입",
+    },
+    xlabel: {
+      control: "boolean",
+      description: "취소 아이콘 포함 여부(xlabel 타입일 때 사용)",
     },
     children: {
       control: "text",
@@ -47,16 +51,23 @@ type Story = StoryObj<typeof Tag>;
  * Stories
  * ========================= */
 
-export const Label: Story = {
+export const Primary: Story = {
   args: {
-    type: "label",
+    type: "primary",
     children: "기본 태그",
+  },
+};
+
+export const Secondary: Story = {
+  args: {
+    type: "secondary",
+    children: "보조 태그",
   },
 };
 
 export const XLabel: Story = {
   args: {
-    type: "xlabel",
+    xlabel: true,
     children: "삭제 가능 태그",
   },
 };
@@ -71,9 +82,11 @@ export const Register: Story = {
 export const MultipleTags: Story = {
   render: () => (
     <>
-      <Tag type="label">Frontend</Tag>
-      <Tag type="label">Backend</Tag>
-      <Tag type="xlabel" onCancel={() => console.log("cancel AI")}>
+      <Tag type="primary">Frontend</Tag>
+      <Tag type="secondary">Backend</Tag>
+      <Tag>Frontend</Tag>
+      <Tag>Backend</Tag>
+      <Tag xlabel onCancel={() => console.warn("cancel AI")}>
         AI
       </Tag>
       <Tag type="register">인턴/실무</Tag>

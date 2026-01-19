@@ -6,8 +6,8 @@ import React, {
   type ReactNode,
 } from "react";
 
+import { Load } from "@/shared/assets/images";
 import X from "@icons/x.svg?react";
-import Load from "@images/company_info_loading.png";
 
 import * as styles from "./modal.css.ts";
 
