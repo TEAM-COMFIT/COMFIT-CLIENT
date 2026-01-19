@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 
 import { IconSearch, IconCancel } from "@/shared/assets/icons";
 import { useDebounce } from "@/shared/model";
