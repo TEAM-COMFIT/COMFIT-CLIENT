@@ -1,12 +1,12 @@
+import { INDUSTRY_OPTIONS } from "@features/onboarding/config/interest-select.constants";
 import {
   useDisabledOptions,
   useInterestActions,
   useInterestSelection,
 } from "@features/onboarding/model/interest-select/selectors";
-import type { Priority } from "@features/onboarding/model/interest-select/store";
-
-import { INDUSTRY_OPTIONS } from "@features/onboarding/config/interest-select.constants";
 import { InterestSelectBase } from "@features/onboarding/ui/interest-select/interest-select-base";
+
+import type { Priority } from "@features/onboarding/model/interest-select/store";
 
 interface IndustryInterestSelectProps {
   priority?: Priority;
