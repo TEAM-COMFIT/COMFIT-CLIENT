@@ -10,16 +10,14 @@ import * as styles from "./search-section.css";
 
 import type { IndustryCode, ScaleCode } from "@/shared/config";
 
-type CompanySearchParams = {
+interface CompanySearchParamsType {
   keyword?: string;
   industry?: IndustryCode;
   scale?: ScaleCode;
   sort?: string;
   page?: number;
   isRecruited?: boolean;
-};
-
-const ITEMS_PER_PAGE = 10; // 한 페이지 당 아이템 수
+}
 
 const SearchSection = () => {
   // TODO: 서버에서 받아오는 데이터(추후 해당 값으로 변경 필요) -> queryparams로 페이지네이션 처리
@@ -27,14 +25,13 @@ const SearchSection = () => {
   const totalPage = 11;
   const totalElements = 105;
 
-  const [params, setParams] = useState<CompanySearchParams>({});
+  const [params, setParams] = useState<CompanySearchParamsType>({});
 
   // 검색 query param 변경 핸들러
-  const updateParams = (patch: Partial<CompanySearchParams>) => {
+  const updateParams = (patch: Partial<CompanySearchParamsType>) => {
     setParams((prev) => ({
       ...prev,
       ...patch,
-      page: patch.page,
     }));
   };
 

@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-
 import { useScrollToTop } from "@/shared/model";
 
 import * as styles from "./home-page.css";
