@@ -1,8 +1,7 @@
+import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-// 설정해둔 axios 인스턴스 import
-import { axiosInstance } from "@/shared/api/axios-instance";
 import { tokenStorage } from "@/shared/lib/auth/token-storage";
 
 const KakaoLoginPage = () => {
@@ -20,14 +19,14 @@ const KakaoLoginPage = () => {
 
     // 2. 호출 플래그 세우기 (React StrictMode 중복 호출 방지)
     isCalledRef.current = true;
-
+    const SERVER_URL = import.meta.env.VITE_API_URL;
     const loginProcess = async () => {
       setIsLoading(true);
       console.log("인가 코드:", code);
 
       try {
-        const response = await axiosInstance.get(
-          "/api/v1/oauth/kakao/callback",
+        const response = await axios.get(
+          `${SERVER_URL}/api/v1/oauth/kakao/callback`,
           {
             params: {
               code: code,
