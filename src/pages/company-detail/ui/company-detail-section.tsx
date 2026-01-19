@@ -48,7 +48,7 @@ const CompanyDetailSection = ({
         <div className={styles.headerLeft}>
           <img
             className={styles.logo}
-            src={KERORO}
+            src={KERORO} // 임시 이미지
             alt={`${company.name} 로고`}
           />
 

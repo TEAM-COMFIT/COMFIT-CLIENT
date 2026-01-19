@@ -46,7 +46,7 @@ export const headerMeta = style({
 export const nameRow = style({
   display: "flex",
   alignItems: "center",
-  gap: "8px",
+  gap: "0.8rem",
   minWidth: 0,
 });
 

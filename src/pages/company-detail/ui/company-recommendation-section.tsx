@@ -8,13 +8,13 @@ import * as styles from "./company-recommendation-section.css.ts";
 
 import type { IndustryCode, ScaleCode } from "@/shared/config";
 
-type RecommendCompanyItem = {
+interface RecommendCompanyItem {
   id: number;
   companyName: string;
   logoUrl: string;
   industry: IndustryCode;
   scale: ScaleCode;
-};
+}
 
 interface CompanyRecommendationSectionProps {
   companyName: string;
@@ -50,7 +50,7 @@ const CompanyRecommendationSection = ({
               to={ROUTES.COMPANY(String(company.id))}
               className={styles.companyCardLink}
             >
-              <CompanyCard {...company} logoUrl={KERORO} />
+              <CompanyCard {...company} logoUrl={KERORO} /> {/* 임시 이미지 */}
             </Link>
           ))}
         </div>
