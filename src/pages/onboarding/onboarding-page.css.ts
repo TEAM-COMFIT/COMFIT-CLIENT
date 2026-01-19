@@ -1,12 +1,10 @@
 import { style } from "@vanilla-extract/css";
 
-import { fontStyles } from "@/shared/styles/font-style.css";
-import { color } from "@/shared/styles/tokens/color.css";
-import { shadow } from "@/shared/styles/tokens/shadow.css";
+import { themeVars } from "@/app/styles";
 
 export const page = style({
   minHeight: "100vh",
-  background: color.gray100,
+  background: themeVars.color.gray100,
   padding: "8.8rem 0 8.8rem",
   overflowX: "hidden",
 });
@@ -21,9 +19,9 @@ export const container = style({
 export const card = style({
   width: "106rem",
 
-  background: color.white,
+  background: themeVars.color.white,
   borderRadius: "40px",
-  boxShadow: shadow.shadow1,
+  boxShadow: themeVars.shadow.shadow1,
 
   padding: "8rem 0 8.3rem 0",
 
@@ -55,10 +53,10 @@ export const titleBlock = style({
 });
 
 export const title = style([
-  fontStyles.title_b_24,
+  themeVars.fontStyles.title_b_24,
   {
     margin: 0,
-    color: color.gray900,
+    color: themeVars.color.gray900,
     display: "flex",
     alignItems: "center",
     gap: "0.8rem",
@@ -72,10 +70,10 @@ export const logo = style({
 });
 
 export const subtitle = style([
-  fontStyles.body_m_16,
+  themeVars.fontStyles.body_m_16,
   {
     margin: 0,
-    color: color.gray500,
+    color: themeVars.color.gray500,
   },
 ]);
 
@@ -86,9 +84,9 @@ export const field = style({
 });
 
 export const label = style([
-  fontStyles.body_b_16,
+  themeVars.fontStyles.body_b_16,
   {
-    color: color.gray800,
+    color: themeVars.color.gray800,
 
     display: "flex",
     alignItems: "center",
@@ -100,7 +98,7 @@ export const label = style([
 ]);
 
 export const required = style({
-  color: color.orange500,
+  color: themeVars.color.orange500,
 });
 
 export const sectionGroup = style({
