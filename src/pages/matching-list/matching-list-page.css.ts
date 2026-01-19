@@ -9,7 +9,7 @@ export const container = style({
   width: "100%",
   minHeight: "100vh",
   overflow: "hidden",
-  padding: "8rem 16.2rem 0",
+  padding: `calc(10rem + ${themeVars.height.header}) 16.2rem 0`,
 });
 
 export const headerWrapper = style({

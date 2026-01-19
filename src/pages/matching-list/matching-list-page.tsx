@@ -29,7 +29,7 @@ const MatchingListPage = () => {
           <div className={styles.titleWrapper}>
             <h1 className={styles.title}>매칭 경험 목록</h1>
             <p className={styles.subTitle}>
-              AI가 분석한 기업과 나의 경험 매칭 결과를 확인해보세요.
+              AI가 분석한 경험 매칭 결과를 확인해보세요.
             </p>
           </div>
         </div>
@@ -48,19 +48,19 @@ const MatchingListPage = () => {
             matchingId={1}
             companyName="기업명"
             createdAt="2025-12-28"
-            title="하나둘셋다하나둘셋넷다하나둘셋다하나둘셋넷다하나둘셋다하나둘셋넷다30자여도 무너지지 않습니다."
+            title="하나둘셋다하나둘셋넷다하나둘셋다하나둘셋넷다하나둘셋다하나둘셋넷다"
           />
           <MatchingItem
             matchingId={1}
             companyName="기업명"
             createdAt="2025-12-28"
-            title="하나둘셋다하나둘셋넷다하나둘셋다하나둘셋넷다하나둘셋다하나둘셋넷다30자여도 무너지지 않습니다."
+            title="저는 지금 이채영입니다. 나는 지금 진유빈입니다. "
           />
           <MatchingItem
             matchingId={1}
-            companyName="기업명"
+            companyName="(주) 레진엔터테인ㅇ먼트언쩌구"
             createdAt="2025-12-28"
-            title="하나둘셋다하나둘셋넷다하나둘셋다하나둘셋넷다하나둘셋다하나둘셋넷다30자여도 무너지지 않습니다."
+            title="래블업 인턴 경험"
           />
           <MatchingItem
             matchingId={1}
