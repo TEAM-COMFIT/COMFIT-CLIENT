@@ -1,30 +1,32 @@
+import { COMPANY_BOOK } from "@/shared/assets/images";
+import { Button } from "@/shared/ui";
+
 import * as styles from "./company-cta-banner.css";
 
-interface CompanyCtaBannerProps {
-  title?: string;
-  description?: string;
-  buttonText?: string;
+export interface CompanyCtaBannerProps {
   onClick?: () => void;
+  className?: string;
 }
 
-const CompanyCtaBanner = ({
-  title = "기업 분석데이터와 자소서 경험 연결하기",
-  description = "지금 바로 분석한 기업 정보를 바탕으로 자소서 경험과 연결해보세요!",
-  buttonText = "시작하기",
-  onClick,
-}: CompanyCtaBannerProps) => {
+const CompanyCtaBanner = ({ onClick, className }: CompanyCtaBannerProps) => {
   return (
-    <section className={styles.container} aria-label="CTA 배너">
-      <div className={styles.textGroup}>
-        <h3 className={styles.title}>{title}</h3>
-        <p className={styles.desc}>{description}</p>
+    <section
+      className={[styles.container, className].filter(Boolean).join(" ")}
+      aria-label="기업 분석데이터와 자소서 경험 연결 CTA"
+    >
+      <div className={styles.left}>
+        <h3 className={styles.title}>기업 분석데이터와 자소서 경험 연결하기</h3>
+        <p className={styles.desc}>
+          지금 바로 분석된 기업 정보를 바탕으로 자소서 경험과 연결해보세요!
+        </p>
       </div>
 
-      <button type="button" className={styles.button} onClick={onClick}>
-        {buttonText}
-      </button>
-
-      <div className={styles.decor} aria-hidden />
+      <div className={styles.right}>
+        <Button variant="secondary" onClick={onClick}>
+          시작하기
+        </Button>
+      </div>
+      <img className={styles.bookImage} src={COMPANY_BOOK} alt="" aria-hidden />
     </section>
   );
 };

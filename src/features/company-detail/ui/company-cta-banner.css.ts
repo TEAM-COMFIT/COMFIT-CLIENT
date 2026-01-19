@@ -3,62 +3,57 @@ import { style } from "@vanilla-extract/css";
 import { themeVars } from "@/app/styles";
 
 export const container = style({
+  width: "883px",
+  height: "140px",
+  borderRadius: "14px",
+  backgroundColor: themeVars.color.blue600,
+
   position: "relative",
-  width: "100%",
-  maxWidth: "88.3rem",
-  height: "14rem",
-  padding: "2.4rem",
-  borderRadius: "16px",
   overflow: "hidden",
-  boxShadow: themeVars.shadow.shadow1,
 
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
-  gap: "2rem",
 
-  backgroundColor: themeVars.color.blue500,
+  paddingLeft: "39.5px",
+  paddingRight: "46px",
 });
 
-export const textGroup = style({
+export const left = style({
   display: "flex",
   flexDirection: "column",
-  gap: "0.6rem",
-  zIndex: 1,
+  gap: "6.5px",
+  minWidth: 0,
+  zIndex: 2,
 });
 
 export const title = style({
   color: themeVars.color.white,
-  ...themeVars.fontStyles.body_m_16,
+  ...themeVars.fontStyles.hding_b_22,
 });
 
 export const desc = style({
   color: themeVars.color.white,
-  opacity: 0.9,
   ...themeVars.fontStyles.body_m_14,
 });
 
-export const button = style({
-  zIndex: 1,
-  height: "4rem",
-  padding: "0 1.6rem",
-  borderRadius: "12px",
-  border: "none",
-  backgroundColor: themeVars.color.white,
-  color: themeVars.color.blue600,
-  cursor: "pointer",
-  flexShrink: 0,
-  ...themeVars.fontStyles.body_m_14,
+export const right = style({
+  zIndex: 2,
+  display: "flex",
+  alignItems: "center",
 });
 
-export const decor = style({
+export const bookImage = style({
   position: "absolute",
-  right: "-3rem",
-  top: "50%",
-  transform: "translateY(-50%)",
-  width: "20rem",
-  height: "20rem",
-  borderRadius: "999px",
-  background:
-    "radial-gradient(circle, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0) 60%)",
+  left: "50%",
+  bottom: "-44px",
+  transform: "translateX(-34.5%)",
+
+  width: "25.2rem",
+  height: "18.4rem",
+  objectFit: "contain",
+  opacity: 0.3,
+
+  pointerEvents: "none",
+  zIndex: 1,
 });
