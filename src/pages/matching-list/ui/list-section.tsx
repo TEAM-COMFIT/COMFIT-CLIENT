@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import { MatchingItem } from "@/features/matching-list/ui/matching-item";
 import { Pagination } from "@/shared/ui";
 
@@ -18,7 +16,7 @@ const ListSection = ({
   matchingList,
   totalPage,
   currentPage,
-  totalElements,
+  // totalElements,
   onPageChange,
 }: ListSectionProps) => {
   return (
