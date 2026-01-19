@@ -86,7 +86,7 @@ export const subtitle = style([
 export const field = style({
   display: "flex",
   flexDirection: "column",
-  gap: "1.2rem",
+  gap: "0.8rem",
 });
 
 export const label = style([
@@ -97,7 +97,7 @@ export const label = style([
     display: "flex",
     alignItems: "center",
 
-    gap: "2rem",
+    gap: "0.2rem",
 
     minHeight: "2.4rem",
   },
@@ -121,6 +121,7 @@ export const buttonWrap = style({
   right: "36rem",
   bottom: "8.3rem",
 
+  marginTop: "8rem",
   marginLeft: "auto",
   marginRight: "auto",
 });
