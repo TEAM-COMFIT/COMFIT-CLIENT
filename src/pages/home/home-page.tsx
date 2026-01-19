@@ -10,10 +10,10 @@ import { Company } from "@/shared/assets/images";
 import KERORO from "@/shared/assets/images/comfit_web_status.jpg";
 import { Alert } from "@/shared/ui/alert";
 import { useAlert } from "@/shared/ui/alert/use-alert";
-import { SearchAutocomplete } from "@/shared/ui/search-auto-complete/search-auto-complete";
 import { Search } from "@/shared/ui/index";
 import { CompanyGridContainer } from "@/shared/ui/pagination/company-list-container";
 import { MatchingListContainer } from "@/shared/ui/pagination/matching-list-container";
+import { SearchAutocomplete } from "@/shared/ui/search-auto-complete/search-auto-complete";
 import { Textfield } from "@/shared/ui/textfield";
 import { CompanyCard } from "@/widgets";
 import Heart from "@icons/heart.svg?react";
@@ -25,7 +25,6 @@ import type { SearchItem } from "@/shared/ui/search-auto-complete/types";
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 const HomePage = () => {
-
   // 목업 데이터 (UI 확인용)
   const universities = useMemo<SearchItem[]>(
     () => [
@@ -146,6 +145,8 @@ const HomePage = () => {
           date="2024.12"
           title="글로벌 공동 제작 프로젝트 확대"
           description="글로벌 제작사 및 플랫폼과의 공동 제작 프로젝트를 통해 제작 초기 단계부터 해외 시장을 고려한 협업 모델을 확대하고 있다. 일부 프로젝트는 국내 방영 이후 해외 유통이 아닌, 글로벌 공개를 전제로 제작 구조를 설계하는 방식으로 진행되고 있다."
+        />
+      </section>
       {/* 온보딩 자동완성 search */}
       <section style={{ display: "grid", gap: 10 }}>
         <h2 style={{ margin: 0, fontSize: 14, fontWeight: 600 }}>
