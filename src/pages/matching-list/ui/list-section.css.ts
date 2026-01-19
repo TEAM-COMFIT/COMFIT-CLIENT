@@ -14,7 +14,8 @@ export const list = style({
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
-  justifyContent: "center",
+  justifyContent: "start",
   gap: "1.6rem",
   width: "100%",
+  height: "49rem",
 });

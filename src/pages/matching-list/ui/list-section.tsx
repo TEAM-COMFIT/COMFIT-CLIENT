@@ -21,7 +21,7 @@ const ListSection = ({
 }: ListSectionProps) => {
   return (
     <div className={styles.listWrapper}>
-      <div className={styles.list}>
+      <div className={styles.list} aria-label="매칭 경험 목록">
         {matchingList.map((item) => (
           <MatchingItem
             key={item.id}
