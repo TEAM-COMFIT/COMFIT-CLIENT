@@ -18,6 +18,7 @@ export const headerLayout = style({
   width: "100%",
   height: themeVars.height.header,
   padding: "0 17rem",
+  zIndex: themeVars.zIndex.header,
 });
 
 export const header = style({
