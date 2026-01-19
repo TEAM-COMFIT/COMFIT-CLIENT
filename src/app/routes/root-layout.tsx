@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 
-import useDevice from "@/shared/model/use-device";
+import { useDevice } from "@/shared/model/use-device";
 import { Header } from "@widgets/index";
 
 import { themeVars } from "../styles";

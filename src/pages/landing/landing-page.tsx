@@ -9,11 +9,12 @@ import {
 } from "@/features/landing";
 import { LANDING_CARD_ITEMS } from "@/features/landing/config/landing-card.constant";
 import { CHARACTER, FLOAT_IMG, KEY } from "@/shared/assets/images";
-import useDevice from "@/shared/model/use-device";
+import { useDevice, useScrollToTop } from "@/shared/model";
 
 import * as styles from "./landing-page.css";
 
 const LandingPage = () => {
+  useScrollToTop();
   const { isMobile } = useDevice();
   const modalRef = useRef<HTMLDialogElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
