@@ -26,7 +26,12 @@ const CompanyCtaBanner = ({ onCtaClick, className }: CompanyCtaBannerProps) => {
           시작하기
         </Button>
       </div>
-      <img className={styles.bookImage} src={COMPANY_BOOK} alt="" aria-hidden />
+      <img
+        className={styles.bookImage}
+        src={COMPANY_BOOK}
+        alt=""
+        aria-hidden="true"
+      />
     </section>
   );
 };
