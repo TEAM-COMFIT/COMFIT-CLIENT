@@ -1,2 +1,2 @@
 export { formatDateWithDots } from "./format-date";
-export * from "./sleep";
+export { sleep } from "./sleep";
