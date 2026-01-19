@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { DatePicker } from "@/features/experience-detail/ui/date-picker/date-picker";
+import { DatePicker } from "@/features/experience-detail";
 import { IconDash } from "@/shared/assets/icons";
 import { RefreshButton } from "@/widgets/refresh-button/refresh-button";
 import KERORO from "@images/comfit_web_status.jpg";
