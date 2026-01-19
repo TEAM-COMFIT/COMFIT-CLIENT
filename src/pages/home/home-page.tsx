@@ -1,26 +1,24 @@
-import { DatePicker } from "@/features/experience-detail";
-import { IconDash } from "@/shared/assets/icons";
-import { RefreshButton } from "@/widgets/refresh-button/refresh-button";
-import KERORO from "@images/comfit_web_status.jpg";
-
 import { useMemo, useState } from "react";
 
+import { DatePicker } from "@/features/experience-detail";
 import { MajorCompanyCard } from "@/features/home/ui";
 import {
   IndustryInterestSelect,
   JobInterestSelect,
 } from "@/features/onboarding";
+import { IconDash } from "@/shared/assets/icons";
 import { Company } from "@/shared/assets/images";
-import KERORO from "@/shared/assets/images/comfit_web_status.jpg";
 import { Alert } from "@/shared/ui/alert";
 import { useAlert } from "@/shared/ui/alert/use-alert";
-import { SearchAutocomplete } from "@/shared/ui/search-auto-complete/search-auto-complete";
 import { Search } from "@/shared/ui/index";
 import { CompanyGridContainer } from "@/shared/ui/pagination/company-list-container";
 import { MatchingListContainer } from "@/shared/ui/pagination/matching-list-container";
+import { SearchAutocomplete } from "@/shared/ui/search-auto-complete/search-auto-complete";
 import { Textfield } from "@/shared/ui/textfield";
 import { CompanyCard } from "@/widgets";
+import { RefreshButton } from "@/widgets/refresh-button/refresh-button";
 import Heart from "@icons/heart.svg?react";
+import KERORO from "@images/comfit_web_status.jpg";
 
 import { appContainer } from "./home-page.css";
 
