@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 import { ROUTES } from "@/app/routes/paths";
-import { KERORO } from "@/shared/assets/images/index.ts";
+import { KERORO } from "@/shared/assets/images/index";
 import { CompanyCard, RefreshButton } from "@/widgets";
 
 import * as styles from "./company-recommendation-section.css";
@@ -50,7 +50,8 @@ const CompanyRecommendationSection = ({
               to={ROUTES.COMPANY(String(company.id))}
               className={styles.companyCardLink}
             >
-              <CompanyCard {...company} logoUrl={KERORO} /> {/* 임시 이미지 */}
+              {/* 임시 이미지 */}
+              <CompanyCard {...company} logoUrl={KERORO} />
             </Link>
           ))}
         </div>
