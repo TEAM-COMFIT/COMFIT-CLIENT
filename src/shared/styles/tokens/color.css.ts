@@ -30,8 +30,35 @@ export const color = {
   purple100: "#FCF0FF",
   purple200: "#EDCCF8",
   purple300: "#E196F7",
+  purple400: "#BE4FE3",
 
+  // Kakao color
+  kakaoclr: "#191919",
+  kakaobg: "#FEE500",
+
+  // Sub Orange scale
+  orange500: "#D95117",
   // White / Black
   white: "#FFFFFF",
   black: "#000000",
+
+  // Alert(Error)
+  toastErrorBg: "#FBE2DD",
+  toastErrorBorder: "#D64C3F",
+  toastErrorIcon: "#D64C3F",
+
+  // Alert(Success)
+  toastSuccessBg: "#B5E0C6",
+  toastSuccessBorder: "#10A657",
+  toastSuccessIcon: "#10A657",
+
+  // Alert(Warning)
+  toastWarningBg: "#FFE4C7",
+  toastWarningBorder: "#F6A220",
+  toastWarningIcon: "#F6A220",
+
+  // Alert(Info)
+  toastInfoBg: "#C4E8FB",
+  toastInfoBorder: "#456FB6",
+  toastInfoIcon: "#456FB6",
 } as const;
