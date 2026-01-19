@@ -5,14 +5,14 @@ import * as styles from "./company-issue.css";
 import type { AnchorHTMLAttributes } from "react";
 
 export interface CompanyIssueProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
-  href: string;
+  issueURL: string;
   date: string;
   title: string;
   description: string;
 }
 
 const CompanyIssue = ({
-  href,
+  issueURL,
   date,
   title,
   description,
@@ -30,7 +30,7 @@ const CompanyIssue = ({
   const dateTime = date.replace(/\./g, "-");
   return (
     <a
-      href={href}
+      href={issueURL}
       target={target}
       rel={safeRel}
       className={[styles.container, className].filter(Boolean).join(" ")}
