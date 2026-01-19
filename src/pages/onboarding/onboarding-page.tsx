@@ -1,9 +1,10 @@
-import { useState, useMemo } from "react";
+import { useMemo, useState } from "react";
 
 import {
+  EducationSelect,
   IndustryInterestSelect,
   JobInterestSelect,
-  EducationSelect,
+  useInterestSelectStore,
 } from "@/features/onboarding";
 import comfitLogo from "@/shared/assets/images/comfit_onboarding_logo.png";
 import { SearchAutocomplete } from "@/shared/ui/search-auto-complete/search-auto-complete";
@@ -21,6 +22,9 @@ const OnboardingPage = () => {
     useState<EducationTypeCode | null>(null);
   const [selectedUniversity, setSelectedUniversity] =
     useState<SearchItem | null>(null);
+
+  const industry = useInterestSelectStore((s) => s.industry);
+  const job = useInterestSelectStore((s) => s.job);
 
   const universities = useMemo<SearchItem[]>(
     () => [
@@ -40,6 +44,18 @@ const OnboardingPage = () => {
     if (!q) return [];
     return universities.filter((x) => x.label.toLowerCase().includes(q));
   };
+
+  const isFormComplete = useMemo(() => {
+    const hasEducation = Boolean(selectedEducation);
+    const hasUniversity = Boolean(selectedUniversity);
+
+    const hasIndustryAll =
+      Boolean(industry[1]) && Boolean(industry[2]) && Boolean(industry[3]);
+
+    const hasJobAll = Boolean(job[1]) && Boolean(job[2]) && Boolean(job[3]);
+
+    return hasEducation && hasUniversity && hasIndustryAll && hasJobAll;
+  }, [selectedEducation, selectedUniversity, industry, job]);
 
   return (
     <div className={s.page}>
@@ -95,9 +111,10 @@ const OnboardingPage = () => {
               <Button
                 variant="primary"
                 size="full"
-                disabled={!selectedUniversity}
+                disabled={!isFormComplete}
                 onClick={() => {
-                  if (!selectedUniversity) return;
+                  if (!isFormComplete) return;
+                  // TODO: 제출 로직
                 }}
               >
                 작성 완료
