@@ -20,13 +20,12 @@ export const container = style({
 
 export const card = style({
   width: "106rem",
-  height: "148rem",
 
   background: color.white,
   borderRadius: "40px",
   boxShadow: shadow.shadow1,
 
-  padding: "6.4rem 0",
+  padding: "8rem 0 8.3rem 0",
 
   position: "relative",
   margin: "0 auto",
@@ -42,7 +41,6 @@ export const inner = style({
 
   gap: "4rem",
 
-  paddingBottom: "12rem",
 });
 
 export const titleBlock = style({
@@ -52,8 +50,6 @@ export const titleBlock = style({
 
   alignItems: "flex-start",
   textAlign: "left",
-
-  marginTop: "8rem",
 
   marginBottom: "4rem",
 });
@@ -116,12 +112,11 @@ export const sectionGroup = style({
 export const buttonWrap = style({
   width: "34rem",
 
-  position: "absolute",
   left: "36rem",
   right: "36rem",
   bottom: "8.3rem",
 
-  marginTop: "8rem",
+  marginTop: "4rem",
   marginLeft: "auto",
   marginRight: "auto",
 });
