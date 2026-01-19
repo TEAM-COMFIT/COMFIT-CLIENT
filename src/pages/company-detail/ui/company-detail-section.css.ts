@@ -9,7 +9,7 @@ export const sectionWrap = style({
 
 export const header = style({
   width: "88.3rem",
-  height: "100px",
+  height: "10rem",
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
@@ -26,8 +26,8 @@ export const headerLeft = style({
 });
 
 export const logo = style({
-  width: "100px",
-  height: "100px",
+  width: "10rem",
+  height: "10rem",
   borderRadius: "16px",
   border: `1.5px solid ${themeVars.color.normal}`,
   boxShadow: themeVars.shadow.shadow2,
@@ -59,9 +59,9 @@ export const companyName = style({
 });
 
 export const dot = style({
-  width: "4px",
-  height: "4px",
-  borderRadius: "999px",
+  width: "0.4rem",
+  height: "0.4rem",
+  borderRadius: "50%",
   backgroundColor: themeVars.color.gray800,
   display: "inline-block",
   flexShrink: 0,
