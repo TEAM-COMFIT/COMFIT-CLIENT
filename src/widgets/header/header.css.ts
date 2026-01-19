@@ -2,6 +2,7 @@ import { style } from "@vanilla-extract/css";
 import { recipe } from "@vanilla-extract/recipes";
 
 import { themeVars } from "@/app/styles";
+import { screen } from "@/shared/styles/tokens/screen.css";
 
 const flexCenter = {
   display: "flex",
@@ -19,6 +20,12 @@ export const headerLayout = style({
   height: themeVars.height.header,
   padding: "0 17rem",
   zIndex: themeVars.zIndex.header,
+
+  ...screen.mobile({
+    position: "relative",
+    height: themeVars.height.mobile_header,
+    padding: "5.8rem 0 1.1rem 1.6rem",
+  }),
 });
 
 export const header = style({
@@ -27,6 +34,11 @@ export const header = style({
   width: "100%",
   padding: "1.4rem 2rem",
   margin: "0 auto",
+
+  ...screen.mobile({
+    justifyContent: "flex-start",
+    padding: 0,
+  }),
 });
 
 export const linkBase = style({
@@ -34,6 +46,12 @@ export const linkBase = style({
   textDecoration: "none",
   color: themeVars.color.black,
   flexShrink: 0,
+});
+
+export const logo = style({
+  ...screen.mobile({
+    flexShrink: 0,
+  }),
 });
 
 export const menus = style({
@@ -46,6 +64,8 @@ export const textMenus = style([
   {
     ...flexCenter,
     gap: "4rem",
+
+    ...screen.mobile({ display: "none" }), // TODO: 추후 리팩토링 예정
   },
 ]);
 
@@ -99,5 +119,8 @@ export const name = style([
     border: `1px solid ${themeVars.color.normal}`,
     borderRadius: "8px",
     ...themeVars.fontStyles.body_m_16,
+    ...screen.mobile({
+      display: "none",
+    }),
   },
 ]);
