@@ -2,3 +2,5 @@ export { IndustryInterestSelect } from "./ui/interest-select/industry-interest-s
 export { JobInterestSelect } from "./ui/interest-select/job-interest-select";
 export { EducationSelect } from "./ui/education-select/education-select";
 export * from "./config/education";
+export * from "./model/interest-select/store";
+export * from "./model/interest-select/selectors";
