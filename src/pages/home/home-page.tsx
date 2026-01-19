@@ -7,7 +7,6 @@ import {
   IndustryInterestSelect,
   JobInterestSelect,
 } from "@/features/onboarding";
-import { IconIdeal } from "@/shared/assets/icons";
 import { IconDash } from "@/shared/assets/icons";
 import { Company } from "@/shared/assets/images";
 import { Alert } from "@/shared/ui/alert";
