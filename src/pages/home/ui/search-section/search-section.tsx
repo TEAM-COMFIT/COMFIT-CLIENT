@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 
 import { ScaleFilter, IndustryFilter } from "@/features/home/ui";
 import { homeBanner, Logo } from "@/shared/assets/images";
@@ -38,7 +38,7 @@ const SearchSection = () => {
     }));
   };
 
-  // API 호출용 파라미터 (default 보장)
+  // TODO: API 호출용 파라미터. 실제 API 연동 시 사용 예정
   const requestParams = useMemo(() => {
     return {
       keyword: params.keyword,
@@ -67,16 +67,16 @@ const SearchSection = () => {
       name: "쿠팡",
       industry: "CONSUMER_GOODS",
       scale: "LARGE",
-      logo: "https://bucket-com-fit-server.s3.ap-northeast-2.amazonaws.com/company/coupang.gif",
+      logo: Logo,
       isRecruited: false,
       likeCounts: 0,
     },
     {
       id: 2,
-      name: "하하하하하하하하하",
+      name: "하하하하하하",
       industry: "IT",
       scale: "LARGE",
-      logo: "https://bucket-com-fit-server.s3.ap-northeast-2.amazonaws.com/company/SKNetworks.png",
+      logo: Logo,
       isRecruited: false,
       likeCounts: 0,
     },
@@ -85,7 +85,7 @@ const SearchSection = () => {
       name: "㈜레진엔터테인먼트",
       industry: "MEDIA_CONTENTS",
       scale: "LARGE",
-      logo: "https://bucket-com-fit-server.s3.ap-northeast-2.amazonaws.com/company/lezhin.png",
+      logo: Logo,
       isRecruited: true,
       likeCounts: 0,
     },
@@ -94,7 +94,7 @@ const SearchSection = () => {
       name: "㈜컴퓨존",
       industry: "IT",
       scale: "MID_LARGE",
-      logo: "https://bucket-com-fit-server.s3.ap-northeast-2.amazonaws.com/company/coumpuzone.jpg",
+      logo: Logo,
       isRecruited: true,
       likeCounts: 0,
     },
@@ -103,7 +103,7 @@ const SearchSection = () => {
       name: "㈜엘림넷",
       industry: "IT",
       scale: "MID_LARGE",
-      logo: "https://bucket-com-fit-server.s3.ap-northeast-2.amazonaws.com/company/elimnet.jpg",
+      logo: Logo,
       isRecruited: false,
       likeCounts: 0,
     },
@@ -112,7 +112,7 @@ const SearchSection = () => {
       name: "(주)사람인에이치에스",
       industry: "LIFE_STYLE",
       scale: "MID_LARGE",
-      logo: "https://bucket-com-fit-server.s3.ap-northeast-2.amazonaws.com/company/saramin.png",
+      logo: Logo,
       isRecruited: true,
       likeCounts: 0,
     },
@@ -121,7 +121,7 @@ const SearchSection = () => {
       name: "휴먼웍스",
       industry: "IT",
       scale: "MID_LARGE",
-      logo: "https://bucket-com-fit-server.s3.ap-northeast-2.amazonaws.com/company/humanworks.jpg",
+      logo: Logo,
       isRecruited: false,
       likeCounts: 0,
     },
@@ -130,11 +130,15 @@ const SearchSection = () => {
       name: "㈜폴라리스오피스",
       industry: "IT",
       scale: "SME",
-      logo: "https://bucket-com-fit-server.s3.ap-northeast-2.amazonaws.com/company/polaris.png",
+      logo: Logo,
       isRecruited: true,
       likeCounts: 0,
     },
   ];
+
+  useEffect(() => {
+    console.log("Search params changed:", params);
+  }, [params]);
 
   return (
     <>
