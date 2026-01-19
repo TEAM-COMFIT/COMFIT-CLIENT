@@ -21,7 +21,7 @@ declare module "axios" {
 export const axiosInstance = axios.create({
   baseURL: `${SERVER_URL}`,
   headers: {
-    "Content-Type": "x-www-form-urlencoded",
+    "Content-Type": "application/json",
   },
 });
 
@@ -50,7 +50,7 @@ axiosInstance.interceptors.response.use(
     if (error.response?.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
       try {
-        const { data } = await axios.post("/", null, {
+        const { data } = await axios.post("/api/v1/re-issued", null, {
           withCredentials: true,
         });
 

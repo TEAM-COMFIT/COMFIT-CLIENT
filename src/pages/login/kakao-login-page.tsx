@@ -1,72 +1,44 @@
-import axios from "axios";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { useAuthStore } from "@/app/store";
+import { useLogin } from "@/features/login/api/use-login.mutation";
 import { tokenStorage } from "@/shared/lib/auth/token-storage";
 
 const KakaoLoginPage = () => {
   const navigate = useNavigate();
+  const { actions } = useAuthStore();
+  const { mutate: login } = useLogin();
 
-  // 로딩 상태를 직접 관리 (React Query의 isPending 대체)
-  const [isLoading, setIsLoading] = useState(false);
-
+  // 인가 코드(code) 가져오기
   const code = new URL(window.location.href).searchParams.get("code");
   const isCalledRef = useRef(false);
 
   useEffect(() => {
-    // 1. 코드가 없거나 이미 호출했다면 실행하지 않음
     if (!code || isCalledRef.current) return;
-
-    // 2. 호출 플래그 세우기 (React StrictMode 중복 호출 방지)
     isCalledRef.current = true;
-    const SERVER_URL = import.meta.env.VITE_API_URL;
-    const loginProcess = async () => {
-      setIsLoading(true);
-      console.log("인가 코드:", code);
 
-      try {
-        const response = await axios.get(
-          `${SERVER_URL}/api/v1/oauth/kakao/callback`,
-          {
-            params: {
-              code: code,
-            },
-          }
-        );
+    login(code, {
+      onSuccess: (response) => {
+        const accessToken = response.result as string;
 
-        const result = response.data?.result || response.data;
-        const { accessToken } = result;
-        console.log(response);
+        //console.log("로그인 성공!");
+
         if (accessToken) {
           tokenStorage.set(accessToken);
+          actions.login(accessToken);
           navigate("/", { replace: true });
-        } else {
-          throw new Error("Access Token이 응답에 없습니다.");
         }
-      } catch (error) {
-        console.error("로그인 에러 발생:", error);
-        alert("로그인에 실패했습니다. 다시 시도해주세요.");
+      },
+      onError: (error) => {
+        console.error("로그인 실패:", error);
+        alert("로그인에 실패했습니다.");
         navigate("/login", { replace: true });
-      } finally {
-        setIsLoading(false);
-      }
-    };
+      },
+    });
+  }, [code, login, navigate, actions]);
 
-    loginProcess();
-  }, [code, navigate]);
-
-  return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100vh",
-      }}
-    >
-      {isLoading ? "로그인 처리 중입니다..." : "잠시만 기다려주세요."}
-    </div>
-  );
+  return <div></div>;
 };
 
 export { KakaoLoginPage };

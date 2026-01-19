@@ -1,7 +1,7 @@
 import {
   getAuthURL,
   type SocialProvider,
-} from "@/features/login/config/authConfig";
+} from "@/features/login/config/auth-config";
 import { IconKakao } from "@/shared/assets/icons";
 
 import * as styles from "./login-page.css";
