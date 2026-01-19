@@ -1,14 +1,15 @@
+import {
+  getAuthURL,
+  type SocialProvider,
+} from "@/features/login/config/authConfig";
 import { IconKakao } from "@/shared/assets/icons";
 
 import * as styles from "./login-page.css";
 
 const LoginPage = () => {
-  const kakaoURL = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${import.meta.env.VITE_KAKAO_REST_API}&redirect_uri=${import.meta.env.VITE_KAKAO_REDIRECT_URI}`;
-
-  const handleLogin = () => {
-    window.location.href = kakaoURL;
+  const handleLogin = (type: SocialProvider) => {
+    window.location.href = getAuthURL[type]();
   };
-
   return (
     <div className={styles.container}>
       <div className={styles.section}>
@@ -18,7 +19,8 @@ const LoginPage = () => {
           <br /> 취준생들에게 용기와 선택의 힘을
         </p>
       </div>
-      <button className={styles.kakao} onClick={handleLogin}>
+
+      <button className={styles.kakao} onClick={() => handleLogin("KAKAO")}>
         <IconKakao />
         <span className={styles.kakaoText}>카카오 로그인</span>
       </button>

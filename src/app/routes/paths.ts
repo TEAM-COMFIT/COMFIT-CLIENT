@@ -1,7 +1,7 @@
 export const ROUTES = {
   HOME: "/",
   LOGIN: "/login",
-  LOGIN_AUTH: "/login/oauth",
+  LOGIN_AUTH: "/oauth/kakao/callback",
   LANDING: "/landing",
   ONBOARDING: "/onboarding",
   COMPANY: (id = ":id") => `/company/${id}`, // 기업 상세
