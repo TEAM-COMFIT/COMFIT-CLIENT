@@ -1,14 +1,15 @@
 import { useMemo, useState } from "react";
 
 import { CompanyIssue } from "@/features/company-detail";
+import { DatePicker } from "@/features/experience-detail";
 import { MajorCompanyCard } from "@/features/home/ui";
 import {
   IndustryInterestSelect,
   JobInterestSelect,
 } from "@/features/onboarding";
 import { IconIdeal } from "@/shared/assets/icons";
+import { IconDash } from "@/shared/assets/icons";
 import { Company } from "@/shared/assets/images";
-import KERORO from "@/shared/assets/images/comfit_web_status.jpg";
 import { Alert } from "@/shared/ui/alert";
 import { useAlert } from "@/shared/ui/alert/use-alert";
 import { Search } from "@/shared/ui/index";
@@ -18,6 +19,7 @@ import { SearchAutocomplete } from "@/shared/ui/search-auto-complete/search-auto
 import { Textfield } from "@/shared/ui/textfield";
 import { CompanyCard } from "@/widgets";
 import Heart from "@icons/heart.svg?react";
+import KERORO from "@images/comfit_web_status.jpg";
 
 import { appContainer } from "./home-page.css";
 
@@ -26,6 +28,21 @@ import type { SearchItem } from "@/shared/ui/search-auto-complete/types";
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 const HomePage = () => {
+  const [startDate, setStartDate] = useState<Date | null>(null);
+  const [endDate, setEndDate] = useState<Date | null>(null);
+
+  const handleStartDateChange = (date: Date | null) => {
+    setStartDate(date);
+
+    // 종료일이 있고, 새로 선택한 시작일이 종료일보다 이후라면 종료일 초기화
+    if (date && endDate && date > endDate) {
+      setEndDate(null);
+    }
+  };
+  const handleEndDateChange = (date: Date | null) => {
+    setEndDate(date);
+  };
+
   // 목업 데이터 (UI 확인용)
   const universities = useMemo<SearchItem[]>(
     () => [
@@ -125,6 +142,27 @@ const HomePage = () => {
       <MatchingListContainer />
 
       <img src={KERORO} alt="Keroro" width={400} />
+      <div
+        style={{
+          display: "flex",
+          gap: "1rem",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <DatePicker
+          selectedDate={startDate}
+          onChangeSelectedDate={handleStartDateChange}
+          placeholder="시작일"
+        />
+        <IconDash aria-hidden="true" focusable="false" />
+        <DatePicker
+          selectedDate={endDate}
+          onChangeSelectedDate={handleEndDateChange}
+          placeholder="종료일"
+          minDate={startDate ?? undefined}
+        />
+      </div>
 
       <section aria-label="최근 6개월 주요 이슈 및 마케팅 캠페인">
         <CompanyIssue
