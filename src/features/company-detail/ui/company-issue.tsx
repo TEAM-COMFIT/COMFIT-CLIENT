@@ -27,6 +27,7 @@ const CompanyIssue = ({
           new Set(["noopener", "noreferrer", ...(rel?.split(" ") ?? [])])
         ).join(" ")
       : rel;
+  const dateTime = date.replace(/\./g, "-");
   return (
     <a
       href={href}
@@ -37,7 +38,9 @@ const CompanyIssue = ({
       {...props}
     >
       <div className={styles.leftGroup}>
-        <time className={styles.date}>{date}</time>
+        <time className={styles.date} dateTime={dateTime}>
+          {date}
+        </time>
 
         <div className={styles.content}>
           <h3 className={styles.title}>{title}</h3>
