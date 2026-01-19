@@ -1,6 +1,7 @@
 export const ROUTES = {
   HOME: "/",
   LOGIN: "/login",
+  LOGIN_AUTH: "/oauth/kakao/callback",
   LANDING: "/landing",
   ONBOARDING: "/onboarding",
   COMPANY: (id = ":id") => `/company/${id}`, // 기업 상세
@@ -15,5 +16,4 @@ export const ROUTES = {
   EXPERIENCE_EDIT: (id = ":id") => `/experience/${id}/edit`, // 경험 수정
 
   MYPAGE: "/mypage",
-  BOOKMARK: "/bookmark",
 };

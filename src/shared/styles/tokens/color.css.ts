@@ -32,9 +32,12 @@ export const color = {
   purple300: "#E196F7",
   purple400: "#BE4FE3",
 
+  // Kakao color
+  kakaoclr: "#191919",
+  kakaobg: "#FEE500",
+
   // Sub Orange scale
   orange500: "#D95117",
-
   // White / Black
   white: "#FFFFFF",
   black: "#000000",

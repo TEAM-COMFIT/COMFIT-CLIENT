@@ -1,4 +1,3 @@
-import { BookmarkPage } from "@/pages/bookmark/bookmark-page";
 import { ExperiencePage } from "@/pages/experience/experience-page";
 import { ExperienceDetailPage } from "@/pages/experience-detail/experience-detail-page";
 import { ExperienceMatchingPage } from "@/pages/experience-matching/experience-matching-page";
@@ -33,5 +32,4 @@ export const protectedRoutes = [
   },
 
   { path: ROUTES.MYPAGE, element: <MyPage /> },
-  { path: ROUTES.BOOKMARK, element: <BookmarkPage /> },
 ];
