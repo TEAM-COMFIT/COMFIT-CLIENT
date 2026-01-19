@@ -2,6 +2,7 @@ import "./reset.css.ts";
 
 import { globalStyle, globalFontFace } from "@vanilla-extract/css";
 
+import NanumSquareNeoWoff2 from "@shared/assets/fonts/NanumSquareNeoVariable.woff2";
 import PretendardWoff2 from "@shared/assets/fonts/PretendardVariable.woff2";
 
 import { themeVars } from "./theme.css";
@@ -9,6 +10,13 @@ import { themeVars } from "./theme.css";
 globalFontFace("Pretendard", {
   src: `url(${PretendardWoff2}) format("woff2")`,
   fontWeight: "100 900",
+  fontStyle: "normal",
+  fontDisplay: "swap",
+});
+
+globalFontFace("NanumSquareNeo", {
+  src: `url(${NanumSquareNeoWoff2}) format("woff2")`,
+  fontWeight: "normal",
   fontStyle: "normal",
   fontDisplay: "swap",
 });
