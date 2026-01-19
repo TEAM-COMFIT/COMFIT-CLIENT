@@ -141,7 +141,6 @@ const HomePage = () => {
       <MatchingListContainer />
 
       <img src={KERORO} alt="Keroro" width={400} />
-      <RefreshButton onClick={() => console.log("getAPI 이곳에 넘길 예정")} />
       <div
         style={{
           display: "flex",
@@ -155,7 +154,7 @@ const HomePage = () => {
           onChangeSelectedDate={handleStartDateChange}
           placeholder="시작일"
         />
-        <IconDash />
+        <IconDash aria-hidden="true" focusable="false" />
         <DatePicker
           selectedDate={endDate}
           onChangeSelectedDate={handleEndDateChange}

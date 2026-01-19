@@ -16,7 +16,7 @@ export const formatDateDot = (date: Date): string => {
   })
     .format(date)
     .replaceAll(". ", ".")
-    .replace(".", ".");
+    .replace(/\.$/, "");
 };
 
 // Date -> YYYY년 MM월 DD일(string)

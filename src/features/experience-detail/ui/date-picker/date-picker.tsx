@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from "react";
+import { useMemo, useRef, useState, useEffect } from "react";
 import { Calendar } from "react-calendar";
 
 import {
@@ -23,11 +23,6 @@ const TODAY = new Date();
 export interface DatePickerProps {
   selectedDate: Date | null;
   onChangeSelectedDate: (date: Date) => void;
-
-  prevMonthIcon?: React.ReactNode;
-  nextMonthIcon?: React.ReactNode;
-
-  closeOnOutsideClick?: boolean;
   disabled?: boolean;
 
   placeholder?: string;
@@ -93,6 +88,16 @@ const DatePicker = ({
     next2Label: null,
   };
 
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && isOpen) {
+        close();
+      }
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen]);
+
   return (
     <div ref={containerRef} className={styles.container}>
       {/* Trigger */}
@@ -112,7 +117,12 @@ const DatePicker = ({
 
       {/* Menu */}
       {isOpen && (
-        <div ref={menuRef} className={styles.menuWrapper}>
+        <div
+          ref={menuRef}
+          className={styles.menuWrapper}
+          role="dialog"
+          aria-modal="true"
+        >
           <div className={styles.calendar}>
             <Calendar
               {...calendarProps}

@@ -25,8 +25,8 @@ export const triggerTextBase = style({
 });
 
 export const triggerTextVariants = styleVariants({
-  placeholder: [{ color: themeVars.color.gray400 }],
-  selected: [{ color: themeVars.color.gray800 }],
+  placeholder: [triggerTextBase, { color: themeVars.color.gray400 }],
+  selected: [triggerTextBase, { color: themeVars.color.gray800 }],
 });
 
 export const triggerIcon = style({
