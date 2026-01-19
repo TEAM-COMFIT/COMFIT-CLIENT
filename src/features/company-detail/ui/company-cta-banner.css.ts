@@ -9,6 +9,7 @@ export const container = style({
   backgroundColor: themeVars.color.blue600,
 
   position: "relative",
+  zIndex: 0,
   overflow: "hidden",
 
   display: "flex",

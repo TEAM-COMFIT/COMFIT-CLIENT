@@ -1,22 +1,20 @@
 import { useMemo } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
+import { ROUTES } from "@/app/routes/paths";
+import { CompanyDetailSection } from "@/pages/company-detail/ui/company-detail-section";
+import { CompanyRecommendationSection } from "@/pages/company-detail/ui/company-recommendation-section";
 import {
-  CompanyCtaBanner,
-  CompanyIssue,
-  CompanyLinkButton,
-} from "@/features/company-detail";
-import { IconSummary, IconIdeal, IconIssue } from "@/shared/assets/icons";
-import { getIndustryLabel, getScaleLabel } from "@/shared/config";
-import { Tag, Textbox } from "@/shared/ui";
-import { CompanyCard } from "@/widgets";
+  getIndustryLabel,
+  getScaleLabel,
+  type IndustryCode,
+  type ScaleCode,
+} from "@/shared/config";
 
-import * as styles from "./company-detail-page.css";
-
-import type { IndustryCode, ScaleCode } from "@/shared/config";
+import * as styles from "./company-detail-page.css.ts";
 
 type IssueItem = {
-  href: string; // 데이터는 href 유지
+  href: string;
   date: string;
   title: string;
   description: string;
@@ -26,13 +24,13 @@ type CompanyDetail = {
   companyId: number;
   name: string;
   status: string;
-  logoUrl: string;
+  logo: string;
   industry: IndustryCode;
   scale: ScaleCode;
   companyURL: string;
   summary: string;
   talentProfile: string;
-  issues: IssueItem[];
+  issueList: IssueItem[];
 };
 
 type RecommendCompanyItem = {
@@ -45,30 +43,31 @@ type RecommendCompanyItem = {
 
 const CompanyDetailPage = () => {
   const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
   const companyId = Number(id ?? 1);
 
   const company = useMemo<CompanyDetail>(() => {
-    const issues: IssueItem[] = [
+    const issueList: IssueItem[] = [
       {
         href: "https://example.com/1",
         date: "2024.12",
         title: "콘텐츠 포맷 다각화",
         description:
-          "OTT 시장 변화에 맞춰 기존 포맷을 확장하고 신규 포맷을 실험하는 흐름이 이어지고 있어요.",
+          "CJ ENM은 OTT 시청 환경 변화에 대응해 기존 방송 편성 중심 콘텐츠 외에도 숏폼·디지털 전용 콘텐츠 포맷을 확대하고 있다. 특히 일부 콘텐츠는 방송 편성과 분리된 디지털 플랫폼 우선 배포를 전제로 기획되며, 플랫폼별 소비 특성에 맞춘 포맷 실험이 진행되고 있다.",
       },
       {
         href: "https://example.com/2",
-        date: "2024.12",
+        date: "2024.11",
         title: "글로벌 콘텐츠 IP 확장 전략",
         description:
-          "글로벌 파트너십을 기반으로 IP 확장과 현지화 전략을 강화하는 방향이에요.",
+          "CJ ENM은 자체 제작 콘텐츠의 해외 유통을 확대하며, 글로벌 플랫폼과의 협업을 통해 콘텐츠 IP의 포맷 수출 및 글로벌 동시 공개 사례를 늘리고 있다. 이를 통해 국내 시장 중심의 콘텐츠 유통 구조를 넘어, 글로벌 시장을 고려한 제작·유통 전략을 지속적으로 강화하고 있다.",
       },
       {
         href: "https://example.com/3",
-        date: "2024.12",
-        title: "공동 제작 프로젝트 확대",
+        date: "2024.10",
+        title: "글로벌 공동 제작 프로젝트 확대",
         description:
-          "공동 제작을 통해 리스크를 분산하고 타깃 시장 확장을 노리는 시도가 늘고 있어요.",
+          "글로벌 제작사 및 플랫폼과의 공동 제작 프로젝트를 통해 제작 초기 단계부터 해외 시장을 고려한 협업 모델을 확대하고 있다. 일부 프로젝트는 국내 방영 이후 해외 유통이 아닌, 글로벌 공개를 전제로 제작 구조를 설계하는 방식으로 진행되고 있다.",
       },
     ];
 
@@ -76,19 +75,26 @@ const CompanyDetailPage = () => {
       companyId,
       name: "CJ ENM",
       status: "채용중",
-      logoUrl: "https://via.placeholder.com/64",
+      logo: "https://bucket-com-fit-server.s3.ap-northeast-2.amazonaws.com/company/coupang.gif",
       industry: "MEDIA_CONTENTS",
       scale: "LARGE",
       companyURL: "https://www.cjenm.com",
       summary:
-        "콘텐츠 IP를 기반으로 방송·디지털 콘텐츠를 제작하고 확장하며, IP 자산을 바탕으로 글로벌 성장을 추구하는 엔터테인먼트 기업",
+        "콘텐츠 IP를 기반으로 방송·디지털·글로벌 플랫폼까지 확장하며,\n 장기적인 IP 가치와 브랜드 일관성을 중시하는 엔터테인먼트 기업",
       talentProfile:
         "자율적으로 문제를 정의하고, 다양한 이해관계자와 협업하며, 결과에 대한 책임을 지는 사람",
-      issues,
+      issueList,
     };
   }, [companyId]);
 
-  const visibleIssues = company.issues.slice(0, 3);
+  const visibleIssues = company.issueList.slice(0, 3);
+  const fallbackIssue: IssueItem = {
+    href: company.companyURL,
+    date: "2024.12",
+    title: "최근 이슈가 준비 중입니다.",
+    description: "업데이트되는 대로 최신 소식을 빠르게 전달해 드릴게요.",
+  };
+  const issueItems = visibleIssues.length > 0 ? visibleIssues : [fallbackIssue];
   const industryLabel = getIndustryLabel(company.industry);
   const scaleLabel = getScaleLabel(company.scale);
 
@@ -103,21 +109,21 @@ const CompanyDetailPage = () => {
       },
       {
         id: 2,
-        companyName: "에이프리카",
+        companyName: "네이버",
         logoUrl: "https://via.placeholder.com/48",
         industry: "IT",
         scale: "LARGE",
       },
       {
         id: 3,
-        companyName: "SK네트웍스",
+        companyName: "카카오",
         logoUrl: "https://via.placeholder.com/48",
         industry: "IT",
         scale: "LARGE",
       },
       {
         id: 4,
-        companyName: "버거킹즈",
+        companyName: "SK플래닛",
         logoUrl: "https://via.placeholder.com/48",
         industry: "IT",
         scale: "LARGE",
@@ -130,113 +136,19 @@ const CompanyDetailPage = () => {
   return (
     <main className={styles.page}>
       <div className={styles.container}>
-        {/* 상단: 로고/기업명/태그/홈페이지 */}
-        <section className={styles.header}>
-          <div className={styles.headerLeft}>
-            <img
-              className={styles.logo}
-              src={company.logoUrl}
-              alt={`${company.name} 로고`}
-            />
-
-            <div className={styles.headerMeta}>
-              <div className={styles.nameRow}>
-                <h1 className={styles.companyName}>{company.name}</h1>
-                <span className={styles.dot} aria-hidden />
-                <span className={styles.hireStatus}>{company.status}</span>
-              </div>
-
-              <div className={styles.tagRow}>
-                <Tag type="secondary">#{industryLabel}</Tag>
-                <Tag type="secondary">#{scaleLabel}</Tag>
-              </div>
-            </div>
-          </div>
-
-          <div className={styles.headerRight}>
-            <CompanyLinkButton href={company.companyURL} />
-          </div>
-        </section>
-
-        {/* 회사 한줄 요약 */}
-        <section className={styles.section}>
-          <div className={styles.sectionTitleRow}>
-            <div className={styles.sectionIcon}>
-              <IconSummary aria-hidden />
-            </div>
-            <h2 className={styles.sectionTitle}>회사 한줄 요약</h2>
-          </div>
-
-          <Textbox type="large">{company.summary}</Textbox>
-        </section>
-
-        {/* 인재상 */}
-        <section className={styles.section}>
-          <div className={styles.sectionTitleRow}>
-            <IconIdeal aria-hidden className={styles.icon} />
-            <h2 className={styles.sectionTitle}>인재상</h2>
-          </div>
-
-          <Textbox type="large">{company.talentProfile}</Textbox>
-        </section>
-
-        {/* 최근 6개월 이슈 & 마케팅 캠페인 */}
-        <section className={styles.section}>
-          <div className={styles.sectionTitleRow}>
-            <IconIssue className={styles.sectionIcon} aria-hidden />
-            <h2 className={styles.sectionTitle}>
-              최근 6개월 주요 이슈 & 마케팅 캠페인
-            </h2>
-          </div>
-
-          <div className={styles.issueList}>
-            {visibleIssues.map((issue) => (
-              <CompanyIssue
-                key={`${issue.date}-${issue.title}`}
-                issueURL={issue.href} // ✅ prop은 issueURL
-                date={issue.date}
-                title={issue.title}
-                description={issue.description}
-              />
-            ))}
-          </div>
-        </section>
-
-        {/* CTA 배너 */}
-        <CompanyCtaBanner onClick={() => {}} />
+        <CompanyDetailSection
+          company={company}
+          industryLabel={industryLabel}
+          scaleLabel={scaleLabel}
+          issueItems={issueItems}
+          onCtaClick={() => navigate(ROUTES.EXPERIENCE_MATCHING)}
+        />
       </div>
 
-      {/* 추천 기업 영역 */}
-      <section className={styles.recommendSection}>
-        <div className={styles.recommendInner}>
-          <div className={styles.recommendHeader}>
-            <div>
-              <h2 className={styles.recommendTitle}>
-                이 기업도 함께 준비해 보세요!
-              </h2>
-              <p className={styles.recommendDesc}>
-                CJ ENM과 유사한 업종의 기업 리스트
-              </p>
-            </div>
-
-            <div className={styles.recommendRight}>
-              <img
-                className={styles.recommendImage}
-                src="https://via.placeholder.com/180x120"
-                alt=""
-                loading="lazy"
-              />
-              <span className={styles.recommendHint}>ⓒ 새</span>
-            </div>
-          </div>
-
-          <div className={styles.companyCardGrid}>
-            {recommendCompanies.map((c) => (
-              <CompanyCard key={c.id} {...c} />
-            ))}
-          </div>
-        </div>
-      </section>
+      <CompanyRecommendationSection
+        companyName={company.name}
+        recommendCompanies={recommendCompanies}
+      />
     </main>
   );
 };
