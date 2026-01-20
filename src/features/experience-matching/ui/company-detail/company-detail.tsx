@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+import { useReportStore } from "@/app/store";
 import { IconJob } from "@/shared/assets/icons";
 import { Button, Tooltip } from "@/shared/ui";
 import { Textfield } from "@/shared/ui/textfield";
@@ -12,7 +13,10 @@ import * as styles from "./company-detail.css";
 import type { CompanyInfo } from "../../type";
 
 export const CompanyDetail = ({ nextStep }: { nextStep: () => void }) => {
-  const [JDText, setJDText] = useState(""); // TODO: JD 입력 값
+  const setJobDescription = useReportStore((state) => state.setJobDescription);
+  const jobDescription = useReportStore((state) => state.jobDescription);
+
+  const [JDText, setJDText] = useState(jobDescription);
 
   // TODO: 서버에서 실제로 받아올 데이터
   const companyData: CompanyInfo = {
@@ -24,7 +28,7 @@ export const CompanyDetail = ({ nextStep }: { nextStep: () => void }) => {
   };
 
   const handleJD = () => {
-    // TODO: jd 저장 (zustand)
+    setJobDescription(JDText);
     nextStep();
   };
 

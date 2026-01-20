@@ -1,3 +1,4 @@
+import { useReportStore } from "@/app/store";
 import {
   useFunnel,
   ProgressBar,
@@ -10,7 +11,9 @@ import { IconAI } from "@/shared/assets/icons";
 
 import * as styles from "./experience-matching-page.css";
 
-const STEP = [
+import type { Step } from "@/shared/model/auth/report.store";
+
+const STEP: Step[] = [
   "기업 선택",
   "기업 정보 확인",
   "나의 경험 확인",
@@ -19,9 +22,11 @@ const STEP = [
 ];
 
 const ExperienceMatchingPage = () => {
+  const setCurrentStep = useReportStore((state) => state.setCurrentStep);
   const { currentStep, Step, Funnel, prevStep, nextStep } = useFunnel({
     defaultStep: STEP[0],
     stepList: STEP,
+    onStepChange: (step) => setCurrentStep(step), // useFunnel step의 변경에 따른 zustand 동기화
   });
 
   return (
@@ -41,15 +46,13 @@ const ExperienceMatchingPage = () => {
           <ProgressBar currentStep={currentStep} stepList={STEP} />
         </>
       )}
-      {/** useFunnel을 통한 각 단계 컴포넌트 렌더링
-       * - 각 단계 세부 컴포넌트는 구현예정입니다. (TODO)
-       */}
+      {/** useFunnel을 통한 각 단계 컴포넌트 렌더링 */}
       {/**
        * 0. 기업 선택
        * 1. 기업 정보 확인
-       * 2. 나의 경험 확인 => post, (isLoading)
-       * 3. [3단계 AI 분석 진행]
-       * 4. [4단계 (데이터가 불러와지면) 결과 확인]  */}
+       * 2. 나의 경험 확인
+       * 3. AI 분석 진행
+       * 4. [4단계 (데이터가 불러와지면) 결과 확인 이동]  */}
       <Funnel>
         <Step name="기업 선택">
           <SelectCompany onClick={() => nextStep()} />
@@ -65,7 +68,6 @@ const ExperienceMatchingPage = () => {
         </Step>
         <Step name="AI 분석 진행">
           <Analyzing nextStep={() => nextStep()} />
-          <button onClick={() => nextStep()}>다음단계</button>
         </Step>
         <Step name="결과 확인">
           <div>결과 확인란 입니다</div>

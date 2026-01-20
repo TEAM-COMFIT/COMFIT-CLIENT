@@ -1,21 +1,28 @@
 import { useEffect } from "react";
 
+import { useReportStore } from "@/app/store";
 import { LOADING } from "@/shared/assets/images";
 
 import * as styles from "./analyzing.css";
 
 export const Analyzing = ({ nextStep }: { nextStep: () => void }) => {
-  // const data = { companyId: 1, experienceId: 1, jobDescription: "하이" }; // TODO: zustand에 저장된 값 가져오기
+  const { companyId, experienceId, jobDescription } = useReportStore();
+
+  // 서버 리퀘스트 데이터
+  const requestData = {
+    companyId: companyId?.id,
+    experienceId: experienceId?.id,
+    jobDescription: jobDescription,
+  };
 
   // STEP 3에 들어오면 API 호출
   useEffect(() => {
     const timer = setTimeout(() => {
-      // TODO: AI 리포트 생성
-      // console.log(data);
+      console.log(requestData);
       nextStep();
     }, 3000);
     return () => clearTimeout(timer);
-  }, [nextStep]);
+  }, [nextStep, requestData]);
 
   return (
     <div className={styles.layout}>

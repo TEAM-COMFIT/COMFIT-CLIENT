@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+import { useReportStore } from "@/app/store";
 import { formatDateWithDots } from "@/shared/lib";
 import { Button } from "@/shared/ui";
 
@@ -52,14 +53,19 @@ export const SelectExperience = ({
   prevStep: () => void;
   nextStep: () => void;
 }) => {
-  const [select, setIsSelect] = useState<Experience>();
+  const setExperienceId = useReportStore((state) => state.setExperienceId);
+  const experienceId = useReportStore((state) => state.experienceId);
+  const [select, setIsSelect] = useState<Experience | null>(experienceId);
 
   const handleSelectExperience = (card: Experience) => {
     setIsSelect(card);
   };
 
   const handleSubmit = () => {
-    nextStep();
+    if (select) {
+      setExperienceId(select);
+      nextStep();
+    }
   };
 
   return (
@@ -73,7 +79,7 @@ export const SelectExperience = ({
             <div
               key={experience.id}
               className={styles.card({
-                isSelect: select && select.id == experience.id,
+                isSelect: select ? select.id == experience.id : false,
               })}
               onClick={() => handleSelectExperience(experience)}
             >

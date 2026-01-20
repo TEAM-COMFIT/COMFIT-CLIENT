@@ -9,6 +9,7 @@ import {
 interface UseFunnelProps<T> {
   defaultStep: T;
   stepList: T[];
+  onStepChange?: (step: T) => void;
 }
 
 interface StepProps<T> {
@@ -23,6 +24,7 @@ interface FunnelProps<T> {
 export const useFunnel = <T extends string>({
   defaultStep,
   stepList,
+  onStepChange,
 }: UseFunnelProps<T>) => {
   const [currentStep, setCurrentStep] = useState<T>(defaultStep);
 
@@ -48,6 +50,7 @@ export const useFunnel = <T extends string>({
     const current = stepList.findIndex((step) => step === currentStep);
     if (current > 0) {
       setCurrentStep(stepList[current - 1]);
+      onStepChange?.(stepList[current - 1]);
     }
   };
 
@@ -58,6 +61,7 @@ export const useFunnel = <T extends string>({
     const current = stepList.findIndex((step) => step === currentStep);
     if (current < stepList.length - 1) {
       setCurrentStep(stepList[current + 1]);
+      onStepChange?.(stepList[current + 1]);
     }
   };
 
