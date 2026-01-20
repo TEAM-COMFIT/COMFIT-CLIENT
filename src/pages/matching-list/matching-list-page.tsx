@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { ICON_MATCH } from "@/shared/assets/images";
+import { ICON_MATCH, COMPANY_DETAIL } from "@/shared/assets/images";
 import { Search } from "@/shared/ui";
 
 import { ListSection } from "./list-section/list-section";
