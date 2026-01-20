@@ -10,7 +10,7 @@ import {
   Analyzing,
   MatchingResult,
 } from "@/features/experience-matching";
-import { IconAI } from "@/shared/assets/images";
+import { ICONAI } from "@/shared/assets/images";
 
 import * as styles from "./experience-matching-page.css";
 
@@ -50,7 +50,7 @@ const ExperienceMatchingPage = () => {
           <div className={styles.titleContainer}>
             <img
               className={styles.titleIcon}
-              src={IconAI}
+              src={ICONAI}
               alt="자물쇠 아이콘"
             />
             <div className={styles.wrapper}>
