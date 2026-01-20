@@ -1,7 +1,6 @@
 import { useParams } from "react-router-dom";
 
-import { ExperienceForm } from "./ui/experience-form";
-import { ExperienceViewer } from "./ui/experience-viewer";
+import { ExperienceForm, ExperienceViewer } from "@/features/experience-detail";
 
 type mode = "view" | "edit" | "create";
 
@@ -11,6 +10,7 @@ interface ExperiencePageProps {
 
 const ExperienceDetailPage = ({ mode }: ExperiencePageProps) => {
   const { id } = useParams<{ id: string }>();
+
   switch (mode) {
     case "view":
       return <ExperienceViewer />;
