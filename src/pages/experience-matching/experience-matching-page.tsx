@@ -2,8 +2,9 @@ import {
   useFunnel,
   ProgressBar,
   CompanyDetail,
+  SelectExperience,
+  SelectCompany,
 } from "@/features/experience-matching";
-import { SelectCompany } from "@/features/experience-matching/ui/select-company/select-company";
 import { IconAI } from "@/shared/assets/icons";
 
 import * as styles from "./experience-matching-page.css";
@@ -56,11 +57,11 @@ const ExperienceMatchingPage = () => {
           <CompanyDetail nextStep={() => nextStep()} />
         </Step>
         <Step name="나의 경험 확인">
-          <div>나의 경험 확인 란입니다</div>
-          <button onClick={() => prevStep()}>이전단계</button>
-          <button onClick={() => nextStep()}>다음단계</button>
+          <SelectExperience
+            prevStep={() => prevStep()}
+            nextStep={() => nextStep()}
+          />
         </Step>
-        {/** TODO: AI 분석 진행 STEP은 '나의 경험 확인' 내부에서 처리(현재는 funnel 동작 확인을 위한 임시 로직) */}
         <Step name="AI 분석 진행">
           <div>분석 진행 란입니다</div>
           <button onClick={() => nextStep()}>다음단계</button>

@@ -7,3 +7,4 @@ export { MatchingAutoComplete } from "./ui/matching-auto-complete/matching-auto-
 
 export { SelectCompany } from "./ui/select-company/select-company";
 export { CompanyDetail } from "./ui/company-detail/company-detail";
+export { SelectExperience } from "./ui/select-experience/select-experience";

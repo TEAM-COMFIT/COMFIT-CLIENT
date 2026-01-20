@@ -10,3 +10,9 @@ export interface CompanyInfo {
   companyUrl: string;
   logo: string;
 }
+
+export interface Experience {
+  id: number;
+  title: string;
+  updateAt: string;
+}
