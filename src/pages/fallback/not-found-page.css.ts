@@ -13,6 +13,11 @@ export const layout = style({
   gap: "1.6rem",
 });
 
+export const img = style({
+  width: "36rem",
+  height: "24rem",
+});
+
 export const wrapper = style({
   display: "flex",
   flexDirection: "column",

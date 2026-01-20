@@ -9,7 +9,7 @@ export const NotFoundPage = () => {
   const navigate = useNavigate();
   return (
     <div className={styles.layout}>
-      <img src={ERROR} alt="에러 이미지" />
+      <img className={styles.img} src={ERROR} alt="에러 이미지" />
       <div className={styles.wrapper}>
         <div className={styles.title}>페이지를 찾을 수 없습니다</div>
         <div className={styles.sub}>
