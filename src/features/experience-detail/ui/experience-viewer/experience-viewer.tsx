@@ -6,9 +6,9 @@ import { Textfield } from "@/shared/ui/textfield/textfield";
 import { StickyHeader } from "@/widgets";
 
 import { EXPERIENCE_TYPE_OPTIONS } from "../../config";
-import { parseYMD } from "../../model/date";
-import { useExperienceCurrent, useIsDraftDefault } from "../../model/selectors";
-import { useExperienceHeaderActions } from "../../model/use-header-actions";
+import { parseYMD } from "../../lib/date-field";
+import { useExperienceCurrent, useIsDraftDefault } from "../../store/selectors";
+import { useExperienceHeaderActions } from "../../model/use-actions";
 import { DatePicker } from "../date-picker/date-picker";
 
 import * as s from "./experience-viewer.css";
