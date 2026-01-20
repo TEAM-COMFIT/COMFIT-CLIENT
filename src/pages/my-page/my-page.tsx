@@ -1,27 +1,31 @@
-import { useState } from "react";
+import { Button } from "@/shared/ui";
 
-import { MatchingAutoComplete } from "@/features/experience-matching/ui/matching-auto-complete/matching-auto-complete";
-import { MOCK_AUTOCOMPLETE } from "@/features/experience-matching/ui/matching-auto-complete/mock";
+import * as styles from "./my-page.css";
+import { MyPageCards } from "./ui/my-page-cards";
+
+import type { MyPageCardsProps } from "./ui/my-page-cards";
+
 const MyPage = () => {
-  const [inputValue, setInputValue] = useState(""); // 실시간 입력 상태
-  const [searchKeyword, setSearchKeyword] = useState(""); // 디바운스된 키워드 상태
-
-  // TODO: api 연동 필요
-  // const { data: searchResults = [] } = useGetMatchingList(searchKeyword);
-  const searchResults = MOCK_AUTOCOMPLETE.filter((item) =>
-    item.toLowerCase().includes(searchKeyword.toLowerCase())
-  );
+  const me: MyPageCardsProps = {
+    name: "김컴피",
+    email: "comfit@gmail.com",
+    educationLevel: "BACHELOR",
+    firstIndustry: "MEDIA_CONTENTS",
+    firstJob: "B2B_MARKETING",
+  };
 
   return (
-    <div style={{ display: "flex", gap: "2rem", paddingTop: "10rem" }}>
-      <h1>Welcome to the My Page</h1>
-      <MatchingAutoComplete
-        value={inputValue}
-        onChange={setInputValue}
-        results={searchResults} // API 호출 결과 전달
-        onDebounceChange={setSearchKeyword} // 디바운스된 키워드 업데이트
-        onSearch={(val) => console.log("최종 검색:", val)}
-      />
+    <div className={styles.container}>
+      <div className={styles.header}>
+        <h1 className={styles.title}>{me.name}님</h1>
+
+        <Button variant="primary" size="small" onClick={() => {}}>
+          {/* TODO: 로그아웃 API 연동 */}
+          로그아웃
+        </Button>
+      </div>
+
+      <MyPageCards {...me} />
     </div>
   );
 };

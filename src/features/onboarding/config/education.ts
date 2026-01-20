@@ -36,3 +36,6 @@ export const FILTER_EDUCATION_TYPE: EducationFilterOption[] = Object.entries(
   code: code as EducationTypeCode,
   label: label as EducationTypeLabel,
 }));
+
+export const getEducationLabel = (code?: string): string =>
+  EDUCATION_TYPE[code as EducationTypeCode] ?? "알 수 없음";
