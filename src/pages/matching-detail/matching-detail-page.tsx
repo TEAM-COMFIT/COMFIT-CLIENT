@@ -116,7 +116,7 @@ CJ ENM 엔터테인먼트부문은
           {username}님의 경험은 기업과 아래와 같이 연결할 수 있어요
         </p>
 
-        {/* 서버에서 받아온 데이터를 객체 통째로 전달 */}
+        {/* 서버에서 받아온 데이터를 객체 전달 */}
         <DetailSection data={MOCK_COMPANY_DETAIL} />
       </main>
     </div>

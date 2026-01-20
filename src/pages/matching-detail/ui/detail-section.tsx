@@ -108,19 +108,15 @@ const DetailSection = ({ data }: DetailSectionProps) => {
               <p className={styles.elementSubTitle}>{a.element}</p>
               <div className={styles.appealDetails}>
                 <p>
-                  {" "}
                   <strong>• 중요 이유(기준 명시)</strong>: {a.importance}
                 </p>
                 <p>
-                  {" "}
                   <strong>• 경험 단계(STAR)</strong>: {a.starPhase}
                 </p>
                 <p>
-                  {" "}
                   <strong>• 보완 방향</strong>: {a.direction}
                 </p>
                 <p>
-                  {" "}
                   <strong>• 자소서 배치 위치</strong>: {a.placement}
                 </p>
                 {i < data.appealPoint.length - 1 && <br />}
