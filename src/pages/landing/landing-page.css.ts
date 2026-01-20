@@ -24,6 +24,11 @@ export const layout = style({
   justifyContent: "center",
   animation: `${suspenseLayout} 1s linear`,
   overflow: "hidden",
+  paddingTop: themeVars.height.header,
+
+  ...screen.mobile({
+    paddingTop: 0,
+  }),
 });
 
 /** ----- 첫 번째 섹션 ----- */

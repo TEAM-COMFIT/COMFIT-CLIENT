@@ -4,5 +4,6 @@ export const zIndex = {
   header: "100",
   sticky: "200",
   modal: "300",
+  spinner: "350",
   alert: "400",
 } as const;
