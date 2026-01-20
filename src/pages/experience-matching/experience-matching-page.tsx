@@ -14,7 +14,7 @@ import { IconAI } from "@/shared/assets/icons";
 
 import * as styles from "./experience-matching-page.css";
 
-import type { Step } from "@/shared/model/auth/report.store";
+import type { Step } from "@/shared/model/store/report.store";
 
 const STEP: Step[] = [
   "기업 선택",
