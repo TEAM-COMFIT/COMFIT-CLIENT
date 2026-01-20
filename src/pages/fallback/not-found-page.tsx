@@ -11,7 +11,7 @@ export const NotFoundPage = () => {
     <div className={styles.layout}>
       <img src={ERROR} alt="에러 이미지" />
       <div className={styles.wrapper}>
-        <div className={styles.title}>페이지를 찾을 수 없어요</div>
+        <div className={styles.title}>페이지를 찾을 수 없습니다</div>
         <div className={styles.sub}>
           홈으로 돌아가 기업 탐색을 이어가볼까요?
         </div>
