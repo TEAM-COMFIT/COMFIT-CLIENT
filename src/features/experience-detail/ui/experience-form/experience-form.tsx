@@ -158,8 +158,7 @@ const ExperienceForm = () => {
                   type="result"
                   value={draft.result}
                   onChange={(v) => setDraftField("result", v)}
-                  placeholder="캠페인 종료 시 브랜드 계정 팔로워 수가 약 25% 증가했고, 댓글에서 브랜드 언급 비율이 눈에 띄게 높아짐.
-이 결과를 통해 콘텐츠 성과를 단순 수치가 아니라 메시지 전달 관점에서 해석하는 중요성을 배움."
+                  placeholder={`캠페인 종료 시 브랜드 계정 팔로워 수가 약 25% 증가했고, 댓글에서 브랜드 언급 비율이 눈에 띄게 높아짐.\n이 결과를 통해 콘텐츠 성과를 단순 수치가 아니라 메시지 전달 관점에서 해석하는 중요성을 배움.`}
                 />
               </div>
             </div>
