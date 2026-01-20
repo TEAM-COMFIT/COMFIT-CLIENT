@@ -1,4 +1,8 @@
-import { useFunnel, ProgressBar } from "@/features/experience-matching";
+import {
+  useFunnel,
+  ProgressBar,
+  CompanyDetail,
+} from "@/features/experience-matching";
 import { SelectCompany } from "@/features/experience-matching/ui/select-company/select-company";
 import { IconAI } from "@/shared/assets/icons";
 
@@ -49,9 +53,7 @@ const ExperienceMatchingPage = () => {
           <SelectCompany onClick={() => nextStep()} />
         </Step>
         <Step name="기업 정보 확인">
-          <div>기업 정보 확인 란입니다</div>
-          <button onClick={() => prevStep()}>이전단계</button>
-          <button onClick={() => nextStep()}>다음단계</button>
+          <CompanyDetail nextStep={() => nextStep()} />
         </Step>
         <Step name="나의 경험 확인">
           <div>나의 경험 확인 란입니다</div>
