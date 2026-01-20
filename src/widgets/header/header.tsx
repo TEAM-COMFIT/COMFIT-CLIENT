@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 
 import { ROUTES } from "@/app/routes/paths";
 import { useAuthStore } from "@/app/store";
+import { useGetProfile } from "@/features/my-page";
 import { Avatar, LOGO } from "@/shared/assets/icons";
 
 import * as styles from "./header.css";
@@ -15,7 +16,7 @@ const NAV_ITEMS = [
 
 export const Header = () => {
   const { isLoggedIn } = useAuthStore();
-  const name = "김컴피"; // TODO: user store/api 연동 후 교체
+  const { data } = useGetProfile({ enabled: isLoggedIn });
 
   return (
     <header className={styles.headerLayout}>
@@ -46,7 +47,7 @@ export const Header = () => {
               >
                 <Avatar width={38} height={38} className={styles.avatar} />
               </NavLink>
-              <span className={styles.name}>{name}님</span>
+              <span className={styles.name}>{data?.name}님</span>
             </>
           ) : (
             <NavLink to="/login" className={styles.name}>

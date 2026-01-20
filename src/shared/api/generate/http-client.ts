@@ -173,6 +173,7 @@ export interface LoginResponseDto {
   id?: number;
   isNew?: boolean;
   accessToken?: string;
+  name?: string;
 }
 
 export interface GetMeResponseDto {
@@ -201,7 +202,7 @@ export interface GetMeResponseDto {
     | "BRAND_MARKETING"
     | "DIGITAL_MARKETING"
     | "CONTENT_MARKETING"
-    | "VIRAL_INFLUENCER_MARKETING"
+    | "VIRAL_MARKETING"
     | "PERFORMANCE_MARKETING"
     | "B2B_MARKETING"
     | "CRM_MARKETING"
