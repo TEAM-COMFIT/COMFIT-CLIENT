@@ -105,35 +105,33 @@ const ExperienceForm = ({ mode, id }: ExperienceFormProps) => {
 
                   <div className={s.tooltipWrap}>
                     <Tooltip type="guide" label="작성 가이드">
-                      <div className={s.tooltipBox}>
-                        <div className={s.tooltipInner}>
-                          <p className={s.tooltipLead}>
-                            아래와 같은 내용을 포함한 채용 공고의 직무
-                            설명(JD)을 그대로 붙여넣어 주세요.
-                          </p>
+                      <div className={s.tooltipInner}>
+                        <p className={s.tooltipLead}>
+                          아래와 같은 내용을 포함한 채용 공고의 직무
+                          설명(JD)을 그대로 붙여넣어 주세요.
+                        </p>
 
-                          <p className={s.tooltipText}>{"<포함하면 좋은 내용>"}</p>
+                        <p className={s.tooltipText}>{"<포함하면 좋은 내용>"}</p>
 
-                          <ul className={s.tooltipList}>
-                            <li className={s.tooltipListItem}>
-                              해당 직무의 주요 업무
-                            </li>
-                            <li className={s.tooltipListItem}>
-                              팀 내에서 맡게 될 역할
-                            </li>
-                            <li className={s.tooltipListItem}>
-                              요구되는 역량 및 경험
-                            </li>
-                            <li className={s.tooltipListItem}>
-                              우대 사항 (선택)
-                            </li>
-                          </ul>
+                        <ul className={s.tooltipList}>
+                          <li className={s.tooltipListItem}>
+                            해당 직무의 주요 업무
+                          </li>
+                          <li className={s.tooltipListItem}>
+                            팀 내에서 맡게 될 역할
+                          </li>
+                          <li className={s.tooltipListItem}>
+                            요구되는 역량 및 경험
+                          </li>
+                          <li className={s.tooltipListItem}>
+                            우대 사항 (선택)
+                          </li>
+                        </ul>
 
-                          <p className={s.tooltipText}>
-                            직무와 무관한 자기소개, 경험 서술은 분석 정확도를
-                            낮출 수 있어요.
-                          </p>
-                        </div>
+                        <p className={s.tooltipText}>
+                          직무와 무관한 자기소개, 경험 서술은 분석 정확도를
+                          낮출 수 있어요.
+                        </p>
                       </div>
                     </Tooltip>
                   </div>
