@@ -23,6 +23,7 @@ export const axiosInstance = axios.create({
   headers: {
     "Content-Type": "application/json",
   },
+  withCredentials: true,
 });
 
 axiosInstance.interceptors.request.use(
@@ -32,8 +33,7 @@ axiosInstance.interceptors.request.use(
       config.headers["Authorization"] = `Bearer ${accessToken}`;
     } else {
       if (config.secure && !accessToken) {
-        // TODO: 로그인이 필요하다는 Toast Message
-        console.error("로그인이 필요한 서비스입니다.");
+        alert("로그인이 필요한 서비스입니다.");
         window.location.replace("/login");
         throw new Error("액세스 토큰이 존재하지 않습니다");
       }
@@ -61,7 +61,7 @@ axiosInstance.interceptors.response.use(
         originalRequest.headers["Authorization"] = `Bearer ${newAccessToken}`;
         return axiosInstance(originalRequest); // 이전 요청 재시도
       } catch (refreshError) {
-        console.error("리프레쉬 토큰 요청에 실패했습니다.", error);
+        alert("리프레쉬 토큰 요청에 실패했습니다.");
         tokenStorage.clear();
         window.location.replace("/login");
 

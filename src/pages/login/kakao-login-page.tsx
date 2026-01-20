@@ -1,44 +1,33 @@
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { useAuthStore } from "@/app/store";
-import { useLogin } from "@/features/login/api/use-login.mutation";
-import { tokenStorage } from "@/shared/lib/auth/token-storage";
+import { useLogin } from "@/features/login/api/use-login.query";
 
 const KakaoLoginPage = () => {
   const navigate = useNavigate();
   const { actions } = useAuthStore();
-  const { mutate: login } = useLogin();
 
-  // 인가 코드(code) 가져오기
   const code = new URL(window.location.href).searchParams.get("code");
-  const isCalledRef = useRef(false);
+
+  if (!code) {
+    navigate("/login");
+    throw new Error("코드가 존재하지 않습니다");
+  }
+
+  const { data } = useLogin(code);
 
   useEffect(() => {
-    if (!code || isCalledRef.current) return;
-    isCalledRef.current = true;
+    const result = data.result || data;
+    if (result && result.accessToken) {
+      actions.login(result.accessToken);
+      navigate(result.isNew ? "/onboarding" : "/", { replace: true });
+    } else {
+      navigate("/login", { replace: true });
+    }
+  }, [data, navigate, actions]);
 
-    login(code, {
-      onSuccess: (response) => {
-        const accessToken = response.result as string;
-
-        //console.log("로그인 성공!");
-
-        if (accessToken) {
-          tokenStorage.set(accessToken);
-          actions.login(accessToken);
-          navigate("/", { replace: true });
-        }
-      },
-      onError: (error) => {
-        console.error("로그인 실패:", error);
-        alert("로그인에 실패했습니다.");
-        navigate("/login", { replace: true });
-      },
-    });
-  }, [code, login, navigate, actions]);
-
-  return <div></div>;
+  return <></>;
 };
 
 export { KakaoLoginPage };
