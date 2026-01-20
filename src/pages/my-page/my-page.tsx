@@ -3,13 +3,15 @@ import { Button } from "@/shared/ui";
 import * as styles from "./my-page.css";
 import { MyPageCards } from "./ui/my-page-cards";
 
+import type { MyPageCardsProps } from "./ui/my-page-cards";
+
 const MyPage = () => {
-  const me = {
+  const me: MyPageCardsProps = {
     name: "김컴피",
     email: "jyslys2669@gmail.com",
     educationLevel: "BACHELOR",
     firstIndustry: "MEDIA_CONTENTS",
-    fistJob: "B2B_MARKETING",
+    firstJob: "B2B_MARKETING",
   };
 
   return (
