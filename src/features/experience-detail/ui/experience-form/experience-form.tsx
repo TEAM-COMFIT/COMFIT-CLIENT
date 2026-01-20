@@ -172,10 +172,6 @@ const ExperienceForm = () => {
 
 export { ExperienceForm };
 
-// ─────────────────────────────────────────────────────────
-// StarField 서브컴포넌트
-// ─────────────────────────────────────────────────────────
-
 interface StarFieldProps {
   label: string;
   type: TextfieldType;
