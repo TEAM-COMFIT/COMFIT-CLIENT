@@ -24,7 +24,7 @@ export const modalContent = style({
   alignItems: "center",
   width: "60rem",
   height: "46rem",
-  padding: "1.5rem 1.6rem 4.8rem 1.6rem",
+  padding: "5rem 1.6rem 4.8rem 1.6rem",
   borderRadius: "1.2rem",
   backgroundColor: themeVars.color.white,
 });
@@ -71,9 +71,11 @@ export const SubTitle = style({
 });
 
 export const Image = style({
-  width: "25rem",
-  height: "25rem",
+  alignItems: "flex-end",
+  width: "28rem",
+  height: "28rem",
   aspectRatio: 1 / 1,
+  marginBottom: "-2rem",
 });
 
 export const Buttons = style({
