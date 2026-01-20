@@ -1,4 +1,5 @@
 import { style } from "@vanilla-extract/css";
+import { recipe } from "@vanilla-extract/recipes";
 
 import { themeVars } from "@/app/styles";
 
@@ -54,21 +55,39 @@ export const highlightText = style({
   },
 });
 
-export const elementSubTitle = style({
-  color: themeVars.color.blue600,
-  ...themeVars.fontStyles.hline_b_18,
-  marginBottom: "1.6rem",
+export const blueTitle = recipe({
+  // 공통 Blue Bold 스타일
+  base: {
+    color: themeVars.color.blue600,
+    ...themeVars.fontStyles.hline_b_18, // hline_b_18이 더 상위 스타일이라 판단하여 기준 설정
+  },
+
+  variants: {
+    size: {
+      large: {
+        ...themeVars.fontStyles.hline_b_18,
+      },
+      small: {
+        ...themeVars.fontStyles.body_b_16,
+      },
+    },
+    // 아래 항목과의 간격을 통일 (리뷰대로 marginBottom으로 통일)
+    spacing: {
+      element: { marginBottom: "1.6rem" },
+      perspective: { marginBottom: "1.2rem" },
+      none: { marginBottom: 0 },
+    },
+  },
+
+  defaultVariants: {
+    size: "large",
+    spacing: "element",
+  },
 });
 
 export const densityTitle = style({
   color: themeVars.color.gray800,
   ...themeVars.fontStyles.hline_b_18,
-});
-// 수정 필요
-export const perspectiveTitle = style({
-  color: themeVars.color.blue600,
-  ...themeVars.fontStyles.body_b_16,
-  paddingBottom: "1.2rem",
 });
 
 export const perspectiveReason = style({

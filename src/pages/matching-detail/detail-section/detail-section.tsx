@@ -72,7 +72,14 @@ const DetailSection = ({ data }: DetailSectionProps) => {
         <Textbox type="medium">
           {data.perspectives.map((p, i) => (
             <div key={p.perspective} className={styles.listContent}>
-              <p className={styles.perspectiveTitle}>관점 {i + 1}</p>
+              <p
+                className={styles.blueTitle({
+                  size: "small",
+                  spacing: "perspective",
+                })}
+              >
+                관점 {i + 1}
+              </p>
               <p className={styles.highlightText}>{p.perspective}</p>
               <p className={styles.perspectiveReason}>{p.reason}</p>
               {i < data.perspectives.length - 1 && <br />}
@@ -87,7 +94,14 @@ const DetailSection = ({ data }: DetailSectionProps) => {
         <Textbox type="medium">
           {data.density.map((d, i) => (
             <div key={d.perspective} className={styles.listContent}>
-              <p className={styles.perspectiveTitle}>연결 지점 {i + 1}</p>
+              <p
+                className={styles.blueTitle({
+                  size: "small",
+                  spacing: "perspective",
+                })}
+              >
+                연결 지점 {i + 1}
+              </p>
               <p className={styles.highlightText}>
                 {d.perspective}{" "}
                 {d.connection === "간접 연결" ? "(간접 연결)" : ""}
@@ -105,7 +119,14 @@ const DetailSection = ({ data }: DetailSectionProps) => {
         <Textbox type="medium">
           {data.appealPoint.map((a, i) => (
             <div key={a.element} className={styles.listContent}>
-              <p className={styles.elementSubTitle}>{a.element}</p>
+              <p
+                className={styles.blueTitle({
+                  size: "large",
+                  spacing: "element",
+                })}
+              >
+                {a.element}
+              </p>
               <div className={styles.appealDetails}>
                 <p>
                   <strong>• 중요 이유(기준 명시)</strong>: {a.importance}
