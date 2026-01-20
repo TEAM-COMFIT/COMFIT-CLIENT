@@ -1,4 +1,5 @@
 import { style } from "@vanilla-extract/css";
+
 import { themeVars } from "@/app/styles";
 
 export const page = style({
@@ -17,15 +18,13 @@ export const panel = style({
   width: "106rem",
   background: themeVars.color.white,
   borderRadius: 0,
+
+  paddingTop: "8rem",
   paddingBottom: "21.2rem",
 });
 
 export const modeLabel = style({
-  width: "100%",
-  paddingTop: "1.6rem",
-  paddingBottom: "1.6rem",
-  fontSize: "1.4rem",
-  color: themeVars.color.gray500,
+  display: "none",
 });
 
 export const card = style({
@@ -33,6 +32,7 @@ export const card = style({
   background: "transparent",
   height: "auto",
   minHeight: 0,
+
   display: "flex",
   justifyContent: "center",
   alignItems: "flex-start",
@@ -43,6 +43,7 @@ export const innerColumn = style({
   display: "flex",
   flexDirection: "column",
   alignItems: "flex-start",
+
   gap: "8rem",
 });
 
@@ -68,6 +69,71 @@ export const dropdownWrap = style({
 export const tooltipWrap = style({
   display: "flex",
   alignItems: "center",
+});
+
+export const tooltipBox = style({
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  alignItems: "center",
+
+  gap: "1rem",
+
+  padding: "2.8rem 4.4rem",
+
+  borderRadius: "12px",
+  border: `1px solid ${themeVars.color.gray200}`,
+  background: themeVars.color.white,
+
+  boxShadow: themeVars.shadow?.shadow2 ?? "0 0 0.8rem rgba(0,0,0,0.12)",
+});
+
+export const tooltipInner = style({
+  width: "19.1rem",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "flex-start",
+  gap: "1.2rem",
+});
+
+export const tooltipLead = style({
+  ...themeVars.fontStyles.cap_m_12,
+  fontWeight: 700,
+  color: themeVars.color.gray900,
+  letterSpacing: "-0.012rem",
+  lineHeight: "1.8rem",
+  wordBreak: "keep-all",
+});
+
+export const tooltipText = style({
+  ...themeVars.fontStyles.cap_m_12,
+  fontWeight: 500,
+  color: themeVars.color.gray500,
+  letterSpacing: "-0.012rem",
+  lineHeight: "1.8rem",
+  wordBreak: "keep-all",
+});
+
+export const tooltipList = style({
+  margin: 0,
+  paddingLeft: "1.8rem",
+  display: "flex",
+  flexDirection: "column",
+  gap: "0.8rem",
+});
+
+export const tooltipListItem = style({
+  ...themeVars.fontStyles.cap_m_12,
+  fontWeight: 500,
+  color: themeVars.color.gray500,
+  letterSpacing: "-0.012rem",
+  lineHeight: "1.8rem",
+
+  selectors: {
+    "&::marker": {
+      color: themeVars.color.gray500,
+    },
+  },
 });
 
 export const titleBlock = style({
@@ -131,32 +197,6 @@ export const starLabel = style({
   lineHeight: "3rem",
   letterSpacing: "-0.02rem",
   color: themeVars.color.gray900,
-});
-
-export const tooltipContent = style({
-  width: "28rem",
-});
-
-export const tooltipTitle = style({
-  fontSize: "1.4rem",
-  fontWeight: 700,
-  lineHeight: "2rem",
-  color: themeVars.color.gray900,
-  marginBottom: "1.2rem",
-});
-
-export const tooltipList = style({
-  paddingLeft: "1.8rem",
-  marginBottom: "1.2rem",
-  fontSize: "1.4rem",
-  lineHeight: "2rem",
-  color: themeVars.color.gray600,
-});
-
-export const tooltipDesc = style({
-  fontSize: "1.4rem",
-  lineHeight: "2rem",
-  color: themeVars.color.gray600,
 });
 
 export const debug = style({

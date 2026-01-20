@@ -1,9 +1,9 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 
 import { DatePicker } from "@/features/experience-detail";
-import { StickyHeader } from "@/widgets";
 import { Button, Dropdown, Tooltip } from "@/shared/ui";
 import { Textfield } from "@/shared/ui/textfield/textfield";
+import { StickyHeader } from "@/widgets";
 
 import * as s from "./experience-form.css";
 
@@ -42,15 +42,11 @@ const ExperienceForm = ({ mode, id }: ExperienceFormProps) => {
   const [action, setAction] = useState("");
   const [result, setResult] = useState("");
 
-  const pageTitle = useMemo(() => {
-    if (mode === "edit") return "수정모드";
-    return "작성모드";
-  }, [mode]);
-
   const handleSubmit = () => {
     // TODO: 경험 등록/수정 API 호출
     // TODO: 유효성 검증 (날짜 형식/필수값)
     // TODO: alert는 나중에 붙이기
+    // eslint-disable-next-line no-console
     console.log({
       mode,
       id,
@@ -80,8 +76,6 @@ const ExperienceForm = ({ mode, id }: ExperienceFormProps) => {
 
       <section className={s.outerSection}>
         <div className={s.panel}>
-          <div className={s.modeLabel}>{pageTitle}</div>
-
           <div className={s.card}>
             <div className={s.innerColumn}>
               <div className={s.topGroup}>
@@ -111,25 +105,35 @@ const ExperienceForm = ({ mode, id }: ExperienceFormProps) => {
 
                   <div className={s.tooltipWrap}>
                     <Tooltip type="guide" label="작성 가이드">
-                      <div className={s.tooltipContent}>
-                        <p className={s.tooltipTitle}>
-                          아래와 같은 내용을 포함한 채용 공고의
-                          <br />
-                          직무 설명(JD)을 그대로 붙여넣어 주세요.
-                        </p>
+                      <div className={s.tooltipBox}>
+                        <div className={s.tooltipInner}>
+                          <p className={s.tooltipLead}>
+                            아래와 같은 내용을 포함한 채용 공고의 직무
+                            설명(JD)을 그대로 붙여넣어 주세요.
+                          </p>
 
-                        <ul className={s.tooltipList}>
-                          <li>해당 직무의 주요 업무</li>
-                          <li>팀 내에서 맡게 될 역할</li>
-                          <li>요구되는 역량 및 경험</li>
-                          <li>우대 사항 (선택)</li>
-                        </ul>
+                          <p className={s.tooltipText}>{"<포함하면 좋은 내용>"}</p>
 
-                        <p className={s.tooltipDesc}>
-                          직무와 무관한 자기소개, 경험 서술은
-                          <br />
-                          분석 정확도를 낮출 수 있어요.
-                        </p>
+                          <ul className={s.tooltipList}>
+                            <li className={s.tooltipListItem}>
+                              해당 직무의 주요 업무
+                            </li>
+                            <li className={s.tooltipListItem}>
+                              팀 내에서 맡게 될 역할
+                            </li>
+                            <li className={s.tooltipListItem}>
+                              요구되는 역량 및 경험
+                            </li>
+                            <li className={s.tooltipListItem}>
+                              우대 사항 (선택)
+                            </li>
+                          </ul>
+
+                          <p className={s.tooltipText}>
+                            직무와 무관한 자기소개, 경험 서술은 분석 정확도를
+                            낮출 수 있어요.
+                          </p>
+                        </div>
                       </div>
                     </Tooltip>
                   </div>
@@ -220,7 +224,13 @@ interface StarFieldProps {
   placeholder: string;
 }
 
-const StarField = ({ label, type, value, onChange, placeholder }: StarFieldProps) => {
+const StarField = ({
+  label,
+  type,
+  value,
+  onChange,
+  placeholder,
+}: StarFieldProps) => {
   return (
     <div className={s.starField}>
       <p className={s.starLabel}>{label}</p>
