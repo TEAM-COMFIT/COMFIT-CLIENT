@@ -17,8 +17,7 @@ export const grid = style({
 export const boxBase = style({
   background: themeVars.color.blue100,
   border: `1.5px solid ${themeVars.color.normal}`,
-  borderRadius: "1.6rem",
-  boxSizing: "border-box",
+  borderRadius: "16px",
 });
 
 export const boxType = styleVariants({
