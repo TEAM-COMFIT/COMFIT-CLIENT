@@ -36,7 +36,7 @@ interface CompanyDetail {
 export interface RecommendCompanyItem {
   id: number;
   name: string;
-  logoUrl: string;
+  logo: string;
   industry: IndustryCode;
   scale: ScaleCode;
 }
@@ -108,28 +108,28 @@ const CompanyDetailPage = () => {
       {
         id: 1,
         name: "쿠팡",
-        logoUrl: "https://via.placeholder.com/48",
+        logo: "https://via.placeholder.com/48",
         industry: "IT",
         scale: "LARGE",
       },
       {
         id: 2,
         name: "네이버",
-        logoUrl: "https://via.placeholder.com/48",
+        logo: "https://via.placeholder.com/48",
         industry: "IT",
         scale: "LARGE",
       },
       {
         id: 3,
         name: "카카오",
-        logoUrl: "https://via.placeholder.com/48",
+        logo: "https://via.placeholder.com/48",
         industry: "IT",
         scale: "LARGE",
       },
       {
         id: 4,
         name: "SK플래닛",
-        logoUrl: "https://via.placeholder.com/48",
+        logo: "https://via.placeholder.com/48",
         industry: "IT",
         scale: "LARGE",
       },
