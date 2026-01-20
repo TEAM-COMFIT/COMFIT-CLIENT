@@ -53,6 +53,8 @@ export {
   useExperienceAlertActions,
 } from "./model/use-alert";
 
+export { useLeaveConfirm } from "./model/use-leave-confirm";
+
 export {
   EXPERIENCE_MOCK,
   initExperienceDetail,
