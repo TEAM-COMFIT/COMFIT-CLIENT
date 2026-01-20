@@ -43,7 +43,7 @@ export interface MyPageCardsProps {
   email: string;
   educationLevel: string;
   firstIndustry: string;
-  fistJob: string;
+  firstJob: string;
 }
 
 const MyPageCards = ({
@@ -51,7 +51,7 @@ const MyPageCards = ({
   email,
   educationLevel,
   firstIndustry,
-  fistJob,
+  firstJob,
 }: MyPageCardsProps) => {
   return (
     <div className={styles.wrapper}>
@@ -82,7 +82,7 @@ const MyPageCards = ({
 
         <Card type="medium">
           <h2 className={styles.mediumTitle}>관심직무</h2>
-          <p className={styles.mediumBody}>{getJobLabel(fistJob)}</p>
+          <p className={styles.mediumBody}>{getJobLabel(firstJob)}</p>
         </Card>
 
         <Card
