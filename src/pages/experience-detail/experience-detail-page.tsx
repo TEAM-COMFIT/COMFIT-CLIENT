@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import {
   ExperienceForm,
   ExperienceViewer,
+  ExperienceAlertRenderer,
   useExperienceMode,
   initExperienceDetail,
 } from "@/features/experience-detail";
@@ -22,14 +23,23 @@ const ExperienceDetailPage = ({ Mode }: ExperiencePageProps) => {
     initExperienceDetail(Mode, experienceId);
   }, [Mode, experienceId]);
 
-  switch (mode) {
-    case "view":
-      return <ExperienceViewer />;
+  const content = (() => {
+    switch (mode) {
+      case "view":
+        return <ExperienceViewer />;
 
-    case "create":
-    case "edit":
-      return <ExperienceForm />;
-  }
+      case "create":
+      case "edit":
+        return <ExperienceForm />;
+    }
+  })();
+
+  return (
+    <>
+      {content}
+      <ExperienceAlertRenderer />
+    </>
+  );
 };
 
 export { ExperienceDetailPage };
