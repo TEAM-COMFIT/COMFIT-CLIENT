@@ -43,7 +43,7 @@ export const buttonVariants = recipe({
     },
     {
       variants: { variant: "number", active: true },
-      style: { color: themeVars.color.black },
+      style: { color: themeVars.color.blue600 },
     },
     {
       variants: { variant: "number", active: false },
