@@ -28,7 +28,10 @@ export const useLeaveConfirm = () => {
 
   const shouldBlock = (mode === "create" || mode === "edit") && isDraftDirty(draft);
 
-  const blocker = useBlocker(shouldBlock);
+  const blocker = useBlocker(() => {
+    const isSubmitting = useExperienceDetailStore.getState().isSubmitting;
+    return shouldBlock && !isSubmitting;
+  });
 
   useEffect(() => {
     if (blocker.state === "blocked" && !isOpen) {
@@ -37,10 +40,11 @@ export const useLeaveConfirm = () => {
   }, [blocker.state, isOpen, handleModal]);
 
   useEffect(() => {
-    if (!shouldBlock) return;
-
     const handleBeforeUnload = (e: BeforeUnloadEvent) => {
-      e.preventDefault();
+      const isSubmitting = useExperienceDetailStore.getState().isSubmitting;
+      if (shouldBlock && !isSubmitting) {
+        e.preventDefault();
+      }
     };
 
     window.addEventListener("beforeunload", handleBeforeUnload);

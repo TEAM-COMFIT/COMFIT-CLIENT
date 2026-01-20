@@ -28,6 +28,8 @@ type State = {
 
   defaultExperience: DefaultExperience;
 
+  isSubmitting: boolean;
+
   actions: {
     setMode: (m: ExperienceMode) => void;
 
@@ -45,6 +47,8 @@ type State = {
     setDefaultExperienceId: (experienceId: number | null) => void;
 
     toggleDraftDefault: () => void;
+
+    setIsSubmitting: (v: boolean) => void;
   };
 };
 
@@ -53,6 +57,7 @@ export const useExperienceDetailStore = create<State>((set, get) => ({
   current: null,
   draft: initialDraft,
   defaultExperience: { experienceId: null },
+  isSubmitting: false,
 
   actions: {
     setMode: (m) => set({ mode: m }),
@@ -81,6 +86,8 @@ export const useExperienceDetailStore = create<State>((set, get) => ({
 
       set({ draft: { ...draft, isDefault: next } });
     },
+
+    setIsSubmitting: (v) => set({ isSubmitting: v }),
   },
 }));
 

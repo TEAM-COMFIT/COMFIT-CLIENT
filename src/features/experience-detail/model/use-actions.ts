@@ -44,7 +44,7 @@ export const useExperienceSubmit = () => {
   const mode = useExperienceDetailStore((s) => s.mode);
   const draft = useExperienceDetailStore((s) => s.draft);
   const current = useExperienceDetailStore((s) => s.current);
-  const { setMode, setCurrent, hydrateDraftFromCurrent } =
+  const { setMode, setCurrent, hydrateDraftFromCurrent, setIsSubmitting } =
     useExperienceDetailStore((s) => s.actions);
 
   const submit = useCallback(async () => {
@@ -58,6 +58,8 @@ export const useExperienceSubmit = () => {
 
     // 2. API 요청
     try {
+      setIsSubmitting(true);
+
       if (mode === "create") {
         // TODO: API 연동 시 아래 주석 해제
         // const { experienceId } = await createExperience(draft);
@@ -93,6 +95,7 @@ export const useExperienceSubmit = () => {
         return;
       }
     } catch (error) {
+      setIsSubmitting(false);
       showSaveError();
       console.error("Experience save failed:", error);
     }
@@ -104,6 +107,7 @@ export const useExperienceSubmit = () => {
     setMode,
     setCurrent,
     hydrateDraftFromCurrent,
+    setIsSubmitting,
   ]);
 
   return { submit };
