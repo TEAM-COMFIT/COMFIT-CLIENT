@@ -93,7 +93,7 @@ const MyPageCards = ({
           <div className={styles.titleWithIcon}>
             <h2 className={styles.mediumTitle}>기업 북마크</h2>
             <span className={styles.iconWrap}>
-              <IconExpandMore />
+              <IconExpandMore aria-hidden="true" />
             </span>
           </div>
         </Card>
