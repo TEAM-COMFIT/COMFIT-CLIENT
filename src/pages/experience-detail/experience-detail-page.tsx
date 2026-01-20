@@ -1,15 +1,26 @@
+import { useLayoutEffect } from "react";
 import { useParams } from "react-router-dom";
 
-import { ExperienceForm, ExperienceViewer } from "@/features/experience-detail";
+import {
+  ExperienceForm,
+  ExperienceViewer,
+  useExperienceMode,
+  initExperienceDetail,
+} from "@/features/experience-detail";
 
-type mode = "view" | "edit" | "create";
+import type { ExperienceMode } from "@/features/experience-detail";
 
 interface ExperiencePageProps {
-  mode: mode;
+  Mode: ExperienceMode;
 }
 
-const ExperienceDetailPage = ({ mode }: ExperiencePageProps) => {
-  const { id } = useParams<{ id: string }>();
+const ExperienceDetailPage = ({ Mode }: ExperiencePageProps) => {
+  const { experienceId } = useParams<{ experienceId: string }>();
+  const mode = useExperienceMode();
+
+  useLayoutEffect(() => {
+    initExperienceDetail(Mode, experienceId);
+  }, [Mode, experienceId]);
 
   switch (mode) {
     case "view":
@@ -17,7 +28,7 @@ const ExperienceDetailPage = ({ mode }: ExperiencePageProps) => {
 
     case "create":
     case "edit":
-      return <ExperienceForm mode={mode} id={id} />;
+      return <ExperienceForm />;
   }
 };
 
