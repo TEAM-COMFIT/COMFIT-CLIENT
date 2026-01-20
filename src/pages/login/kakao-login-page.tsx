@@ -28,8 +28,6 @@ const KakaoLoginPage = () => {
   }, [data, navigate, actions, code]);
 
   return <></>;
-
-  return <></>;
 };
 
 export { KakaoLoginPage };
