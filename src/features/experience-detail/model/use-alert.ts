@@ -22,10 +22,16 @@ interface ExperienceAlertState {
 
 let alertIdCounter = 0;
 
-export const useExperienceAlertStore = create<ExperienceAlertState>((set) => ({
+export const useExperienceAlertStore = create<ExperienceAlertState>((set, get) => ({
   alerts: [],
   actions: {
     show: (variant, title, description) => {
+      const { alerts } = get();
+      const isDuplicate = alerts.some(
+        (a) => a.variant === variant && a.title === title && a.description === description
+      );
+      if (isDuplicate) return;
+
       const id = `exp-alert-${++alertIdCounter}`;
       set((state) => ({
         alerts: [...state.alerts, { id, variant, title, description }],
