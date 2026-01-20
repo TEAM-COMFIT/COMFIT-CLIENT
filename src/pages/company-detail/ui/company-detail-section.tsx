@@ -27,6 +27,7 @@ type IssueItem = {
 };
 
 type CompanyDetailSummary = {
+  companyId: number;
   name: string;
   status: string;
   logo: string;
@@ -35,20 +36,14 @@ type CompanyDetailSummary = {
   companyURL: string;
   summary: string;
   talentProfile: string;
-};
-
-type CompanyDetailSectionData = {
-  company: CompanyDetailSummary;
-  issueItems: IssueItem[];
-  onCtaClick?: () => void;
+  issueList: IssueItem[];
 };
 
 interface CompanyDetailSectionProps {
-  data: CompanyDetailSectionData;
+  companyData: CompanyDetailSummary;
 }
 
-const CompanyDetailSection = ({ data }: CompanyDetailSectionProps) => {
-  const { company, issueItems, onCtaClick } = data;
+const CompanyDetailSection = ({ companyData }: CompanyDetailSectionProps) => {
   return (
     <div className={styles.sectionWrap}>
       <section className={styles.header}>
@@ -56,25 +51,30 @@ const CompanyDetailSection = ({ data }: CompanyDetailSectionProps) => {
           <img
             className={styles.logo}
             src={KERORO} // 임시 이미지
-            alt={`${company.name} 로고`}
+            alt={`${companyData.name} 로고`}
           />
 
           <div className={styles.headerMeta}>
             <div className={styles.nameRow}>
-              <h1 className={styles.companyName}>{company.name}</h1>
+              <h1 className={styles.companyName}>{companyData.name}</h1>
               <span className={styles.dot} aria-hidden="true" />
-              <span className={styles.hireStatus}>{company.status}</span>
+              <span className={styles.hireStatus}>{companyData.status}</span>
             </div>
 
             <div className={styles.tagRow}>
-              <Tag type="secondary">#{getIndustryLabel(company.industry)}</Tag>
-              <Tag type="secondary">#{getScaleLabel(company.scale)}</Tag>
+              <Tag type="secondary">
+                #{getIndustryLabel(companyData.industry)}
+              </Tag>
+              <Tag type="secondary">#{getScaleLabel(companyData.scale)}</Tag>
             </div>
           </div>
         </div>
 
         <div className={styles.headerRight}>
-          <CompanyLinkButton href={company.companyURL} label="기업 홈페이지" />
+          <CompanyLinkButton
+            href={companyData.companyURL}
+            label="기업 홈페이지"
+          />
         </div>
       </section>
 
@@ -95,7 +95,7 @@ const CompanyDetailSection = ({ data }: CompanyDetailSectionProps) => {
           type="large"
           className={[styles.textboxContent, styles.summaryBox].join(" ")}
         >
-          {company.summary}
+          {companyData.summary}
         </Textbox>
       </section>
 
@@ -114,7 +114,7 @@ const CompanyDetailSection = ({ data }: CompanyDetailSectionProps) => {
           type="large"
           className={[styles.textboxContent, styles.talentBox].join(" ")}
         >
-          {company.talentProfile}
+          {companyData.talentProfile}
         </Textbox>
       </section>
 
@@ -132,7 +132,7 @@ const CompanyDetailSection = ({ data }: CompanyDetailSectionProps) => {
         </div>
 
         <div className={styles.issueList}>
-          {issueItems.map((issue) => (
+          {companyData.issueList.map((issue) => (
             <CompanyIssue
               key={`${issue.date}-${issue.title}`}
               issueURL={issue.href}
@@ -144,7 +144,10 @@ const CompanyDetailSection = ({ data }: CompanyDetailSectionProps) => {
         </div>
       </section>
 
-      <CompanyCtaBanner className={styles.ctaBanner} onCtaClick={onCtaClick} />
+      <CompanyCtaBanner
+        className={styles.ctaBanner}
+        companyId={companyData.companyId}
+      />
     </div>
   );
 };

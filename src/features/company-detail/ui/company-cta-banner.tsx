@@ -1,14 +1,21 @@
+import { useNavigate } from "react-router-dom";
+
+import { ROUTES } from "@/app/routes/paths";
 import { COMPANY_BOOK } from "@/shared/assets/images";
 import { Button } from "@/shared/ui";
 
 import * as styles from "./company-cta-banner.css";
 
 export interface CompanyCtaBannerProps {
-  onCtaClick?: () => void;
+  companyId: number;
   className?: string;
 }
 
-const CompanyCtaBanner = ({ onCtaClick, className }: CompanyCtaBannerProps) => {
+const CompanyCtaBanner = ({ companyId, className }: CompanyCtaBannerProps) => {
+  const navigate = useNavigate();
+  const handleCtaClick = () => {
+    navigate(`${ROUTES.EXPERIENCE_MATCHING}?companyId=${companyId}`);
+  };
   return (
     <section
       className={[styles.container, className].filter(Boolean).join(" ")}
@@ -22,7 +29,7 @@ const CompanyCtaBanner = ({ onCtaClick, className }: CompanyCtaBannerProps) => {
       </div>
 
       <div className={styles.right}>
-        <Button variant="secondary" onClick={onCtaClick}>
+        <Button variant="secondary" onClick={handleCtaClick}>
           시작하기
         </Button>
       </div>

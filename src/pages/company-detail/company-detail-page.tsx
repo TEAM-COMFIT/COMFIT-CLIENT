@@ -1,7 +1,6 @@
 import { useMemo } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
-import { ROUTES } from "@/app/routes/paths";
 import { CompanyDetailSection } from "@/pages/company-detail/ui/company-detail-section";
 import { CompanyRecommendationSection } from "@/pages/company-detail/ui/company-recommendation-section";
 
@@ -38,16 +37,21 @@ export interface RecommendCompanyItem {
 }
 
 const CompanyDetailPage = () => {
-  const { id } = useParams<{ id: string }>();
-  const navigate = useNavigate();
-  const parsedId = Number(id);
-  const companyId = Number.isFinite(parsedId) ? parsedId : 1;
-  const handleCtaClick = () => {
-    navigate(ROUTES.EXPERIENCE_MATCHING);
-  };
+  // const { id } = useParams<{ id: string }>();
 
-  const company = useMemo<CompanyDetail>(() => {
-    const issueList: IssueItem[] = [
+  const companyData: CompanyDetail = {
+    companyId: 1,
+    name: "CJ ENM",
+    status: "채용중",
+    logo: "https://bucket-com-fit-server.s3.ap-northeast-2.amazonaws.com/company/coupang.gif",
+    industry: "MEDIA_CONTENTS",
+    scale: "LARGE",
+    companyURL: "https://www.cjenm.com",
+    summary:
+      "콘텐츠 IP를 기반으로 방송·디지털·글로벌 플랫폼까지 확장하며,\n 장기적인 IP 가치와 브랜드 일관성을 중시하는 엔터테인먼트 기업",
+    talentProfile:
+      "자율적으로 문제를 정의하고, 다양한 이해관계자와 협업하며, 결과에 대한 책임을 지는 사람",
+    issueList: [
       {
         href: "https://example.com/1",
         date: "2024.12",
@@ -69,29 +73,7 @@ const CompanyDetailPage = () => {
         description:
           "글로벌 제작사 및 플랫폼과의 공동 제작 프로젝트를 통해 제작 초기 단계부터 해외 시장을 고려한 협업 모델을 확대하고 있다. 일부 프로젝트는 국내 방영 이후 해외 유통이 아닌, 글로벌 공개를 전제로 제작 구조를 설계하는 방식으로 진행되고 있다.",
       },
-    ];
-
-    return {
-      companyId,
-      name: "CJ ENM",
-      status: "채용중",
-      logo: "https://bucket-com-fit-server.s3.ap-northeast-2.amazonaws.com/company/coupang.gif",
-      industry: "MEDIA_CONTENTS",
-      scale: "LARGE",
-      companyURL: "https://www.cjenm.com",
-      summary:
-        "콘텐츠 IP를 기반으로 방송·디지털·글로벌 플랫폼까지 확장하며,\n 장기적인 IP 가치와 브랜드 일관성을 중시하는 엔터테인먼트 기업",
-      talentProfile:
-        "자율적으로 문제를 정의하고, 다양한 이해관계자와 협업하며, 결과에 대한 책임을 지는 사람",
-      issueList,
-    };
-  }, [companyId]);
-
-  const issueItems = company.issueList.slice(0, 3);
-  const detailSectionData = {
-    company,
-    issueItems,
-    onCtaClick: handleCtaClick,
+    ],
   };
 
   const recommendCompanies = useMemo(() => {
@@ -130,14 +112,14 @@ const CompanyDetailPage = () => {
     return list;
   }, []);
   const recommendSectionData = {
-    name: company.name,
+    name: companyData.name,
     recommendCompanies,
   };
 
   return (
     <main className={styles.page}>
       <div className={styles.container}>
-        <CompanyDetailSection data={detailSectionData} />
+        <CompanyDetailSection companyData={companyData} />
       </div>
 
       <CompanyRecommendationSection data={recommendSectionData} />
