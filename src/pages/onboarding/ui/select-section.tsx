@@ -36,7 +36,7 @@ const SelectSection = ({
         />
       </div>
 
-      <div className={s.field}>
+      <div className={s.universityField}>
         <div className={s.label}>
           대학교 <span className={s.required}>*</span>
         </div>

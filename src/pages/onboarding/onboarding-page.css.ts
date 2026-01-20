@@ -70,6 +70,16 @@ export const field = style({
   display: "flex",
   flexDirection: "column",
   gap: "0.8rem",
+  position: "relative",
+  zIndex: 12,
+});
+
+export const universityField = style({
+  display: "flex",
+  flexDirection: "column",
+  gap: "0.8rem",
+  position: "relative",
+  zIndex: 11,
 });
 
 export const label = style([
