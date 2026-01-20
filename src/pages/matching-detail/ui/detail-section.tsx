@@ -43,13 +43,17 @@ const DetailSection = ({ data }: DetailSectionProps) => {
       {/* 지원 기업 */}
       <div className={styles.itemWrapper}>
         <h2 className={styles.itemTitle}>지원 기업</h2>
-        <Textbox type="medium">{data.companyName}</Textbox>
+        <Textbox type="medium">
+          <p className={styles.contentBold}>{data.companyName}</p>
+        </Textbox>
       </div>
 
       {/* 선택된 경험 */}
       <div className={styles.itemWrapper}>
         <h2 className={styles.itemTitle}>선택된 경험</h2>
-        <Textbox type="medium">{data.experienceTitle}</Textbox>
+        <Textbox type="medium">
+          <p className={styles.contentBold}>{data.experienceTitle}</p>
+        </Textbox>
       </div>
 
       {/* 직무 설명 (JD) */}
@@ -63,13 +67,15 @@ const DetailSection = ({ data }: DetailSectionProps) => {
       {/* [1] 이 기업이 직무에서 중요하게 보는 관점 */}
       <div className={styles.itemWrapper}>
         <h2 className={styles.itemTitle}>
-          [1] 이 기업이 직무에서 중요하게 보는 관점
+          [1] 이 기업이 이 직무에서 중요하게 보는 관점
         </h2>
         <Textbox type="medium">
           {data.perspectives.map((p, i) => (
             <div key={i} className={styles.listContent}>
-              <strong>• {p.perspective}</strong>
-              <p>{p.reason}</p>
+              <p className={styles.perspectiveTitle}>관점 {i + 1}</p>
+              <p className={styles.hightlightText}>{p.perspective}</p>
+              <p className={styles.perspectiveReason}>{p.reason}</p>
+              {i < data.perspectives.length - 1 && <br />}
             </div>
           ))}
         </Textbox>
@@ -81,10 +87,13 @@ const DetailSection = ({ data }: DetailSectionProps) => {
         <Textbox type="medium">
           {data.density.map((d, i) => (
             <div key={i} className={styles.listContent}>
-              <strong>
-                • {d.perspective} ({d.connection})
-              </strong>
-              <p>{d.reason}</p>
+              <p className={styles.perspectiveTitle}>연결 지점 {i + 1}</p>
+              <p className={styles.hightlightText}>
+                {d.perspective}{" "}
+                {d.connection === "간접 연결" ? "(간접 연결)" : ""}
+              </p>
+              <p className={styles.perspectiveReason}>{d.reason}</p>
+              {i < data.density.length - 1 && <br />}
             </div>
           ))}
         </Textbox>
@@ -96,10 +105,26 @@ const DetailSection = ({ data }: DetailSectionProps) => {
         <Textbox type="medium">
           {data.appealPoint.map((a, i) => (
             <div key={i} className={styles.listContent}>
-              <strong>
-                • {a.element} (STAR 단계: {a.starPhase})
-              </strong>
-              <p>{a.direction}</p>
+              <p className={styles.elementSubTitle}>{a.element}</p>
+              <div className={styles.appealDetails}>
+                <p>
+                  {" "}
+                  <strong>• 중요 이유(기준 명시)</strong>: {a.importance}
+                </p>
+                <p>
+                  {" "}
+                  <strong>• 경험 단계(STAR)</strong>: {a.starPhase}
+                </p>
+                <p>
+                  {" "}
+                  <strong>• 보완 방향</strong>: {a.direction}
+                </p>
+                <p>
+                  {" "}
+                  <strong>• 자소서 배치 위치</strong>: {a.placement}
+                </p>
+                {i < data.appealPoint.length - 1 && <br />}
+              </div>
             </div>
           ))}
         </Textbox>
