@@ -106,7 +106,7 @@ const ExperienceForm = ({ mode, id }: ExperienceFormProps) => {
                   <div className={s.tooltipWrap}>
                     <Tooltip type="guide" label="작성 가이드">
                       <div className={s.tooltipInner}>
-                        <p className={s.tooltipLead}>
+                        <p className={s.tooltipText}>
                           아래와 같은 내용을 포함한 채용 공고의 직무
                           설명(JD)을 그대로 붙여넣어 주세요.
                         </p>
@@ -123,9 +123,7 @@ const ExperienceForm = ({ mode, id }: ExperienceFormProps) => {
                           <li className={s.tooltipListItem}>
                             요구되는 역량 및 경험
                           </li>
-                          <li className={s.tooltipListItem}>
-                            우대 사항 (선택)
-                          </li>
+                          <li className={s.tooltipListItem}>우대 사항 (선택)</li>
                         </ul>
 
                         <p className={s.tooltipText}>
@@ -222,13 +220,7 @@ interface StarFieldProps {
   placeholder: string;
 }
 
-const StarField = ({
-  label,
-  type,
-  value,
-  onChange,
-  placeholder,
-}: StarFieldProps) => {
+const StarField = ({ label, type, value, onChange, placeholder }: StarFieldProps) => {
   return (
     <div className={s.starField}>
       <p className={s.starLabel}>{label}</p>

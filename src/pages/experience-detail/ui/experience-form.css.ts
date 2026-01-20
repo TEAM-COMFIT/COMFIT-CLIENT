@@ -71,23 +71,6 @@ export const tooltipWrap = style({
   alignItems: "center",
 });
 
-export const tooltipBox = style({
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "center",
-  alignItems: "center",
-
-  gap: "1rem",
-
-  padding: "2.8rem 4.4rem",
-
-  borderRadius: "12px",
-  border: `1px solid ${themeVars.color.gray200}`,
-  background: themeVars.color.white,
-
-  boxShadow: themeVars.shadow?.shadow2 ?? "0 0 0.8rem rgba(0,0,0,0.12)",
-});
-
 export const tooltipInner = style({
   width: "19.1rem",
   display: "flex",
@@ -96,21 +79,13 @@ export const tooltipInner = style({
   gap: "1.2rem",
 });
 
-export const tooltipLead = style({
-  ...themeVars.fontStyles.cap_m_12,
-  fontWeight: 700,
-  color: themeVars.color.gray900,
-  letterSpacing: "-0.012rem",
-  lineHeight: "1.8rem",
-  wordBreak: "keep-all",
-});
-
 export const tooltipText = style({
   ...themeVars.fontStyles.cap_m_12,
-  fontWeight: 500,
+
   color: themeVars.color.gray500,
-  letterSpacing: "-0.012rem",
+  fontWeight: 500,
   lineHeight: "1.8rem",
+  letterSpacing: "-0.012rem",
   wordBreak: "keep-all",
 });
 
@@ -124,10 +99,11 @@ export const tooltipList = style({
 
 export const tooltipListItem = style({
   ...themeVars.fontStyles.cap_m_12,
-  fontWeight: 500,
+
   color: themeVars.color.gray500,
-  letterSpacing: "-0.012rem",
+  fontWeight: 500,
   lineHeight: "1.8rem",
+  letterSpacing: "-0.012rem",
 
   selectors: {
     "&::marker": {
