@@ -10,7 +10,8 @@ const AppleFont = fontFace({
 });
 
 export const container = style({
-  margin: "28.4rem auto 0 auto",
+  margin: `0 auto`,
+  paddingTop: `calc(${themeVars.height.header} + 28.4rem)`,
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
@@ -45,6 +46,12 @@ export const kakao = style({
   borderRadius: "12px",
   color: themeVars.color.kakaoclr,
   backgroundColor: themeVars.color.kakaobg,
+});
+
+export const kakaoIcon = style({
+  width: "2.4rem",
+  height: "2.4rem",
+  flexShrink: 0,
 });
 
 export const kakaoText = style({
