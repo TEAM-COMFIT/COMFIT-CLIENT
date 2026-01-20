@@ -38,9 +38,7 @@ const CompanyRecommendationSection = ({
             </p>
           </div>
 
-          <div className={styles.refreshButtonArea}>
-            <RefreshButton />
-          </div>
+          <RefreshButton />
         </div>
 
         <div className={styles.companyCardGrid}>
@@ -50,7 +48,6 @@ const CompanyRecommendationSection = ({
               to={ROUTES.COMPANY(String(company.id))}
               className={styles.companyCardLink}
             >
-              {/* 임시 이미지 */}
               <CompanyCard {...company} logoUrl={KERORO} />
             </Link>
           ))}

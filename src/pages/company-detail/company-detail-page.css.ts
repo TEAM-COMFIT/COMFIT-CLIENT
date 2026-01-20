@@ -8,9 +8,9 @@ export const page = style({
 });
 
 export const container = style({
-  maxWidth: "144rem",
-  margin: "0 auto",
-  padding: "4.8rem 2rem 0",
   display: "flex",
   flexDirection: "column",
+  maxWidth: "144rem",
+  margin: "0 auto",
+  padding: "8rem 2rem 0",
 });

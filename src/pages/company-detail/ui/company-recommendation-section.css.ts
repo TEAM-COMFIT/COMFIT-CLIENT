@@ -1,34 +1,49 @@
 import { style } from "@vanilla-extract/css";
 
 import { themeVars } from "@/app/styles";
-import CompanyDetailImage from "@/shared/assets/images/company_detail.png";
+import { COMPANY_DETAIL } from "@/shared/assets/images";
 
 export const recommendSection = style({
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
   width: "100%",
-  minHeight: "80rem",
   marginTop: "20rem",
-  padding: "6rem 0",
-  position: "relative",
-  backgroundImage: `url(${CompanyDetailImage})`,
-  backgroundSize: "cover",
+  backgroundImage: `url(${COMPANY_DETAIL})`,
+
+  backgroundSize: "100% 100%",
   backgroundPosition: "center",
   backgroundRepeat: "no-repeat",
+
+  aspectRatio: "1440 / 600",
+
+  overflow: "hidden",
 });
 
 export const recommendInner = style({
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  width: "100%",
   maxWidth: "112rem",
+  height: "100%",
   margin: "0 auto",
   padding: "0 2rem",
-  position: "relative",
 });
 
 export const recommendHeader = style({
-  marginTop: "16rem",
   display: "flex",
   justifyContent: "space-between",
-  alignItems: "flex-start",
+  alignItems: "flex-end",
   gap: "2rem",
-  position: "relative",
+});
+
+export const companyCardGrid = style({
+  marginTop: "4rem",
+  display: "grid",
+  gridTemplateColumns: "repeat(4, 25rem)",
+  justifyContent: "space-between",
+  gap: "2rem",
 });
 
 export const recommendTextGroup = style({
@@ -46,22 +61,7 @@ export const recommendDesc = style({
   ...themeVars.fontStyles.hline_m_18,
 });
 
-export const companyCardGrid = style({
-  marginTop: "6rem",
-  marginBottom: "22.3rem",
-  display: "grid",
-  gridTemplateColumns: "repeat(4, 25rem)",
-  justifyContent: "space-between",
-  gap: "2rem",
-});
-
 export const companyCardLink = style({
   display: "block",
   width: "100%",
-});
-
-export const refreshButtonArea = style({
-  position: "absolute",
-  right: "0",
-  bottom: "0",
 });

@@ -110,12 +110,12 @@ export const sectionTitle = style({
 });
 
 export const summarySection = style({
-  marginTop: "10rem",
+  marginTop: "8rem",
   gap: "1.6rem",
 });
 
 export const talentSection = style({
-  marginTop: "9.5rem",
+  marginTop: "5.2rem",
   gap: "1.6rem",
 });
 
@@ -136,7 +136,6 @@ export const textboxContent = style({
 });
 
 export const summaryBox = style({
-  minHeight: "14.7rem",
   display: "flex",
   alignItems: "center",
 });

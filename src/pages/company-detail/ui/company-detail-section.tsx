@@ -3,9 +3,11 @@ import {
   CompanyIssue,
   CompanyLinkButton,
 } from "@/features/company-detail";
-import IconIdeal from "@/shared/assets/icons/icon_ideal.png";
-import IconIssue from "@/shared/assets/icons/icon_issue.png";
-import IconSummary from "@/shared/assets/icons/icon_summary.png";
+import {
+  IconIdeal,
+  IconIssue,
+  IconSummary,
+} from "@/shared/assets/icons/index.ts";
 import { KERORO } from "@/shared/assets/images/index.ts";
 import { Tag, Textbox } from "@/shared/ui";
 
