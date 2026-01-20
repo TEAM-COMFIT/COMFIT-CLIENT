@@ -71,9 +71,9 @@ const DetailSection = ({ data }: DetailSectionProps) => {
         </h2>
         <Textbox type="medium">
           {data.perspectives.map((p, i) => (
-            <div key={i} className={styles.listContent}>
+            <div key={p.perspective} className={styles.listContent}>
               <p className={styles.perspectiveTitle}>관점 {i + 1}</p>
-              <p className={styles.hightlightText}>{p.perspective}</p>
+              <p className={styles.highlightText}>{p.perspective}</p>
               <p className={styles.perspectiveReason}>{p.reason}</p>
               {i < data.perspectives.length - 1 && <br />}
             </div>
@@ -86,9 +86,9 @@ const DetailSection = ({ data }: DetailSectionProps) => {
         <h2 className={styles.itemTitle}>[2] 선택한 경험과의 연결 강도</h2>
         <Textbox type="medium">
           {data.density.map((d, i) => (
-            <div key={i} className={styles.listContent}>
+            <div key={d.perspective} className={styles.listContent}>
               <p className={styles.perspectiveTitle}>연결 지점 {i + 1}</p>
-              <p className={styles.hightlightText}>
+              <p className={styles.highlightText}>
                 {d.perspective}{" "}
                 {d.connection === "간접 연결" ? "(간접 연결)" : ""}
               </p>
@@ -104,7 +104,7 @@ const DetailSection = ({ data }: DetailSectionProps) => {
         <h2 className={styles.itemTitle}>[3] 반드시 드러내야 할 요소</h2>
         <Textbox type="medium">
           {data.appealPoint.map((a, i) => (
-            <div key={i} className={styles.listContent}>
+            <div key={a.element} className={styles.listContent}>
               <p className={styles.elementSubTitle}>{a.element}</p>
               <div className={styles.appealDetails}>
                 <p>

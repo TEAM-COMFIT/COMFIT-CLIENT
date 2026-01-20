@@ -42,7 +42,7 @@ export const listContent = style({
   },
 });
 
-export const hightlightText = style({
+export const highlightText = style({
   color: themeVars.color.gray800,
   ...themeVars.fontStyles.hline_b_18,
   marginBottom: "1rem",
