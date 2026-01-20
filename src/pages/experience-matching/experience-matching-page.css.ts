@@ -1,12 +1,25 @@
 import { style } from "@vanilla-extract/css";
+import { recipe } from "@vanilla-extract/recipes";
 
 import { themeVars } from "@/app/styles";
 
-export const container = style({
-  display: "flex",
-  flexDirection: "column",
-  margin: "6.1rem auto",
-  maxWidth: "106rem",
+export const container = recipe({
+  base: {
+    display: "flex",
+    flexDirection: "column",
+    margin: "0 auto",
+    maxWidth: "106rem",
+  },
+  variants: {
+    isFirst: {
+      true: {
+        paddingTop: `calc(${themeVars.height.header} + 24rem)`,
+      },
+      false: {
+        paddingTop: `calc(${themeVars.height.header} + 6rem)`,
+      },
+    },
+  },
 });
 
 export const titleContainer = style({

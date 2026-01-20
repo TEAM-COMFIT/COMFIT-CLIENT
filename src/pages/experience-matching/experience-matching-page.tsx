@@ -1,4 +1,5 @@
-import { useFunnel, ProgressBar } from "@/features/experience/experience-match";
+import { useFunnel, ProgressBar } from "@/features/experience-matching";
+import { SelectCompany } from "@/features/experience-matching/ui/select-company/select-company";
 import { IconAI } from "@/shared/assets/icons";
 
 import * as styles from "./experience-matching-page.css";
@@ -18,9 +19,9 @@ const ExperienceMatchingPage = () => {
   });
 
   return (
-    <main className={styles.container}>
+    <main className={styles.container({ isFirst: currentStep == STEP[0] })}>
       {/** 타이틀 */}
-      {currentStep !== "기업 선택" && (
+      {currentStep !== STEP[0] && (
         <>
           <div className={styles.titleContainer}>
             <IconAI />
@@ -45,8 +46,7 @@ const ExperienceMatchingPage = () => {
        * 4. [4단계 (데이터가 불러와지면) 결과 확인]  */}
       <Funnel>
         <Step name="기업 선택">
-          <div>기업 선택 창입니다</div>
-          <button onClick={() => nextStep()}>선택하기</button>
+          <SelectCompany onClick={() => nextStep()} />
         </Step>
         <Step name="기업 정보 확인">
           <div>기업 정보 확인 란입니다</div>
