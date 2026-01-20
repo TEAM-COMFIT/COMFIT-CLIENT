@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { ICON_MATCH } from "@/shared/assets/images";
+import { ICON_MATCH, COMPANY_DETAIL } from "@/shared/assets/images";
 import { Search } from "@/shared/ui";
 
 import { ListSection } from "./list-section/list-section";
@@ -96,6 +96,11 @@ const MatchingListPage = () => {
         totalPage={1}
         currentPage={params.page}
         onPageChange={handlePageChange}
+      />
+      <img
+        src={COMPANY_DETAIL}
+        alt="Company Detail"
+        style={{ border: "1px solid red" }}
       />
     </main>
   );
