@@ -16,7 +16,7 @@ interface ExperiencePageProps {
 }
 
 const ExperienceDetailPage = ({ Mode }: ExperiencePageProps) => {
-  const { experienceId } = useParams<{ experienceId: string }>();
+  const { id: experienceId } = useParams<{ id: string }>();
   const mode = useExperienceMode();
 
   useLayoutEffect(() => {
