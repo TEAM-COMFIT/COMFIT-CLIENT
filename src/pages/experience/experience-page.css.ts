@@ -51,7 +51,7 @@ export const registerButton = style({
   width: "12rem",
   height: "4.4rem",
   padding: "0.8rem",
-  borderRadius: "1.2rem",
+  borderRadius: "12px",
   border: `1px solid ${themeVars.color.blue600}`,
   backgroundColor: themeVars.color.blue600,
   color: themeVars.color.white,

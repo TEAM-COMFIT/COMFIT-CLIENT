@@ -2,12 +2,12 @@ import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { ROUTES } from "@/app/routes/paths";
+import { IconExp } from "@/shared/assets/icons";
 import {
   getExperienceTypeCode,
   type ExperienceTypeCode,
 } from "@/shared/config/experience";
 import { ExperienceFilter } from "@/widgets";
-import { IconExp } from "@shared/assets/icons";
 
 import { MOCK_EXPERIENCES } from "./experience-mock-data";
 import * as styles from "./experience-page.css";

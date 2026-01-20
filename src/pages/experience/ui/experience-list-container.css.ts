@@ -25,10 +25,9 @@ export const card = style({
   display: "flex",
   flexDirection: "column",
   textAlign: "left",
-  borderRadius: "1.6rem",
+  borderRadius: "16px",
   border: `1.5px solid ${themeVars.color.normal}`,
   backgroundColor: themeVars.color.blue100,
-  boxSizing: "border-box",
   cursor: "pointer",
 });
 
