@@ -5,7 +5,8 @@ export const EXPERIENCE_MESSAGES = {
     TITLE_LENGTH: "경험 제목은 2~30자로 입력해주세요",
     TYPE_REQUIRED: "경험 유형을 선택해주세요",
     DATE_FORMAT: "날짜 형식을 맞춰주세요",
-    CONTENT_REQUIRED: "경험 내용을 모두 입력해주세요",
+    CONTENT_REQUIRED: "경험 내용을 확인해주세요",
+    CONTENT_MAX_EXCEEDED: "입력 가능한 글자 수를 초과했습니다",
   },
 
   // API 실패

@@ -10,6 +10,13 @@ type ValidationResult =
 
 const isBlank = (v: string) => v.trim().length === 0;
 
+const STAR_MAX_LENGTH = {
+  situation: 200,
+  task: 200,
+  action: 500,
+  result: 300,
+} as const;
+
 export const validateExperienceDraft = (draft: ExperienceUpsertBody): ValidationResult => {
   // 1) 제목 2~30
   const titleLen = draft.title.trim().length;
@@ -38,14 +45,24 @@ export const validateExperienceDraft = (draft: ExperienceUpsertBody): Validation
     return { ok: false, toastMessage: EXPERIENCE_MESSAGES.VALIDATION.DATE_FORMAT };
   }
 
-  // 4) 내용 미입력
+  // 4) STAR 필드 모두 비어있는 경우
   if (
-    isBlank(draft.situation) ||
-    isBlank(draft.task) ||
-    isBlank(draft.action) ||
+    isBlank(draft.situation) &&
+    isBlank(draft.task) &&
+    isBlank(draft.action) &&
     isBlank(draft.result)
   ) {
     return { ok: false, toastMessage: EXPERIENCE_MESSAGES.VALIDATION.CONTENT_REQUIRED };
+  }
+
+  // 5) STAR 필드 최대 글자 수 초과
+  if (
+    draft.situation.length > STAR_MAX_LENGTH.situation ||
+    draft.task.length > STAR_MAX_LENGTH.task ||
+    draft.action.length > STAR_MAX_LENGTH.action ||
+    draft.result.length > STAR_MAX_LENGTH.result
+  ) {
+    return { ok: false, toastMessage: EXPERIENCE_MESSAGES.VALIDATION.CONTENT_MAX_EXCEEDED };
   }
 
   return { ok: true };
