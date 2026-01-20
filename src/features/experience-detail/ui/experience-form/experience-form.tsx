@@ -1,70 +1,41 @@
-import { useState } from "react";
-
-import { DatePicker } from "@/features/experience-detail";
+import { DatePicker } from "@/features/experience-detail/ui/date-picker/date-picker";
 import { Button, Dropdown, Tooltip } from "@/shared/ui";
 import { Textfield } from "@/shared/ui/textfield/textfield";
 import { StickyHeader } from "@/widgets";
 
+import { EXPERIENCE_TYPE_LIST, EXPERIENCE_TYPE_OPTIONS } from "../../config";
+import {
+  useExperienceActions,
+  useExperienceDraft,
+  useIsDraftDefault,
+} from "../../store/selectors";
+import { useExperienceDateField } from "../../lib/date-field";
+import { useExperienceSubmit, useExperienceHeaderActions } from "../../model/use-actions";
+
 import * as s from "./experience-form.css";
 
 import type { TextfieldType } from "@/shared/ui/textfield/textfield";
+const ExperienceForm = () => {
+  // Store 연결
+  const draft = useExperienceDraft();
+  const isDraftDefault = useIsDraftDefault();
+  const { setDraftField } = useExperienceActions();
 
-type Mode = "create" | "edit";
 
-interface ExperienceFormProps {
-  mode: Mode;
-  id?: string;
-}
+  const { onToggleDefault } = useExperienceHeaderActions();
+  const { submit } = useExperienceSubmit();
 
-type ExperienceType = "PROJECT" | "ACTIVITY" | "INTERNSHIP" | "ETC";
-
-const EXPERIENCE_TYPE_LABEL: Record<ExperienceType, string> = {
-  PROJECT: "프로젝트",
-  ACTIVITY: "대외활동",
-  INTERNSHIP: "인턴",
-  ETC: "기타",
-};
-
-const ExperienceForm = ({ mode, id }: ExperienceFormProps) => {
-  const [isDefault, setIsDefault] = useState(false);
-
-  const [experienceType, setExperienceType] = useState<ExperienceType | null>(
-    null,
-  );
-  const [title, setTitle] = useState("");
-
-  const [startDate, setStartDate] = useState<Date | null>(null);
-  const [endDate, setEndDate] = useState<Date | null>(null);
-
-  const [situation, setSituation] = useState("");
-  const [task, setTask] = useState("");
-  const [action, setAction] = useState("");
-  const [result, setResult] = useState("");
-
-  const handleSubmit = () => {
-    // eslint-disable-next-line no-console
-    console.log({
-      mode,
-      id,
-      isDefault,
-      experienceType,
-      title,
-      startDate,
-      endDate,
-      situation,
-      task,
-      action,
-      result,
-    });
-  };
+  // DatePicker 어댑터
+  const startDateField = useExperienceDateField("startAt");
+  const endDateField = useExperienceDateField("endAt");
 
   return (
     <main className={s.page}>
       <StickyHeader
-        isDefault={isDefault}
-        onToggle={() => setIsDefault((prev) => !prev)}
+        isDefault={isDraftDefault}
+        onToggle={onToggleDefault}
         rightSlot={
-          <Button variant="primary" size="small" onClick={handleSubmit}>
+          <Button variant="primary" size="small" onClick={submit}>
             작성완료
           </Button>
         }
@@ -74,31 +45,32 @@ const ExperienceForm = ({ mode, id }: ExperienceFormProps) => {
         <div className={s.panel}>
           <div className={s.card}>
             <div className={s.innerColumn}>
+              {/* 경험 기본 정보 영역 */}
               <div className={s.topGroup}>
                 <div className={s.topRow}>
+                  {/* 경험 유형 드롭다운 */}
                   <div className={s.dropdownWrap}>
                     <Dropdown type="medium">
                       <Dropdown.Trigger>
-                        {experienceType
-                          ? EXPERIENCE_TYPE_LABEL[experienceType]
+                        {draft.type
+                          ? EXPERIENCE_TYPE_OPTIONS[draft.type]
                           : "경험종류"}
                       </Dropdown.Trigger>
 
                       <Dropdown.Menu>
-                        {(Object.keys(EXPERIENCE_TYPE_LABEL) as ExperienceType[]).map(
-                          (key) => (
-                            <Dropdown.Item
-                              key={key}
-                              onClick={() => setExperienceType(key)}
-                            >
-                              {EXPERIENCE_TYPE_LABEL[key]}
-                            </Dropdown.Item>
-                          ),
-                        )}
+                        {EXPERIENCE_TYPE_LIST.map(({ code, label }) => (
+                          <Dropdown.Item
+                            key={code}
+                            onClick={() => setDraftField("type", code)}
+                          >
+                            {label}
+                          </Dropdown.Item>
+                        ))}
                       </Dropdown.Menu>
                     </Dropdown>
                   </div>
 
+                  {/* 작성 가이드 툴팁 */}
                   <div className={s.tooltipWrap}>
                     <Tooltip type="guide" label="작성 가이드">
                       <div className={s.tooltipInner}>
@@ -123,69 +95,71 @@ const ExperienceForm = ({ mode, id }: ExperienceFormProps) => {
                   </div>
                 </div>
 
+                {/* 경험 제목 (2~30자) */}
                 <div className={s.titleBlock}>
                   <input
                     className={s.titleInput}
                     type="text"
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
+                    value={draft.title}
+                    onChange={(e) => setDraftField("title", e.target.value)}
                     placeholder="제목을 입력해주세요."
+                    maxLength={30}
                   />
                 </div>
 
+                {/* 경험 기간 (DatePicker) */}
                 <div className={s.dateRow}>
                   <DatePicker
-                    selectedDate={startDate}
-                    onChangeSelectedDate={setStartDate}
+                    selectedDate={startDateField.selectedDate}
+                    onChangeSelectedDate={startDateField.onChangeSelectedDate}
                     placeholder="시작일"
                   />
                   <span className={s.dateDash} aria-hidden="true">
                     —
                   </span>
                   <DatePicker
-                    selectedDate={endDate}
-                    onChangeSelectedDate={setEndDate}
+                    selectedDate={endDateField.selectedDate}
+                    onChangeSelectedDate={endDateField.onChangeSelectedDate}
                     placeholder="종료일"
-                    minDate={startDate ?? undefined}
+                    minDate={startDateField.selectedDate ?? undefined}
                   />
                 </div>
               </div>
 
+              {/* STAR 필드 */}
               <div className={s.starGroup}>
                 <StarField
                   label="Situation (상황)"
                   type="situation"
-                  value={situation}
-                  onChange={setSituation}
+                  value={draft.situation}
+                  onChange={(v) => setDraftField("situation", v)}
                   placeholder="예) 대학생 마케팅 동아리에서 신규 브랜드 인지도를 높이기 위한 프로젝트를 진행함."
                 />
 
                 <StarField
                   label="Task (과제)"
                   type="task"
-                  value={task}
-                  onChange={setTask}
+                  value={draft.task}
+                  onChange={(v) => setDraftField("task", v)}
                   placeholder="예) 한정된 예산 안에서 브랜드 메시지를 효과적으로 전달할 콘텐츠 방향을 설정해야 했음."
                 />
 
                 <StarField
                   label="Action (행동)"
                   type="action"
-                  value={action}
-                  onChange={setAction}
+                  value={draft.action}
+                  onChange={(v) => setDraftField("action", v)}
                   placeholder={`예) 초기에는 트렌디한 이미지 위주의 콘텐츠를 기획했으나...`}
                 />
 
                 <StarField
                   label="Result (결과)"
                   type="result"
-                  value={result}
-                  onChange={setResult}
+                  value={draft.result}
+                  onChange={(v) => setDraftField("result", v)}
                   placeholder={`예) 캠페인 종료 시 브랜드 계정 팔로워 수가 약 25% 증가...`}
                 />
               </div>
-
-              {mode === "edit" && id ? <p className={s.debug}>id: {id}</p> : null}
             </div>
           </div>
         </div>
@@ -195,6 +169,10 @@ const ExperienceForm = ({ mode, id }: ExperienceFormProps) => {
 };
 
 export { ExperienceForm };
+
+// ─────────────────────────────────────────────────────────
+// StarField 서브컴포넌트
+// ─────────────────────────────────────────────────────────
 
 interface StarFieldProps {
   label: string;
