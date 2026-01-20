@@ -15,6 +15,6 @@ export const boxBase = style({
 });
 
 export const boxPadding = styleVariants({
-  medium: { padding: "2.8rem 2rem" },
+  medium: { padding: "2.4rem" },
   large: { padding: "2rem" },
 });
