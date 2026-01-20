@@ -50,9 +50,13 @@ axiosInstance.interceptors.response.use(
     if (error.response?.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
       try {
-        const { data } = await axios.post("/api/v1/re-issued", null, {
-          withCredentials: true,
-        });
+        const { data } = await axios.post(
+          `${SERVER_URL}/api/v1/re-issued`,
+          null,
+          {
+            withCredentials: true,
+          }
+        );
 
         // 새로 발급 받은 액세스 토큰 저장
         const newAccessToken = data.accessToken;
