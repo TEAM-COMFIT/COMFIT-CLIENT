@@ -5,6 +5,7 @@ import { themeVars } from "@/app/styles";
 export const page = style({
   width: "100%",
   backgroundColor: themeVars.color.white,
+  marginTop: `calc(${themeVars.height.header} + 8rem)`,
 });
 
 export const container = style({
@@ -12,5 +13,5 @@ export const container = style({
   flexDirection: "column",
   maxWidth: "144rem",
   margin: "0 auto",
-  padding: "8rem 2rem 0",
+  padding: "0 2rem 0",
 });
