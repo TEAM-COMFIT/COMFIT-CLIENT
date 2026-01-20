@@ -87,14 +87,7 @@ const CompanyDetailPage = () => {
     };
   }, [companyId]);
 
-  const visibleIssues = company.issueList.slice(0, 3);
-  const fallbackIssue: IssueItem = {
-    href: company.companyURL,
-    date: "2024.12",
-    title: "최근 이슈가 준비 중입니다.",
-    description: "업데이트되는 대로 최신 소식을 빠르게 전달해 드릴게요.",
-  };
-  const issueItems = visibleIssues.length > 0 ? visibleIssues : [fallbackIssue];
+  const issueItems = company.issueList.slice(0, 3);
   const detailSectionData = {
     company,
     issueItems,
