@@ -3,7 +3,8 @@ import { NavLink } from "react-router-dom";
 import { ROUTES } from "@/app/routes/paths";
 import { useAuthStore } from "@/app/store";
 import { useGetProfile } from "@/features/my-page";
-import { Avatar, LOGO } from "@/shared/assets/icons";
+import { LOGO } from "@/shared/assets/icons";
+import { PROFILE } from "@/shared/assets/images";
 
 import * as styles from "./header.css";
 
@@ -45,7 +46,11 @@ export const Header = () => {
                 aria-label="탭 메뉴"
                 className={styles.iconLink}
               >
-                <Avatar width={38} height={38} className={styles.avatar} />
+                <img
+                  src={PROFILE}
+                  className={styles.avatar}
+                  alt="프로필 이미지"
+                />
               </NavLink>
               <span className={styles.name}>{data?.name}님</span>
             </>

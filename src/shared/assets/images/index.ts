@@ -24,3 +24,5 @@ export { default as SK } from "./sk.png";
 
 export { default as ERROR } from "./error_img.png";
 export { default as LOADING } from "./loading-spinner.png";
+
+export { default as PROFILE } from "./icon_profile.png";
