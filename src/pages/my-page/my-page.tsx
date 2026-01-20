@@ -20,7 +20,8 @@ const MyPage = () => {
         <header className={styles.header}>
           <h1 className={styles.title}>{me.name}님</h1>
 
-          <Button variant="primary" size="small">
+          <Button variant="primary" size="small" onClick={() => {}}>
+            {/* TODO: 로그아웃 API 연동 */}
             로그아웃
           </Button>
         </header>
