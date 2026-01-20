@@ -13,31 +13,6 @@ export const INDUSTRY_TYPE = {
 export type IndustryTypeCode = keyof typeof INDUSTRY_TYPE;
 export type IndustryTypeLabel = (typeof INDUSTRY_TYPE)[IndustryTypeCode];
 
-export const INDUSTRY_LABEL_TO_CODE: Record<
-  IndustryTypeLabel,
-  IndustryTypeCode
-> = Object.entries(INDUSTRY_TYPE).reduce(
-  (acc, [code, label]) => {
-    acc[label as IndustryTypeLabel] = code as IndustryTypeCode;
-    return acc;
-  },
-  {} as Record<IndustryTypeLabel, IndustryTypeCode>,
-);
-
-export interface IndustryFilterOption {
-  id: number;
-  code: IndustryTypeCode;
-  label: IndustryTypeLabel;
-}
-
-export const FILTER_INDUSTRY_TYPE: IndustryFilterOption[] = Object.entries(
-  INDUSTRY_TYPE,
-).map(([code, label], index) => ({
-  id: index + 1,
-  code: code as IndustryTypeCode,
-  label: label as IndustryTypeLabel,
-}));
-
 export const JOB_TYPE = {
   MARKETING_STRATEGY_PLANNING: "마케팅전략/기획",
   BRAND_MARKETING: "브랜드마케팅",
@@ -55,6 +30,15 @@ export const JOB_TYPE = {
 export type JobTypeCode = keyof typeof JOB_TYPE;
 export type JobTypeLabel = (typeof JOB_TYPE)[JobTypeCode];
 
+export const INDUSTRY_LABEL_TO_CODE: Record<IndustryTypeLabel, IndustryTypeCode> =
+  Object.entries(INDUSTRY_TYPE).reduce(
+    (acc, [code, label]) => {
+      acc[label as IndustryTypeLabel] = code as IndustryTypeCode;
+      return acc;
+    },
+    {} as Record<IndustryTypeLabel, IndustryTypeCode>,
+  );
+
 export const JOB_LABEL_TO_CODE: Record<JobTypeLabel, JobTypeCode> =
   Object.entries(JOB_TYPE).reduce(
     (acc, [code, label]) => {
@@ -64,11 +48,35 @@ export const JOB_LABEL_TO_CODE: Record<JobTypeLabel, JobTypeCode> =
     {} as Record<JobTypeLabel, JobTypeCode>,
   );
 
+export const getIndustryLabelByCode = (code: IndustryTypeCode) =>
+  INDUSTRY_TYPE[code];
+
+export const getJobLabelByCode = (code: JobTypeCode) => JOB_TYPE[code];
+
+export const getIndustryCodeByLabel = (label: IndustryTypeLabel) =>
+  INDUSTRY_LABEL_TO_CODE[label];
+
+export const getJobCodeByLabel = (label: JobTypeLabel) => JOB_LABEL_TO_CODE[label];
+
+export interface IndustryFilterOption {
+  id: number;
+  code: IndustryTypeCode;
+  label: IndustryTypeLabel;
+}
+
 export interface JobFilterOption {
   id: number;
   code: JobTypeCode;
   label: JobTypeLabel;
 }
+
+export const FILTER_INDUSTRY_TYPE: IndustryFilterOption[] = Object.entries(
+  INDUSTRY_TYPE,
+).map(([code, label], index) => ({
+  id: index + 1,
+  code: code as IndustryTypeCode,
+  label: label as IndustryTypeLabel,
+}));
 
 export const FILTER_JOB_TYPE: JobFilterOption[] = Object.entries(JOB_TYPE).map(
   ([code, label], index) => ({
@@ -84,13 +92,55 @@ export const JOB_OPTIONS = FILTER_JOB_TYPE.map((o) => o.label);
 export type IndustryOption = IndustryTypeLabel;
 export type JobOption = JobTypeLabel;
 
-export const getIndustryCodeByLabel = (label: IndustryTypeLabel) =>
-  INDUSTRY_LABEL_TO_CODE[label];
+export interface OnboardingRequestBody {
+  educationLevel: string;
+  universityId: number;
 
-export const getJobCodeByLabel = (label: JobTypeLabel) =>
-  JOB_LABEL_TO_CODE[label];
+  firstIndustry: IndustryTypeCode;
+  secondIndustry: IndustryTypeCode;
+  thirdIndustry: IndustryTypeCode;
 
-export const getIndustryLabelByCode = (code: IndustryTypeCode) =>
-  INDUSTRY_TYPE[code];
+  firstJob: JobTypeCode;
+  secondJob: JobTypeCode;
+  thirdJob: JobTypeCode;
+}
 
-export const getJobLabelByCode = (code: JobTypeCode) => JOB_TYPE[code];
+type OnboardingUiValues = {
+  educationLevel: string;
+  universityId: number;
+  industries: readonly [IndustryTypeLabel, IndustryTypeLabel, IndustryTypeLabel];
+  jobs: readonly [JobTypeLabel, JobTypeLabel, JobTypeLabel];
+};
+
+export const buildOnboardingRequestBody = (
+  ui: OnboardingUiValues,
+): OnboardingRequestBody => {
+  const [firstIndustryLabel, secondIndustryLabel, thirdIndustryLabel] =
+    ui.industries;
+  const [firstJobLabel, secondJobLabel, thirdJobLabel] = ui.jobs;
+
+  return {
+    educationLevel: ui.educationLevel,
+    universityId: ui.universityId,
+
+    firstIndustry: getIndustryCodeByLabel(firstIndustryLabel),
+    secondIndustry: getIndustryCodeByLabel(secondIndustryLabel),
+    thirdIndustry: getIndustryCodeByLabel(thirdIndustryLabel),
+
+    firstJob: getJobCodeByLabel(firstJobLabel),
+    secondJob: getJobCodeByLabel(secondJobLabel),
+    thirdJob: getJobCodeByLabel(thirdJobLabel),
+  };
+};
+
+export type ApiSuccessResponse<T = unknown> = {
+  errorCode: string;
+  message: string;
+  result: T;
+};
+
+export type ApiErrorResponse = {
+  status: number;
+  prefix: string;
+  message: string;
+};
