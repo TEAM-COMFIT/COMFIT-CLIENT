@@ -1,5 +1,4 @@
 import { useMemo } from "react";
-import { useParams } from "react-router-dom";
 
 import { CompanyDetailSection } from "@/pages/company-detail/ui/company-detail-section";
 import { CompanyRecommendationSection } from "@/pages/company-detail/ui/company-recommendation-section";
@@ -111,18 +110,16 @@ const CompanyDetailPage = () => {
 
     return list;
   }, []);
-  const recommendSectionData = {
-    name: companyData.name,
-    recommendCompanies,
-  };
-
   return (
     <main className={styles.page}>
       <div className={styles.container}>
         <CompanyDetailSection companyData={companyData} />
       </div>
 
-      <CompanyRecommendationSection data={recommendSectionData} />
+      <CompanyRecommendationSection
+        companyName={companyData.name}
+        recommendCompanies={recommendCompanies}
+      />
     </main>
   );
 };
