@@ -6,6 +6,7 @@ import {
   SelectExperience,
   SelectCompany,
   Analyzing,
+  MatchingResult,
 } from "@/features/experience-matching";
 import { IconAI } from "@/shared/assets/icons";
 
@@ -30,10 +31,10 @@ const ExperienceMatchingPage = () => {
   });
 
   return (
-    <main className={styles.container({ isFirst: currentStep == STEP[0] })}>
-      {/** 타이틀 */}
-      {currentStep !== STEP[0] && (
-        <>
+    <div className={styles.pageLayout({ isLast: currentStep == STEP[4] })}>
+      <main className={styles.container({ isFirst: currentStep == STEP[0] })}>
+        {/** 타이틀 */}
+        {![STEP[0], STEP[4]].includes(currentStep) && (
           <div className={styles.titleContainer}>
             <IconAI />
             <div className={styles.wrapper}>
@@ -43,37 +44,39 @@ const ExperienceMatchingPage = () => {
               </h3>
             </div>
           </div>
+        )}
+        {currentStep !== STEP[0] && (
           <ProgressBar currentStep={currentStep} stepList={STEP} />
-        </>
-      )}
-      {/** useFunnel을 통한 각 단계 컴포넌트 렌더링 */}
-      {/**
-       * 0. 기업 선택
-       * 1. 기업 정보 확인
-       * 2. 나의 경험 확인
-       * 3. AI 분석 진행
-       * 4. [4단계 (데이터가 불러와지면) 결과 확인 이동]  */}
-      <Funnel>
-        <Step name="기업 선택">
-          <SelectCompany onClick={() => nextStep()} />
-        </Step>
-        <Step name="기업 정보 확인">
-          <CompanyDetail nextStep={() => nextStep()} />
-        </Step>
-        <Step name="나의 경험 확인">
-          <SelectExperience
-            prevStep={() => prevStep()}
-            nextStep={() => nextStep()}
-          />
-        </Step>
-        <Step name="AI 분석 진행">
-          <Analyzing nextStep={() => nextStep()} />
-        </Step>
-        <Step name="결과 확인">
-          <div>결과 확인란 입니다</div>
-        </Step>
-      </Funnel>
-    </main>
+        )}
+        {/** useFunnel을 통한 각 단계 컴포넌트 렌더링 */}
+        {/**
+         * 0. 기업 선택
+         * 1. 기업 정보 확인
+         * 2. 나의 경험 확인
+         * 3. AI 분석 진행
+         * 4. [4단계 (데이터가 불러와지면) 결과 확인 이동]  */}
+        <Funnel>
+          <Step name="기업 선택">
+            <SelectCompany onClick={() => nextStep()} />
+          </Step>
+          <Step name="기업 정보 확인">
+            <CompanyDetail nextStep={() => nextStep()} />
+          </Step>
+          <Step name="나의 경험 확인">
+            <SelectExperience
+              prevStep={() => prevStep()}
+              nextStep={() => nextStep()}
+            />
+          </Step>
+          <Step name="AI 분석 진행">
+            <Analyzing nextStep={() => nextStep()} />
+          </Step>
+          <Step name="결과 확인">
+            <MatchingResult />
+          </Step>
+        </Funnel>
+      </main>
+    </div>
   );
 };
 

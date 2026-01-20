@@ -9,3 +9,6 @@ export { SelectCompany } from "./ui/select-company/select-company";
 export { CompanyDetail } from "./ui/company-detail/company-detail";
 export { SelectExperience } from "./ui/select-experience/select-experience";
 export { Analyzing } from "./ui/analyzing/analyzing";
+
+export { MatchingResult } from "./ui/matching-result/matching-result";
+export { MatchingResultContent } from "./ui/matching-result/matching-result-content/matching-result-content";

@@ -3,12 +3,33 @@ import { recipe } from "@vanilla-extract/recipes";
 
 import { themeVars } from "@/app/styles";
 
+export const pageLayout = recipe({
+  base: {
+    width: "100%",
+    minHeight: "100vh",
+  },
+  variants: {
+    isLast: {
+      true: {
+        backgroundColor: themeVars.color.gray100,
+      },
+      false: {
+        backgroundColor: themeVars.color.white,
+      },
+    },
+  },
+  defaultVariants: {
+    isLast: true,
+  },
+});
+
 export const container = recipe({
   base: {
     display: "flex",
     flexDirection: "column",
     margin: "0 auto",
     maxWidth: "106rem",
+    width: "100%",
   },
   variants: {
     isFirst: {
