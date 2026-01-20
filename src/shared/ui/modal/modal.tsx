@@ -6,7 +6,7 @@ import React, {
   type ReactNode,
 } from "react";
 
-import { Load } from "@/shared/assets/images";
+import { LOADING } from "@/shared/assets/gifs/index.ts";
 import X from "@icons/x.svg?react";
 
 import * as styles from "./modal.css.ts";
@@ -87,7 +87,7 @@ const SubTitle = ({ children }: { children: ReactNode }) => {
 };
 
 const Image = () => {
-  return <img className={styles.Image} src={Load} alt="모달 이미지" />;
+  return <img className={styles.Image} src={LOADING} alt="모달 이미지" />;
 };
 
 const Buttons = ({ children }: { children: ReactNode }) => {

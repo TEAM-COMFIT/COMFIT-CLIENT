@@ -71,7 +71,9 @@ export const SubTitle = style({
 });
 
 export const Image = style({
-  margin: "2.4rem 0 3rem 0",
+  width: "25rem",
+  height: "25rem",
+  aspectRatio: 1 / 1,
 });
 
 export const Buttons = style({
