@@ -22,7 +22,3 @@ export const title = style({
   ...themeVars.fontStyles.title_b_28,
   color: themeVars.color.black,
 });
-
-export const body = style({
-  marginTop: "1.6rem",
-});

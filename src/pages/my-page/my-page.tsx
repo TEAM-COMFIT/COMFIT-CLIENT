@@ -26,9 +26,7 @@ const MyPage = () => {
           </Button>
         </div>
 
-        <main className={styles.body}>
-          <MyPageCards {...me} />
-        </main>
+        <MyPageCards {...me} />
       </div>
     </div>
   );

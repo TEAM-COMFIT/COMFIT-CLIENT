@@ -6,6 +6,7 @@ export const wrapper = style({
   display: "flex",
   flexDirection: "column",
   gap: "2rem",
+  marginTop: "1.6rem",
 });
 
 export const grid = style({
