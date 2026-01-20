@@ -26,7 +26,6 @@ const EXPERIENCE_TYPE_LABEL: Record<ExperienceType, string> = {
 };
 
 const ExperienceForm = ({ mode, id }: ExperienceFormProps) => {
-  // TODO: mode에 따라 서버 값으로 치환
   const [isDefault, setIsDefault] = useState(false);
 
   const [experienceType, setExperienceType] = useState<ExperienceType | null>(
@@ -43,9 +42,6 @@ const ExperienceForm = ({ mode, id }: ExperienceFormProps) => {
   const [result, setResult] = useState("");
 
   const handleSubmit = () => {
-    // TODO: 경험 등록/수정 API 호출
-    // TODO: 유효성 검증 (날짜 형식/필수값)
-    // TODO: alert는 나중에 붙이기
     // eslint-disable-next-line no-console
     console.log({
       mode,
@@ -107,28 +103,20 @@ const ExperienceForm = ({ mode, id }: ExperienceFormProps) => {
                     <Tooltip type="guide" label="작성 가이드">
                       <div className={s.tooltipInner}>
                         <p className={s.tooltipText}>
-                          아래와 같은 내용을 포함한 채용 공고의 직무
-                          설명(JD)을 그대로 붙여넣어 주세요.
+                          아래와 같은 내용을 포함한 채용 공고의 직무 설명(JD)을 그대로 붙여넣어 주세요.
                         </p>
 
                         <p className={s.tooltipText}>{"<포함하면 좋은 내용>"}</p>
 
                         <ul className={s.tooltipList}>
-                          <li className={s.tooltipListItem}>
-                            해당 직무의 주요 업무
-                          </li>
-                          <li className={s.tooltipListItem}>
-                            팀 내에서 맡게 될 역할
-                          </li>
-                          <li className={s.tooltipListItem}>
-                            요구되는 역량 및 경험
-                          </li>
+                          <li className={s.tooltipListItem}>해당 직무의 주요 업무</li>
+                          <li className={s.tooltipListItem}>팀 내에서 맡게 될 역할</li>
+                          <li className={s.tooltipListItem}>요구되는 역량 및 경험</li>
                           <li className={s.tooltipListItem}>우대 사항 (선택)</li>
                         </ul>
 
                         <p className={s.tooltipText}>
-                          직무와 무관한 자기소개, 경험 서술은 분석 정확도를
-                          낮출 수 있어요.
+                          직무와 무관한 자기소개, 경험 서술은 분석 정확도를 낮출 수 있어요.
                         </p>
                       </div>
                     </Tooltip>
@@ -151,11 +139,9 @@ const ExperienceForm = ({ mode, id }: ExperienceFormProps) => {
                     onChangeSelectedDate={setStartDate}
                     placeholder="시작일"
                   />
-
                   <span className={s.dateDash} aria-hidden="true">
                     —
                   </span>
-
                   <DatePicker
                     selectedDate={endDate}
                     onChangeSelectedDate={setEndDate}
@@ -187,8 +173,7 @@ const ExperienceForm = ({ mode, id }: ExperienceFormProps) => {
                   type="action"
                   value={action}
                   onChange={setAction}
-                  placeholder={`예) 초기에는 트렌디한 이미지 위주의 콘텐츠를 기획했으나, 게시 후 반응을 분석한 결과 조회 수 대비 브랜드 인지 반응이 낮다고 판단함.
-이에 메시지 전달이 명확한 짧은 영상 포맷으로 방향을 조정함.`}
+                  placeholder={`예) 초기에는 트렌디한 이미지 위주의 콘텐츠를 기획했으나...`}
                 />
 
                 <StarField
@@ -196,8 +181,7 @@ const ExperienceForm = ({ mode, id }: ExperienceFormProps) => {
                   type="result"
                   value={result}
                   onChange={setResult}
-                  placeholder={`예) 캠페인 종료 시 브랜드 계정 팔로워 수가 약 25% 증가했고, 댓글에서 브랜드 언급 비율이 눈에 띄게 높아짐
-이 결과를 통해 콘텐츠 성과를 단순 수치가 아니라 메시지 전달 관점에서 해석하는 중요성을 배움.`}
+                  placeholder={`예) 캠페인 종료 시 브랜드 계정 팔로워 수가 약 25% 증가...`}
                 />
               </div>
 

@@ -4,14 +4,13 @@ import { useNavigate, useParams } from "react-router-dom";
 import { ModalBasic } from "@/shared/ui";
 import { Button } from "@/shared/ui/button/button";
 import { useModal } from "@/shared/ui/modal/use-modal";
-import { StickyHeader } from "@/widgets/index";
+import { StickyHeader } from "@/widgets";
 
 const ExperienceViewer = () => {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
   const { isOpen, handleModal } = useModal();
 
-  // TODO: 서버 isDefault로 대체 (기본경험 설정 API 추가예정)
   const [isDefault, setIsDefault] = useState(false);
 
   return (
@@ -46,7 +45,7 @@ const ExperienceViewer = () => {
         isOpen={isOpen}
         onClose={handleModal}
         onConfirm={() => {
-          /** TODO: 경험 삭제 API 호출 함수 */
+          // TODO: 경험 삭제 API 호출 함수
         }}
       />
     </main>
