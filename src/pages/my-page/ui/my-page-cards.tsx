@@ -1,4 +1,4 @@
-﻿import { IconExpandMore } from "@/shared/assets/icons";
+import { IconExpandMore } from "@/shared/assets/icons";
 import { getEducationLabel } from "@features/onboarding/config/education";
 import {
   getIndustryLabel,
