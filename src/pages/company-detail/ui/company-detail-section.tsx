@@ -37,17 +37,18 @@ type CompanyDetailSummary = {
   talentProfile: string;
 };
 
-interface CompanyDetailSectionProps {
+type CompanyDetailSectionData = {
   company: CompanyDetailSummary;
   issueItems: IssueItem[];
   onCtaClick?: () => void;
+};
+
+interface CompanyDetailSectionProps {
+  data: CompanyDetailSectionData;
 }
 
-const CompanyDetailSection = ({
-  company,
-  issueItems,
-  onCtaClick,
-}: CompanyDetailSectionProps) => {
+const CompanyDetailSection = ({ data }: CompanyDetailSectionProps) => {
+  const { company, issueItems, onCtaClick } = data;
   return (
     <div className={styles.sectionWrap}>
       <section className={styles.header}>

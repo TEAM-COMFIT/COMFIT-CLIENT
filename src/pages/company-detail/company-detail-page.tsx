@@ -95,6 +95,11 @@ const CompanyDetailPage = () => {
     description: "업데이트되는 대로 최신 소식을 빠르게 전달해 드릴게요.",
   };
   const issueItems = visibleIssues.length > 0 ? visibleIssues : [fallbackIssue];
+  const detailSectionData = {
+    company,
+    issueItems,
+    onCtaClick: handleCtaClick,
+  };
 
   const recommendCompanies = useMemo(() => {
     // TODO: 서버에서 넘겨주는 데이터 형식 그대로
@@ -131,21 +136,18 @@ const CompanyDetailPage = () => {
 
     return list;
   }, []);
+  const recommendSectionData = {
+    name: company.name,
+    recommendCompanies,
+  };
 
   return (
     <main className={styles.page}>
       <div className={styles.container}>
-        <CompanyDetailSection
-          company={company}
-          issueItems={issueItems}
-          onCtaClick={handleCtaClick}
-        />
+        <CompanyDetailSection data={detailSectionData} />
       </div>
 
-      <CompanyRecommendationSection
-        name={company.name}
-        recommendCompanies={recommendCompanies}
-      />
+      <CompanyRecommendationSection data={recommendSectionData} />
     </main>
   );
 };

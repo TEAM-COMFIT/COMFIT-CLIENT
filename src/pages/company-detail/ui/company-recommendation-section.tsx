@@ -5,15 +5,19 @@ import * as styles from "./company-recommendation-section.css";
 
 import type { RecommendCompanyItem } from "@/pages/company-detail/company-detail-page";
 
-interface CompanyRecommendationSectionProps {
+type CompanyRecommendationSectionData = {
   name: string;
   recommendCompanies: RecommendCompanyItem[];
+};
+
+interface CompanyRecommendationSectionProps {
+  data: CompanyRecommendationSectionData;
 }
 
 const CompanyRecommendationSection = ({
-  name: companyName,
-  recommendCompanies,
+  data,
 }: CompanyRecommendationSectionProps) => {
+  const { name: companyName, recommendCompanies } = data;
   return (
     <section className={styles.recommendSection}>
       <div className={styles.recommendInner}>
