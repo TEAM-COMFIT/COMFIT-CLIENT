@@ -5,7 +5,6 @@ export const EXPERIENCE_TYPE_OPTIONS: Record<ExperienceType, string> = {
   PROJECT: "공모전/프로젝트",
   EDUCATION: "수업/교육",
   ETC: "개인 활동",
-  ACTIVITY: "대외활동",
 } as const;
 
 export const EXPERIENCE_LABEL_TO_CODE: Record<string, ExperienceType> = {
@@ -13,7 +12,6 @@ export const EXPERIENCE_LABEL_TO_CODE: Record<string, ExperienceType> = {
   "공모전/프로젝트": "PROJECT",
   "수업/교육": "EDUCATION",
   "개인 활동": "ETC",
-  "대외활동": "ACTIVITY",
 } as const;
 
 export const EXPERIENCE_TYPE_LIST: Array<{ code: ExperienceType; label: string }> = [
