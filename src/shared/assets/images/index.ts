@@ -6,6 +6,7 @@ export { default as COMPANY_DOCS } from "./company_docs.png";
 export { default as COMPANY_BOOK } from "./company_book.png";
 
 export { default as COMPANY_DETAIL } from "./company_detail.png";
+export { default as ICON_MATCH } from "./icon_match.png";
 
 // 랜딩페이지 이미지
 export { default as KEY } from "./key.png";

@@ -1,9 +1,11 @@
-import { INDUSTRY_OPTIONS } from "@features/onboarding/config/interest-select.constants";
+﻿import { INDUSTRY_CODE_TO_LABEL } from "@features/onboarding/config/interest-select.constants";
 import { InterestSelectBase } from "@features/onboarding/ui/interest-select/interest-select-base";
 
 interface IndustryInterestSelectProps {
   priority?: number;
 }
+
+const industryOptions = Object.values(INDUSTRY_CODE_TO_LABEL);
 
 export const IndustryInterestSelect = ({
   priority = 1,
@@ -12,7 +14,7 @@ export const IndustryInterestSelect = ({
     <InterestSelectBase
       variant="industry"
       title={`${priority}순위 관심 산업`}
-      options={INDUSTRY_OPTIONS}
+      options={industryOptions}
     />
   );
 };
