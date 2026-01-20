@@ -6,11 +6,7 @@ import {
   DateLeftArrow,
   DateRightArrow,
 } from "@/shared/assets/icons";
-import {
-  formatDateKorean,
-  formatDateDot,
-  formatYearMonthKorean,
-} from "@/shared/lib";
+import { formatDateDot, formatDateKorean, formatYearMonthKorean } from "@/shared/lib/format-date";
 import useOutsideClick from "@/shared/model/use-outsideclick";
 import { Button } from "@/shared/ui/button/button";
 
