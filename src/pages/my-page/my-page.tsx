@@ -8,7 +8,7 @@ import type { MyPageCardsProps } from "./ui/my-page-cards";
 const MyPage = () => {
   const me: MyPageCardsProps = {
     name: "김컴피",
-    email: "jyslys2669@gmail.com",
+    email: "comfit@gmail.com",
     educationLevel: "BACHELOR",
     firstIndustry: "MEDIA_CONTENTS",
     firstJob: "B2B_MARKETING",
