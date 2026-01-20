@@ -1,4 +1,4 @@
-﻿import { Button } from "@/shared/ui";
+import { Button } from "@/shared/ui";
 
 import * as styles from "./my-page.css";
 import { MyPageCards } from "./ui/my-page-cards";

@@ -41,7 +41,7 @@ export const handleApiError = (error: unknown, type: ErrorType) => {
       "알 수 없는 에러가 발생했습니다.";
 
     console.error(message);
-    if (type == "mutation") {
+    if (type === "mutation") {
       // TODO: toast 메시지 handleApiError 내부처리 or message return 후 컴포넌트에서 처리
       return message;
     }

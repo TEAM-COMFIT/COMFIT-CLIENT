@@ -2,6 +2,12 @@
 const { apiConfig, generateResponses, config } = it;
 %>
 
+export interface Response<T>{
+  errorCode:number|null;
+  message:string;
+  result:T;
+}
+
 import type { AxiosInstance, AxiosRequestConfig, HeadersDefaults, ResponseType } from "axios";
 import axios from "axios";
 
@@ -28,6 +34,7 @@ export interface ApiConfig<SecurityDataType = unknown> extends Omit<AxiosRequest
   securityWorker?: (securityData: SecurityDataType | null) => Promise<AxiosRequestConfig | void> | AxiosRequestConfig | void;
   secure?: boolean;
   format?: ResponseType;
+  axiosInstance?: AxiosInstance;
 }
 
 export enum ContentType {
@@ -45,8 +52,8 @@ export class HttpClient<SecurityDataType = unknown> {
     private secure?: boolean;
     private format?: ResponseType;
 
-    constructor({ securityWorker, secure, format, ...axiosConfig }: ApiConfig<SecurityDataType> = {}) {
-        this.instance = axios.create({ ...axiosConfig, baseURL: axiosConfig.baseURL || import.meta.env.VITE_API_URL })
+    constructor({ securityWorker, secure, format, axiosInstance, ...axiosConfig }: ApiConfig<SecurityDataType> = {}) {
+        this.instance = axiosInstance || axios.create({ ...axiosConfig, baseURL: axiosConfig.baseURL || import.meta.env.VITE_API_URL });
         this.secure = secure;
         this.format = format;
         this.securityWorker = securityWorker;
@@ -110,7 +117,7 @@ export class HttpClient<SecurityDataType = unknown> {
 <% if (config.unwrapResponseData) { %>
     }: FullRequestParams): Promise<T> => {
 <% } else { %>
-    }: FullRequestParams): Promise<T> => {
+    }: FullRequestParams): Promise<Response<T>> => {
 <% } %>
         const secureParams = ((typeof secure === 'boolean' ? secure : this.secure) && this.securityWorker && (await this.securityWorker(this.securityData))) || {};
         const requestParams = this.mergeRequestParams(params, secureParams);
@@ -134,10 +141,7 @@ export class HttpClient<SecurityDataType = unknown> {
             responseType: responseFormat,
             data: body,
             url: path,
-<% if (config.unwrapResponseData) { %>
+            secure: secure,
         }).then(response => response.data);
-<% } else { %>
-        });
-<% } %>
     };
 }
