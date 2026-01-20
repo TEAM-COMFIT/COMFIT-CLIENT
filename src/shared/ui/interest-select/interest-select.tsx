@@ -3,11 +3,11 @@ import { useEffect, useId, useState } from "react";
 import { Button } from "@shared/ui/button/button";
 import { Tag } from "@shared/ui/tag/tag";
 
-import * as styles from "./interest-select-base.css";
+import * as styles from "./interest-select.css";
 
 type Variant = "industry" | "job";
 
-interface InterestSelectBaseProps<T extends string> {
+interface InterestSelectProps<T extends string> {
   variant: Variant;
   title: string;
   required?: boolean;
@@ -22,7 +22,7 @@ interface InterestSelectBaseProps<T extends string> {
 const OPEN_EVENT_NAME = "interest-select:open";
 let lockedInstanceId: string | null = null;
 
-export const InterestSelectBase = <T extends string>({
+export const InterestSelect = <T extends string>({
   variant,
   title,
   required = true,
@@ -31,7 +31,7 @@ export const InterestSelectBase = <T extends string>({
   selected,
   onSelect,
   disabledOptions = [],
-}: InterestSelectBaseProps<T>) => {
+}: InterestSelectProps<T>) => {
   const instanceId = useId();
   const [isOpen, setIsOpen] = useState(false);
 

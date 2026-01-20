@@ -1,12 +1,12 @@
-import { INDUSTRY_OPTIONS } from "@/shared/config";
 import {
   useDisabledOptions,
   useInterestActions,
   useInterestSelection,
-} from "@features/onboarding/model/interest-select/selectors";
-import { InterestSelectBase } from "@features/onboarding/ui/interest-select/interest-select-base";
+} from "@/features/onboarding/store/interest-select/selectors";
+import { INDUSTRY_OPTIONS } from "@/shared/config";
+import { InterestSelect } from "@/shared/ui";
 
-import type { Priority } from "@features/onboarding/model/interest-select/store";
+import type { Priority } from "@/features/onboarding/store/interest-select/store";
 
 interface IndustryInterestSelectProps {
   priority?: Priority;
@@ -19,7 +19,7 @@ export const IndustryInterestSelect = ({
   const disabledOptions = useDisabledOptions("industry", priority);
   const { setSelection } = useInterestActions();
   return (
-    <InterestSelectBase
+    <InterestSelect
       variant="industry"
       title={`${priority}순위 관심 산업`}
       required={priority === 1}

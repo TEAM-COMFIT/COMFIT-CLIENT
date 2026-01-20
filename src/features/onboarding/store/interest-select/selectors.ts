@@ -6,10 +6,13 @@ import type { InterestVariant, Priority } from "./store";
 
 export const useInterestSelection = (
   variant: InterestVariant,
-  priority: Priority,
+  priority: Priority
 ) => useInterestSelectStore((s) => s[variant][priority]);
 
-export const useDisabledOptions = (variant: InterestVariant, priority: Priority) =>
+export const useDisabledOptions = (
+  variant: InterestVariant,
+  priority: Priority
+) =>
   useInterestSelectStore(
     useShallow((s) => {
       const all = s[variant];
@@ -21,7 +24,8 @@ export const useDisabledOptions = (variant: InterestVariant, priority: Priority)
         .filter(Boolean) as string[];
 
       return picked;
-    }),
+    })
   );
 
-export const useInterestActions = () => useInterestSelectStore((s) => s.actions);
+export const useInterestActions = () =>
+  useInterestSelectStore((s) => s.actions);

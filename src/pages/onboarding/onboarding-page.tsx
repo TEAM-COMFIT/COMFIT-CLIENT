@@ -7,10 +7,10 @@ import {
   useInterestSelectStore,
 } from "@/features/onboarding";
 import { fetchUniversitiesMock } from "@/features/onboarding/api/university.mock";
-import { isOnboardingFormComplete } from "@/features/onboarding/model/onboarding-form.validator";
+import { isOnboardingFormComplete } from "@/features/onboarding/lib/onboarding-form.validator";
 import { OnboardingLogo } from "@/shared/assets/images";
+import { Button } from "@/shared/ui";
 import { SearchAutocomplete } from "@/shared/ui/search-auto-complete/search-auto-complete";
-import { Button } from "@shared/ui/button/button";
 
 import * as s from "./onboarding-page.css";
 

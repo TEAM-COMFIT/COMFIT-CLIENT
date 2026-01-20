@@ -46,5 +46,5 @@ export const useInterestSelectStore = create<State & { actions: Actions }>(
         }));
       },
     },
-  }),
+  })
 );

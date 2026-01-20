@@ -3,10 +3,10 @@ import {
   useDisabledOptions,
   useInterestActions,
   useInterestSelection,
-} from "@features/onboarding/model/interest-select/selectors";
-import { InterestSelectBase } from "@features/onboarding/ui/interest-select/interest-select-base";
+} from "@/features/onboarding/store/interest-select/selectors";
+import { InterestSelect } from "@/shared/ui";
 
-import type { Priority } from "@features/onboarding/model/interest-select/store";
+import type { Priority } from "@/features/onboarding/store/interest-select/store";
 
 interface JobInterestSelectProps {
   priority?: Priority;
@@ -18,7 +18,7 @@ export const JobInterestSelect = ({ priority = 1 }: JobInterestSelectProps) => {
   const { setSelection } = useInterestActions();
 
   return (
-    <InterestSelectBase
+    <InterestSelect
       variant="job"
       title={`${priority}순위 관심 직무`}
       required={priority === 1}
