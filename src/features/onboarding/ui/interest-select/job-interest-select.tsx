@@ -1,4 +1,4 @@
-import { JOB_OPTIONS } from "@features/onboarding/config/interest-select.constants";
+import { JOB_OPTIONS } from "@/features/onboarding/config/job";
 import {
   useDisabledOptions,
   useInterestActions,
