@@ -1,7 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
 
+import { NotFoundPage } from "@/pages/fallback/not-found-page";
+
+import AuthGuard from "./auth-guard";
 import { protectedRoutes } from "./protected-routes";
-import { publicRoutes } from "./public-routes";
+import { guestRoutes, publicRoutes } from "./public-routes";
 import { RootLayout } from "./root-layout";
 
 export const router = createBrowserRouter([
@@ -10,10 +13,18 @@ export const router = createBrowserRouter([
     element: <RootLayout />,
     children: [
       ...publicRoutes,
-
-      // TODO: auth에 따른 처리 추가
-      ...protectedRoutes,
-      // TODO: paths 이외의 경로 접근 시 error 처리
+      {
+        element: <AuthGuard type="guest" />,
+        children: [...guestRoutes],
+      },
+      {
+        element: <AuthGuard type="private" />,
+        children: [...protectedRoutes],
+      },
+      {
+        path: "*",
+        element: <NotFoundPage />,
+      },
     ],
   },
 ]);

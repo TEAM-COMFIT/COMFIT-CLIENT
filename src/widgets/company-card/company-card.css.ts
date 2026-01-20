@@ -6,20 +6,20 @@ import { themeVars } from "@/app/styles";
 export const card = style({
   width: "25rem",
   height: "28rem",
-  padding: "1.6rem",
+  padding: "2rem 1.6rem",
   backgroundColor: themeVars.color.white,
   borderRadius: "16px",
   border: `1.5px solid ${themeVars.color.normal}`,
   boxShadow: themeVars.shadow.shadow1,
   display: "flex",
   flexDirection: "column",
-  gap: "4rem",
 });
 
 /* ---------- Header (로고 + 기업명) ---------- */
 export const header = style({
   display: "flex",
-  alignItems: "center",
+  flexDirection: "column",
+  alignItems: "flex-start",
   gap: "2rem",
 });
 
@@ -34,6 +34,7 @@ export const logoWrapper = style({
   alignItems: "center",
   justifyContent: "center",
   overflow: "hidden",
+  flexShrink: 0,
 });
 
 export const logoImage = style({
@@ -45,14 +46,14 @@ export const logoImage = style({
 /* Company name */
 export const companyName = style({
   color: themeVars.color.black,
-  ...themeVars.fontStyles.hding_b_22,
+  ...themeVars.fontStyles.hding_b_20,
 });
 
 /* ---------- Info (Industry / Scale) ---------- */
 export const info = style({
   display: "flex",
   flexDirection: "column",
-  gap: "0.4rem",
+  paddingTop: "1.2rem",
   color: themeVars.color.gray500,
   ...themeVars.fontStyles.body_m_14,
 });

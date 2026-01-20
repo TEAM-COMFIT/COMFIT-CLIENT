@@ -31,6 +31,10 @@ export { default as IconCheck } from "./check.svg?react";
 
 export { default as IconAI } from "./icon_ai.svg?react";
 
+export { default as IconSummary } from "./icon_summary.png";
+export { default as IconIdeal } from "./icon_ideal.png";
+export { default as IconIssue } from "./icon_issue.png";
+
 export { default as IconMatchBefore } from "./icon_match_before.svg?react";
 export { default as IconAIBefore } from "./icon_ai_before.svg?react";
 export { default as IconEXPBefore } from "./icon_exp_before.svg?react";

@@ -5,8 +5,6 @@ const AUTH_BASE_URLS = {
   KAKAO: "https://kauth.kakao.com/oauth/authorize",
 };
 
-const isDev = import.meta.env.DEV;
-console.log(isDev);
 /**
  * 각 소셜 로그인 제공자별 환경 변수 설정 (확장성을 위함)
  */

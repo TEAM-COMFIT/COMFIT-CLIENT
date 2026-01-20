@@ -110,6 +110,8 @@ export const iconLink = style({
 
 export const avatar = style({
   textAlign: "center",
+  width: "3.8rem",
+  height: "3.8rem",
 });
 
 export const name = style([

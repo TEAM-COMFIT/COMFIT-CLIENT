@@ -5,6 +5,11 @@ export { default as Company } from "./img_company.png";
 export { default as COMPANY_DOCS } from "./company_docs.png";
 export { default as COMPANY_BOOK } from "./company_book.png";
 
+export { default as homeBanner } from "./home_banner.png";
+
+export { default as COMPANY_DETAIL } from "./company_detail.png";
+export { default as ICON_MATCH } from "./icon_match.png";
+
 // 랜딩페이지 이미지
 export { default as KEY } from "./key.png";
 export { default as CHARACTER } from "./character.png";
@@ -23,4 +28,8 @@ export { default as SARAMIN } from "./saramin.png";
 export { default as SK } from "./sk.png";
 
 export { default as LOADING } from "./loading-spinner.png";
-export { default as IconAI } from "./icon_ai.png";
+export { default as ICONAI } from "./icon_ai.png";
+
+export { default as ERROR } from "./error_img.png";
+
+export { default as PROFILE } from "./icon_profile.png";
