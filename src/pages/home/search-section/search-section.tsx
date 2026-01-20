@@ -32,6 +32,7 @@ const SearchSection = () => {
     setParams((prev) => ({
       ...prev,
       ...patch,
+      page: "page" in patch ? patch.page : 1, // 필터 변경 시 페이지 1로 초기화
     }));
   };
 
