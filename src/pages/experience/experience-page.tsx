@@ -20,6 +20,7 @@ const ExperiencePage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const navigate = useNavigate();
 
+  // TODO: api 연동 후 삭제 예정
   const baseTotalElements = MOCK_EXPERIENCES.length;
 
   const filteredAll = useMemo(() => {
@@ -57,6 +58,7 @@ const ExperiencePage = () => {
     }),
     [summaryResult]
   );
+  // const { data } = useExperienceListQuery("쿼리키", filter, currentPage);
 
   const handleFilterChange = (value: ExperienceTypeCode) => {
     setFilter(value);

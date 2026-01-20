@@ -6,8 +6,7 @@ export const page = style({
   display: "flex",
   flexDirection: "column",
   alignItems: "stretch",
-  paddingTop: `calc(${themeVars.height.header} + 1.4rem)`,
-  paddingBottom: "8rem",
+  paddingTop: `calc(${themeVars.height.header} + 8rem)`,
 });
 
 export const header = style({

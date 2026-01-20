@@ -57,15 +57,18 @@ export const date = style({
 
 export const emptyState = style({
   width: "100%",
-  marginTop: "14.4rem",
+  minHeight: "50rem",
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
+  justifyContent: "center",
   textAlign: "center",
 });
 
 export const emptyImage = style({
   display: "block",
+  width: "36rem",
+  height: "24rem",
 });
 
 export const emptyTitle = style({
