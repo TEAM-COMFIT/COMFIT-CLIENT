@@ -17,14 +17,14 @@ const MyPage = () => {
   return (
     <div className={styles.page}>
       <div className={styles.container}>
-        <header className={styles.header}>
+        <div className={styles.header}>
           <h1 className={styles.title}>{me.name}님</h1>
 
           <Button variant="primary" size="small" onClick={() => {}}>
             {/* TODO: 로그아웃 API 연동 */}
             로그아웃
           </Button>
-        </header>
+        </div>
 
         <main className={styles.body}>
           <MyPageCards {...me} />
