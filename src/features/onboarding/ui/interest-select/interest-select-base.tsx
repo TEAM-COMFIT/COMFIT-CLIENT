@@ -100,7 +100,10 @@ export const InterestSelectBase = <T extends string>({
               {selected}
             </Tag>
           ) : (
-            <span className={styles.placeholder}>선택해주세요</span>
+            <span className={styles.placeholder}>
+              {variant === "industry" ? "관심 산업" : "관심 직무"}를 선택해
+              주세요
+            </span>
           )}
         </div>
 
