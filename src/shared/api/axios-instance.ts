@@ -32,7 +32,7 @@ axiosInstance.interceptors.request.use(
     if (accessToken) {
       config.headers["Authorization"] = `Bearer ${accessToken}`;
     } else {
-      if (config.secure && !accessToken) {
+      if (config.secure) {
         alert("로그인이 필요한 서비스입니다.");
         window.location.replace("/login");
         throw new Error("액세스 토큰이 존재하지 않습니다");
