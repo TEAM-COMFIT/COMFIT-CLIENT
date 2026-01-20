@@ -1,7 +1,7 @@
+import { DetailSection } from "./detail-section/detail-section";
 import * as styles from "./matching-detail-page.css";
-import { DetailSection } from "./ui/detail-section";
 
-import type { CompanyDetail } from "./ui/detail-section";
+import type { CompanyDetail } from "./detail-section/detail-section";
 
 // TODO: 예시 데이터 (실제로는 TanStack Query 등으로 가져온 데이터 사용)
 const MOCK_COMPANY_DETAIL: CompanyDetail = {
