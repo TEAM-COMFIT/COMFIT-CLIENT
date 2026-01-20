@@ -11,9 +11,10 @@ export const INDUSTRY = {
   FITNESS: "헬스케어/웰니스",
 } as const;
 
-export type IndustryCode = keyof typeof INDUSTRY;
-export type IndustryLabel = (typeof INDUSTRY)[IndustryCode];
+export type IndustryCode = keyof typeof INDUSTRY; // 키값 리스트
+export type IndustryLabel = (typeof INDUSTRY)[IndustryCode]; // value(label) 리스트
 
+// INDUSTRY_LABEL_TO_CODE: 라벨 <-> 키 역방향 객체
 export const INDUSTRY_LABEL_TO_CODE: Record<IndustryLabel, IndustryCode> =
   Object.entries(INDUSTRY).reduce(
     (acc, [code, label]) => {
@@ -41,6 +42,12 @@ export const FILTER_INDUSTRY: IndustryFilterOption[] = [
   { id: 9, code: "FITNESS", label: INDUSTRY.FITNESS },
 ];
 
+// {0: '소비재/FMCG', 1: 'IT 플랫폼/IT 서비스', ...} 형태
+export const INDUSTRY_OPTIONS = FILTER_INDUSTRY.map(
+  (o) => o.label
+) as IndustryLabel[];
+
+// 코드로 한글 라벨 얻기
 export const getIndustryLabel = (code: IndustryCode): IndustryLabel => {
   if (code in INDUSTRY) {
     return INDUSTRY[code];

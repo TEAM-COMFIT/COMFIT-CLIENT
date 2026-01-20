@@ -44,25 +44,25 @@ const HomePage = () => {
   // 목업 데이터 (UI 확인용)
   const universities = useMemo<SearchItem[]>(
     () => [
-      { id: "u-1", label: "서울대학교" },
-      { id: "u-2", label: "서울시립대학교" },
-      { id: "u-3", label: "서울과학기술대학교" },
-      { id: "u-4", label: "서울여자대학교" },
-      { id: "u-5", label: "서울교육대학교" },
-      { id: "u-6", label: "명지대학교" },
+      { id: "u-1", name: "서울대학교" },
+      { id: "u-2", name: "서울시립대학교" },
+      { id: "u-3", name: "서울과학기술대학교" },
+      { id: "u-4", name: "서울여자대학교" },
+      { id: "u-5", name: "서울교육대학교" },
+      { id: "u-6", name: "명지대학교" },
     ],
     []
   );
 
   const companies = useMemo<SearchItem[]>(
     () => [
-      { id: "c-1", label: "CJ ENM" },
-      { id: "c-2", label: "CJ 제일제당" },
-      { id: "c-3", label: "CJ 푸드빌" },
-      { id: "c-4", label: "CJ 올리브영" },
-      { id: "c-5", label: "CJ 프레시웨이" },
-      { id: "c-6", label: "카카오" },
-      { id: "c-7", label: "네이버" },
+      { id: "c-1", name: "CJ ENM" },
+      { id: "c-2", name: "CJ 제일제당" },
+      { id: "c-3", name: "CJ 푸드빌" },
+      { id: "c-4", name: "CJ 올리브영" },
+      { id: "c-5", name: "CJ 프레시웨이" },
+      { id: "c-6", name: "카카오" },
+      { id: "c-7", name: "네이버" },
     ],
     []
   );
@@ -79,14 +79,14 @@ const HomePage = () => {
     await sleep(250);
     const q = query.trim().toLowerCase();
     if (!q) return [];
-    return universities.filter((x) => x.label.toLowerCase().includes(q));
+    return universities.filter((x) => x.name.toLowerCase().includes(q));
   };
 
   const fetchCompanies = async (query: string): Promise<SearchItem[]> => {
     await sleep(250);
     const q = query.trim().toLowerCase();
     if (!q) return [];
-    return companies.filter((x) => x.label.toLowerCase().includes(q));
+    return companies.filter((x) => x.name.toLowerCase().includes(q));
   };
   const [value, setValue] = useState("");
   const { alertState, actions } = useAlert({

@@ -1,4 +1,4 @@
-import { INDUSTRY_OPTIONS } from "@features/onboarding/config/interest-select.constants";
+import { INDUSTRY_OPTIONS } from "@/shared/config";
 import {
   useDisabledOptions,
   useInterestActions,
@@ -18,7 +18,6 @@ export const IndustryInterestSelect = ({
   const selected = useInterestSelection("industry", priority);
   const disabledOptions = useDisabledOptions("industry", priority);
   const { setSelection } = useInterestActions();
-
   return (
     <InterestSelectBase
       variant="industry"

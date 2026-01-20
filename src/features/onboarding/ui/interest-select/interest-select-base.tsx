@@ -64,7 +64,7 @@ export const InterestSelectBase = <T extends string>({
     window.dispatchEvent(
       new CustomEvent(OPEN_EVENT_NAME, {
         detail: { instanceId },
-      }),
+      })
     );
 
     setIsOpen(true);

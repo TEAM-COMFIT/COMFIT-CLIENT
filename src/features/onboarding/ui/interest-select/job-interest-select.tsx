@@ -23,13 +23,13 @@ export const JobInterestSelect = ({ priority = 1 }: JobInterestSelectProps) => {
       title={`${priority}순위 관심 직무`}
       required={priority === 1}
       options={JOB_OPTIONS}
-      selected={selected as (typeof JOB_OPTIONS)[number] | null}
+      selected={selected}
       disabledOptions={disabledOptions as (typeof JOB_OPTIONS)[number][]}
       onSelect={(value) =>
         setSelection({
           variant: "job",
           priority,
-          value: value as string | null,
+          value,
         })
       }
     />

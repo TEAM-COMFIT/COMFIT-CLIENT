@@ -66,14 +66,25 @@ const Select = ({ children }: { children: ReactNode }) => {
 };
 
 /* ---------- Trigger ---------- */
-const Trigger = ({ children }: { children: ReactNode }) => {
+interface TriggerProps {
+  children: ReactNode;
+  hasValue?: boolean; // 값이 선택되었는지 여부를 받는 prop 추가
+}
+
+const Trigger = ({ children, hasValue = false }: TriggerProps) => {
   const { toggle, isOpen } = useSelect();
+
+  const getVariant = () => {
+    if (isOpen) return "open";
+    if (hasValue) return "selected";
+    return "closed";
+  };
 
   return (
     <button
       type="button"
       onClick={toggle}
-      className={`${styles.trigger} ${styles.triggerFontColor[isOpen ? "open" : "closed"]}`}
+      className={`${styles.trigger} ${styles.triggerFontColor[getVariant()]}`}
     >
       {children}
       <DropdownArrow

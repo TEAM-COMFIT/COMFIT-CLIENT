@@ -9,24 +9,14 @@ export const page = style({
   overflowX: "hidden",
 });
 
-export const container = style({
-  width: "100%",
-  maxWidth: "120rem",
-  margin: "0 auto",
-  padding: "0 2.4rem",
-});
-
 export const card = style({
   width: "106rem",
-
+  margin: "0 auto",
   background: themeVars.color.white,
   borderRadius: "40px",
   boxShadow: themeVars.shadow.shadow1,
-
   padding: "8rem 0 8.3rem 0",
-
   position: "relative",
-  margin: "0 auto",
 });
 
 export const inner = style({
@@ -38,7 +28,6 @@ export const inner = style({
   alignItems: "stretch",
 
   gap: "4rem",
-
 });
 
 export const titleBlock = style({
