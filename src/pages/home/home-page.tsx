@@ -1,7 +1,7 @@
 import { useScrollToTop } from "@/shared/model";
 
 import * as styles from "./home-page.css";
-import { MajorCompanySection } from "./search-section/major-company-section";
+import { MajorCompanySection } from "./major-company-section/major-company-section";
 import { SearchSection } from "./search-section/search-section";
 
 const HomePage = () => {
