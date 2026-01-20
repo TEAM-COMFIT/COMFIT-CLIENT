@@ -5,10 +5,10 @@ import * as styles from "./company-recommendation-section.css";
 
 import type { RecommendCompanyItem } from "@/pages/company-detail/company-detail-page";
 
-type CompanyRecommendationSectionData = {
+interface CompanyRecommendationSectionData {
   name: string;
   recommendCompanies: RecommendCompanyItem[];
-};
+}
 
 interface CompanyRecommendationSectionProps {
   data: CompanyRecommendationSectionData;
