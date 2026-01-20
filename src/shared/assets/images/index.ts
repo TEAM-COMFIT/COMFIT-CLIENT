@@ -21,3 +21,5 @@ export { default as COUPANG } from "./coupang.png";
 export { default as POLARIS } from "./polaris.png";
 export { default as SARAMIN } from "./saramin.png";
 export { default as SK } from "./sk.png";
+
+export { default as ERROR } from "./error_img.png";
