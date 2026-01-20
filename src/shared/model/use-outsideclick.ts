@@ -31,4 +31,4 @@ const useOutsideClick = <T extends HTMLElement>(
   return ref;
 };
 
-export default useOutsideClick;
+export { useOutsideClick };

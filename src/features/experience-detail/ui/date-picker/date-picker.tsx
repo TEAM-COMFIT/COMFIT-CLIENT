@@ -6,13 +6,18 @@ import {
   DateLeftArrow,
   DateRightArrow,
 } from "@/shared/assets/icons";
-import { formatDateDot, formatDateKorean, formatYearMonthKorean } from "@/shared/lib/format-date";
-import useOutsideClick from "@/shared/model/use-outsideclick";
+import {
+  formatDateDot,
+  formatDateKorean,
+  formatYearMonthKorean,
+} from "@/shared/lib/format-date";
+import { useOutsideClick } from "@/shared/model/use-outsideclick";
 import { Button } from "@/shared/ui/button/button";
 
 import * as styles from "./date-picker.css";
 
 import type { CalendarProps } from "react-calendar";
+
 export interface DatePickerProps {
   selectedDate: Date | null;
   onChangeSelectedDate: (date: Date) => void;
