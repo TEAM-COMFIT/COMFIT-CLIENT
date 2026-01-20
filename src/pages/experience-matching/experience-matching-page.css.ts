@@ -50,6 +50,11 @@ export const titleContainer = style({
   marginLeft: "auto",
 });
 
+export const titleIcon = style({
+  width: "6.4rem",
+  height: "6.4rem",
+});
+
 export const wrapper = style({
   display: "flex",
   flexDirection: "column",

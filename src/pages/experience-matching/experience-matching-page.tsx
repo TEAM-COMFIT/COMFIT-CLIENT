@@ -10,7 +10,7 @@ import {
   Analyzing,
   MatchingResult,
 } from "@/features/experience-matching";
-import { IconAI } from "@/shared/assets/icons";
+import { IconAI } from "@/shared/assets/images";
 
 import * as styles from "./experience-matching-page.css";
 
@@ -48,7 +48,11 @@ const ExperienceMatchingPage = () => {
         {/** 타이틀 */}
         {![STEP[0], STEP[4]].includes(currentStep) && (
           <div className={styles.titleContainer}>
-            <IconAI />
+            <img
+              className={styles.titleIcon}
+              src={IconAI}
+              alt="자물쇠 아이콘"
+            />
             <div className={styles.wrapper}>
               <h1 className={styles.title}>경험 매칭 AI</h1>
               <h3 className={styles.subTitle}>

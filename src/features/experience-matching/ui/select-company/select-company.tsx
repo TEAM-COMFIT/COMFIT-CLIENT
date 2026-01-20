@@ -13,7 +13,7 @@ import type { Company } from "../../type";
 export const SelectCompany = ({ onClick }: { onClick: () => void }) => {
   const setCompanyId = useReportStore((state) => state.setCompanyId);
   const companyId = useReportStore((state) => state.companyId);
-  const { autoPlay, isOpen, handleModal } = useModal(10000); // 몇 초 뒤 닫히게 할 건지 정의
+  const { autoPlay, isOpen, handleModal } = useModal(3000); // 몇 초 뒤 닫히게 할 건지 정의
 
   const [inputValue, setInputValue] = useState(""); // 실시간 입력 상태
   const [searchKeyword, setSearchKeyword] = useState(""); // 디바운스된 키워드 상태
