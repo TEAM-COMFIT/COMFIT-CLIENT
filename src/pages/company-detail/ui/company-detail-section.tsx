@@ -9,6 +9,12 @@ import {
   IconSummary,
 } from "@/shared/assets/icons/index.ts";
 import { KERORO } from "@/shared/assets/images/index.ts";
+import {
+  getIndustryLabel,
+  getScaleLabel,
+  type IndustryCode,
+  type ScaleCode,
+} from "@/shared/config";
 import { Tag, Textbox } from "@/shared/ui";
 
 import * as styles from "./company-detail-section.css.ts";
@@ -24,6 +30,8 @@ type CompanyDetailSummary = {
   name: string;
   status: string;
   logo: string;
+  industry: IndustryCode;
+  scale: ScaleCode;
   companyURL: string;
   summary: string;
   talentProfile: string;
@@ -32,16 +40,12 @@ type CompanyDetailSummary = {
 interface CompanyDetailSectionProps {
   company: CompanyDetailSummary;
   issueItems: IssueItem[];
-  industryLabel: string;
-  scaleLabel: string;
   onCtaClick?: () => void;
 }
 
 const CompanyDetailSection = ({
   company,
   issueItems,
-  industryLabel,
-  scaleLabel,
   onCtaClick,
 }: CompanyDetailSectionProps) => {
   return (
@@ -62,8 +66,8 @@ const CompanyDetailSection = ({
             </div>
 
             <div className={styles.tagRow}>
-              <Tag type="secondary">#{industryLabel}</Tag>
-              <Tag type="secondary">#{scaleLabel}</Tag>
+              <Tag type="secondary">#{getIndustryLabel(company.industry)}</Tag>
+              <Tag type="secondary">#{getScaleLabel(company.scale)}</Tag>
             </div>
           </div>
         </div>

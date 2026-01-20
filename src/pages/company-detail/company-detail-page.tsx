@@ -4,14 +4,10 @@ import { useNavigate, useParams } from "react-router-dom";
 import { ROUTES } from "@/app/routes/paths";
 import { CompanyDetailSection } from "@/pages/company-detail/ui/company-detail-section";
 import { CompanyRecommendationSection } from "@/pages/company-detail/ui/company-recommendation-section";
-import {
-  getIndustryLabel,
-  getScaleLabel,
-  type IndustryCode,
-  type ScaleCode,
-} from "@/shared/config";
 
 import * as styles from "./company-detail-page.css";
+
+import type { IndustryCode, ScaleCode } from "@/shared/config";
 
 interface IssueItem {
   href: string;
@@ -99,8 +95,6 @@ const CompanyDetailPage = () => {
     description: "업데이트되는 대로 최신 소식을 빠르게 전달해 드릴게요.",
   };
   const issueItems = visibleIssues.length > 0 ? visibleIssues : [fallbackIssue];
-  const industryLabel = getIndustryLabel(company.industry);
-  const scaleLabel = getScaleLabel(company.scale);
 
   const recommendCompanies = useMemo(() => {
     // TODO: 서버에서 넘겨주는 데이터 형식 그대로
@@ -143,8 +137,6 @@ const CompanyDetailPage = () => {
       <div className={styles.container}>
         <CompanyDetailSection
           company={company}
-          industryLabel={industryLabel}
-          scaleLabel={scaleLabel}
           issueItems={issueItems}
           onCtaClick={handleCtaClick}
         />
