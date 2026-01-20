@@ -6,7 +6,7 @@ export const container = style({
   width: "100%",
   maxWidth: "106rem",
   margin: "0 auto",
-  paddingTop: `calc(${themeVars.height.header} + 80px)`,
+  paddingTop: `calc(${themeVars.height.header} + 8rem)`,
 });
 
 export const header = style({
