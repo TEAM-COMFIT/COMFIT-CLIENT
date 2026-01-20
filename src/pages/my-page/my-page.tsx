@@ -15,19 +15,17 @@ const MyPage = () => {
   };
 
   return (
-    <div className={styles.page}>
-      <div className={styles.container}>
-        <div className={styles.header}>
-          <h1 className={styles.title}>{me.name}님</h1>
+    <div className={styles.container}>
+      <div className={styles.header}>
+        <h1 className={styles.title}>{me.name}님</h1>
 
-          <Button variant="primary" size="small" onClick={() => {}}>
-            {/* TODO: 로그아웃 API 연동 */}
-            로그아웃
-          </Button>
-        </div>
-
-        <MyPageCards {...me} />
+        <Button variant="primary" size="small" onClick={() => {}}>
+          {/* TODO: 로그아웃 API 연동 */}
+          로그아웃
+        </Button>
       </div>
+
+      <MyPageCards {...me} />
     </div>
   );
 };

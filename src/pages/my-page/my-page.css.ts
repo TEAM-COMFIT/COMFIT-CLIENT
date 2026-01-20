@@ -2,14 +2,11 @@ import { style } from "@vanilla-extract/css";
 
 import { themeVars } from "@/app/styles";
 
-export const page = style({
-  width: "100%",
-});
-
 export const container = style({
-  width: "106rem",
+  width: "100%",
+  maxWidth: "106rem",
   margin: "0 auto",
-  paddingTop: "8rem",
+  paddingTop: `calc(${themeVars.height.header} + 80px)`,
 });
 
 export const header = style({
