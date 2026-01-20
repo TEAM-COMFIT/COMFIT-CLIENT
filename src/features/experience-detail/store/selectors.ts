@@ -35,27 +35,3 @@ export const useShowSubmitButton = () => {
 
 export const useCurrentExperienceId = () =>
   useExperienceDetailStore((s) => s.current?.experienceId ?? null);
-
-export const useDraftTitle = () =>
-  useExperienceDetailStore((s) => s.draft.title);
-
-export const useDraftType = () =>
-  useExperienceDetailStore((s) => s.draft.type);
-
-export const useDraftStartAt = () =>
-  useExperienceDetailStore((s) => s.draft.startAt);
-
-export const useDraftEndAt = () =>
-  useExperienceDetailStore((s) => s.draft.endAt);
-
-export const useDraftSituation = () =>
-  useExperienceDetailStore((s) => s.draft.situation);
-
-export const useDraftTask = () =>
-  useExperienceDetailStore((s) => s.draft.task);
-
-export const useDraftAction = () =>
-  useExperienceDetailStore((s) => s.draft.action);
-
-export const useDraftResult = () =>
-  useExperienceDetailStore((s) => s.draft.result);
