@@ -1,28 +1,17 @@
-import { Link } from "react-router-dom";
-
-import { ROUTES } from "@/app/routes/paths";
 import { KERORO } from "@/shared/assets/images/index";
 import { CompanyCard, RefreshButton } from "@/widgets";
 
 import * as styles from "./company-recommendation-section.css";
 
-import type { IndustryCode, ScaleCode } from "@/shared/config";
-
-interface RecommendCompanyItem {
-  id: number;
-  companyName: string;
-  logoUrl: string;
-  industry: IndustryCode;
-  scale: ScaleCode;
-}
+import type { RecommendCompanyItem } from "@/pages/company-detail/company-detail-page";
 
 interface CompanyRecommendationSectionProps {
-  companyName: string;
+  name: string;
   recommendCompanies: RecommendCompanyItem[];
 }
 
 const CompanyRecommendationSection = ({
-  companyName,
+  name: companyName,
   recommendCompanies,
 }: CompanyRecommendationSectionProps) => {
   return (
@@ -43,13 +32,14 @@ const CompanyRecommendationSection = ({
 
         <div className={styles.companyCardGrid}>
           {recommendCompanies.map((company) => (
-            <Link
+            <CompanyCard
               key={company.id}
-              to={ROUTES.COMPANY(String(company.id))}
-              className={styles.companyCardLink}
-            >
-              <CompanyCard {...company} logoUrl={KERORO} />
-            </Link>
+              companyName={company.name}
+              logoUrl={KERORO}
+              id={company.id}
+              industry={company.industry}
+              scale={company.scale}
+            />
           ))}
         </div>
       </div>

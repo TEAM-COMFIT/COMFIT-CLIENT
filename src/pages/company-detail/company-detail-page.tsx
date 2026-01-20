@@ -33,9 +33,9 @@ interface CompanyDetail {
   issueList: IssueItem[];
 }
 
-interface RecommendCompanyItem {
+export interface RecommendCompanyItem {
   id: number;
-  companyName: string;
+  name: string;
   logoUrl: string;
   industry: IndustryCode;
   scale: ScaleCode;
@@ -103,31 +103,32 @@ const CompanyDetailPage = () => {
   const scaleLabel = getScaleLabel(company.scale);
 
   const recommendCompanies = useMemo(() => {
+    // TODO: 서버에서 넘겨주는 데이터 형식 그대로
     const list: RecommendCompanyItem[] = [
       {
         id: 1,
-        companyName: "쿠팡",
+        name: "쿠팡",
         logoUrl: "https://via.placeholder.com/48",
         industry: "IT",
         scale: "LARGE",
       },
       {
         id: 2,
-        companyName: "네이버",
+        name: "네이버",
         logoUrl: "https://via.placeholder.com/48",
         industry: "IT",
         scale: "LARGE",
       },
       {
         id: 3,
-        companyName: "카카오",
+        name: "카카오",
         logoUrl: "https://via.placeholder.com/48",
         industry: "IT",
         scale: "LARGE",
       },
       {
         id: 4,
-        companyName: "SK플래닛",
+        name: "SK플래닛",
         logoUrl: "https://via.placeholder.com/48",
         industry: "IT",
         scale: "LARGE",
@@ -150,7 +151,7 @@ const CompanyDetailPage = () => {
       </div>
 
       <CompanyRecommendationSection
-        companyName={company.name}
+        name={company.name}
         recommendCompanies={recommendCompanies}
       />
     </main>

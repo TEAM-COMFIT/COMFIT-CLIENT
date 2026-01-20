@@ -16,7 +16,6 @@ export const recommendSection = style({
   backgroundRepeat: "no-repeat",
 
   aspectRatio: "1440 / 600",
-
   overflow: "hidden",
 });
 
@@ -59,9 +58,4 @@ export const recommendDesc = style({
   marginTop: "0.8rem",
   color: themeVars.color.gray600,
   ...themeVars.fontStyles.hline_m_18,
-});
-
-export const companyCardLink = style({
-  display: "block",
-  width: "100%",
 });
