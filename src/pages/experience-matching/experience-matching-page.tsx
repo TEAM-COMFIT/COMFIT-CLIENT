@@ -4,6 +4,7 @@ import {
   CompanyDetail,
   SelectExperience,
   SelectCompany,
+  Analyzing,
 } from "@/features/experience-matching";
 import { IconAI } from "@/shared/assets/icons";
 
@@ -63,7 +64,7 @@ const ExperienceMatchingPage = () => {
           />
         </Step>
         <Step name="AI 분석 진행">
-          <div>분석 진행 란입니다</div>
+          <Analyzing nextStep={() => nextStep()} />
           <button onClick={() => nextStep()}>다음단계</button>
         </Step>
         <Step name="결과 확인">
