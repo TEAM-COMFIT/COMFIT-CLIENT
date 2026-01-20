@@ -40,3 +40,5 @@ export { default as IconX } from "./x.svg?react";
 export { default as LOGO } from "./comfit_logo.svg?react";
 
 export { default as IconKakao } from "./icon_kakao.svg?react";
+export { default as IconCopy } from "./icon_copy.svg?react";
+export { default as IconCheckOn } from "./icon_check_on.svg?react";

@@ -34,3 +34,19 @@ export const description = style({
   marginBottom: "12rem",
   ...themeVars.fontStyles.hline_m_18,
 });
+
+export const buttonWrapper = style({
+  display: "flex",
+  justifyContent: "flex-end",
+  alignItems: "flex-end",
+  width: "100%",
+});
+
+export const copyButton = style({
+  display: "flex",
+  alignItems: "center",
+  gap: "0.8rem",
+  marginBottom: "4.8rem",
+  color: themeVars.color.gray500,
+  ...themeVars.fontStyles.body_m_16,
+});
