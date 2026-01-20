@@ -23,3 +23,4 @@ export { default as SARAMIN } from "./saramin.png";
 export { default as SK } from "./sk.png";
 
 export { default as ERROR } from "./error_img.png";
+export { default as LOADING } from "./loading-spinner.png";

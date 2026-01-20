@@ -1,10 +1,36 @@
-import { CompanyDetailPage } from "@/pages/company-detail/company-detail-page";
-import { HomePage } from "@/pages/home/home-page";
-import { LandingPage } from "@/pages/landing/landing-page";
-import { KakaoLoginPage } from "@/pages/login/kakao-login-page";
-import { LoginPage } from "@/pages/login/login-page";
+import { lazy } from "react";
 
 import { ROUTES } from "./paths";
+
+const LoginPage = lazy(() =>
+  import("@/pages/login/login-page").then((module) => ({
+    default: module.LoginPage,
+  }))
+);
+
+const KakaoLoginPage = lazy(() =>
+  import("@/pages/login/kakao-login-page").then((module) => ({
+    default: module.KakaoLoginPage,
+  }))
+);
+
+const LandingPage = lazy(() =>
+  import("@/pages/landing/landing-page").then((module) => ({
+    default: module.LandingPage,
+  }))
+);
+
+const HomePage = lazy(() =>
+  import("@/pages/home/home-page").then((module) => ({
+    default: module.HomePage,
+  }))
+);
+
+const CompanyDetailPage = lazy(() =>
+  import("@/pages/company-detail/company-detail-page").then((module) => ({
+    default: module.CompanyDetailPage,
+  }))
+);
 
 export const guestRoutes = [
   { path: ROUTES.LOGIN, element: <LoginPage /> },
