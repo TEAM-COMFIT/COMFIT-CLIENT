@@ -30,7 +30,7 @@ const CompanyRecommendationSection = ({
               {companyName}과(와) 비슷한 업종의 기업 리스트를 모았습니다.
             </p>
           </div>
-
+          {/* TODO: 새로고침 기능 연동 예정 */}
           <RefreshButton />
         </div>
 
