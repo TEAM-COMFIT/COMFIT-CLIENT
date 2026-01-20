@@ -11,7 +11,7 @@ import {
   formatDateDot,
   formatYearMonthKorean,
 } from "@/shared/lib";
-import useOutsideClick from "@/shared/model/use-outsideclick";
+import { useOutsideClick } from "@/shared/model/use-outsideclick";
 import { Button } from "@/shared/ui/button/button";
 
 import * as styles from "./date-picker.css";

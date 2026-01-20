@@ -5,6 +5,8 @@ export { default as Company } from "./img_company.png";
 export { default as COMPANY_DOCS } from "./company_docs.png";
 export { default as COMPANY_BOOK } from "./company_book.png";
 
+export { default as homeBanner } from "./home_banner.png";
+
 export { default as COMPANY_DETAIL } from "./company_detail.png";
 export { default as ICON_MATCH } from "./icon_match.png";
 
