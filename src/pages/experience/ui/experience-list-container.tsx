@@ -30,21 +30,18 @@ interface ExperienceListContainerProps {
   onPageChange: (page: number) => void;
 }
 
-const PAGE_SIZE = 6;
-
 const ExperienceListContainer = ({
   data,
   onPageChange,
 }: ExperienceListContainerProps) => {
   const { content, currentPage, totalPage, totalElements } = data.result;
   const navigate = useNavigate();
-  const visibleContent = content.slice(0, PAGE_SIZE);
   const handlePageChange = (page: number) => {
     onPageChange(page);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const isEmpty = visibleContent.length === 0;
+  const isEmpty = content.length === 0;
 
   return (
     <section
@@ -67,7 +64,7 @@ const ExperienceListContainer = ({
         </div>
       ) : (
         <div className={styles.grid}>
-          {visibleContent.map((experience) => (
+          {content.map((experience) => (
             <button
               key={experience.id}
               type="button"
