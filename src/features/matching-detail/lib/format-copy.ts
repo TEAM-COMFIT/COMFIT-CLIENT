@@ -25,7 +25,7 @@ ${i + 1}. ${p.perspective}
 ■ 경험 연결성 (Density)
 ${data.density
   .map(
-    (d, i) => `
+    (d) => `
 - 관점: ${d.perspective}
 - 연결 강도: ${d.connection}
 - 분석: ${d.reason}`
@@ -37,7 +37,7 @@ ${data.density
 ■ 강조 포인트 (Appeal Points)
 ${data.appealPoint
   .map(
-    (a, i) => `
+    (a) => `
 [${a.element}]
 - 중요성: ${a.importance}
 - STAR 단계: ${a.starPhase} / 위치: ${a.placement}
