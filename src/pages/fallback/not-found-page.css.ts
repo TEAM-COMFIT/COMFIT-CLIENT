@@ -7,7 +7,8 @@ export const layout = style({
   flexDirection: "column",
   justifyContent: "center",
   alignItems: "center",
-  paddingTop: `calc(${themeVars.height.header} + 20.1rem)`,
+  paddingTop: `calc(${themeVars.height.header})`,
+  height: "100vh",
   margin: "0 auto",
   gap: "1.6rem",
 });
