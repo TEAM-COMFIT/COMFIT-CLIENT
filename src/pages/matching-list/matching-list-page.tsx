@@ -66,9 +66,6 @@ const MatchingListPage = () => {
     }));
   };
 
-  // TODO: 서버에서 받아오는 데이터(추후 해당 값으로 변경 필요)
-  // const totalElements = MOCK_MATCHING_LIST.length;
-
   return (
     <main className={styles.container}>
       {/* header 섹션 */}
@@ -96,7 +93,6 @@ const MatchingListPage = () => {
       {/* 매칭 아이템 리스트 섹션 */}
       <ListSection
         matchingList={MOCK_MATCHING_LIST}
-        totalElements={5}
         totalPage={1}
         currentPage={params.page}
         onPageChange={handlePageChange}

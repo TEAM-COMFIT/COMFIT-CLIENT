@@ -9,14 +9,12 @@ interface ListSectionProps {
   matchingList: MatchingItemDto[];
   totalPage: number;
   currentPage: number;
-  totalElements: number;
   onPageChange: (page: number) => void;
 }
 const ListSection = ({
   matchingList,
   totalPage,
   currentPage,
-  // totalElements,
   onPageChange,
 }: ListSectionProps) => {
   return (
