@@ -3,7 +3,7 @@ import { useState } from "react";
 import { formatDateWithDots } from "@/shared/lib";
 import { Button } from "@/shared/ui";
 
-import { useReportStore } from "../../report.store";
+import { useReportStore } from "../../store/report.store";
 
 import * as styles from "./select-experience.css";
 

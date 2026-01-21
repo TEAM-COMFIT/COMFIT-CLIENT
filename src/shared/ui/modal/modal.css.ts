@@ -24,7 +24,7 @@ export const modalContent = style({
   alignItems: "center",
   width: "60rem",
   height: "46rem",
-  padding: "5rem 1.6rem 4.8rem 1.6rem",
+  padding: "1.5rem 1.6rem 4.8rem 1.6rem",
   borderRadius: "1.2rem",
   backgroundColor: themeVars.color.white,
 });

@@ -1,5 +1,5 @@
 // STORE
-export { useReportStore } from "./report.store";
+export { useReportStore } from "./store/report.store";
 
 // MODEL
 export { useFunnel } from "./model/useFunnel";

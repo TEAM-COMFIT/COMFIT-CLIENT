@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 import { LOADING } from "@/shared/assets/images";
 
-import { useReportStore } from "../../report.store";
+import { useReportStore } from "../../store/report.store";
 
 import * as styles from "./analyzing.css";
 

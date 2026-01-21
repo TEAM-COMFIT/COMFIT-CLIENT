@@ -14,7 +14,7 @@ import { ICONAI } from "@/shared/assets/images";
 
 import * as styles from "./experience-matching-page.css";
 
-import type { Step } from "@/features/experience-matching/report.store";
+import type { Step } from "@/features/experience-matching/store/report.store";
 
 const STEP: Step[] = [
   "기업 선택",

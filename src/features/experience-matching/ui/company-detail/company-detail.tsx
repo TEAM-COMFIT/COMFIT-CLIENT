@@ -6,7 +6,7 @@ import { Textfield } from "@/shared/ui/textfield";
 import { GUIDE_TOOLTIP_CONTENT } from "@/shared/ui/tooltip/tooltip.content";
 
 import { FIELD_CONFIG } from "../../config/matching";
-import { useReportStore } from "../../report.store";
+import { useReportStore } from "../../store/report.store";
 
 import * as styles from "./company-detail.css";
 
