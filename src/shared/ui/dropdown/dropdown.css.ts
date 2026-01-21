@@ -7,19 +7,7 @@ export const dropdownWrapper = style({
   position: "relative",
   display: "inline-flex",
   flexDirection: "column",
-});
-
-/* ---------- Trigger alignment ---------- */
-export const dropdownAlign = styleVariants({
-  medium: {
-    alignItems: "flex-end",
-  },
-  large: {
-    alignItems: "flex-start",
-  },
-  full: {
-    alignItems: "flex-start",
-  },
+  alignItems: "flex-start",
 });
 
 /* ---------- Trigger ---------- */

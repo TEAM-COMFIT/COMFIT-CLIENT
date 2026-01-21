@@ -21,8 +21,8 @@ export const useLogin = (code: string) => {
           name: data.name,
           email: "",
           educationLevel: null,
-          firstIndustry: null,
-          firstJob: null,
+          firstIndustry: "IT",
+          firstJob: "VIRAL_MARKETING",
           profileImage: null,
         });
 
