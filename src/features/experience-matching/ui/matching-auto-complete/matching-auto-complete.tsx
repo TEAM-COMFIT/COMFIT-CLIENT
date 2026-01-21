@@ -6,13 +6,17 @@ import { Button, Tag } from "@/shared/ui";
 
 import * as styles from "./matching-auto-complete.css";
 
+import type { Company } from "../../type";
+
 interface MatchingAutoCompleteProps {
   value: string; // 실시간 입력값
   onChange: (value: string) => void; // 실시간 입력값 변경 함수
-  results: string[]; // 부모가 API로 받아온 검색 결과 리스트
+  results: Company[]; // 부모가 API로 받아온 검색 결과 리스트
   onDebounceChange: (debouncedValue: string) => void; // 디바운스된 값을 부모에게 전달
   placeholder?: string;
-  onSearch?: (selectedValue: string) => void;
+  selectedItem: Company | null; // 선택된 기업
+  onSelect: (company: Company | null) => void; // 기업 선택 변경함수
+  onSearch?: () => void;
 }
 
 const MatchingAutoComplete = ({
@@ -21,10 +25,11 @@ const MatchingAutoComplete = ({
   results,
   onDebounceChange,
   placeholder = "기업명을 입력해주세요",
+  selectedItem,
+  onSelect,
   onSearch,
 }: MatchingAutoCompleteProps) => {
   const [isFocused, setIsFocused] = useState(false);
-  const [selectedItem, setSelectedItem] = useState<string | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
   // 내부 디바운스 로직: 300ms 후 부모의 검색 키워드 상태를 변경
@@ -40,15 +45,15 @@ const MatchingAutoComplete = ({
 
   const handleClear = () => {
     onChange("");
-    setSelectedItem(null);
+    onSelect(null);
     setIsFocused(true);
     onDebounceChange(""); // 부모 검색어도 초기화
     setTimeout(() => inputRef.current?.focus(), 0);
   };
 
-  const handleItemClick = (item: string) => {
-    setSelectedItem(item);
-    onChange(item);
+  const handleItemClick = (item: Company) => {
+    onSelect(item);
+    onChange(item.name);
     setIsFocused(false);
   };
 
@@ -58,7 +63,7 @@ const MatchingAutoComplete = ({
         {selectedItem ? (
           <div className={styles.tagWrapper}>
             <Tag type="primary" xlabel onCancel={handleClear}>
-              {selectedItem}
+              {selectedItem.name}
             </Tag>
           </div>
         ) : (
@@ -107,7 +112,7 @@ const MatchingAutoComplete = ({
                       handleItemClick(item);
                     }}
                   >
-                    {item}
+                    {item.name}
                   </li>
                 ))}
               </ul>
@@ -122,7 +127,7 @@ const MatchingAutoComplete = ({
         <Button
           size="medium"
           disabled={!selectedItem}
-          onClick={() => onSearch?.(selectedItem || value)}
+          onClick={() => selectedItem && onSearch?.()}
         >
           선택하기
         </Button>

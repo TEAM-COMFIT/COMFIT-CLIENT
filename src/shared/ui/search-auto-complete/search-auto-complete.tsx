@@ -49,7 +49,7 @@ export const SearchAutocomplete = ({
   ariaLabel,
 }: SearchAutocompleteProps) => {
   const {
-    query,
+    query = "",
     setQuery,
     isOpen,
     open,
@@ -78,7 +78,7 @@ export const SearchAutocomplete = ({
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   const isLocked = Boolean(selected) && showSelectedTag;
-  const hasValue = query.trim().length > 0;
+  const hasValue = (query || "").trim().length > 0;
 
   const rightIconMode = useMemo<"search" | "clear">(() => {
     if (isLocked) return "search";
@@ -87,7 +87,7 @@ export const SearchAutocomplete = ({
 
   const inputValue = useMemo(() => {
     if (showSelectedTag) return selected ? "" : query;
-    return selected ? selected.label : query;
+    return selected ? selected.name : query;
   }, [query, selected, showSelectedTag]);
 
   const inputPlaceholder = useMemo(() => {
@@ -124,7 +124,8 @@ export const SearchAutocomplete = ({
 
   const renderHighlightedLabel = useCallback(
     (label: string) => {
-      const q = query.trim();
+      if (!label) return "";
+      const q = (query || "").trim();
       if (!q) return label;
 
       const lowerLabel = label.toLowerCase();
@@ -152,7 +153,7 @@ export const SearchAutocomplete = ({
         <div className={[s.inputShell, s.inputShellVariant[variant]].join(" ")}>
           {showSelectedTag && selected && (
             <Tag type="primary" xlabel onCancel={handleClear}>
-              {selected.label}
+              {selected.name}
             </Tag>
           )}
 
@@ -165,7 +166,7 @@ export const SearchAutocomplete = ({
             onChange={(e) => {
               if (disabled || isLocked) return;
 
-              const next = e.target.value;
+              const next = e.target.value || "";
               setQuery(next);
 
               if (next.trim().length >= minQueryLength) open();
@@ -173,7 +174,7 @@ export const SearchAutocomplete = ({
             }}
             onFocus={() => {
               if (disabled || isLocked) return;
-              if (query.trim().length >= minQueryLength) open();
+              if ((query || "").trim().length >= minQueryLength) open();
             }}
             onBlur={() => {
               window.setTimeout(() => close(), 120);
@@ -247,7 +248,7 @@ export const SearchAutocomplete = ({
                       handleSelect(it);
                     }}
                   >
-                    {renderHighlightedLabel(it.label)}
+                    {renderHighlightedLabel(it.name)}
                   </button>
                 );
               })}

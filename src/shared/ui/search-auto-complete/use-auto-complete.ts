@@ -75,12 +75,11 @@ export function useAutocomplete(
     requestSeq.current += 1;
 
     const wasOpen = wasOpenRef.current;
-    const currentQuery = queryRef.current.trim();
-
+    const currentQuery = (queryRef.current || "").trim();
     const isTypingClose = currentQuery.length < minQueryLength;
 
     if (wasOpen && !isTypingClose && selected) {
-      setQuery(selected.label);
+      setQuery(selected.name || "");
     }
 
     setIsOpen(false);
@@ -97,16 +96,17 @@ export function useAutocomplete(
 
   const selectItem = useCallback(
     (item: SearchItem) => {
+      if (!item) return;
       setSelected(item);
       selectedCompanyIdRef.current = item.id;
-      setQuery(item.label);
+      setQuery(item.name || "");
       close();
     },
     [close]
   );
 
   const canSearch = useMemo(() => {
-    return debouncedQuery.trim().length >= minQueryLength;
+    return (debouncedQuery || "").trim().length >= minQueryLength;
   }, [debouncedQuery, minQueryLength]);
 
   const state = useMemo<"idle" | "loading" | "success" | "error">(() => {
@@ -118,10 +118,10 @@ export function useAutocomplete(
   }, [canSearch, errorMessage, isFetching, isOpen]);
 
   useEffect(() => {
-    if (!isOpen) return;
-    if (!canSearch) return;
+    if (!isOpen || !canSearch) return;
 
-    const trimmedQuery = debouncedQuery.trim();
+    const trimmedQuery = (debouncedQuery || "").trim();
+    if (!trimmedQuery || lastRequestedQueryRef.current === trimmedQuery) return;
 
     if (lastRequestedQueryRef.current === trimmedQuery) return;
     lastRequestedQueryRef.current = trimmedQuery;

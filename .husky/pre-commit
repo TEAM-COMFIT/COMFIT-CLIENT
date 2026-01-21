@@ -1,7 +1,11 @@
-#!/bin/sh
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
 
 export PATH="/opt/homebrew/bin:$PATH"
 
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+
 echo "🐶 Husky pre-commit 실행"
-pnpm exec lint-staged || exit 1 
+pnpm exec lint-staged || exit 1
 echo "🎉 lint-staged 통과"
