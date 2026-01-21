@@ -60,6 +60,10 @@ export const companyQueryKey = {
     inRequired,
   ], // 기업 필터링 조회
   detail: (companyId: number) => [...companyQueryKey.all(), companyId], // 기업 상세 조회
-  suggestion: (companyId: number) => [...companyQueryKey.all(), companyId], // 추천 기업 조회
+  suggestion: (companyId: number) => [
+    ...companyQueryKey.all(),
+    "suggestion",
+    companyId,
+  ], // 추천 기업 조회
   major: (rank: number) => [...companyQueryKey.all(), rank], // 주요 기업 조회(홈)
 };

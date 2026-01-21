@@ -33,16 +33,17 @@ const CompanyRecommendationSection = ({
         </div>
 
         <div className={styles.companyCardGrid}>
-          {recommendCompanies.map((company) => (
-            <CompanyCard
-              key={company.id}
-              companyName={company.name}
-              logoUrl={company.logo}
-              id={company.id}
-              industry={company.industry}
-              scale={company.scale}
-            />
-          ))}
+          {recommendCompanies &&
+            recommendCompanies?.map((company) => (
+              <CompanyCard
+                key={company.id}
+                companyName={company.name}
+                logoUrl={company.logo}
+                id={company.id}
+                industry={company.industry}
+                scale={company.scale}
+              />
+            ))}
         </div>
       </div>
     </section>

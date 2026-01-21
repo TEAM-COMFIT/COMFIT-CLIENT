@@ -5,10 +5,10 @@ export { CompanyCtaBanner } from "./ui/company-cta-banner";
 export {
   useGetCompanySuggestions,
   getCompanySuggestions,
-} from "./api/company-suggestion.query";
-export type { RecommendCompanyItem } from "./api/company-suggestion.query";
+} from "./api/use-company-suggestion.query";
+export type { RecommendCompanyItem } from "./api/use-company-suggestion.query";
 
 export {
   useGetCompanyDetail,
   getCompanyDetail,
-} from "./api/company-detail.query";
+} from "./api/use-company-detail.query";
