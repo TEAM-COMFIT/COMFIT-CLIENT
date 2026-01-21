@@ -26,7 +26,7 @@ export const SelectCompany = ({ onClick }: { onClick: () => void }) => {
     company
   );
 
-  // 경험 등록 여부 확인 모달
+  // 경험 등록 여부 확인 모달 오픈(임시)
   useEffect(() => {
     const timer = setTimeout(() => {
       alertModal.handleModal();
@@ -38,7 +38,6 @@ export const SelectCompany = ({ onClick }: { onClick: () => void }) => {
   // 경험 등록 여부 확인 모달 닫기 이벤트 함수
   const handleCloseModal = (route: string) => {
     navigate(route);
-    alertModal.handleModal();
   };
 
   // TODO: 추후 API 연동
