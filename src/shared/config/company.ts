@@ -48,9 +48,9 @@ export const INDUSTRY_OPTIONS = FILTER_INDUSTRY.map(
 ) as IndustryLabel[];
 
 // 코드로 한글 라벨 얻기
-export const getIndustryLabel = (code: IndustryCode): IndustryLabel => {
+export const getIndustryLabel = (code: string): IndustryLabel => {
   if (code in INDUSTRY) {
-    return INDUSTRY[code];
+    return INDUSTRY[code as IndustryCode];
   }
   console.warn(`존재하지 않는 IndustryCode: ${code}`);
 
@@ -98,9 +98,9 @@ export const FILTER_SCALE: ScaleFilterOption[] = [
   { id: 8, code: "ETC", label: SCALE.ETC },
 ];
 
-export const getScaleLabel = (code: ScaleCode): ScaleLabel => {
+export const getScaleLabel = (code: string): ScaleLabel => {
   if (code in SCALE) {
-    return SCALE[code];
+    return SCALE[code as ScaleCode];
   }
   console.warn(`존재하지 않는 ScaleCode: ${code}`);
 

@@ -2,15 +2,12 @@ import { getIndustryLabel, getScaleLabel } from "@/shared/config";
 
 import { CompanyAnalyzeButton } from "./company-analyze-button";
 import * as styles from "./company-card.css";
-
-import type { IndustryCode, ScaleCode } from "@/shared/config";
-
 interface CompanyCardProps {
   logoUrl: string;
   id: number;
   companyName: string;
-  industry: IndustryCode;
-  scale: ScaleCode;
+  industry: string;
+  scale: string;
 }
 
 const CompanyCard = ({

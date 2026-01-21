@@ -3,29 +3,10 @@ import { useQuery } from "@tanstack/react-query";
 import { api } from "@/shared/api/axios-instance";
 import { companyQueryKey } from "@/shared/api/config/query-key";
 
-interface CompanyListItem {
-  id: number;
-  name: string;
-  industry: string;
-  scale: string;
-  logo: string;
-  photoUrl: string;
-}
-
-interface CompanyResponseType {
-  content: CompanyListItem[];
-  currentPage: number;
-  totalPage: number;
-  totalElements: number;
-}
-interface GetCompaniesParams {
-  keyword?: string;
-  industry?: string;
-  scale?: string;
-  sort?: string;
-  page?: number;
-  isRecruited?: boolean;
-}
+import type {
+  CompanyResponseType,
+  GetCompaniesParams,
+} from "../types/get-company.type";
 
 export const getCompanies = async ({
   keyword,

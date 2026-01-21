@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { useGetCompanies } from "@/features/home/api/companies.query";
+import { useGetCompanies } from "@/features/home/api/use-get-companies.query";
 import { ScaleFilter, IndustryFilter } from "@/features/home/ui";
 import { homeBanner } from "@/shared/assets/images";
 import { Toggle, Pagination } from "@/shared/ui";
@@ -69,7 +69,7 @@ const SearchSection = () => {
               placeholder="지원하고 싶은 기업을 검색해보세요"
               value={searchValue}
               onChange={setSearchValue}
-              onSearch={(keyword) => updateParams({ keyword })}
+              onSearch={(keyword) => updateParams({ keyword, page: 1 })}
             />
           </div>
         </div>

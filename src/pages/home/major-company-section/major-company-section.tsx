@@ -53,25 +53,25 @@ const MajorCompanySection = () => {
           <>
             <div className={styles.smallCards}>
               <MajorCompanyCard
-                id={first?.id}
-                imgUrl={first?.photoUrl}
-                companyName={first?.name}
-                scale={first?.scale}
+                id={first.id}
+                imgUrl={first.photoUrl}
+                companyName={first.name}
+                scale={first.scale}
               />
               <MajorCompanyCard
-                id={second?.id}
-                imgUrl={second?.photoUrl}
-                companyName={second?.name}
-                scale={second?.scale}
+                id={second.id}
+                imgUrl={second.photoUrl}
+                companyName={second.name}
+                scale={second.scale}
               />
             </div>
 
             <MajorCompanyCard
               type="large"
-              id={third?.id}
-              imgUrl={third?.photoUrl}
-              companyName={third?.name}
-              scale={third?.scale}
+              id={third.id}
+              imgUrl={third.photoUrl}
+              companyName={third.name}
+              scale={third.scale}
             />
           </>
         )}
