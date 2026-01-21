@@ -85,7 +85,9 @@ export const useExperienceSubmit = () => {
       setIsSubmitting(false);
       showSaveSuccess();
 
-      navigate(ROUTES.EXPERIENCE_DETAIL(String(data)), { replace: true });
+      navigate(ROUTES.EXPERIENCE_DETAIL(String(data.experienceId)), {
+        replace: true,
+      });
     },
     onError: (error) => {
       setIsSubmitting(false);
