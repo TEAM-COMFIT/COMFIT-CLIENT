@@ -1,7 +1,9 @@
-import { useMemo } from "react";
+import { useParams } from "react-router-dom";
 
+import { useGetCompanySuggestions } from "@/features/company-detail";
 import { CompanyDetailSection } from "@/pages/company-detail/ui/company-detail-section";
 import { CompanyRecommendationSection } from "@/pages/company-detail/ui/company-recommendation-section";
+import { useScrollToTop } from "@/shared/model";
 
 import * as styles from "./company-detail-page.css";
 
@@ -27,19 +29,13 @@ interface CompanyDetail {
   issueList: IssueItem[];
 }
 
-export interface RecommendCompanyItem {
-  id: number;
-  name: string;
-  logo: string;
-  industry: IndustryCode;
-  scale: ScaleCode;
-}
-
 const CompanyDetailPage = () => {
-  // const { id } = useParams<{ id: string }>();
+  useScrollToTop();
+  const { id } = useParams<{ id: string }>();
+  const companyId = Number.isFinite(Number(id)) ? Number(id) : 1;
 
   const companyData: CompanyDetail = {
-    companyId: 1,
+    companyId,
     name: "CJ ENM",
     status: "채용중",
     logo: "https://bucket-com-fit-server.s3.ap-northeast-2.amazonaws.com/company/coupang.gif",
@@ -75,41 +71,15 @@ const CompanyDetailPage = () => {
     ],
   };
 
-  const recommendCompanies = useMemo(() => {
-    // TODO: 서버에서 넘겨주는 데이터 형식 그대로
-    const list: RecommendCompanyItem[] = [
-      {
-        id: 1,
-        name: "쿠팡",
-        logo: "https://via.placeholder.com/48",
-        industry: "IT",
-        scale: "LARGE",
-      },
-      {
-        id: 2,
-        name: "네이버",
-        logo: "https://via.placeholder.com/48",
-        industry: "IT",
-        scale: "LARGE",
-      },
-      {
-        id: 3,
-        name: "카카오",
-        logo: "https://via.placeholder.com/48",
-        industry: "IT",
-        scale: "LARGE",
-      },
-      {
-        id: 4,
-        name: "SK플래닛",
-        logo: "https://via.placeholder.com/48",
-        industry: "IT",
-        scale: "LARGE",
-      },
-    ];
+  const {
+    data: recommendCompanies = [],
+    refetch: refetchRecommendCompanies,
+    isFetching: isRefreshing,
+  } = useGetCompanySuggestions(companyId);
 
-    return list;
-  }, []);
+  const handleRefresh = () => {
+    refetchRecommendCompanies();
+  };
   return (
     <main className={styles.page}>
       <div className={styles.container}>
@@ -119,6 +89,8 @@ const CompanyDetailPage = () => {
       <CompanyRecommendationSection
         companyName={companyData.name}
         recommendCompanies={recommendCompanies}
+        onRefresh={handleRefresh}
+        isRefreshing={isRefreshing}
       />
     </main>
   );
