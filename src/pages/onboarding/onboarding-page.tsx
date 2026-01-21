@@ -62,8 +62,10 @@ const OnboardingPage = () => {
       onSuccess: () => {
         navigate(ROUTES.HOME);
       },
-      onError: () => {
-        setErrorMsg("오류가 발생했습니다.");
+      onError: (error) => {
+        const serverMessage =
+          error.response?.data.message || "온보딩 중 오류가 발생했습니다.";
+        setErrorMsg(serverMessage);
         setOpen(true);
 
         // 3초 뒤 자동으로 닫히게 설정
