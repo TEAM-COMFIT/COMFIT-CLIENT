@@ -1,23 +1,16 @@
+import { useGetProfile } from "@/features/my-page";
 import { Button } from "@/shared/ui";
 
 import * as styles from "./my-page.css";
 import { MyPageCards } from "./ui/my-page-cards";
 
-import type { MyPageCardsProps } from "./ui/my-page-cards";
-
 const MyPage = () => {
-  const me: MyPageCardsProps = {
-    name: "김컴피",
-    email: "comfit@gmail.com",
-    educationLevel: "BACHELOR",
-    firstIndustry: "MEDIA_CONTENTS",
-    firstJob: "B2B_MARKETING",
-  };
+  const { data } = useGetProfile({ enabled: true });
 
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <h1 className={styles.title}>{me.name}님</h1>
+        <h1 className={styles.title}>{data?.name}님</h1>
 
         <Button variant="primary" size="small" onClick={() => {}}>
           {/* TODO: 로그아웃 API 연동 */}
@@ -25,7 +18,7 @@ const MyPage = () => {
         </Button>
       </div>
 
-      <MyPageCards {...me} />
+      <MyPageCards {...data} />
     </div>
   );
 };
