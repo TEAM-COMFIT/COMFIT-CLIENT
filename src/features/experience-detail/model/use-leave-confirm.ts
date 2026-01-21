@@ -3,7 +3,7 @@ import { useBlocker } from "react-router-dom";
 
 import { useModal } from "@/shared/ui/modal/use-modal";
 
-import { initialDraft, useExperienceDetailStore } from "../store/store";
+import { initialDraft, useExperienceDetailStore } from "../store/experience.store";
 
 import type { ExperienceUpsertBody } from "../types";
 

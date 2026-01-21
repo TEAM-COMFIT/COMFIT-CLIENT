@@ -2,7 +2,7 @@ import { useCallback, useMemo } from "react";
 
 import { formatDateDash, parseYMD } from "@/shared/lib/format-date";
 
-import { useExperienceDetailStore } from "../store/store";
+import { useExperienceDetailStore } from "../store/experience.store";
 
 type DateKey = "startAt" | "endAt";
 

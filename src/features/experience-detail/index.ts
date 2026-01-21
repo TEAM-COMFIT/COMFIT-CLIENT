@@ -3,7 +3,7 @@ export { ExperienceForm } from "./ui/experience-form/experience-form";
 export { ExperienceViewer } from "./ui/experience-viewer/experience-viewer";
 export { ExperienceAlertRenderer } from "./ui/experience-alert-renderer";
 
-export { useExperienceDetailStore, initialDraft } from "./store/store";
+export { useExperienceDetailStore, initialDraft } from "./store/experience.store";
 
 export {
   useExperienceMode,

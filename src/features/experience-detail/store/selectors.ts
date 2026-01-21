@@ -1,6 +1,6 @@
 import { DEFAULT_BUTTON_LABELS } from "../config";
 
-import { useExperienceDetailStore } from "./store";
+import { useExperienceDetailStore } from "./experience.store";
 
 export const useExperienceMode = () => useExperienceDetailStore((s) => s.mode);
 

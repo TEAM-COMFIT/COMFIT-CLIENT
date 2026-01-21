@@ -1,4 +1,4 @@
-import { useExperienceDetailStore } from "../store/store";
+import { useExperienceDetailStore } from "../store/experience.store";
 
 import type { ExperienceEntity, ExperienceMode } from "../types";
 

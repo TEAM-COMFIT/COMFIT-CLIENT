@@ -11,7 +11,7 @@ import {
   useExperienceDraft,
   useExperienceMode,
 } from "../store/selectors";
-import { useExperienceDetailStore } from "../store/store";
+import { useExperienceDetailStore } from "../store/experience.store";
 
 import { showDeleteError, showSaveError, showValidationError } from "./use-alert";
 
