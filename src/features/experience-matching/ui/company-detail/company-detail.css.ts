@@ -55,11 +55,17 @@ export const fieldTitle = style({
 });
 
 export const fieldContent = style({
+  height: "5.6rem",
   padding: "1.7rem 2rem",
   borderRadius: "1rem",
   border: `1px solid ${themeVars.color.normal}`,
   backgroundColor: themeVars.color.gray100,
   ...themeVars.fontStyles.body_r_14,
+  whiteSpace: "nowrap",
+  overflow: "hidden",
+  textOverflow: "ellipsis",
+  display: "block",
+  maxWidth: "100%",
 });
 
 export const button = style({

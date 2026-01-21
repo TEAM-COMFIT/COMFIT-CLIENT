@@ -63,7 +63,7 @@ export const CompanyDetail = ({ nextStep }: { nextStep: () => void }) => {
               <IconJob />
               <span>직무 설명(Job Description)</span>
             </label>
-            <Tooltip type="guide" label="도움말">
+            <Tooltip type="guide" label="작성 가이드">
               {GUIDE_TOOLTIP_CONTENT}
             </Tooltip>
           </div>
