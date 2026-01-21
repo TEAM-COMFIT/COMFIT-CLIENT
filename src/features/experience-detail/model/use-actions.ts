@@ -3,41 +3,71 @@ import { useNavigate } from "react-router-dom";
 
 import { ROUTES } from "@/app/routes/paths";
 
+import {
+  useCreateExperience,
+  useUpdateExperience,
+  useDeleteExperience as useDeleteExperienceMutation,
+  useUpdateExperienceDefault,
+} from "../api/experience.query";
 import { DEFAULT_BUTTON_LABELS } from "../config";
 import { validateExperienceDraft } from "../lib/validation";
+import { useExperienceDetailStore } from "../store/experience.store";
 import {
   useExperienceActions,
   useExperienceCurrent,
   useExperienceDraft,
   useExperienceMode,
 } from "../store/use-experience-hooks";
-import { useExperienceDetailStore } from "../store/experience.store";
 
-import { showDeleteError, showSaveError, showValidationError } from "./use-alert";
+import {
+  showDefaultSettingError,
+  showDeleteError,
+  showDeleteSuccess,
+  showSaveError,
+  showSaveSuccess,
+  showValidationError,
+} from "./use-alert";
 
-import type { ExperienceEntity, ExperienceUpsertBody } from "../types/experience-detail.types";
+import type { ExperienceUpsertBody } from "../types/experience-detail.types";
 
-// Mock ID 생성 (API 연동 전까지 임시 사용)
-const generateMockExperienceId = (): number => {
-  return Date.now();
+export interface ExperienceRequestType {
+  title: string;
+
+  type: "INTERNSHIP" | "PROJECT" | "EDUCATION" | "ETC";
+
+  startAt: string;
+
+  endAt: string;
+
+  situation: string;
+
+  task: string;
+
+  action: string;
+
+  result: string;
+
+  isDefault?: boolean;
+}
+
+const toExperienceRequestDto = (
+  draft: ExperienceUpsertBody
+): ExperienceRequestType => {
+  if (!draft.type || !draft.startAt || !draft.endAt) {
+    throw new Error("필수 필드가 누락되었습니다.");
+  }
+
+  return {
+    title: draft.title,
+    type: draft.type,
+    startAt: draft.startAt,
+    endAt: draft.endAt,
+    situation: draft.situation,
+    task: draft.task,
+    action: draft.action,
+    result: draft.result,
+  };
 };
-
-// API 함수 자리
-const _createExperience = async (
-  _body: ExperienceUpsertBody,
-): Promise<{ experienceId: number }> => {
-  throw new Error("Not implemented - 다음 PR에서 API 연동 예정");
-};
-
-const _updateExperience = async (
-  _experienceId: number,
-  _body: ExperienceUpsertBody,
-): Promise<void> => {
-  throw new Error("Not implemented - 다음 PR에서 API 연동 예정");
-};
-
-void _createExperience; // TODO: API 연동 후 제거
-void _updateExperience; // TODO: API 연동 후 제거
 
 export const useExperienceSubmit = () => {
   const navigate = useNavigate();
@@ -48,8 +78,44 @@ export const useExperienceSubmit = () => {
   const { setMode, setCurrent, hydrateDraftFromCurrent, setIsSubmitting } =
     useExperienceDetailStore((s) => s.actions);
 
+  const createMutation = useCreateExperience({
+    onSuccess: (data) => {
+      hydrateDraftFromCurrent();
+      setMode("view");
+      setIsSubmitting(false);
+      showSaveSuccess();
+
+      navigate(ROUTES.EXPERIENCE_DETAIL(String(data)), { replace: true });
+    },
+    onError: (error) => {
+      setIsSubmitting(false);
+      showSaveError();
+      console.error("Experience create failed:", error);
+    },
+  });
+
+  const updateMutation = useUpdateExperience({
+    onSuccess: () => {
+      if (current) {
+        setCurrent({ ...current, ...draft });
+        hydrateDraftFromCurrent();
+        setMode("view");
+        setIsSubmitting(false);
+        showSaveSuccess();
+
+        navigate(ROUTES.EXPERIENCE_DETAIL(String(current.experienceId)), {
+          replace: true,
+        });
+      }
+    },
+    onError: (error) => {
+      setIsSubmitting(false);
+      showSaveError();
+      console.error("Experience update failed:", error);
+    },
+  });
+
   const submit = useCallback(async () => {
-    // 1. 유효성 검사
     const result = validateExperienceDraft(draft);
 
     if (!result.ok) {
@@ -57,41 +123,20 @@ export const useExperienceSubmit = () => {
       return;
     }
 
-    // 2. API 요청
+    setIsSubmitting(true);
+
     try {
-      setIsSubmitting(true);
+      const requestDto = toExperienceRequestDto(draft);
 
       if (mode === "create") {
-        // TODO: API 연동 시 아래 주석 해제
-        // const { experienceId } = await createExperience(draft);
-        // console.log("Created experience:", experienceId);
-
-        // API 연동 전: mock ID를 사용하여 view 모드로 전환
-        const mockId = generateMockExperienceId();
-        const newExperience: ExperienceEntity = {
-          ...draft,
-          experienceId: mockId,
-        };
-
-        setCurrent(newExperience);
-        hydrateDraftFromCurrent();
-
-        setMode("view");
-
-        navigate(ROUTES.EXPERIENCE_DETAIL(String(mockId)), { replace: true });
+        createMutation.mutate(requestDto);
         return;
       }
 
-      if (mode === "edit" && current) {
-        // TODO: API 연동 시 아래 주석 해제
-        // await updateExperience(current.experienceId, draft);
-
-        setCurrent({ ...current, ...draft });
-        hydrateDraftFromCurrent();
-        setMode("view");
-
-        navigate(ROUTES.EXPERIENCE_DETAIL(String(current.experienceId)), {
-          replace: true,
+      if (mode === "edit" && current && current.experienceId) {
+        updateMutation.mutate({
+          experienceId: current.experienceId,
+          body: requestDto,
         });
         return;
       }
@@ -100,25 +145,10 @@ export const useExperienceSubmit = () => {
       showSaveError();
       console.error("Experience save failed:", error);
     }
-  }, [
-    draft,
-    mode,
-    current,
-    navigate,
-    setMode,
-    setCurrent,
-    hydrateDraftFromCurrent,
-    setIsSubmitting,
-  ]);
+  }, [draft, mode, current, createMutation, updateMutation, setIsSubmitting]);
 
   return { submit };
 };
-
-// API 함수 자리
-const _deleteExperience = async (_experienceId: number): Promise<void> => {
-  throw new Error("Not implemented - 다음 PR에서 API 연동 예정");
-};
-void _deleteExperience; // TODO: API 연동 후 제거
 
 export const useExperienceHeaderActions = () => {
   const navigate = useNavigate();
@@ -126,8 +156,29 @@ export const useExperienceHeaderActions = () => {
   const mode = useExperienceMode();
   const current = useExperienceCurrent();
   const draft = useExperienceDraft();
-  const { toggleDraftDefault, setMode, hydrateDraftFromCurrent } =
+  const { setCurrentDefault, setMode, hydrateDraftFromCurrent } =
     useExperienceActions();
+
+  const deleteMutation = useDeleteExperienceMutation({
+    onSuccess: () => {
+      showDeleteSuccess();
+      navigate(ROUTES.EXPERIENCE);
+    },
+    onError: (error) => {
+      showDeleteError();
+      console.error("Experience delete failed:", error);
+    },
+  });
+
+  const updateDefaultMutation = useUpdateExperienceDefault({
+    onSuccess: (data) => {
+      setCurrentDefault(data.isDefault);
+    },
+    onError: (error) => {
+      showDefaultSettingError();
+      console.error("Experience default toggle failed:", error);
+    },
+  });
 
   const showEditDelete = mode === "view" && Boolean(current);
 
@@ -155,21 +206,15 @@ export const useExperienceHeaderActions = () => {
       const targetId = experienceId ?? current?.experienceId;
       if (!targetId) return;
 
-      try {
-        // API 연동 시 코드 작성
-
-        navigate(ROUTES.EXPERIENCE);
-      } catch (error) {
-        showDeleteError();
-        console.error("Experience delete failed:", error);
-      }
+      deleteMutation.mutate(targetId);
     },
-    [current, navigate],
+    [current, deleteMutation]
   );
 
   const onToggleDefault = useCallback(() => {
-    toggleDraftDefault();
-  }, [toggleDraftDefault]);
+    if (!current?.experienceId) return;
+    updateDefaultMutation.mutate(current.experienceId);
+  }, [current, updateDefaultMutation]);
 
   return {
     showEditDelete,
