@@ -35,6 +35,7 @@ export const trigger = style({
   backgroundColor: themeVars.color.white,
   border: `1.5px solid ${themeVars.color.normal}`,
   borderRadius: "12px",
+  whiteSpace: "nowrap",
 
   ...themeVars.fontStyles.body_r_16,
 });
