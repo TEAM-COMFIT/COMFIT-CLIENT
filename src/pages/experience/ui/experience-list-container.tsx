@@ -6,11 +6,13 @@ import { Pagination, Tag } from "@/shared/ui";
 
 import * as styles from "./experience-list-container.css";
 
+import type { ExperienceTypeCode } from "@/shared/config";
+
 export interface ExperienceCardData {
   id: number;
   title: string;
   updatedAt: string;
-  type: string;
+  type: ExperienceTypeCode;
   isDefault?: boolean;
 }
 
@@ -51,7 +53,6 @@ const ExperienceListContainer = ({
             className={styles.emptyImage}
             src={ERROR}
             alt="등록된 경험이 없습니다"
-            aria-hidden="false"
           />
           <p className={styles.emptyTitle}>등록된 경험이 없습니다</p>
           <p className={styles.emptyDescription}>
