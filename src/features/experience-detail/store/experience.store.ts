@@ -41,12 +41,14 @@ type State = {
 
     setDraftField: <K extends keyof ExperienceUpsertBody>(
       key: K,
-      value: ExperienceUpsertBody[K],
+      value: ExperienceUpsertBody[K]
     ) => void;
 
     setDefaultExperienceId: (experienceId: number | null) => void;
 
     toggleDraftDefault: () => void;
+
+    setCurrentDefault: (isDefault: boolean) => void;
 
     setIsSubmitting: (v: boolean) => void;
   };
@@ -85,6 +87,16 @@ export const useExperienceDetailStore = create<State>((set, get) => ({
       const next = !draft.isDefault;
 
       set({ draft: { ...draft, isDefault: next } });
+    },
+
+    setCurrentDefault: (isDefault) => {
+      const { current, draft } = get();
+      if (current) {
+        set({
+          current: { ...current, isDefault },
+          draft: { ...draft, isDefault },
+        });
+      }
     },
 
     setIsSubmitting: (v) => set({ isSubmitting: v }),
