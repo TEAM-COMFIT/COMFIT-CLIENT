@@ -10,7 +10,7 @@ import {
   useExperienceCurrent,
   useExperienceDraft,
   useExperienceMode,
-} from "../store/selectors";
+} from "../store/use-experience-hooks";
 import { useExperienceDetailStore } from "../store/experience.store";
 
 import { showDeleteError, showSaveError, showValidationError } from "./use-alert";

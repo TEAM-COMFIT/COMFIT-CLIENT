@@ -8,7 +8,7 @@ import { GUIDE_TOOLTIP_CONTENT } from "@/shared/ui/tooltip/tooltip.content";
 import { StickyHeader } from "@/widgets";
 
 import { EXPERIENCE_TYPE_OPTIONS } from "../../config";
-import { useExperienceCurrent, useIsDraftDefault } from "../../store/selectors";
+import { useExperienceCurrent, useIsDraftDefault } from "../../store/use-experience-hooks";
 import { useExperienceHeaderActions } from "../../model/use-actions";
 import { DatePicker } from "../date-picker/date-picker";
 

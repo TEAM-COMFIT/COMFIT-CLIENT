@@ -16,7 +16,7 @@ export {
   useShowEditDeleteButtons,
   useShowSubmitButton,
   useCurrentExperienceId,
-} from "./store/selectors";
+} from "./store/use-experience-hooks";
 
 export {
   useExperienceSubmit,
