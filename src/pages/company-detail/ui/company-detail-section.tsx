@@ -28,7 +28,7 @@ type IssueItem = {
 type CompanyDetailSummary = {
   companyId: number;
   name: string;
-  isRecruited?: boolean;
+  isRecruiting?: boolean;
   logo: string;
   industry?: IndustryCode;
   scale?: ScaleCode;
@@ -56,7 +56,7 @@ const CompanyDetailSection = ({ companyData }: CompanyDetailSectionProps) => {
           <div className={styles.headerMeta}>
             <div className={styles.nameRow}>
               <h1 className={styles.companyName}>{companyData.name}</h1>
-              {companyData.isRecruited ? (
+              {companyData.isRecruiting ? (
                 <>
                   <span className={styles.dot} aria-hidden="true" />
                   <span className={styles.hireStatus}>채용중</span>
