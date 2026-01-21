@@ -17,7 +17,7 @@ const MatchingListPage = () => {
     page: 1,
   });
 
-  const { data, isLoading, isFetching } = useGetAiReportList(params);
+  const { data, isLoading } = useGetAiReportList(params);
   const { content = [], currentPage = 1, totalPage = 1 } = data ?? {};
 
   const showEmptyState = !isLoading && content.length === 0;
