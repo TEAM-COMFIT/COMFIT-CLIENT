@@ -83,6 +83,7 @@ const ExperiencePage = () => {
             type="button"
             className={styles.registerButton}
             onClick={() => navigate(ROUTES.EXPERIENCE_CREATE)}
+            aria-label="새 경험 등록 페이지로 이동"
           >
             경험 등록하기
           </button>
