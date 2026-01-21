@@ -1,1 +1,1 @@
-export { useAuthStore } from "@shared/model/auth";
+export { useAuthStore } from "@/shared/model/store";

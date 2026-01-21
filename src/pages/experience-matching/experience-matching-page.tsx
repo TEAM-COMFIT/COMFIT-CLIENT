@@ -1,9 +1,22 @@
-import { useFunnel, ProgressBar } from "@/features/experience/experience-match";
-import { IconAI } from "@/shared/assets/icons";
+import { useEffect } from "react";
+
+import {
+  useFunnel,
+  ProgressBar,
+  CompanyDetail,
+  SelectExperience,
+  SelectCompany,
+  Analyzing,
+  MatchingResult,
+  useReportStore,
+} from "@/features/experience-matching";
+import { ICONAI } from "@/shared/assets/images";
 
 import * as styles from "./experience-matching-page.css";
 
-const STEP = [
+import type { Step } from "@/features/experience-matching/store/report.store";
+
+const STEP: Step[] = [
   "기업 선택",
   "기업 정보 확인",
   "나의 경험 확인",
@@ -12,18 +25,34 @@ const STEP = [
 ];
 
 const ExperienceMatchingPage = () => {
+  const setCurrentStep = useReportStore((state) => state.setCurrentStep);
+  const reset = useReportStore((state) => state.reset);
+  const step = useReportStore((state) => state.currentStep);
+
   const { currentStep, Step, Funnel, prevStep, nextStep } = useFunnel({
-    defaultStep: STEP[0],
+    defaultStep: step,
     stepList: STEP,
+    onStepChange: (step) => setCurrentStep(step), // useFunnel step의 변경에 따른 zustand 동기화
   });
 
+  // 페이지 마운트 시, store 초기화
+  useEffect(() => {
+    return () => {
+      reset();
+    };
+  }, [reset]);
+
   return (
-    <main className={styles.container}>
-      {/** 타이틀 */}
-      {currentStep !== "기업 선택" && (
-        <>
+    <div className={styles.pageLayout({ isLast: currentStep === STEP[4] })}>
+      <main className={styles.container({ isFirst: currentStep === STEP[0] })}>
+        {/** 타이틀 */}
+        {![STEP[0], STEP[4]].includes(currentStep) && (
           <div className={styles.titleContainer}>
-            <IconAI />
+            <img
+              className={styles.titleIcon}
+              src={ICONAI}
+              alt="자물쇠 아이콘"
+            />
             <div className={styles.wrapper}>
               <h1 className={styles.title}>경험 매칭 AI</h1>
               <h3 className={styles.subTitle}>
@@ -31,43 +60,39 @@ const ExperienceMatchingPage = () => {
               </h3>
             </div>
           </div>
+        )}
+        {currentStep !== STEP[0] && (
           <ProgressBar currentStep={currentStep} stepList={STEP} />
-        </>
-      )}
-      {/** useFunnel을 통한 각 단계 컴포넌트 렌더링
-       * - 각 단계 세부 컴포넌트는 구현예정입니다. (TODO)
-       */}
-      {/**
-       * 0. 기업 선택
-       * 1. 기업 정보 확인
-       * 2. 나의 경험 확인 => post, (isLoading)
-       * 3. [3단계 AI 분석 진행]
-       * 4. [4단계 (데이터가 불러와지면) 결과 확인]  */}
-      <Funnel>
-        <Step name="기업 선택">
-          <div>기업 선택 창입니다</div>
-          <button onClick={() => nextStep()}>선택하기</button>
-        </Step>
-        <Step name="기업 정보 확인">
-          <div>기업 정보 확인 란입니다</div>
-          <button onClick={() => prevStep()}>이전단계</button>
-          <button onClick={() => nextStep()}>다음단계</button>
-        </Step>
-        <Step name="나의 경험 확인">
-          <div>나의 경험 확인 란입니다</div>
-          <button onClick={() => prevStep()}>이전단계</button>
-          <button onClick={() => nextStep()}>다음단계</button>
-        </Step>
-        {/** TODO: AI 분석 진행 STEP은 '나의 경험 확인' 내부에서 처리(현재는 funnel 동작 확인을 위한 임시 로직) */}
-        <Step name="AI 분석 진행">
-          <div>분석 진행 란입니다</div>
-          <button onClick={() => nextStep()}>다음단계</button>
-        </Step>
-        <Step name="결과 확인">
-          <div>결과 확인란 입니다</div>
-        </Step>
-      </Funnel>
-    </main>
+        )}
+        {/** useFunnel을 통한 각 단계 컴포넌트 렌더링 */}
+        {/**
+         * 0. 기업 선택
+         * 1. 기업 정보 확인
+         * 2. 나의 경험 확인
+         * 3. AI 분석 진행
+         * 4. [4단계 (데이터가 불러와지면) 결과 확인 이동]  */}
+        <Funnel>
+          <Step name="기업 선택">
+            <SelectCompany onClick={() => nextStep()} />
+          </Step>
+          <Step name="기업 정보 확인">
+            <CompanyDetail nextStep={() => nextStep()} />
+          </Step>
+          <Step name="나의 경험 확인">
+            <SelectExperience
+              prevStep={() => prevStep()}
+              nextStep={() => nextStep()}
+            />
+          </Step>
+          <Step name="AI 분석 진행">
+            <Analyzing nextStep={() => nextStep()} />
+          </Step>
+          <Step name="결과 확인">
+            <MatchingResult />
+          </Step>
+        </Funnel>
+      </main>
+    </div>
   );
 };
 

@@ -47,5 +47,7 @@ export { default as IconExpandMore } from "./icon_expand_more.svg?react";
 
 export { default as IconKakao } from "./icon_kakao.svg?react";
 
+export { default as IconJob } from "./icon_job.svg?react";
+
 export { default as IconCopy } from "./icon_copy.svg?react";
 export { default as IconCheckOn } from "./icon_check_on.svg?react";
