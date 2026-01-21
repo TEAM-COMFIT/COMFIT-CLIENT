@@ -5,7 +5,13 @@ export const EXPERIENCE_MESSAGES = {
     TITLE_LENGTH: "경험 제목은 2~30자로 입력해주세요",
     TYPE_REQUIRED: "경험 유형을 선택해주세요",
     DATE_FORMAT: "날짜 형식을 맞춰주세요",
-    CONTENT_REQUIRED: "경험 내용을 확인해주세요",
+
+    // STAR
+    SITUATION_REQUIRED: "Situation(상황)은 30자 이상 입력해주세요",
+    TASK_REQUIRED: "Task(과제)는 30자 이상 입력해주세요",
+    ACTION_REQUIRED: "Action(행동)은 40자 이상 입력해주세요",
+    RESULT_REQUIRED: "Result(결과)는 30자 이상 입력해주세요",
+
     CONTENT_MAX_EXCEEDED: "입력 가능한 글자 수를 초과했습니다",
   },
 

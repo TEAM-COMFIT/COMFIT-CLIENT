@@ -4,11 +4,16 @@ import { EXPERIENCE_MESSAGES } from "../config";
 
 import type { ExperienceUpsertBody } from "../types/experience-detail.types";
 
-type ValidationResult =
-  | { ok: true }
-  | { ok: false; toastMessage: string };
+type ValidationResult = { ok: true } | { ok: false; toastMessage: string };
 
-const isBlank = (v: string) => v.trim().length === 0;
+const trimmedLength = (v: string) => v.trim().length;
+
+const STAR_MIN_LENGTH = {
+  situation: 30,
+  task: 30,
+  action: 40,
+  result: 30,
+} as const;
 
 const STAR_MAX_LENGTH = {
   situation: 200,
@@ -17,9 +22,31 @@ const STAR_MAX_LENGTH = {
   result: 300,
 } as const;
 
+const validateStarField = (
+  value: string,
+  min: number,
+  max: number,
+  message: string,
+): ValidationResult => {
+  const len = trimmedLength(value);
+
+  if (len < min) {
+    return { ok: false, toastMessage: message };
+  }
+
+  if (len > max) {
+    return {
+      ok: false,
+      toastMessage: EXPERIENCE_MESSAGES.VALIDATION.CONTENT_MAX_EXCEEDED,
+    };
+  }
+
+  return { ok: true };
+};
+
 export const validateExperienceDraft = (draft: ExperienceUpsertBody): ValidationResult => {
   // 1) 제목 2~30
-  const titleLen = draft.title.trim().length;
+  const titleLen = trimmedLength(draft.title);
   if (titleLen < 2 || titleLen > 30) {
     return { ok: false, toastMessage: EXPERIENCE_MESSAGES.VALIDATION.TITLE_LENGTH };
   }
@@ -45,25 +72,38 @@ export const validateExperienceDraft = (draft: ExperienceUpsertBody): Validation
     return { ok: false, toastMessage: EXPERIENCE_MESSAGES.VALIDATION.DATE_FORMAT };
   }
 
-  // 4) STAR 필드 모두 비어있는 경우
-  if (
-    isBlank(draft.situation) &&
-    isBlank(draft.task) &&
-    isBlank(draft.action) &&
-    isBlank(draft.result)
-  ) {
-    return { ok: false, toastMessage: EXPERIENCE_MESSAGES.VALIDATION.CONTENT_REQUIRED };
-  }
+  // 4) STAR 각 필드 필수 + 최소/최대 글자 수 검증
+  const situationValid = validateStarField(
+    draft.situation,
+    STAR_MIN_LENGTH.situation,
+    STAR_MAX_LENGTH.situation,
+    EXPERIENCE_MESSAGES.VALIDATION.SITUATION_REQUIRED,
+  );
+  if (!situationValid.ok) return situationValid;
 
-  // 5) STAR 필드 최대 글자 수 초과
-  if (
-    draft.situation.length > STAR_MAX_LENGTH.situation ||
-    draft.task.length > STAR_MAX_LENGTH.task ||
-    draft.action.length > STAR_MAX_LENGTH.action ||
-    draft.result.length > STAR_MAX_LENGTH.result
-  ) {
-    return { ok: false, toastMessage: EXPERIENCE_MESSAGES.VALIDATION.CONTENT_MAX_EXCEEDED };
-  }
+  const taskValid = validateStarField(
+    draft.task,
+    STAR_MIN_LENGTH.task,
+    STAR_MAX_LENGTH.task,
+    EXPERIENCE_MESSAGES.VALIDATION.TASK_REQUIRED,
+  );
+  if (!taskValid.ok) return taskValid;
+
+  const actionValid = validateStarField(
+    draft.action,
+    STAR_MIN_LENGTH.action,
+    STAR_MAX_LENGTH.action,
+    EXPERIENCE_MESSAGES.VALIDATION.ACTION_REQUIRED,
+  );
+  if (!actionValid.ok) return actionValid;
+
+  const resultValid = validateStarField(
+    draft.result,
+    STAR_MIN_LENGTH.result,
+    STAR_MAX_LENGTH.result,
+    EXPERIENCE_MESSAGES.VALIDATION.RESULT_REQUIRED,
+  );
+  if (!resultValid.ok) return resultValid;
 
   return { ok: true };
 };
