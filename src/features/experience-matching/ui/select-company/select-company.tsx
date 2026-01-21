@@ -33,7 +33,7 @@ export const SelectCompany = ({ onClick }: { onClick: () => void }) => {
     }, 0);
 
     return () => clearTimeout(timer);
-  }, [alertModal]);
+  }, []);
 
   // 경험 등록 여부 확인 모달 닫기 이벤트 함수
   const handleCloseModal = (route: string) => {
