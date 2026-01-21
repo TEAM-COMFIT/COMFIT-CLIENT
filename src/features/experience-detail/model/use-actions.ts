@@ -1,7 +1,9 @@
 import { useCallback, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { DEFAULT_BUTTON_LABELS, EXPERIENCE_ROUTES } from "../config";
+import { ROUTES } from "@/app/routes/paths";
+
+import { DEFAULT_BUTTON_LABELS } from "../config";
 import { validateExperienceDraft } from "../lib/validation";
 import {
   useExperienceActions,
@@ -21,7 +23,6 @@ const generateMockExperienceId = (): number => {
 };
 
 // API 함수 자리
-
 const _createExperience = async (
   _body: ExperienceUpsertBody,
 ): Promise<{ experienceId: number }> => {
@@ -77,7 +78,7 @@ export const useExperienceSubmit = () => {
 
         setMode("view");
 
-        navigate(EXPERIENCE_ROUTES.DETAIL(mockId), { replace: true });
+        navigate(ROUTES.EXPERIENCE_DETAIL(String(mockId)), { replace: true });
         return;
       }
 
@@ -89,7 +90,7 @@ export const useExperienceSubmit = () => {
         hydrateDraftFromCurrent();
         setMode("view");
 
-        navigate(EXPERIENCE_ROUTES.DETAIL(current.experienceId), {
+        navigate(ROUTES.EXPERIENCE_DETAIL(String(current.experienceId)), {
           replace: true,
         });
         return;
@@ -114,7 +115,6 @@ export const useExperienceSubmit = () => {
 };
 
 // API 함수 자리
-
 const _deleteExperience = async (_experienceId: number): Promise<void> => {
   throw new Error("Not implemented - 다음 PR에서 API 연동 예정");
 };
@@ -146,7 +146,8 @@ export const useExperienceHeaderActions = () => {
 
     setMode("edit");
     hydrateDraftFromCurrent();
-    navigate(EXPERIENCE_ROUTES.EDIT(current.experienceId));
+
+    navigate(ROUTES.EXPERIENCE_EDIT(String(current.experienceId)));
   }, [current, hydrateDraftFromCurrent, navigate, setMode]);
 
   const onClickDelete = useCallback(
@@ -157,7 +158,7 @@ export const useExperienceHeaderActions = () => {
       try {
         // API 연동 시 코드 작성
 
-        navigate(EXPERIENCE_ROUTES.LIST);
+        navigate(ROUTES.EXPERIENCE);
       } catch (error) {
         showDeleteError();
         console.error("Experience delete failed:", error);

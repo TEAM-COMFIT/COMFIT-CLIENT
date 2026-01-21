@@ -62,7 +62,6 @@ export type {
 } from "./types";
 
 export {
-  EXPERIENCE_ROUTES,
   EXPERIENCE_MESSAGES,
   DEFAULT_BUTTON_LABELS,
   EXPERIENCE_TYPE_OPTIONS,
