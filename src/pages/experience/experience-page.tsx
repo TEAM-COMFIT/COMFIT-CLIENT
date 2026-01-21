@@ -3,16 +3,14 @@ import { useNavigate } from "react-router-dom";
 
 import { ROUTES } from "@/app/routes/paths";
 import { IconExp } from "@/shared/assets/icons";
-import {
-  getExperienceTypeCode,
-  type ExperienceTypeCode,
-} from "@/shared/config/experience";
+import { getExperienceTypeCode } from "@/shared/config/experience";
 import { ExperienceFilter } from "@/widgets";
 
 import { MOCK_EXPERIENCES } from "./experience-mock-data";
 import * as styles from "./experience-page.css";
 import { ExperienceListContainer } from "./ui/experience-list-container";
 
+import type { ExperienceTypeCode } from "@/shared/config/experience";
 const PAGE_SIZE = 6;
 
 const ExperiencePage = () => {
