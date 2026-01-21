@@ -48,6 +48,7 @@ export const useReportStore = create(
           company: null,
           experience: null,
           jobDescription: "",
+          reportId: 0,
         }),
     }),
     {
