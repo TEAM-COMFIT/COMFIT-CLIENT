@@ -21,15 +21,17 @@ const ExperiencePage = () => {
   const navigate = useNavigate();
 
   // TODO: api 연동 후 삭제 예정
-  const baseTotalElements = MOCK_EXPERIENCES.length;
+  const experiences = MOCK_EXPERIENCES; // TODO: data?.result.content ?? []
+
+  const baseTotalElements = experiences.length;
 
   const filteredAll = useMemo(() => {
-    if (!filter) return MOCK_EXPERIENCES;
-    return MOCK_EXPERIENCES.filter((experience) => {
+    if (!filter) return experiences;
+    return experiences.filter((experience) => {
       const normalizedType = getExperienceTypeCode(experience.type);
       return normalizedType === filter;
     });
-  }, [filter]);
+  }, [experiences, filter]);
 
   const totalElements = filteredAll.length;
   const totalPage = Math.ceil(totalElements / PAGE_SIZE);
