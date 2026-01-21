@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { persist, createJSONStorage } from "zustand/middleware";
 
 export type Step =
   | "기업 선택"
@@ -52,6 +52,7 @@ export const useReportStore = create(
     }),
     {
       name: "report",
+      storage: createJSONStorage(() => sessionStorage),
     }
   )
 );

@@ -4,10 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { ROUTES } from "@/app/routes/paths";
 import { Modal, ModalBasic, useModal } from "@/shared/ui";
 
+import { useGetCompanyList } from "../../api/use-company-list.query";
 import { useGetExperience } from "../../api/use-experience.query";
 import { useReportStore } from "../../store/report.store";
 import { MatchingAutoComplete } from "../matching-auto-complete/matching-auto-complete";
-import { MOCK_AUTOCOMPLETE } from "../matching-auto-complete/mock";
 
 import * as styles from "./select-company.css";
 
@@ -39,15 +39,7 @@ export const SelectCompany = ({ onClick }: { onClick: () => void }) => {
     }
   });
 
-  // 경험 등록 여부 확인 모달 닫기 이벤트 함수
-  const handleCloseModal = (route: string) => {
-    navigate(route);
-  };
-
-  // TODO: 추후 API 연동
-  const searchResults = MOCK_AUTOCOMPLETE.filter((item) =>
-    item.name.toLowerCase().includes(searchKeyword.toLowerCase())
-  );
+  const { data: searchResults = [] } = useGetCompanyList(searchKeyword); // 기업 검색 API
 
   // 모달 닫힘 여부 확인 후 페이지 이동
   const prevIsOpen = useRef(isOpen);
@@ -76,8 +68,8 @@ export const SelectCompany = ({ onClick }: { onClick: () => void }) => {
       {/** 경험 등록 여부 확인 모달 */}
       <ModalBasic
         isOpen={alertModal.isOpen}
-        onClose={() => handleCloseModal(ROUTES.HOME)}
-        onConfirm={() => handleCloseModal(ROUTES.EXPERIENCE_CREATE)}
+        onClose={() => navigate(ROUTES.HOME)}
+        onConfirm={() => navigate(ROUTES.EXPERIENCE_CREATE)}
         title="아직 등록된 경험이 없습니다"
         subTitle="지금 바로 경험을 등록하러 가볼까요?"
       />

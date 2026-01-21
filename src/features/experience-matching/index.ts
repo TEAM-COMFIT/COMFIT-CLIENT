@@ -18,3 +18,4 @@ export { MatchingResultContent } from "./ui/matching-result/matching-result-cont
 
 // API
 export { useGetExperience } from "./api/use-experience.query";
+export { useGetCompanyList } from "./api/use-company-list.query";
