@@ -23,10 +23,6 @@ export const panel = style({
   paddingBottom: "21.2rem",
 });
 
-export const modeLabel = style({
-  display: "none",
-});
-
 export const card = style({
   width: "100%",
   background: "transparent",
@@ -66,55 +62,14 @@ export const dropdownWrap = style({
   width: "14.8rem",
 });
 
-export const tooltipWrap = style({
-  display: "flex",
-  alignItems: "center",
-});
-
-export const tooltipInner = style({
-  width: "19.1rem",
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "flex-start",
-  gap: "1.2rem",
-});
-
-export const tooltipText = style({
-  ...themeVars.fontStyles.cap_m_12,
-
-  color: themeVars.color.gray500,
-  fontWeight: 500,
-  lineHeight: "1.8rem",
-  letterSpacing: "-0.012rem",
-  wordBreak: "keep-all",
-});
-
-export const tooltipList = style({
-  margin: 0,
-  paddingLeft: "1.8rem",
-  display: "flex",
-  flexDirection: "column",
-  gap: "0.8rem",
-});
-
-export const tooltipListItem = style({
-  ...themeVars.fontStyles.cap_m_12,
-
-  color: themeVars.color.gray500,
-  fontWeight: 500,
-  lineHeight: "1.8rem",
-  letterSpacing: "-0.012rem",
-
-  selectors: {
-    "&::marker": {
-      color: themeVars.color.gray500,
-    },
-  },
-});
-
-export const titleBlock = style({
+export const titleRow = style({
   width: "100%",
   marginTop: "2.4rem",
+
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
+  gap: "2.4rem",
 });
 
 export const titleInput = style({
@@ -132,11 +87,20 @@ export const titleInput = style({
   letterSpacing: "-0.036rem",
   color: themeVars.color.gray900,
 
+  flex: 1,
+  minWidth: 0,
+
   selectors: {
     "&::placeholder": {
       color: themeVars.color.gray400,
     },
   },
+});
+
+export const tooltipWrap = style({
+  display: "flex",
+  alignItems: "center",
+  flexShrink: 0,
 });
 
 export const dateRow = style({
@@ -173,10 +137,4 @@ export const starLabel = style({
   lineHeight: "3rem",
   letterSpacing: "-0.02rem",
   color: themeVars.color.gray900,
-});
-
-export const debug = style({
-  marginTop: "1.6rem",
-  fontSize: "1.2rem",
-  color: themeVars.color.gray400,
 });

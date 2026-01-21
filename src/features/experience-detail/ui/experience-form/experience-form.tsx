@@ -3,6 +3,7 @@ import { Button, Tooltip } from "@/shared/ui";
 import { Textfield } from "@/shared/ui/textfield/textfield";
 import { GUIDE_TOOLTIP_CONTENT } from "@/shared/ui/tooltip/tooltip.content";
 import { ExperienceFilter, StickyHeader } from "@/widgets";
+
 import {
   useExperienceActions,
   useExperienceDraft,
@@ -14,17 +15,15 @@ import { useExperienceSubmit, useExperienceHeaderActions } from "../../model/use
 import * as s from "./experience-form.css";
 
 import type { TextfieldType } from "@/shared/ui/textfield/textfield";
+
 const ExperienceForm = () => {
-  // Store 연결
   const draft = useExperienceDraft();
   const isDraftDefault = useIsDraftDefault();
   const { setDraftField } = useExperienceActions();
 
-
   const { onToggleDefault } = useExperienceHeaderActions();
   const { submit } = useExperienceSubmit();
 
-  // DatePicker 어댑터
   const startDateField = useExperienceDateField("startAt");
   const endDateField = useExperienceDateField("endAt");
 
@@ -44,27 +43,17 @@ const ExperienceForm = () => {
         <div className={s.panel}>
           <div className={s.card}>
             <div className={s.innerColumn}>
-              {/* 경험 기본 정보 영역 */}
               <div className={s.topGroup}>
                 <div className={s.topRow}>
-                  {/* 경험 유형 드롭다운 */}
                   <div className={s.dropdownWrap}>
                     <ExperienceFilter
                       value={draft.type}
                       onChange={(code) => setDraftField("type", code)}
                     />
                   </div>
-
-                  {/* 작성 가이드 툴팁 */}
-                  <div className={s.tooltipWrap}>
-                    <Tooltip type="guide" label="작성 가이드">
-                      {GUIDE_TOOLTIP_CONTENT}
-                    </Tooltip>
-                  </div>
                 </div>
 
-                {/* 경험 제목 (2~30자) */}
-                <div className={s.titleBlock}>
+                <div className={s.titleRow}>
                   <input
                     className={s.titleInput}
                     type="text"
@@ -73,9 +62,14 @@ const ExperienceForm = () => {
                     placeholder="제목을 입력해주세요."
                     maxLength={30}
                   />
+
+                  <div className={s.tooltipWrap}>
+                    <Tooltip type="guide" label="작성 가이드">
+                      {GUIDE_TOOLTIP_CONTENT}
+                    </Tooltip>
+                  </div>
                 </div>
 
-                {/* 경험 기간 (DatePicker) */}
                 <div className={s.dateRow}>
                   <DatePicker
                     selectedDate={startDateField.selectedDate}
@@ -94,7 +88,6 @@ const ExperienceForm = () => {
                 </div>
               </div>
 
-              {/* STAR 필드 */}
               <div className={s.starGroup}>
                 <StarField
                   label="Situation (상황)"
@@ -117,8 +110,7 @@ const ExperienceForm = () => {
                   type="action"
                   value={draft.action}
                   onChange={(v) => setDraftField("action", v)}
-                  placeholder="예) 초기에는 트렌디한 이미지 위주의 콘텐츠를 기획했으나, 게시 후 반응을 분석한 결과 조회 수 대비 브랜드 인지 반응이 낮다고 판단함.
-이에 메시지 전달이 명확한 짧은 영상 포맷으로 방향을 조정함."
+                  placeholder={`예) 초기에는 트렌디한 이미지 위주의 콘텐츠를 기획했으나, 게시 후 반응을 분석한 결과 조회 수 대비 브랜드 인지 반응이 낮다고 판단함.\n이에 메시지 전달이 명확한 짧은 영상 포맷으로 방향을 조정함.`}
                 />
 
                 <StarField
