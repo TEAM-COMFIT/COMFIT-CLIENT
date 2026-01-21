@@ -4,6 +4,25 @@ export { ExperienceViewer } from "./ui/experience-viewer/experience-viewer";
 export { ExperienceAlertRenderer } from "./ui/experience-alert-renderer/experience-alert-renderer";
 
 export {
+  useGetExperienceDetail,
+  useCreateExperience,
+  useUpdateExperience,
+  useDeleteExperience as useDeleteExperienceMutation,
+  useUpdateExperienceDefault,
+  createExperience,
+  getExperienceDetail,
+  deleteExperience,
+  updateExperience,
+  updateExperienceDefault,
+} from "./api/experience.query";
+
+export type {
+  CreateExperienceResponse,
+  GetExperienceDetailResponse,
+  UpdateDefaultResponse,
+} from "./api/experience.query";
+
+export {
   useExperienceDetailStore,
   initialDraft,
 } from "./store/experience.store";
@@ -52,6 +71,8 @@ export {
   EXPERIENCE_MOCK,
   initExperienceDetail,
   resetExperienceDetail,
+  hydrateExperienceFromApi,
+  toExperienceEntity,
 } from "./model/init";
 
 export { validateExperienceDraft } from "./lib/validation";
