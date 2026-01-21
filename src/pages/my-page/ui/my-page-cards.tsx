@@ -1,9 +1,9 @@
-import { IconExpandMore } from "@/shared/assets/icons";
-import { getEducationLabel } from "@features/onboarding/config/education";
 import {
   getIndustryLabel,
   getJobLabel,
-} from "@features/onboarding/config/interest-select.constants";
+} from "@/features/onboarding/config/interest-select.constants";
+import { IconExpandMore } from "@/shared/assets/icons";
+import { getEducationLabel } from "@features/onboarding/config/education";
 
 import * as styles from "./my-page-cards.css";
 

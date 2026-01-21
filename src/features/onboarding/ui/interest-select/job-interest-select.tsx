@@ -1,4 +1,4 @@
-﻿import { JOB_CODE_TO_LABEL } from "@features/onboarding/config/interest-select.constants";
+﻿import { JOB_CODE_TO_LABEL } from "@/features/onboarding/config/interest-select.constants";
 import { InterestSelectBase } from "@features/onboarding/ui/interest-select/interest-select-base";
 
 interface JobInterestSelectProps {

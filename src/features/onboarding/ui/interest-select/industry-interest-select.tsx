@@ -1,4 +1,4 @@
-﻿import { INDUSTRY_CODE_TO_LABEL } from "@features/onboarding/config/interest-select.constants";
+﻿import { INDUSTRY_CODE_TO_LABEL } from "@/features/onboarding/config/interest-select.constants";
 import { InterestSelectBase } from "@features/onboarding/ui/interest-select/interest-select-base";
 
 interface IndustryInterestSelectProps {

@@ -1,8 +1,32 @@
+import { getIndustryLabel, type IndustryCode } from "@/shared/config";
+
 import type { CompanyInfo } from "../type";
 
-export const FIELD_CONFIG: { label: string; key: keyof CompanyInfo }[] = [
-  { label: "기업명", key: "name" },
-  { label: "산업분야", key: "industry" },
-  { label: "채용 공고 웹사이트 URL", key: "recruitUrl" },
-  { label: "기업 웹사이트 URL", key: "companyUrl" },
-];
+interface FieldConfigItem {
+  label: string;
+  key: keyof CompanyInfo;
+  format?: (value: string) => string;
+  isLink?: boolean;
+}
+
+export const FIELD_CONFIG: FieldConfigItem[] = [
+  {
+    label: "기업명",
+    key: "name",
+  },
+  {
+    label: "산업군",
+    key: "industry",
+    format: (value: string) => `#${getIndustryLabel(value as IndustryCode)}`,
+  },
+  {
+    label: "채용 공고",
+    key: "recruitUrl",
+    isLink: true,
+  },
+  {
+    label: "홈페이지",
+    key: "companyUrl",
+    isLink: true,
+  },
+] as const;
