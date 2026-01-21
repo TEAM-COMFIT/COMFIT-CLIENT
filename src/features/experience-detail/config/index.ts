@@ -1,7 +1,1 @@
 export { EXPERIENCE_MESSAGES, DEFAULT_BUTTON_LABELS } from "./messages";
-
-export {
-  EXPERIENCE_TYPE_OPTIONS,
-  EXPERIENCE_LABEL_TO_CODE,
-  EXPERIENCE_TYPE_LIST,
-} from "./experience-type";

@@ -1,3 +1,4 @@
+import { EXPERIENCE_TYPE } from "@/shared/config/experience";
 import { parseYMD } from "@/shared/lib/format-date";
 import { ModalBasic, Tooltip } from "@/shared/ui";
 import { Button } from "@/shared/ui/button/button";
@@ -7,9 +8,11 @@ import { Textfield } from "@/shared/ui/textfield/textfield";
 import { GUIDE_TOOLTIP_CONTENT } from "@/shared/ui/tooltip/tooltip.content";
 import { StickyHeader } from "@/widgets";
 
-import { EXPERIENCE_TYPE_OPTIONS } from "../../config";
-import { useExperienceCurrent, useIsDraftDefault } from "../../store/use-experience-hooks";
 import { useExperienceHeaderActions } from "../../model/use-actions";
+import {
+  useExperienceCurrent,
+  useIsDraftDefault,
+} from "../../store/use-experience-hooks";
 import { DatePicker } from "../date-picker/date-picker";
 
 import * as s from "./experience-viewer.css";
@@ -21,7 +24,8 @@ const ExperienceViewer = () => {
   const { showEditDelete, onClickEdit, onClickDelete, onToggleDefault } =
     useExperienceHeaderActions();
 
-  const { isOpen: isDeleteModalOpen, handleModal: toggleDeleteModal } = useModal();
+  const { isOpen: isDeleteModalOpen, handleModal: toggleDeleteModal } =
+    useModal();
 
   const startDate = current?.startAt ? parseYMD(current.startAt) : null;
   const endDate = current?.endAt ? parseYMD(current.endAt) : null;
@@ -36,7 +40,7 @@ const ExperienceViewer = () => {
     );
   }
 
-  const typeLabel = current.type ? EXPERIENCE_TYPE_OPTIONS[current.type] : "미지정";
+  const typeLabel = current.type ? EXPERIENCE_TYPE[current.type] : "미지정";
 
   return (
     <main className={s.page}>
@@ -46,7 +50,11 @@ const ExperienceViewer = () => {
         rightSlot={
           showEditDelete && (
             <>
-              <Button variant="secondary" size="small" onClick={toggleDeleteModal}>
+              <Button
+                variant="secondary"
+                size="small"
+                onClick={toggleDeleteModal}
+              >
                 삭제하기
               </Button>
               <Button variant="primary" size="small" onClick={onClickEdit}>
@@ -98,7 +106,11 @@ const ExperienceViewer = () => {
           <div className={s.starGroup}>
             <div className={s.starField}>
               <p className={s.starLabel}>Situation (상황)</p>
-              <Textfield type="situation" mode="view" value={current.situation} />
+              <Textfield
+                type="situation"
+                mode="view"
+                value={current.situation}
+              />
             </div>
 
             <div className={s.starField}>

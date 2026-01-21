@@ -3,7 +3,10 @@ export { ExperienceForm } from "./ui/experience-form/experience-form";
 export { ExperienceViewer } from "./ui/experience-viewer/experience-viewer";
 export { ExperienceAlertRenderer } from "./ui/experience-alert-renderer/experience-alert-renderer";
 
-export { useExperienceDetailStore, initialDraft } from "./store/experience.store";
+export {
+  useExperienceDetailStore,
+  initialDraft,
+} from "./store/experience.store";
 
 export {
   useExperienceMode,
@@ -61,10 +64,4 @@ export type {
   DefaultExperience,
 } from "./types/experience-detail.types";
 
-export {
-  EXPERIENCE_MESSAGES,
-  DEFAULT_BUTTON_LABELS,
-  EXPERIENCE_TYPE_OPTIONS,
-  EXPERIENCE_LABEL_TO_CODE,
-  EXPERIENCE_TYPE_LIST,
-} from "./config";
+export { EXPERIENCE_MESSAGES, DEFAULT_BUTTON_LABELS } from "./config";
