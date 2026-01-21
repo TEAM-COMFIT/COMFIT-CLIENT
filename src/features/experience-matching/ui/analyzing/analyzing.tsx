@@ -2,28 +2,26 @@ import { useEffect } from "react";
 
 import { LOADING } from "@/shared/assets/images";
 
+import { useCreateReport } from "../../api/use-create-report.mutation";
 import { useReportStore } from "../../store/report.store";
 
 import * as styles from "./analyzing.css";
 
 export const Analyzing = ({ nextStep }: { nextStep: () => void }) => {
   const { company, experience, jobDescription } = useReportStore();
-
-  // 서버 리퀘스트 데이터
-  const requestData = {
-    company: company?.id,
-    experience: experience?.id,
+  const { mutate } = useCreateReport({
+    companyId: company?.id ?? 0,
+    experienceId: experience?.id ?? 0,
     jobDescription: jobDescription,
-  };
+  });
 
-  // STEP 3에 들어오면 API 호출
   useEffect(() => {
-    const timer = setTimeout(() => {
-      console.log(requestData);
-      nextStep();
-    }, 3000);
-    return () => clearTimeout(timer);
-  }, [nextStep, requestData]);
+    mutate(undefined, {
+      onSuccess: () => {
+        nextStep();
+      },
+    });
+  }, []);
 
   return (
     <div className={styles.layout}>
