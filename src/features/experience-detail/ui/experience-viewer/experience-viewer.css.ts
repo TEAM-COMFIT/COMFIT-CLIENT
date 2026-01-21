@@ -157,11 +157,7 @@ export const starField = style({
 });
 
 export const starLabel = style({
-  fontFamily: "Pretendard",
-  fontSize: "2rem",
-  fontWeight: 700,
-  lineHeight: "3rem",
-  letterSpacing: "-0.02rem",
+  ...themeVars.fontStyles.hding_b_20,
   color: themeVars.color.gray900,
 });
 
