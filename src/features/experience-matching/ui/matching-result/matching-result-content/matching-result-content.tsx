@@ -34,7 +34,7 @@ export interface MatchingResult {
 }
 
 interface MatchingResultProps {
-  data: MatchingResult;
+  data?: MatchingResult;
 }
 
 export const MatchingResultContent = ({ data }: MatchingResultProps) => {
@@ -44,7 +44,7 @@ export const MatchingResultContent = ({ data }: MatchingResultProps) => {
       <div className={styles.itemWrapper}>
         <h2 className={styles.itemTitle}>지원 기업</h2>
         <Textbox type="medium">
-          <p className={styles.contentBold}>{data.companyName}</p>
+          <p className={styles.contentBold}>{data?.companyName}</p>
         </Textbox>
       </div>
 
@@ -52,7 +52,7 @@ export const MatchingResultContent = ({ data }: MatchingResultProps) => {
       <div className={styles.itemWrapper}>
         <h2 className={styles.itemTitle}>선택된 경험</h2>
         <Textbox type="medium">
-          <p className={styles.contentBold}>{data.experienceTitle}</p>
+          <p className={styles.contentBold}>{data?.experienceTitle}</p>
         </Textbox>
       </div>
 
@@ -60,7 +60,7 @@ export const MatchingResultContent = ({ data }: MatchingResultProps) => {
       <div className={styles.itemWrapper}>
         <h2 className={styles.itemTitle}>직무 설명 (Job Description)</h2>
         <Textbox type="medium">
-          <div className={styles.whiteSpacePre}>{data.jobDescription}</div>
+          <div className={styles.whiteSpacePre}>{data?.jobDescription}</div>
         </Textbox>
       </div>
 
@@ -70,7 +70,7 @@ export const MatchingResultContent = ({ data }: MatchingResultProps) => {
           [1] 이 기업이 이 직무에서 중요하게 보는 관점
         </h2>
         <Textbox type="medium">
-          {data.perspectives.map((p, i) => (
+          {data?.perspectives.map((p, i) => (
             <div key={p.perspective} className={styles.listContent}>
               <p
                 className={styles.blueTitle({
@@ -92,7 +92,7 @@ export const MatchingResultContent = ({ data }: MatchingResultProps) => {
       <div className={styles.itemWrapper}>
         <h2 className={styles.itemTitle}>[2] 선택한 경험과의 연결 강도</h2>
         <Textbox type="medium">
-          {data.density.map((d, i) => (
+          {data?.density.map((d, i) => (
             <div key={d.perspective} className={styles.listContent}>
               <p
                 className={styles.blueTitle({
@@ -117,7 +117,7 @@ export const MatchingResultContent = ({ data }: MatchingResultProps) => {
       <div className={styles.itemWrapper}>
         <h2 className={styles.itemTitle}>[3] 반드시 드러내야 할 요소</h2>
         <Textbox type="medium">
-          {data.appealPoint.map((a, i) => (
+          {data?.appealPoint.map((a, i) => (
             <div key={a.element} className={styles.listContent}>
               <p
                 className={styles.blueTitle({
@@ -151,7 +151,7 @@ export const MatchingResultContent = ({ data }: MatchingResultProps) => {
       <div className={styles.itemWrapper}>
         <h2 className={styles.itemTitle}>[4] 표현 조정 또는 주의 포인트</h2>
         <Textbox type="medium">
-          <div className={styles.whiteSpacePre}>{data.suggestion}</div>
+          <div className={styles.whiteSpacePre}>{data?.suggestion}</div>
         </Textbox>
       </div>
 
@@ -159,7 +159,7 @@ export const MatchingResultContent = ({ data }: MatchingResultProps) => {
       <div className={styles.itemWrapper}>
         <h2 className={styles.itemTitle}>[5] 자소서 활용 구조 가이드</h2>
         <Textbox type="medium">
-          <div className={styles.whiteSpacePre}>{data.guidance}</div>
+          <div className={styles.whiteSpacePre}>{data?.guidance}</div>
         </Textbox>
       </div>
     </section>

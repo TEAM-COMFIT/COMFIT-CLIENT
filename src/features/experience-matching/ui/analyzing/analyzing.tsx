@@ -8,7 +8,7 @@ import { useReportStore } from "../../store/report.store";
 import * as styles from "./analyzing.css";
 
 export const Analyzing = ({ nextStep }: { nextStep: () => void }) => {
-  const { company, experience, jobDescription } = useReportStore();
+  const { company, experience, jobDescription, setReportId } = useReportStore();
   const { mutate } = useCreateReport({
     companyId: company?.id ?? 0,
     experienceId: experience?.id ?? 0,
@@ -17,11 +17,12 @@ export const Analyzing = ({ nextStep }: { nextStep: () => void }) => {
 
   useEffect(() => {
     mutate(undefined, {
-      onSuccess: () => {
+      onSuccess: (response) => {
+        setReportId(response?.id ?? 0);
         nextStep();
       },
     });
-  }, []);
+  }, [nextStep, setReportId, mutate]);
 
   return (
     <div className={styles.layout}>
