@@ -9,18 +9,8 @@ export const EXPERIENCE_TYPE = {
 export type ExperienceTypeCode = keyof typeof EXPERIENCE_TYPE;
 export type ExperienceTypeLabel = (typeof EXPERIENCE_TYPE)[ExperienceTypeCode];
 
-const EXPERIENCE_TYPE_LABELS = Object.values(EXPERIENCE_TYPE);
-const EXPERIENCE_UNKNOWN_LABEL = "알 수 없음";
-
-export const getExperienceTypeLabel = (value?: string): string => {
-  if (!value) return EXPERIENCE_UNKNOWN_LABEL;
-  if (value in EXPERIENCE_TYPE) {
-    return EXPERIENCE_TYPE[value as ExperienceTypeCode];
-  }
-  if (EXPERIENCE_TYPE_LABELS.includes(value as ExperienceTypeLabel)) {
-    return value;
-  }
-  return EXPERIENCE_UNKNOWN_LABEL;
+export const getExperienceTypeLabel = (code: string) => {
+  return EXPERIENCE_TYPE[code as ExperienceTypeCode] ?? "알 수 없음";
 };
 
 export const EXPERIENCE_LABEL_TO_CODE: Record<
@@ -34,17 +24,8 @@ export const EXPERIENCE_LABEL_TO_CODE: Record<
   {} as Record<ExperienceTypeLabel, ExperienceTypeCode>
 );
 
-export const getExperienceTypeCode = (
-  value?: string
-): ExperienceTypeCode | null => {
-  if (!value) return null;
-  if (value in EXPERIENCE_TYPE) {
-    return value as ExperienceTypeCode;
-  }
-  if (value in EXPERIENCE_LABEL_TO_CODE) {
-    return EXPERIENCE_LABEL_TO_CODE[value as ExperienceTypeLabel];
-  }
-  return null;
+export const getExperienceTypeCode = (value: string): ExperienceTypeCode => {
+  return EXPERIENCE_LABEL_TO_CODE[value as ExperienceTypeLabel] ?? "";
 };
 
 export interface ExperienceFilterOption {
