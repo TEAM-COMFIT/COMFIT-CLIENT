@@ -5,7 +5,6 @@ import { universityQueryKey } from "@/shared/api/config/query-key";
 
 export const getUniversity = async ({ keyword }: { keyword: string }) => {
   const response = await api.universities.searchUniversities({ keyword });
-  console.log("university response:", response);
   return response.result;
 };
 

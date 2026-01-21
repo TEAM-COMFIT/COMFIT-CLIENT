@@ -57,6 +57,14 @@ export const getIndustryLabel = (code: IndustryCode): IndustryLabel => {
   return "알 수 없음" as IndustryLabel;
 };
 
+export const getIndustryCode = (label: IndustryLabel): IndustryCode => {
+  if (label in INDUSTRY_LABEL_TO_CODE) {
+    return INDUSTRY_LABEL_TO_CODE[label];
+  }
+  console.warn(`존재하지 않는 IndustryLabel: ${label}`);
+  return "IT" as IndustryCode; // 기본값 혹은 에러 처리
+};
+
 // 기업 규모 (Scale)
 export const SCALE = {
   LARGE: "대기업",
@@ -102,7 +110,26 @@ export const getScaleLabel = (code: ScaleCode): ScaleLabel => {
   if (code in SCALE) {
     return SCALE[code];
   }
-  console.warn(`존재하지 않는 ScaleCode: ${code}`);
-
   return "알 수 없음" as ScaleLabel;
+};
+
+export const labelToCodeIndustry = (
+  label: string | null | undefined
+): IndustryCode | "" => {
+  if (!label) return "";
+  if (label in INDUSTRY_LABEL_TO_CODE) {
+    return INDUSTRY_LABEL_TO_CODE[label as IndustryLabel];
+  }
+  return "";
+};
+
+// 규모 코드 변환 유틸 (string 타입을 수용하되 안전하게 반환)
+export const labelToCodeScale = (
+  label: string | null | undefined
+): ScaleCode | "" => {
+  if (!label) return "";
+  if (label in SCALE_LABEL_TO_CODE) {
+    return SCALE_LABEL_TO_CODE[label as ScaleLabel];
+  }
+  return "";
 };

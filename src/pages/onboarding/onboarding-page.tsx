@@ -1,8 +1,13 @@
 import { useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
+import { ROUTES } from "@/app/routes/paths";
 import { useInterestSelectStore } from "@/features/onboarding";
+import { usePostOnboarding } from "@/features/onboarding/api/use-post-onboarding.query";
+import { labelToCodeJob } from "@/features/onboarding/config/job";
 import { isOnboardingFormComplete } from "@/features/onboarding/lib/onboarding-form.validator";
 import { OnboardingLogo } from "@/shared/assets/images";
+import { labelToCodeIndustry } from "@/shared/config";
 import { Button } from "@/shared/ui";
 
 import * as s from "./onboarding-page.css";
@@ -12,6 +17,9 @@ import type { EducationTypeCode } from "@/features/onboarding";
 import type { SearchItem } from "@/shared/ui/search-auto-complete/types";
 
 const OnboardingPage = () => {
+  const navigate = useNavigate();
+  const { mutate } = usePostOnboarding();
+
   const [selectedEducation, setSelectedEducation] =
     useState<EducationTypeCode | null>(null);
   const [selectedUniversity, setSelectedUniversity] =
@@ -34,21 +42,26 @@ const OnboardingPage = () => {
   const handleSelectionSubmit = () => {
     if (!isFormComplete) return;
 
-    // 서버 규격에 맞게 데이터 변환
     const requestBody = {
       educationLevel: selectedEducation,
-      universityId: selectedUniversity?.id ?? 0,
-      // Industry 매핑
-      firstIndustry: industry[1] ?? "",
-      secondIndustry: industry[2] ?? "",
-      thirdIndustry: industry[3] ?? "",
-      // Job 매핑
-      firstJob: job[1] ?? "",
-      secondJob: job[2] ?? "",
-      thirdJob: job[3] ?? "",
+      universityId: Number(selectedUniversity?.id ?? 0),
+
+      // 값이 빈 문자열("")이면 null로 변경
+      firstIndustry: labelToCodeIndustry(industry[1]),
+      secondIndustry: labelToCodeIndustry(industry[2]) || null,
+      thirdIndustry: labelToCodeIndustry(industry[3]) || null,
+
+      firstJob: labelToCodeJob(job[1]),
+      secondJob: labelToCodeJob(job[2]) || null,
+      thirdJob: labelToCodeJob(job[3]) || null,
     };
-    // TODO: api mutation 호출
+    // // TODO: api mutation 호출
     console.log("서버 전송 데이터:", requestBody);
+    mutate(requestBody, {
+      onSuccess: () => {
+        navigate(ROUTES.HOME);
+      },
+    });
   };
 
   return (
