@@ -48,7 +48,6 @@ export const topGroup = style({
   display: "flex",
   flexDirection: "column",
   alignItems: "flex-start",
-  gap: "1.6rem",
 });
 
 export const topRow = style({
@@ -65,6 +64,7 @@ export const dropdownWrap = style({
 export const titleRow = style({
   width: "100%",
   marginTop: "2.4rem",
+  marginBottom: "1.6rem",
 
   display: "flex",
   alignItems: "center",
