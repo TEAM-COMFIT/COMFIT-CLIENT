@@ -3,56 +3,75 @@ import { useQuery } from "@tanstack/react-query";
 import { api } from "@/shared/api/axios-instance";
 import { companyQueryKey } from "@/shared/api/config/query-key";
 
-// interface GetCompaniesParams {
-//   keyword: string;
-//   industry: string;
-//   scale: string;
-//   sort: string;
-//   page: number;
-//   inRequired: boolean;
-// }
+interface CompanyListItem {
+  id: number;
+  name: string;
+  industry: string;
+  scale: string;
+  logo: string;
+  photoUrl: string;
+}
 
-// export const getCompanies = async ({
-//   keyword,
-//   industry,
-//   scale,
-//   sort,
-//   page,
-//   inRequired,
-// }: GetCompaniesParams) => {
-//   const response = await api.companies.getCompanyList({
-//     keyword,
-//     industry,
-//     scale,
-//     sort,
-//     page,
-//     inRequired,
-//   });
-//   return response.result;
-// };
+interface CompanyResponseType {
+  content: CompanyListItem[];
+  currentPage: number;
+  totalPage: number;
+  totalElements: number;
+}
+interface GetCompaniesParams {
+  keyword?: string;
+  industry?: string;
+  scale?: string;
+  sort?: string;
+  page?: number;
+  isRecruited?: boolean;
+}
 
-// export const useGetCompanies = ({
-//   keyword,
-//   industry,
-//   scale,
-//   sort,
-//   page,
-//   inRequired,
-// }: GetCompaniesParams) => {
-//   return useQuery({
-//     queryKey: companyQueryKey.search(
-//       keyword,
-//       industry,
-//       scale,
-//       sort,
-//       page,
-//       inRequired
-//     ),
+export const getCompanies = async ({
+  keyword,
+  industry,
+  scale,
+  sort,
+  page,
+  isRecruited,
+}: GetCompaniesParams) => {
+  const response = await api.companies.getCompanyList({
+    keyword,
+    industry,
+    scale,
+    sort,
+    page,
+    isRecruited,
+  });
+  return response.result as unknown as CompanyResponseType;
+};
 
-//     // 2. API 호출 함수에도 동일한 파라미터를 전달합니다.
-//     queryFn: () => getCompanies(),
+export const useGetCompanies = ({
+  keyword,
+  industry,
+  scale,
+  sort,
+  page,
+  isRecruited,
+}: GetCompaniesParams) => {
+  return useQuery({
+    queryKey: companyQueryKey.search(
+      keyword,
+      industry,
+      scale,
+      sort,
+      page,
+      isRecruited
+    ),
 
-//     // 3. 필터링 데이터의 성격에 따라 캐싱 전략 설정
-//     staleTime: Infinity,
-//   });
-// };
+    queryFn: () =>
+      getCompanies({
+        keyword,
+        industry,
+        scale,
+        sort,
+        page,
+        isRecruited,
+      }),
+  });
+};
