@@ -50,8 +50,8 @@ const ExperienceListContainer = ({
           <img
             className={styles.emptyImage}
             src={ERROR}
-            alt=""
-            aria-hidden="true"
+            alt="등록된 경험이 없습니다"
+            aria-hidden="false"
           />
           <p className={styles.emptyTitle}>등록된 경험이 없습니다</p>
           <p className={styles.emptyDescription}>
