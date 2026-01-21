@@ -51,10 +51,10 @@ export const smallCards = style({
   gap: "1.6rem",
 });
 
-export const skeletonWrapper = style({
+export const emptyWrapper = style({
   display: "grid",
-  gridTemplateColumns: "1fr 1fr", // 실제 카드 그리드와 동일하게
+  gridTemplateColumns: "1fr 1fr",
   gap: "2rem",
   width: "100%",
-  minHeight: "45rem", // 실제 카드 높이와 동일하게 고정!
+  minHeight: "45rem",
 });

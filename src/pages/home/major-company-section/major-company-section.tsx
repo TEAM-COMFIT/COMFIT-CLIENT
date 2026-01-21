@@ -46,10 +46,9 @@ const MajorCompanySection = () => {
       </div>
 
       {/* 카드 영역 */}
-      {/* 2. 카드 영역의 높이를 고정하고, 데이터 교체 시 투명도만 조절 */}
       <div className={styles.cardGrid}>
         {isLoading && !data ? (
-          <div className={styles.skeletonWrapper}>로딩 중...</div> // 또는 빈 박스
+          <div className={styles.emptyWrapper}></div>
         ) : (
           <>
             <div className={styles.smallCards}>
