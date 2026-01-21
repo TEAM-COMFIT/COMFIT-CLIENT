@@ -13,7 +13,7 @@ const MajorCompanySection = () => {
   const { isLoggedIn } = useAuthStore();
   const [rank, setRank] = useState<number>(1);
   const { data, isLoading } = useGetMajorCompanies({ rank });
-
+  console.log("data:", data);
   // 1. 로딩 중이거나 데이터가 없으면 아무것도 보여주지 않음 (혹은 스켈레톤)
   if (isLoading || !data || data.length < 3) return null;
 

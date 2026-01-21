@@ -35,14 +35,17 @@ export const getCompanies = async ({
   page,
   isRecruited,
 }: GetCompaniesParams) => {
-  const response = await api.companies.getCompanyList({
-    keyword,
-    industry,
-    scale,
-    sort,
-    page,
-    isRecruited,
-  });
+  const response = await api.companies.getCompanyList(
+    {
+      keyword,
+      industry,
+      scale,
+      sort,
+      page,
+      isRecruited,
+    },
+    { secure: false }
+  );
   return response.result as unknown as CompanyResponseType;
 };
 
