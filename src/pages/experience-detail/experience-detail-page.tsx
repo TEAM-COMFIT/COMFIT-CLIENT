@@ -14,20 +14,20 @@ import { ModalBasic } from "@/shared/ui/modal/modal-basic";
 import type { ExperienceMode } from "@/features/experience-detail";
 
 interface ExperiencePageProps {
-  Mode: ExperienceMode;
+  mode: ExperienceMode;
 }
 
-const ExperienceDetailPage = ({ Mode }: ExperiencePageProps) => {
+const ExperienceDetailPage = ({ mode }: ExperiencePageProps) => {
   const { id: experienceId } = useParams<{ id: string }>();
-  const mode = useExperienceMode();
+  const currentMode = useExperienceMode();
   const { isOpen, confirmLeave, cancelLeave } = useLeaveConfirm();
 
   useLayoutEffect(() => {
-    initExperienceDetail(Mode, experienceId);
-  }, [Mode, experienceId]);
+    initExperienceDetail(mode, experienceId);
+  }, [mode, experienceId]);
 
   const content = (() => {
-    switch (mode) {
+    switch (currentMode) {
       case "view":
         return <ExperienceViewer />;
 

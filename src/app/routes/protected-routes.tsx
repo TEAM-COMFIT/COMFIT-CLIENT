@@ -20,15 +20,15 @@ export const protectedRoutes = [
   { path: ROUTES.EXPERIENCE, element: <ExperiencePage /> },
   {
     path: ROUTES.EXPERIENCE_CREATE,
-    element: <ExperienceDetailPage Mode="create" />,
+    element: <ExperienceDetailPage mode="create" />,
   },
   {
     path: ROUTES.EXPERIENCE_DETAIL(),
-    element: <ExperienceDetailPage Mode="view" />,
+    element: <ExperienceDetailPage mode="view" />,
   },
   {
     path: ROUTES.EXPERIENCE_EDIT(),
-    element: <ExperienceDetailPage Mode="edit" />,
+    element: <ExperienceDetailPage mode="edit" />,
   },
 
   { path: ROUTES.MYPAGE, element: <MyPage /> },
