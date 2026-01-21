@@ -1,12 +1,12 @@
 import { useState } from "react";
 
-import { useReportStore } from "@/app/store";
 import { IconJob } from "@/shared/assets/icons";
 import { Button, Tooltip } from "@/shared/ui";
 import { Textfield } from "@/shared/ui/textfield";
-import { HELP_TOOLTIP_CONTENT } from "@/shared/ui/tooltip/tooltip.content";
+import { GUIDE_TOOLTIP_CONTENT } from "@/shared/ui/tooltip/tooltip.content";
 
 import { FIELD_CONFIG } from "../../config/matching";
+import { useReportStore } from "../../report.store";
 
 import * as styles from "./company-detail.css";
 
@@ -51,8 +51,8 @@ export const CompanyDetail = ({ nextStep }: { nextStep: () => void }) => {
               <IconJob />
               <span>직무 설명(Job Description)</span>
             </label>
-            <Tooltip type="help" label="도움말">
-              {HELP_TOOLTIP_CONTENT}
+            <Tooltip type="guide" label="도움말">
+              {GUIDE_TOOLTIP_CONTENT}
             </Tooltip>
           </div>
           <Textfield

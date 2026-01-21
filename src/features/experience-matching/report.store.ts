@@ -21,12 +21,12 @@ interface Experience {
 
 export interface ReportState {
   currentStep: Step;
-  companyId: Company | null;
-  experienceId: Experience | null;
+  company: Company | null;
+  experience: Experience | null;
   jobDescription: string | "";
   setCurrentStep: (step: Step) => void;
-  setCompanyId: (company: Company) => void;
-  setExperienceId: (experience: Experience) => void;
+  setCompany: (company: Company) => void;
+  setExperience: (experience: Experience) => void;
   setJobDescription: (jd: string) => void;
   reset: () => void;
 }
@@ -35,18 +35,18 @@ export const useReportStore = create(
   persist<ReportState>(
     (set) => ({
       currentStep: "기업 선택",
-      companyId: null,
-      experienceId: null,
+      company: null,
+      experience: null,
       jobDescription: "",
       setCurrentStep: (step) => set({ currentStep: step }),
-      setCompanyId: (company) => set({ companyId: company }),
-      setExperienceId: (experience) => set({ experienceId: experience }),
+      setCompany: (company) => set({ company: company }),
+      setExperience: (experience) => set({ experience: experience }),
       setJobDescription: (jd) => set({ jobDescription: jd }),
       reset: () =>
         set({
           currentStep: "기업 선택",
-          companyId: null,
-          experienceId: null,
+          company: null,
+          experience: null,
           jobDescription: "",
         }),
     }),

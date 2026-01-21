@@ -1,8 +1,9 @@
 import { useState } from "react";
 
-import { useReportStore } from "@/app/store";
 import { formatDateWithDots } from "@/shared/lib";
 import { Button } from "@/shared/ui";
+
+import { useReportStore } from "../../report.store";
 
 import * as styles from "./select-experience.css";
 
@@ -53,49 +54,49 @@ export const SelectExperience = ({
   prevStep: () => void;
   nextStep: () => void;
 }) => {
-  const setExperienceId = useReportStore((state) => state.setExperienceId);
-  const experienceId = useReportStore((state) => state.experienceId);
-  const [select, setIsSelect] = useState<Experience | null>(experienceId);
+  const setExperience = useReportStore((state) => state.setExperience);
+  const experience = useReportStore((state) => state.experience);
+  const [isSelect, setIsSelect] = useState<Experience | null>(experience);
+
+  const totalElements = MOCK_EXPERIENCES.length;
 
   const handleSelectExperience = (card: Experience) => {
     setIsSelect(card);
   };
 
   const handleSubmit = () => {
-    if (select) {
-      setExperienceId(select);
+    if (isSelect) {
+      setExperience(isSelect);
       nextStep();
     }
   };
 
   return (
     <div className={styles.layout}>
-      <div>
-        <div className={styles.totalCount}>
-          총 경험&nbsp;<span className={styles.blueCount}>{0}</span>개
-        </div>
-        <section className={styles.box}>
-          {MOCK_EXPERIENCES.map((experience) => (
-            <div
-              key={experience.id}
-              className={styles.card({
-                isSelect: select ? select.id == experience.id : false,
-              })}
-              onClick={() => handleSelectExperience(experience)}
-            >
-              <div className={styles.cardTitle}>{experience.title}</div>
-              <div className={styles.cardDate}>
-                {formatDateWithDots(experience.updateAt)}
-              </div>
-            </div>
-          ))}
-        </section>
+      <div className={styles.totalCount}>
+        총 경험&nbsp;<span className={styles.blueCount}>{totalElements}</span>개
       </div>
+      <section className={styles.box}>
+        {MOCK_EXPERIENCES.map((experience) => (
+          <div
+            key={experience.id}
+            className={styles.card({
+              isSelect: isSelect ? isSelect.id == experience.id : false,
+            })}
+            onClick={() => handleSelectExperience(experience)}
+          >
+            <div className={styles.cardTitle}>{experience.title}</div>
+            <div className={styles.cardDate}>
+              {formatDateWithDots(experience.updateAt)}
+            </div>
+          </div>
+        ))}
+      </section>
       <div className={styles.buttonWrapper}>
         <Button variant="secondary" onClick={() => prevStep()}>
           이전단계
         </Button>
-        <Button onClick={handleSubmit} disabled={!select}>
+        <Button onClick={handleSubmit} disabled={!isSelect}>
           분석진행
         </Button>
       </div>

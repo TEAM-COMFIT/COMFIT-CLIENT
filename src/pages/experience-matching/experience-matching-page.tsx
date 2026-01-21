@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 
-import { useReportStore } from "@/app/store";
 import {
   useFunnel,
   ProgressBar,
@@ -9,12 +8,13 @@ import {
   SelectCompany,
   Analyzing,
   MatchingResult,
+  useReportStore,
 } from "@/features/experience-matching";
 import { ICONAI } from "@/shared/assets/images";
 
 import * as styles from "./experience-matching-page.css";
 
-import type { Step } from "@/shared/model/store/report.store";
+import type { Step } from "@/features/experience-matching/report.store";
 
 const STEP: Step[] = [
   "기업 선택",
@@ -43,8 +43,8 @@ const ExperienceMatchingPage = () => {
   }, [reset]);
 
   return (
-    <div className={styles.pageLayout({ isLast: currentStep == STEP[4] })}>
-      <main className={styles.container({ isFirst: currentStep == STEP[0] })}>
+    <div className={styles.pageLayout({ isLast: currentStep === STEP[4] })}>
+      <main className={styles.container({ isFirst: currentStep === STEP[0] })}>
         {/** 타이틀 */}
         {![STEP[0], STEP[4]].includes(currentStep) && (
           <div className={styles.titleContainer}>

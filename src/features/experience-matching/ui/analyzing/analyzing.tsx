@@ -1,17 +1,18 @@
 import { useEffect } from "react";
 
-import { useReportStore } from "@/app/store";
 import { LOADING } from "@/shared/assets/images";
+
+import { useReportStore } from "../../report.store";
 
 import * as styles from "./analyzing.css";
 
 export const Analyzing = ({ nextStep }: { nextStep: () => void }) => {
-  const { companyId, experienceId, jobDescription } = useReportStore();
+  const { company, experience, jobDescription } = useReportStore();
 
   // 서버 리퀘스트 데이터
   const requestData = {
-    companyId: companyId?.id,
-    experienceId: experienceId?.id,
+    company: company?.id,
+    experience: experience?.id,
     jobDescription: jobDescription,
   };
 

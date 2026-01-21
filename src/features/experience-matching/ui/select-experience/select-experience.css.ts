@@ -82,6 +82,7 @@ export const card = recipe({
 });
 
 export const cardTitle = style({
+  width: "13.4rem",
   color: themeVars.color.gray800,
   ...themeVars.fontStyles.body_b_16,
 });

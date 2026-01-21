@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 
-import { useReportStore } from "@/app/store";
 import { Modal, useModal } from "@/shared/ui";
 
+import { useReportStore } from "../../report.store";
 import { MatchingAutoComplete } from "../matching-auto-complete/matching-auto-complete";
 import { MOCK_AUTOCOMPLETE } from "../matching-auto-complete/mock";
 
@@ -11,15 +11,15 @@ import * as styles from "./select-company.css";
 import type { Company } from "../../type";
 
 export const SelectCompany = ({ onClick }: { onClick: () => void }) => {
-  const setCompanyId = useReportStore((state) => state.setCompanyId);
-  const companyId = useReportStore((state) => state.companyId);
+  const setCompany = useReportStore((state) => state.setCompany);
+  const company = useReportStore((state) => state.company);
   const { autoPlay, isOpen, handleModal } = useModal(3000); // 몇 초 뒤 닫히게 할 건지 정의
 
   const [inputValue, setInputValue] = useState(""); // 실시간 입력 상태
   const [searchKeyword, setSearchKeyword] = useState(""); // 디바운스된 키워드 상태
 
   const [selectedCompany, setSelectedCompany] = useState<Company | null>(
-    companyId
+    company
   );
 
   // TODO: 추후 API 연동
@@ -32,12 +32,12 @@ export const SelectCompany = ({ onClick }: { onClick: () => void }) => {
   useEffect(() => {
     if (prevIsOpen.current === true && isOpen === false) {
       if (selectedCompany) {
-        setCompanyId(selectedCompany); // 선택된 기업 데이터 저장
+        setCompany(selectedCompany); // 선택된 기업 데이터 저장
         onClick();
       }
     }
     prevIsOpen.current = isOpen;
-  }, [isOpen, selectedCompany, onClick, setCompanyId]);
+  }, [isOpen, selectedCompany, onClick, setCompany]);
 
   return (
     <div className={styles.layout}>

@@ -1,3 +1,6 @@
+// STORE
+export { useReportStore } from "./report.store";
+
 // MODEL
 export { useFunnel } from "./model/useFunnel";
 // UI
