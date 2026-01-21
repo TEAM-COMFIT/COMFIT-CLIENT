@@ -51,7 +51,7 @@ export {
   EXPERIENCE_MOCK,
   initExperienceDetail,
   resetExperienceDetail,
-} from "./model/use-init";
+} from "./model/init";
 
 export { validateExperienceDraft } from "./lib/validation";
 
