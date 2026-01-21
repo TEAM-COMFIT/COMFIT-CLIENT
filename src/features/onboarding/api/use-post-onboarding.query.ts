@@ -23,12 +23,9 @@ export const usePostOnboarding = () => {
   return useMutation({
     mutationFn: (data: OnboardingRequest) => postOnboarding(data),
 
-    onSuccess: () => {
-      console.log("온보딩 성공");
-    },
+    onSuccess: () => {},
     onError: (error) => {
       console.error("온보딩 실패:", error);
-      alert("다시 하여라");
     },
   });
 };

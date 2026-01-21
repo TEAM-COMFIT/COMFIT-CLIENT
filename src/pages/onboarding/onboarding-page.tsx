@@ -9,6 +9,7 @@ import { isOnboardingFormComplete } from "@/features/onboarding/lib/onboarding-f
 import { OnboardingLogo } from "@/shared/assets/images";
 import { labelToCodeIndustry } from "@/shared/config";
 import { Button } from "@/shared/ui";
+import { Alert } from "@/shared/ui/alert";
 
 import * as s from "./onboarding-page.css";
 import { SelectSection } from "./ui/select-section";
@@ -43,20 +44,17 @@ const OnboardingPage = () => {
     if (!isFormComplete) return;
 
     const requestBody = {
-      educationLevel: selectedEducation,
+      educationLevel: selectedEducation ?? undefined,
       universityId: Number(selectedUniversity?.id ?? 0),
 
-      // 값이 빈 문자열("")이면 null로 변경
       firstIndustry: labelToCodeIndustry(industry[1]),
-      secondIndustry: labelToCodeIndustry(industry[2]) || null,
-      thirdIndustry: labelToCodeIndustry(industry[3]) || null,
+      secondIndustry: labelToCodeIndustry(industry[2]) || undefined,
+      thirdIndustry: labelToCodeIndustry(industry[3]) || undefined,
 
       firstJob: labelToCodeJob(job[1]),
-      secondJob: labelToCodeJob(job[2]) || null,
-      thirdJob: labelToCodeJob(job[3]) || null,
+      secondJob: labelToCodeJob(job[2]) || undefined,
+      thirdJob: labelToCodeJob(job[3]) || undefined,
     };
-    // // TODO: api mutation 호출
-    console.log("서버 전송 데이터:", requestBody);
     mutate(requestBody, {
       onSuccess: () => {
         navigate(ROUTES.HOME);
