@@ -62,12 +62,17 @@ const ExperienceViewer = () => {
           <div className={s.topGroup}>
             <div className={s.topRow}>
               <Tag type="register">{typeLabel}</Tag>
-              <Tooltip type="guide" label="작성 가이드">
-                {GUIDE_TOOLTIP_CONTENT}
-              </Tooltip>
             </div>
 
-            <h1 className={s.viewerTitle}>{current.title}</h1>
+            <div className={s.titleRow}>
+              <h1 className={s.viewerTitle}>{current.title}</h1>
+
+              <div className={s.tooltipWrap}>
+                <Tooltip type="guide" label="작성 가이드">
+                  {GUIDE_TOOLTIP_CONTENT}
+                </Tooltip>
+              </div>
+            </div>
 
             <div className={s.dateRow}>
               <DatePicker

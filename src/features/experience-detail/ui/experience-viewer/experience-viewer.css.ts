@@ -44,9 +44,18 @@ export const topRow = style({
   justifyContent: "space-between",
 });
 
+export const titleRow = style({
+  width: "100%",
+  marginTop: "2.4rem",
+
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
+  gap: "2.4rem",
+});
+
 export const viewerTitle = style({
   margin: 0,
-  marginTop: "2.4rem",
   width: "100%",
   minHeight: "5.4rem",
   display: "flex",
@@ -58,6 +67,15 @@ export const viewerTitle = style({
   lineHeight: "5.4rem",
   letterSpacing: "-0.036rem",
   color: themeVars.color.gray900,
+
+  flex: 1,
+  minWidth: 0,
+});
+
+export const tooltipWrap = style({
+  display: "flex",
+  alignItems: "center",
+  flexShrink: 0,
 });
 
 export const dateRow = style({
