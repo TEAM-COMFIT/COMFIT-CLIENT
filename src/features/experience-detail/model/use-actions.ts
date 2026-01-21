@@ -158,8 +158,12 @@ export const useExperienceHeaderActions = () => {
   const mode = useExperienceMode();
   const current = useExperienceCurrent();
   const draft = useExperienceDraft();
-  const { setCurrentDefault, setMode, hydrateDraftFromCurrent } =
-    useExperienceActions();
+  const {
+    setCurrentDefault,
+    setMode,
+    hydrateDraftFromCurrent,
+    setIsTransitioning,
+  } = useExperienceActions();
 
   const deleteMutation = useDeleteExperienceMutation({
     onSuccess: () => {
@@ -198,11 +202,13 @@ export const useExperienceHeaderActions = () => {
   const onClickEdit = useCallback(() => {
     if (!current) return;
 
+    setIsTransitioning(true);
     setMode("edit");
     hydrateDraftFromCurrent();
 
     navigate(ROUTES.EXPERIENCE_EDIT(String(current.experienceId)));
-  }, [current, hydrateDraftFromCurrent, navigate, setMode]);
+    setIsTransitioning(false);
+  }, [current, hydrateDraftFromCurrent, navigate, setMode, setIsTransitioning]);
 
   const onClickDelete = useCallback(
     async (experienceId?: number) => {

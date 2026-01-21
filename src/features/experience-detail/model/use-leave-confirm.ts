@@ -37,12 +37,13 @@ export const useLeaveConfirm = () => {
     const currentMode = state.mode;
     const currentDraft = state.draft;
     const isSubmitting = state.isSubmitting;
+    const isTransitioning = state.isTransitioning;
 
     const shouldBlockNow =
       (currentMode === "create" || currentMode === "edit") &&
       isDraftDirty(currentDraft);
 
-    return shouldBlockNow && !isSubmitting;
+    return shouldBlockNow && !isSubmitting && !isTransitioning;
   });
 
   useEffect(() => {
