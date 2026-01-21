@@ -5,7 +5,7 @@ import { useModal } from "@/shared/ui/modal/use-modal";
 
 import { initialDraft, useExperienceDetailStore } from "../store/experience.store";
 
-import type { ExperienceUpsertBody } from "../types";
+import type { ExperienceUpsertBody } from "../types/experience-detail.types";
 
 const isDraftDirty = (draft: ExperienceUpsertBody): boolean => {
   return (

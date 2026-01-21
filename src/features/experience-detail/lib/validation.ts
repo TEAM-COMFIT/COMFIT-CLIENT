@@ -2,7 +2,7 @@ import { parseYMD } from "@/shared/lib/format-date";
 
 import { EXPERIENCE_MESSAGES } from "../config";
 
-import type { ExperienceUpsertBody } from "../types";
+import type { ExperienceUpsertBody } from "../types/experience-detail.types";
 
 type ValidationResult =
   | { ok: true }

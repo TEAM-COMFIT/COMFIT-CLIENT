@@ -1,6 +1,6 @@
 import { useExperienceDetailStore } from "../store/experience.store";
 
-import type { ExperienceEntity, ExperienceMode } from "../types";
+import type { ExperienceEntity, ExperienceMode } from "../types/experience-detail.types";
 
 export const EXPERIENCE_MOCK: ExperienceEntity = {
   experienceId: 1,

@@ -59,7 +59,7 @@ export type {
   ExperienceUpsertBody,
   ExperienceEntity,
   DefaultExperience,
-} from "./types";
+} from "./types/experience-detail.types";
 
 export {
   EXPERIENCE_MESSAGES,

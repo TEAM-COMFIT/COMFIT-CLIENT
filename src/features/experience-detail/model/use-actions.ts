@@ -15,7 +15,7 @@ import { useExperienceDetailStore } from "../store/experience.store";
 
 import { showDeleteError, showSaveError, showValidationError } from "./use-alert";
 
-import type { ExperienceEntity, ExperienceUpsertBody } from "../types";
+import type { ExperienceEntity, ExperienceUpsertBody } from "../types/experience-detail.types";
 
 // Mock ID 생성 (API 연동 전까지 임시 사용)
 const generateMockExperienceId = (): number => {

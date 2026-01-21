@@ -4,7 +4,7 @@ import {
   FILTER_EXPERIENCE_TYPE,
 } from "@/shared/config/experience";
 
-import type { ExperienceType } from "../types";
+import type { ExperienceType } from "../types/experience-detail.types";
 
 export const EXPERIENCE_TYPE_OPTIONS: Record<ExperienceType, string> =
   EXPERIENCE_TYPE;

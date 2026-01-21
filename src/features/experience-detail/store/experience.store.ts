@@ -5,7 +5,7 @@ import type {
   ExperienceEntity,
   ExperienceMode,
   ExperienceUpsertBody,
-} from "../types";
+} from "../types/experience-detail.types";
 
 const initialDraft: ExperienceUpsertBody = {
   title: "",

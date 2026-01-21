@@ -1,6 +1,8 @@
+import type { ExperienceTypeCode } from "@/shared/config/experience";
+
 export type ExperienceMode = "view" | "create" | "edit";
 
-export type ExperienceType = "PROJECT" | "INTERNSHIP" | "EDUCATION" | "ETC";
+export type ExperienceType = ExperienceTypeCode;
 
 export interface ExperienceUpsertBody {
   title: string;
