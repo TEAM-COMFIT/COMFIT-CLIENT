@@ -7,3 +7,8 @@ export {
   getCompanySuggestions,
 } from "./api/company-suggestion.query";
 export type { RecommendCompanyItem } from "./api/company-suggestion.query";
+
+export {
+  useGetCompanyDetail,
+  getCompanyDetail,
+} from "./api/company-detail.query";

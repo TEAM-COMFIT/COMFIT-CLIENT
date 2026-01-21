@@ -8,7 +8,6 @@ import {
   IconIssue,
   IconSummary,
 } from "@/shared/assets/icons/index.ts";
-import { KERORO } from "@/shared/assets/images/index.ts";
 import {
   getIndustryLabel,
   getScaleLabel,
@@ -29,10 +28,10 @@ type IssueItem = {
 type CompanyDetailSummary = {
   companyId: number;
   name: string;
-  status: string;
+  isRecruited?: boolean;
   logo: string;
-  industry: IndustryCode;
-  scale: ScaleCode;
+  industry?: IndustryCode;
+  scale?: ScaleCode;
   companyURL: string;
   summary: string;
   talentProfile: string;
@@ -50,22 +49,30 @@ const CompanyDetailSection = ({ companyData }: CompanyDetailSectionProps) => {
         <div className={styles.headerLeft}>
           <img
             className={styles.logo}
-            src={KERORO} // 임시 이미지
+            src={companyData.logo}
             alt={`${companyData.name} 로고`}
           />
 
           <div className={styles.headerMeta}>
             <div className={styles.nameRow}>
               <h1 className={styles.companyName}>{companyData.name}</h1>
-              <span className={styles.dot} aria-hidden="true" />
-              <span className={styles.hireStatus}>{companyData.status}</span>
+              {companyData.isRecruited ? (
+                <>
+                  <span className={styles.dot} aria-hidden="true" />
+                  <span className={styles.hireStatus}>채용중</span>
+                </>
+              ) : null}
             </div>
 
             <div className={styles.tagRow}>
-              <Tag type="secondary">
-                #{getIndustryLabel(companyData.industry)}
-              </Tag>
-              <Tag type="secondary">#{getScaleLabel(companyData.scale)}</Tag>
+              {companyData.industry ? (
+                <Tag type="secondary">
+                  #{getIndustryLabel(companyData.industry)}
+                </Tag>
+              ) : null}
+              {companyData.scale ? (
+                <Tag type="secondary">#{getScaleLabel(companyData.scale)}</Tag>
+              ) : null}
             </div>
           </div>
         </div>

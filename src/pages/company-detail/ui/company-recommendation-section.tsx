@@ -1,4 +1,3 @@
-import { KERORO } from "@/shared/assets/images/index";
 import { CompanyCard, RefreshButton } from "@/widgets";
 
 import * as styles from "./company-recommendation-section.css";
@@ -38,7 +37,7 @@ const CompanyRecommendationSection = ({
             <CompanyCard
               key={company.id}
               companyName={company.name}
-              logoUrl={company.logo || KERORO}
+              logoUrl={company.logo}
               id={company.id}
               industry={company.industry}
               scale={company.scale}
