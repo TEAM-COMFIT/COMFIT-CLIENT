@@ -3,9 +3,9 @@ import { Pagination } from "@/shared/ui";
 
 import * as styles from "./list-section.css";
 
-// import type { MatchingItemDto } from "@/features/matching-list/types/matching.type";
+import type { MatchingItemType } from "@/features/matching-list/types/matching.type";
 interface ListSectionProps {
-  matchingList: MatchingItemDto[];
+  matchingList: MatchingItemType[];
   totalPage: number;
   currentPage: number;
   onPageChange: (page: number) => void;
