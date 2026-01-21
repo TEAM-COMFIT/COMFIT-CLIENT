@@ -12,7 +12,7 @@ import type { GetMajorCompaniesData } from "@/features/home/api/major-companies.
 const MajorCompanySection = () => {
   const { isLoggedIn } = useAuthStore();
   const [rank, setRank] = useState<number>(1);
-  const { data, isLoading, isPlaceholderData } = useGetMajorCompanies({ rank });
+  const { data, isLoading } = useGetMajorCompanies({ rank });
 
   // 2. 레이아웃 배치를 위한 data 구조 분해 할당
   const safeData = data || [];
