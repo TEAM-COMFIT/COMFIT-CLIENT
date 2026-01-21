@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { ROUTES } from "@/app/routes/paths";
-import { Modal, ModalBasic, useModal } from "@/shared/ui";
+import { Button, Modal, useModal } from "@/shared/ui";
 
 import { useGetCompanyList } from "../../api/use-company-list.query";
 import { useGetExperience } from "../../api/use-experience.query";
@@ -34,10 +34,12 @@ export const SelectCompany = ({ onClick }: { onClick: () => void }) => {
 
   // 경험 등록 여부 확인 모달 오픈
   useEffect(() => {
-    if (data.totalElements === 0) {
-      alertModal.handleModal();
+    if (data?.totalElements === 0) {
+      if (!alertModal.isOpen) {
+        alertModal.openModal();
+      }
     }
-  });
+  }, [data, alertModal]);
 
   const { data: searchResults = [] } = useGetCompanyList(searchKeyword); // 기업 검색 API
 
@@ -66,13 +68,28 @@ export const SelectCompany = ({ onClick }: { onClick: () => void }) => {
         onSearch={handleModal}
       />
       {/** 경험 등록 여부 확인 모달 */}
-      <ModalBasic
-        isOpen={alertModal.isOpen}
-        onClose={() => navigate(ROUTES.HOME)}
-        onConfirm={() => navigate(ROUTES.EXPERIENCE_CREATE)}
-        title="아직 등록된 경험이 없습니다"
-        subTitle="지금 바로 경험을 등록하러 가볼까요?"
-      />
+      <Modal isOpen={alertModal.isOpen} onClose={alertModal.closeModal}>
+        <Modal.Content>
+          <Modal.Title>아직 등록된 경험이 없습니다</Modal.Title>
+          <Modal.SubTitle>지금 바로 경험을 등록하러 가볼까요?</Modal.SubTitle>
+        </Modal.Content>
+        <Modal.Buttons>
+          <Button
+            variant="secondary"
+            size="large"
+            onClick={() => navigate(ROUTES.HOME)}
+          >
+            나가기
+          </Button>
+          <Button
+            variant="primary"
+            size="large"
+            onClick={() => navigate(ROUTES.EXPERIENCE_CREATE)}
+          >
+            이동하기
+          </Button>
+        </Modal.Buttons>
+      </Modal>
       {/** 기업 선택 후, 대기 모달 */}
       <Modal autoPlay={autoPlay} isOpen={isOpen} onClose={handleModal}>
         <Modal.Content type="auto">
