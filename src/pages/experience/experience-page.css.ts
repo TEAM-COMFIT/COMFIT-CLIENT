@@ -59,6 +59,6 @@ export const registerButton = style({
 });
 
 export const icon = style({
-  width: "4.8rem",
-  height: "4.8rem",
+  width: "6.4rem",
+  height: "6.4rem",
 });

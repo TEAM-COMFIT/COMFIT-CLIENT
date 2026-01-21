@@ -3,8 +3,7 @@ import { Pagination } from "@/shared/ui";
 
 import * as styles from "./list-section.css";
 
-import type { MatchingItemDto } from "../matching-list-page";
-
+// import type { MatchingItemDto } from "@/features/matching-list/types/matching.type";
 interface ListSectionProps {
   matchingList: MatchingItemDto[];
   totalPage: number;
