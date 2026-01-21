@@ -59,67 +59,56 @@ const ExperienceViewer = () => {
 
       <section className={s.outerSection}>
         <div className={s.panel}>
-          <div className={s.card}>
-            <div className={s.innerColumn}>
-              <div className={s.topGroup}>
-                <div className={s.topRow}>
-                  <div className={s.tagWrap}>
-                    <Tag type="register">{typeLabel}</Tag>
-                  </div>
+          <div className={s.topGroup}>
+            <div className={s.topRow}>
+              <Tag type="register">{typeLabel}</Tag>
+              <Tooltip type="guide" label="작성 가이드">
+                {GUIDE_TOOLTIP_CONTENT}
+              </Tooltip>
+            </div>
 
-                  <div className={s.tooltipWrap}>
-                    <Tooltip type="guide" label="작성 가이드">
-                      {GUIDE_TOOLTIP_CONTENT}
-                    </Tooltip>
-                  </div>
-                </div>
+            <h1 className={s.viewerTitle}>{current.title}</h1>
 
-                <div className={s.titleBlock}>
-                  <h1 className={s.viewerTitle}>{current.title}</h1>
-                </div>
+            <div className={s.dateRow}>
+              <DatePicker
+                selectedDate={startDate}
+                onChangeSelectedDate={() => {}}
+                placeholder="시작일"
+                disabled
+              />
 
-                <div className={s.dateRow}>
-                  <DatePicker
-                    selectedDate={startDate}
-                    onChangeSelectedDate={() => {}}
-                    placeholder="시작일"
-                    disabled
-                  />
+              <span className={s.dateDash} aria-hidden="true">
+                —
+              </span>
 
-                  <span className={s.dateDash} aria-hidden="true">
-                    —
-                  </span>
+              <DatePicker
+                selectedDate={endDate}
+                onChangeSelectedDate={() => {}}
+                placeholder="종료일"
+                disabled
+              />
+            </div>
+          </div>
 
-                  <DatePicker
-                    selectedDate={endDate}
-                    onChangeSelectedDate={() => {}}
-                    placeholder="종료일"
-                    disabled
-                  />
-                </div>
-              </div>
+          <div className={s.starGroup}>
+            <div className={s.starField}>
+              <p className={s.starLabel}>Situation (상황)</p>
+              <Textfield type="situation" mode="view" value={current.situation} />
+            </div>
 
-              <div className={s.starGroup}>
-                <div className={s.starField}>
-                  <p className={s.starLabel}>Situation (상황)</p>
-                  <Textfield type="situation" mode="view" value={current.situation} />
-                </div>
+            <div className={s.starField}>
+              <p className={s.starLabel}>Task (과제)</p>
+              <Textfield type="task" mode="view" value={current.task} />
+            </div>
 
-                <div className={s.starField}>
-                  <p className={s.starLabel}>Task (과제)</p>
-                  <Textfield type="task" mode="view" value={current.task} />
-                </div>
+            <div className={s.starField}>
+              <p className={s.starLabel}>Action (행동)</p>
+              <Textfield type="action" mode="view" value={current.action} />
+            </div>
 
-                <div className={s.starField}>
-                  <p className={s.starLabel}>Action (행동)</p>
-                  <Textfield type="action" mode="view" value={current.action} />
-                </div>
-
-                <div className={s.starField}>
-                  <p className={s.starLabel}>Result (결과)</p>
-                  <Textfield type="result" mode="view" value={current.result} />
-                </div>
-              </div>
+            <div className={s.starField}>
+              <p className={s.starLabel}>Result (결과)</p>
+              <Textfield type="result" mode="view" value={current.result} />
             </div>
           </div>
         </div>

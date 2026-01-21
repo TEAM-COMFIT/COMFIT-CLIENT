@@ -21,25 +21,11 @@ export const panel = style({
 
   paddingTop: "8rem",
   paddingBottom: "21.2rem",
-});
+  paddingInline: "9rem",
 
-export const card = style({
-  width: "100%",
-  background: "transparent",
-  height: "auto",
-  minHeight: 0,
-
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "flex-start",
-});
-
-export const innerColumn = style({
-  width: "88rem",
   display: "flex",
   flexDirection: "column",
   alignItems: "flex-start",
-
   gap: "8rem",
 });
 
@@ -58,18 +44,9 @@ export const topRow = style({
   justifyContent: "space-between",
 });
 
-export const tagWrap = style({
-  display: "flex",
-  alignItems: "center",
-});
-
-export const titleBlock = style({
-  width: "100%",
-  marginTop: "2.4rem",
-});
-
 export const viewerTitle = style({
   margin: 0,
+  marginTop: "2.4rem",
   width: "100%",
   minHeight: "5.4rem",
   display: "flex",
@@ -93,11 +70,6 @@ export const dateDash = style({
   fontSize: "1.4rem",
   color: themeVars.color.gray400,
   lineHeight: "1",
-});
-
-export const tooltipWrap = style({
-  display: "flex",
-  alignItems: "center",
 });
 
 export const tooltipInner = style({
