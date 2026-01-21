@@ -1,4 +1,4 @@
-import { useLayoutEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import {
@@ -8,6 +8,8 @@ import {
   useExperienceMode,
   initExperienceDetail,
   useLeaveConfirm,
+  useGetExperienceDetail,
+  hydrateExperienceFromApi,
 } from "@/features/experience-detail";
 import { ModalBasic } from "@/shared/ui/modal/modal-basic";
 
@@ -22,9 +24,29 @@ const ExperienceDetailPage = ({ mode }: ExperiencePageProps) => {
   const currentMode = useExperienceMode();
   const { isOpen, confirmLeave, cancelLeave } = useLeaveConfirm();
 
+  const shouldFetch = mode !== "create" && Boolean(experienceId);
+  const { data, isLoading, isError } = useGetExperienceDetail({
+    experienceId: experienceId ? Number(experienceId) : 0,
+    enabled: shouldFetch,
+  });
+
   useLayoutEffect(() => {
     initExperienceDetail(mode, experienceId);
   }, [mode, experienceId]);
+
+  useEffect(() => {
+    if (data) {
+      hydrateExperienceFromApi(data);
+    }
+  }, [data]);
+
+  if (shouldFetch && isLoading) {
+    return null;
+  }
+
+  if (shouldFetch && isError) {
+    return <div>경험 데이터를 불러오는데 실패했습니다.</div>;
+  }
 
   const content = (() => {
     switch (currentMode) {
