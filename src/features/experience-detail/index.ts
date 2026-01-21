@@ -24,11 +24,9 @@ export {
   useDeleteExperience,
 } from "./model/use-actions";
 
-export {
-  formatToYMD,
-  parseYMD,
-  useExperienceDateField,
-} from "./lib/date-field";
+export { useExperienceDateField } from "./model/use-experience-date-field";
+
+export { formatDateDash, parseYMD } from "@/shared/lib/format-date";
 
 export {
   showExperienceError,

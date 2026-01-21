@@ -10,7 +10,7 @@ import {
   useExperienceDraft,
   useIsDraftDefault,
 } from "../../store/selectors";
-import { useExperienceDateField } from "../../lib/date-field";
+import { useExperienceDateField } from "../../model/use-experience-date-field";
 import { useExperienceSubmit, useExperienceHeaderActions } from "../../model/use-actions";
 
 import * as s from "./experience-form.css";

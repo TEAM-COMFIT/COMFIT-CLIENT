@@ -1,3 +1,4 @@
+import { parseYMD } from "@/shared/lib/format-date";
 import { ModalBasic, Tooltip } from "@/shared/ui";
 import { Button } from "@/shared/ui/button/button";
 import { useModal } from "@/shared/ui/modal/use-modal";
@@ -7,7 +8,6 @@ import { GUIDE_TOOLTIP_CONTENT } from "@/shared/ui/tooltip/tooltip.content";
 import { StickyHeader } from "@/widgets";
 
 import { EXPERIENCE_TYPE_OPTIONS } from "../../config";
-import { parseYMD } from "../../lib/date-field";
 import { useExperienceCurrent, useIsDraftDefault } from "../../store/selectors";
 import { useExperienceHeaderActions } from "../../model/use-actions";
 import { DatePicker } from "../date-picker/date-picker";

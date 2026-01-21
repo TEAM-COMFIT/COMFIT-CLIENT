@@ -1,6 +1,6 @@
-import { EXPERIENCE_MESSAGES } from "../config";
+import { parseYMD } from "@/shared/lib/format-date";
 
-import { parseYMD } from "./date-field";
+import { EXPERIENCE_MESSAGES } from "../config";
 
 import type { ExperienceUpsertBody } from "../types";
 
