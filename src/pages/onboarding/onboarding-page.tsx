@@ -29,6 +29,9 @@ const OnboardingPage = () => {
   const industry = useInterestSelectStore((s) => s.industry);
   const job = useInterestSelectStore((s) => s.job);
 
+  const [open, setOpen] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
+
   const isFormComplete = useMemo(
     () =>
       isOnboardingFormComplete({
@@ -58,6 +61,13 @@ const OnboardingPage = () => {
     mutate(requestBody, {
       onSuccess: () => {
         navigate(ROUTES.HOME);
+      },
+      onError: () => {
+        setErrorMsg("오류가 발생했습니다.");
+        setOpen(true);
+
+        // 3초 뒤 자동으로 닫히게 설정
+        setTimeout(() => setOpen(false), 3000);
       },
     });
   };
@@ -96,6 +106,16 @@ const OnboardingPage = () => {
           </div>
         </div>
       </div>
+      {open && (
+        <div className={s.alertFixedContainer}>
+          <Alert
+            variant="error"
+            title="Error"
+            description={errorMsg}
+            onClose={() => setOpen(false)}
+          />
+        </div>
+      )}
     </div>
   );
 };

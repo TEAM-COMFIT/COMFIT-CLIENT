@@ -117,3 +117,12 @@ export const buttonWrap = style({
   marginLeft: "auto",
   marginRight: "auto",
 });
+
+export const alertFixedContainer = style({
+  position: "fixed",
+  bottom: "2rem",
+  right: "2rem",
+  zIndex: 1000,
+  // 나타날 때 부드러운 애니메이션을 넣으면 더 좋습니다.
+  animation: "fade-in 0.3s ease-out",
+});
