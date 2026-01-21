@@ -27,7 +27,9 @@ export { default as POLARIS } from "./polaris.png";
 export { default as SARAMIN } from "./saramin.png";
 export { default as SK } from "./sk.png";
 
-export { default as ERROR } from "./error_img.png";
 export { default as LOADING } from "./loading-spinner.png";
+export { default as ICONAI } from "./icon_ai.png";
+
+export { default as ERROR } from "./error_img.png";
 
 export { default as PROFILE } from "./icon_profile.png";

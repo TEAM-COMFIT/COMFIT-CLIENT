@@ -17,7 +17,6 @@ const KakaoLoginPage = () => {
       navigate("/login", { replace: true });
       return;
     }
-
     const result = data.result || data;
     if (result && result.accessToken) {
       actions.login(result.accessToken);
