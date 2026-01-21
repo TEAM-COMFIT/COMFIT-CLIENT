@@ -9,6 +9,7 @@ export const pageWrapper = style({
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
+  paddingTop: themeVars.height.header,
 });
 
 export const contentContainer = style({
