@@ -9,6 +9,10 @@ export const EXPERIENCE_TYPE = {
 export type ExperienceTypeCode = keyof typeof EXPERIENCE_TYPE;
 export type ExperienceTypeLabel = (typeof EXPERIENCE_TYPE)[ExperienceTypeCode];
 
+export const getExperienceTypeLabel = (code: string) => {
+  return EXPERIENCE_TYPE[code as ExperienceTypeCode] ?? "알 수 없음";
+};
+
 export const EXPERIENCE_LABEL_TO_CODE: Record<
   ExperienceTypeLabel,
   ExperienceTypeCode
@@ -19,6 +23,12 @@ export const EXPERIENCE_LABEL_TO_CODE: Record<
   },
   {} as Record<ExperienceTypeLabel, ExperienceTypeCode>
 );
+
+export const getExperienceTypeCode = (
+  value: string
+): ExperienceTypeCode | null => {
+  return EXPERIENCE_LABEL_TO_CODE[value as ExperienceTypeLabel] ?? null;
+};
 
 export interface ExperienceFilterOption {
   id: number;
