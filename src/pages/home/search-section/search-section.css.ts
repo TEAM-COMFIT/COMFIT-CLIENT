@@ -81,27 +81,25 @@ export const toggle = style({
 export const companyGridStyle = style({
   display: "grid",
   gridTemplateColumns: "repeat(4, 1fr)",
-
   rowGap: "4rem",
   columnGap: "2rem",
-  paddingBottom: "3rem",
-
   width: "100%",
-  minHeight: "60rem",
-
+  minHeight: "64rem",
   alignContent: "start",
 });
 
-// 기존 코드 아래에 추가
 export const emptyState = style({
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
   justifyContent: "center",
   width: "100%",
-  minHeight: "60rem",
+  minHeight: "60rem", // 동일한 최소 높이
   gap: "2rem",
+  textAlign: "center",
+  paddingBottom: "3rem",
 });
+
 export const emptyTitle = style({
   color: themeVars.color.gray900,
   ...themeVars.fontStyles.hding_m_22,

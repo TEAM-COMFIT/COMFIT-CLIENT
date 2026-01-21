@@ -12,13 +12,11 @@ import type { GetMajorCompaniesData } from "@/features/home/api/major-companies.
 const MajorCompanySection = () => {
   const { isLoggedIn } = useAuthStore();
   const [rank, setRank] = useState<number>(1);
-  const { data, isLoading } = useGetMajorCompanies({ rank });
-  console.log("data:", data);
-  // 1. 로딩 중이거나 데이터가 없으면 아무것도 보여주지 않음 (혹은 스켈레톤)
-  if (isLoading || !data || data.length < 3) return null;
+  const { data, isLoading, isPlaceholderData } = useGetMajorCompanies({ rank });
 
-  // data 구조 분해 할당
-  const [first, second, third]: GetMajorCompaniesData[] = data;
+  // 2. 레이아웃 배치를 위한 data 구조 분해 할당
+  const safeData = data || [];
+  const [first, second, third]: GetMajorCompaniesData[] = safeData;
 
   const generateRank = () => {
     return Math.floor(Math.random() * 100) + 1;
@@ -48,29 +46,36 @@ const MajorCompanySection = () => {
       </div>
 
       {/* 카드 영역 */}
+      {/* 2. 카드 영역의 높이를 고정하고, 데이터 교체 시 투명도만 조절 */}
       <div className={styles.cardGrid}>
-        <div className={styles.smallCards}>
-          <MajorCompanyCard
-            id={first.id}
-            imgUrl={first.photoUrl}
-            companyName={first.name}
-            scale={first.scale}
-          />
-          <MajorCompanyCard
-            id={second.id}
-            imgUrl={second.photoUrl}
-            companyName={second.name}
-            scale={second.scale}
-          />
-        </div>
+        {isLoading && !data ? (
+          <div className={styles.skeletonWrapper}>로딩 중...</div> // 또는 빈 박스
+        ) : (
+          <>
+            <div className={styles.smallCards}>
+              <MajorCompanyCard
+                id={first?.id}
+                imgUrl={first?.photoUrl}
+                companyName={first?.name}
+                scale={first?.scale}
+              />
+              <MajorCompanyCard
+                id={second?.id}
+                imgUrl={second?.photoUrl}
+                companyName={second?.name}
+                scale={second?.scale}
+              />
+            </div>
 
-        <MajorCompanyCard
-          type="large"
-          id={third.id}
-          imgUrl={third.photoUrl}
-          companyName={third.name}
-          scale={third.scale}
-        />
+            <MajorCompanyCard
+              type="large"
+              id={third?.id}
+              imgUrl={third?.photoUrl}
+              companyName={third?.name}
+              scale={third?.scale}
+            />
+          </>
+        )}
       </div>
     </section>
   );

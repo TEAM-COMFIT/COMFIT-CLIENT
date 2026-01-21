@@ -18,7 +18,6 @@ export const getMajorCompanies = async ({ rank }: { rank: number }) => {
     { rank },
     { secure: false }
   );
-  console.log("토큰 없이 호출 결과:", response);
   return response.result as unknown as GetMajorCompaniesData[];
 };
 
@@ -26,5 +25,6 @@ export const useGetMajorCompanies = ({ rank }: { rank: number }) => {
   return useQuery({
     queryKey: companyQueryKey.major(rank),
     queryFn: () => getMajorCompanies({ rank }),
+    placeholderData: (previousData) => previousData,
   });
 };

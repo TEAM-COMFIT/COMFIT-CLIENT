@@ -25,7 +25,7 @@ const SearchSection = () => {
     page: 1,
     isRecruited: true,
   });
-  const { data } = useGetCompanies(params);
+  const { data, isLoading, isPlaceholderData } = useGetCompanies(params);
   const content = data?.content || [];
   const hasResult = content.length > 0;
   const [searchValue, setSearchValue] = useState("");
@@ -38,6 +38,11 @@ const SearchSection = () => {
       ...prev,
       ...patch,
     }));
+  };
+
+  const handlePageChange = (newPage: number) => {
+    if (isPlaceholderData) return;
+    updateParams({ page: newPage });
   };
 
   return (
@@ -97,7 +102,7 @@ const SearchSection = () => {
             />
           </div>
 
-          {hasResult ? (
+          {isLoading || hasResult ? (
             <>
               <div className={styles.companyGridStyle}>
                 {content.map(({ id, name, industry, scale, logo }) => (
@@ -114,7 +119,7 @@ const SearchSection = () => {
               <Pagination
                 currentPage={currentPage}
                 totalPage={data?.totalPage ?? 1}
-                onPageChange={(newPage) => updateParams({ page: newPage })}
+                onPageChange={handlePageChange}
               />
             </>
           ) : (

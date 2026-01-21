@@ -76,5 +76,6 @@ export const useGetCompanies = ({
         page,
         isRecruited,
       }),
+    placeholderData: (previousData) => previousData,
   });
 };
