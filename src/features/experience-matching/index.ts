@@ -15,3 +15,6 @@ export { Analyzing } from "./ui/analyzing/analyzing";
 
 export { MatchingResult } from "./ui/matching-result/matching-result";
 export { MatchingResultContent } from "./ui/matching-result/matching-result-content/matching-result-content";
+
+// API
+export { useGetExperience } from "./api/use-experience.query";

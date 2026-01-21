@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { ROUTES } from "@/app/routes/paths";
 import { Modal, ModalBasic, useModal } from "@/shared/ui";
 
+import { useGetExperience } from "../../api/use-experience.query";
 import { useReportStore } from "../../store/report.store";
 import { MatchingAutoComplete } from "../matching-auto-complete/matching-auto-complete";
 import { MOCK_AUTOCOMPLETE } from "../matching-auto-complete/mock";
@@ -14,26 +15,29 @@ import type { Company } from "../../type";
 
 export const SelectCompany = ({ onClick }: { onClick: () => void }) => {
   const navigate = useNavigate();
+  const { data } = useGetExperience(); // 경험 조회 API
+
+  /** Report 전역 상태  */
   const setCompany = useReportStore((state) => state.setCompany);
   const company = useReportStore((state) => state.company);
+
+  /** 모달 상태 관리 */
   const { autoPlay, isOpen, handleModal } = useModal(3000); // 몇 초 뒤 닫히게 할 건지 정의
   const alertModal = useModal(); // 경험 등록 여부 확인 모달
 
+  /** 입력 데이터 상태 관리 */
   const [inputValue, setInputValue] = useState(""); // 실시간 입력 상태
   const [searchKeyword, setSearchKeyword] = useState(""); // 디바운스된 키워드 상태
-
   const [selectedCompany, setSelectedCompany] = useState<Company | null>(
     company
   );
 
-  // 경험 등록 여부 확인 모달 오픈(임시)
+  // 경험 등록 여부 확인 모달 오픈
   useEffect(() => {
-    const timer = setTimeout(() => {
+    if (data.totalElements === 0) {
       alertModal.handleModal();
-    }, 0);
-
-    return () => clearTimeout(timer);
-  }, []);
+    }
+  });
 
   // 경험 등록 여부 확인 모달 닫기 이벤트 함수
   const handleCloseModal = (route: string) => {
