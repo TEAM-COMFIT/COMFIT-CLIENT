@@ -1,64 +1,25 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { ROUTES } from "@/app/routes/paths";
+import { useGetExperienctList } from "@/features/experience/api/use-experience-list.query";
 import { IconExp } from "@/shared/assets/icons";
-import { getExperienceTypeCode } from "@/shared/config/experience";
 import { ExperienceFilter } from "@/widgets";
 
-import { MOCK_EXPERIENCES } from "./experience-mock-data";
 import * as styles from "./experience-page.css";
 import { ExperienceListContainer } from "./ui/experience-list-container";
 
 import type { ExperienceTypeCode } from "@/shared/config/experience";
-const PAGE_SIZE = 6;
 
 const ExperiencePage = () => {
   const [filter, setFilter] = useState<ExperienceTypeCode | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const navigate = useNavigate();
 
-  // TODO: api 연동 후 삭제 예정
-  const experiences = MOCK_EXPERIENCES; // TODO: data?.result.content ?? []
-
-  const baseTotalElements = experiences.length;
-
-  const filteredAll = useMemo(() => {
-    if (!filter) return experiences;
-    return experiences.filter((experience) => {
-      const normalizedType = getExperienceTypeCode(experience.type);
-      return normalizedType === filter;
-    });
-  }, [experiences, filter]);
-
-  const totalElements = filteredAll.length;
-  const totalPage = Math.ceil(totalElements / PAGE_SIZE);
-  const safeCurrentPage =
-    totalPage === 0 ? 1 : Math.min(currentPage, totalPage);
-
-  const pagedExperiences = useMemo(() => {
-    const startIndex = (safeCurrentPage - 1) * PAGE_SIZE;
-    return filteredAll.slice(startIndex, startIndex + PAGE_SIZE);
-  }, [filteredAll, safeCurrentPage]);
-
-  const summaryResult = useMemo(
-    () => ({
-      content: pagedExperiences,
-      currentPage: safeCurrentPage,
-      totalPage,
-      totalElements,
-    }),
-    [pagedExperiences, safeCurrentPage, totalElements, totalPage]
-  );
-  const responseData = useMemo(
-    () => ({
-      errorCode: null,
-      message: "OK",
-      result: summaryResult,
-    }),
-    [summaryResult]
-  );
-  // const { data } = useExperienceListQuery("쿼리키", filter, currentPage);
+  const { data } = useGetExperienctList({
+    type: filter,
+    page: currentPage,
+  });
 
   const handleFilterChange = (value: ExperienceTypeCode | null) => {
     setFilter(value);
@@ -87,16 +48,10 @@ const ExperiencePage = () => {
           >
             경험 등록하기
           </button>
-          {baseTotalElements > 0 && (
-            <ExperienceFilter value={filter} onChange={handleFilterChange} />
-          )}
+          <ExperienceFilter value={filter} onChange={handleFilterChange} />
         </div>
       </section>
-
-      <ExperienceListContainer
-        data={responseData}
-        onPageChange={setCurrentPage}
-      />
+      <ExperienceListContainer data={data} onPageChange={setCurrentPage} />
     </div>
   );
 };
