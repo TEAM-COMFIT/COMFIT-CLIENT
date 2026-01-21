@@ -1,33 +1,50 @@
 import { useEffect, useId, useState } from "react";
 
+import { useOutsideClick } from "@/shared/model";
 import { Button } from "@shared/ui/button/button";
 import { Tag } from "@shared/ui/tag/tag";
 
-import * as styles from "./interest-select-base.css";
+import * as styles from "./interest-select.css";
 
 type Variant = "industry" | "job";
 
-interface InterestSelectBaseProps<T extends string> {
+interface InterestSelectProps<T extends string> {
   variant: Variant;
   title: string;
   required?: boolean;
   options: readonly T[];
+
+  selected: T | null;
+  onSelect: (value: T | null) => void;
+
+  disabledOptions?: readonly T[];
 }
 
 const OPEN_EVENT_NAME = "interest-select:open";
-
 let lockedInstanceId: string | null = null;
 
-export const InterestSelectBase = <T extends string>({
+export const InterestSelect = <T extends string>({
   variant,
   title,
   required = true,
   options,
-}: InterestSelectBaseProps<T>) => {
-  const instanceId = useId();
 
-  const [selected, setSelected] = useState<T | null>(null);
+  selected,
+  onSelect,
+  disabledOptions = [],
+}: InterestSelectProps<T>) => {
+  const instanceId = useId();
   const [isOpen, setIsOpen] = useState(false);
+
+  const [internalSelected, setInternalSelected] = useState<T | null>(selected);
+
+  // 메뉴가 열릴 때 부모의 최신 값을 내부 상태로 동기화
+  useEffect(() => {
+    if (isOpen) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setInternalSelected(selected);
+    }
+  }, [isOpen, selected]);
 
   useEffect(() => {
     const handler = (e: Event) => {
@@ -66,14 +83,19 @@ export const InterestSelectBase = <T extends string>({
 
   const closeAndUnlock = () => {
     setIsOpen(false);
-
-    if (lockedInstanceId === instanceId) {
-      lockedInstanceId = null;
-    }
+    if (lockedInstanceId === instanceId) lockedInstanceId = null;
   };
 
+  // 2. [선택 완료] 버튼 클릭 시 호출할 함수
+  const handleConfirm = () => {
+    onSelect(internalSelected); // 부모 상태 업데이트 (Tag 생성/변경)
+    closeAndUnlock(); // 메뉴 닫기
+  };
+
+  const menuRef = useOutsideClick<HTMLDivElement>(isOpen, closeAndUnlock);
+
   return (
-    <section className={styles.container} data-variant={variant}>
+    <section className={styles.container} data-variant={variant} ref={menuRef}>
       <div className={styles.boxWrapper}>
         <div className={styles.titleRow}>
           <span className={styles.title}>{title}</span>
@@ -93,11 +115,19 @@ export const InterestSelectBase = <T extends string>({
           }}
         >
           {selected ? (
-            <Tag xlabel onCancel={() => setSelected(null)}>
+            <Tag
+              xlabel
+              onCancel={() => {
+                onSelect(null);
+              }}
+            >
               {selected}
             </Tag>
           ) : (
-            <span className={styles.placeholder}>선택해주세요</span>
+            <span className={styles.placeholder}>
+              {variant === "industry" ? "관심 산업" : "관심 직무"}를 선택해
+              주세요
+            </span>
           )}
         </div>
 
@@ -105,23 +135,28 @@ export const InterestSelectBase = <T extends string>({
           <div className={styles.selectArea}>
             <div className={styles.gridContainer}>
               {options.map((opt) => {
-                const isSelected = selected === opt;
-                const hasSelected = Boolean(selected);
+                const isSelected = internalSelected === opt;
+                const isDisabled = !isSelected && disabledOptions.includes(opt);
+                const hasSelected = Boolean(internalSelected);
 
                 return (
                   <button
                     key={opt}
                     type="button"
+                    disabled={isDisabled}
                     className={styles.optionButton({
-                      state: isSelected
-                        ? "selected"
-                        : hasSelected
-                          ? "inactive"
-                          : "default",
+                      state: isDisabled
+                        ? "disabled"
+                        : isSelected
+                          ? "selected"
+                          : hasSelected
+                            ? "inactive"
+                            : "default",
                     })}
                     onClick={() => {
-                      if (isSelected) setSelected(null);
-                      else setSelected(opt);
+                      if (isDisabled) return;
+                      if (isSelected) setInternalSelected(null);
+                      else setInternalSelected(opt);
                     }}
                   >
                     {opt}
@@ -134,11 +169,8 @@ export const InterestSelectBase = <T extends string>({
               <Button
                 variant="primary"
                 size="medium"
-                disabled={!selected}
-                onClick={() => {
-                  if (!selected) return;
-                  closeAndUnlock();
-                }}
+                disabled={!internalSelected}
+                onClick={handleConfirm}
               >
                 선택 완료
               </Button>
