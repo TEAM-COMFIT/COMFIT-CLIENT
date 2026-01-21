@@ -36,10 +36,6 @@ const ExperienceListContainer = ({
 }: ExperienceListContainerProps) => {
   const { content, currentPage, totalPage, totalElements } = data.result;
   const navigate = useNavigate();
-  const handlePageChange = (page: number) => {
-    onPageChange(page);
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
 
   const isEmpty = content.length === 0;
 
@@ -92,7 +88,7 @@ const ExperienceListContainer = ({
           <Pagination
             currentPage={currentPage}
             totalPage={totalPage}
-            onPageChange={handlePageChange}
+            onPageChange={onPageChange}
           />
         </div>
       )}
