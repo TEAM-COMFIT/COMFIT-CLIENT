@@ -1,6 +1,8 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 
+import type { Item } from "@/shared/api/generate/http-client";
+
 export type Step =
   | "기업 선택"
   | "기업 정보 확인"
@@ -13,20 +15,14 @@ interface Company {
   name: string;
 }
 
-interface Experience {
-  id: number;
-  title: string;
-  updateAt: string;
-}
-
 export interface ReportState {
   currentStep: Step;
   company: Company | null;
-  experience: Experience | null;
+  experience: Item | null;
   jobDescription: string | "";
   setCurrentStep: (step: Step) => void;
   setCompany: (company: Company) => void;
-  setExperience: (experience: Experience) => void;
+  setExperience: (experience: Item) => void;
   setJobDescription: (jd: string) => void;
   reset: () => void;
 }
