@@ -1,10 +1,8 @@
 import { DatePicker } from "@/features/experience-detail/ui/date-picker/date-picker";
-import { Button, Dropdown, Tooltip } from "@/shared/ui";
+import { Button, Tooltip } from "@/shared/ui";
 import { Textfield } from "@/shared/ui/textfield/textfield";
 import { GUIDE_TOOLTIP_CONTENT } from "@/shared/ui/tooltip/tooltip.content";
-import { StickyHeader } from "@/widgets";
-
-import { EXPERIENCE_TYPE_LIST, EXPERIENCE_TYPE_OPTIONS } from "../../config";
+import { ExperienceFilter, StickyHeader } from "@/widgets";
 import {
   useExperienceActions,
   useExperienceDraft,
@@ -51,24 +49,10 @@ const ExperienceForm = () => {
                 <div className={s.topRow}>
                   {/* 경험 유형 드롭다운 */}
                   <div className={s.dropdownWrap}>
-                    <Dropdown type="medium">
-                      <Dropdown.Trigger>
-                        {draft.type
-                          ? EXPERIENCE_TYPE_OPTIONS[draft.type]
-                          : "경험종류"}
-                      </Dropdown.Trigger>
-
-                      <Dropdown.Menu>
-                        {EXPERIENCE_TYPE_LIST.map(({ code, label }) => (
-                          <Dropdown.Item
-                            key={code}
-                            onClick={() => setDraftField("type", code)}
-                          >
-                            {label}
-                          </Dropdown.Item>
-                        ))}
-                      </Dropdown.Menu>
-                    </Dropdown>
+                    <ExperienceFilter
+                      value={draft.type}
+                      onChange={(code) => setDraftField("type", code)}
+                    />
                   </div>
 
                   {/* 작성 가이드 툴팁 */}
