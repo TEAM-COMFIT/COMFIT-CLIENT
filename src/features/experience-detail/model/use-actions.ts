@@ -174,7 +174,8 @@ export const useExperienceHeaderActions = () => {
 
   const updateDefaultMutation = useUpdateExperienceDefault({
     onSuccess: (data) => {
-      setCurrentDefault(data.isDefault);
+      const newIsDefault = data?.isDefault ?? !current?.isDefault;
+      setCurrentDefault(newIsDefault);
     },
     onError: (error) => {
       showDefaultSettingError();

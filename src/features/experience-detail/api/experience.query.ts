@@ -57,7 +57,9 @@ export const updateExperience = async (
 export const updateExperienceDefault = async (
   experienceId: number
 ): Promise<UpdateDefaultResponse> => {
-  const response = await api.experiences.updateDefault(experienceId);
+  const response = await api.experiences.updateDefault(experienceId, {
+    format: "json",
+  });
   return response.result as UpdateDefaultResponse;
 };
 
