@@ -1,7 +1,7 @@
 import { DatePicker } from "@/features/experience-detail/ui/date-picker/date-picker";
 import { Button, Tooltip } from "@/shared/ui";
 import { Textfield } from "@/shared/ui/textfield/textfield";
-import { GUIDE_TOOLTIP_CONTENT } from "@/shared/ui/tooltip/tooltip.content";
+import { HELP_TOOLTIP_CONTENT } from "@/shared/ui/tooltip/tooltip.content";
 import { ExperienceFilter, StickyHeader } from "@/widgets";
 
 import {
@@ -10,7 +10,10 @@ import {
   useIsDraftDefault,
 } from "../../store/selectors";
 import { useExperienceDateField } from "../../model/use-experience-date-field";
-import { useExperienceSubmit, useExperienceHeaderActions } from "../../model/use-actions";
+import {
+  useExperienceSubmit,
+  useExperienceHeaderActions,
+} from "../../model/use-actions";
 
 import * as s from "./experience-form.css";
 
@@ -64,8 +67,8 @@ const ExperienceForm = () => {
                   />
 
                   <div className={s.tooltipWrap}>
-                    <Tooltip type="guide" label="작성 가이드">
-                      {GUIDE_TOOLTIP_CONTENT}
+                    <Tooltip type="help" label="도움말">
+                      {HELP_TOOLTIP_CONTENT}
                     </Tooltip>
                   </div>
                 </div>
