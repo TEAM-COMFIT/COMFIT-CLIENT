@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import { useGetCompanies } from "@/features/home/api/companies.query";
 import { ScaleFilter, IndustryFilter } from "@/features/home/ui";
@@ -21,11 +21,16 @@ interface CompanySearchParamsType {
 }
 
 const SearchSection = () => {
-  const [params, setParams] = useState<CompanySearchParamsType>({});
-  // TODO: 서버에서 받아오는 데이터(추후 해당 값으로 변경 필요) -> queryparams로 페이지네이션 처리
+  const [params, setParams] = useState<CompanySearchParamsType>({
+    page: 1,
+    isRecruited: true,
+  });
   const { data } = useGetCompanies(params);
-
+  const content = data?.content || [];
+  const hasResult = content.length > 0;
   const [searchValue, setSearchValue] = useState("");
+
+  const currentPage = params.page ?? 1;
 
   // 검색 query param 변경 핸들러
   const updateParams = (patch: Partial<CompanySearchParamsType>) => {
@@ -34,10 +39,6 @@ const SearchSection = () => {
       ...patch,
     }));
   };
-
-  useEffect(() => {
-    console.log("Search params changed:", params);
-  }, [params]);
 
   return (
     <>
@@ -76,42 +77,54 @@ const SearchSection = () => {
           <div className={styles.filterWrapper}>
             <IndustryFilter
               value={params.industry ?? null}
-              onChange={(industry) => updateParams({ industry })}
+              onChange={(industry) => updateParams({ industry, page: 1 })}
             />
 
             <ScaleFilter
               value={params.scale ?? null}
-              onChange={(scale) => updateParams({ scale })}
+              onChange={(scale) => updateParams({ scale, page: 1 })}
             />
 
-            <p className={styles.toggle}>총 {1}개 | 채용중인 기업만</p>
+            <p className={styles.toggle}>
+              총 {data?.totalElements ?? 0}개 | 채용중인 기업만
+            </p>
 
             <Toggle
               checked={params.isRecruited ?? true}
-              onCheckedChange={(isRecruited) => updateParams({ isRecruited })}
+              onCheckedChange={(isRecruited) =>
+                updateParams({ isRecruited, page: 1 })
+              }
             />
           </div>
 
-          {/* 카드 리스트 (mock) */}
-          <div className={styles.companyGridStyle}>
-            {data?.content?.map(({ id, name, industry, scale, logo }) => (
-              <CompanyCard
-                key={id}
-                id={id}
-                companyName={name}
-                industry={industry as IndustryCode}
-                scale={scale as ScaleCode}
-                logoUrl={logo}
+          {hasResult ? (
+            <>
+              <div className={styles.companyGridStyle}>
+                {content.map(({ id, name, industry, scale, logo }) => (
+                  <CompanyCard
+                    key={id}
+                    id={id}
+                    companyName={name}
+                    industry={industry as IndustryCode}
+                    scale={scale as ScaleCode}
+                    logoUrl={logo}
+                  />
+                ))}
+              </div>
+              <Pagination
+                currentPage={currentPage}
+                totalPage={data?.totalPage ?? 1}
+                onPageChange={(newPage) => updateParams({ page: newPage })}
               />
-            ))}
-          </div>
-
-          {/* 페이지네이션 */}
-          <Pagination
-            currentPage={data?.currentPage ?? 1}
-            totalPage={data?.totalPage ?? 1}
-            onPageChange={(page) => updateParams({ page })}
-          />
+            </>
+          ) : (
+            <div className={styles.emptyState}>
+              <p className={styles.emptyTitle}>검색 결과가 없습니다</p>
+              <p className={styles.emptyDescription}>
+                다른 키워드로 검색하거나 필터를 변경해 보세요.
+              </p>
+            </div>
+          )}
         </div>
       </section>
     </>
