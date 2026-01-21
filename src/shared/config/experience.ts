@@ -24,8 +24,10 @@ export const EXPERIENCE_LABEL_TO_CODE: Record<
   {} as Record<ExperienceTypeLabel, ExperienceTypeCode>
 );
 
-export const getExperienceTypeCode = (value: string): ExperienceTypeCode => {
-  return EXPERIENCE_LABEL_TO_CODE[value as ExperienceTypeLabel] ?? "";
+export const getExperienceTypeCode = (
+  value: string
+): ExperienceTypeCode | null => {
+  return EXPERIENCE_LABEL_TO_CODE[value as ExperienceTypeLabel] ?? null;
 };
 
 export interface ExperienceFilterOption {
