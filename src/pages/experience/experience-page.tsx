@@ -62,7 +62,7 @@ const ExperiencePage = () => {
   );
   // const { data } = useExperienceListQuery("쿼리키", filter, currentPage);
 
-  const handleFilterChange = (value: ExperienceTypeCode) => {
+  const handleFilterChange = (value: ExperienceTypeCode | null) => {
     setFilter(value);
     setCurrentPage(1);
   };
