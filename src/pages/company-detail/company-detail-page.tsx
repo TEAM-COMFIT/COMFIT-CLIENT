@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 
 import {
   useGetCompanyDetail,
-  useGetCompanySuggestions,
+  useGetCompanySuggestionsQuery,
 } from "@/features/company-detail";
 import { CompanyDetailSection } from "@/pages/company-detail/ui/company-detail-section";
 import { CompanyRecommendationSection } from "@/pages/company-detail/ui/company-recommendation-section";
@@ -43,7 +43,7 @@ const CompanyDetailPage = () => {
     data: recommendCompanies = [],
     refetch: refetchRecommendCompanies,
     isFetching: isRefreshing,
-  } = useGetCompanySuggestions(companyId);
+  } = useGetCompanySuggestionsQuery(companyId);
 
   const handleRefresh = () => {
     refetchRecommendCompanies();
