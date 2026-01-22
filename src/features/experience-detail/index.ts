@@ -68,12 +68,20 @@ export {
 export { useLeaveConfirm } from "./model/use-leave-confirm";
 
 export {
-  EXPERIENCE_MOCK,
+  useInitExperienceDetail,
+  useResetExperienceDetail,
   initExperienceDetail,
   resetExperienceDetail,
+} from "./model/use-init-experience-detail";
+
+export {
+  useHydrateExperienceFromApi,
   hydrateExperienceFromApi,
-  toExperienceEntity,
-} from "./model/init";
+} from "./model/use-hydrate-experience";
+
+export { toExperienceEntity } from "./lib/to-experience-entity";
+
+export { EXPERIENCE_MOCK } from "./config";
 
 export { validateExperienceDraft } from "./lib/validation";
 
