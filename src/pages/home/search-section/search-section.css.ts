@@ -83,5 +83,29 @@ export const companyGridStyle = style({
   gridTemplateColumns: "repeat(4, 1fr)",
   rowGap: "4rem",
   columnGap: "2rem",
+  width: "100%",
+  minHeight: "64rem",
+  alignContent: "start",
+});
+
+export const emptyState = style({
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
+  width: "100%",
+  minHeight: "60rem", // 동일한 최소 높이
+  gap: "2rem",
+  textAlign: "center",
   paddingBottom: "3rem",
+});
+
+export const emptyTitle = style({
+  color: themeVars.color.gray900,
+  ...themeVars.fontStyles.hding_m_22,
+});
+
+export const emptyDescription = style({
+  color: themeVars.color.gray500,
+  ...themeVars.fontStyles.body_m_16,
 });

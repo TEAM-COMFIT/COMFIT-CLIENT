@@ -68,10 +68,7 @@ const Dropdown = ({
         size: type,
       }}
     >
-      <div
-        ref={wrapperRef}
-        className={`${styles.dropdownWrapper} ${styles.dropdownAlign[type]}`}
-      >
+      <div ref={wrapperRef} className={`${styles.dropdownWrapper}`}>
         {children}
       </div>
     </DropdownContext.Provider>

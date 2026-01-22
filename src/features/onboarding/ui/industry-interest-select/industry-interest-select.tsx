@@ -1,0 +1,38 @@
+import {
+  useDisabledOptions,
+  useInterestActions,
+  useInterestSelection,
+} from "@/features/onboarding/store/interest-select/selectors";
+import { INDUSTRY_OPTIONS } from "@/shared/config";
+import { InterestSelect } from "@/shared/ui";
+
+import type { Priority } from "@/features/onboarding/store/interest-select/store";
+
+interface IndustryInterestSelectProps {
+  priority?: Priority;
+}
+
+export const IndustryInterestSelect = ({
+  priority = 1,
+}: IndustryInterestSelectProps) => {
+  const selected = useInterestSelection("industry", priority);
+  const disabledOptions = useDisabledOptions("industry", priority);
+  const { setSelection } = useInterestActions();
+  return (
+    <InterestSelect
+      variant="industry"
+      title={`${priority}순위 관심 산업`}
+      required={priority === 1}
+      options={INDUSTRY_OPTIONS}
+      selected={selected as (typeof INDUSTRY_OPTIONS)[number] | null}
+      disabledOptions={disabledOptions as (typeof INDUSTRY_OPTIONS)[number][]}
+      onSelect={(value) =>
+        setSelection({
+          variant: "industry",
+          priority,
+          value: value as string | null,
+        })
+      }
+    />
+  );
+};

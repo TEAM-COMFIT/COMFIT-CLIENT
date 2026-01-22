@@ -31,6 +31,9 @@ export const triggerFontColor = styleVariants({
   open: {
     color: themeVars.color.gray800,
   },
+  selected: {
+    color: themeVars.color.gray800,
+  },
 });
 /* ---------- Arrow Icon ---------- */
 export const arrowIcon = style({

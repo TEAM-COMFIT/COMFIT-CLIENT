@@ -14,7 +14,7 @@ import { useReportStore } from "../../store/report.store";
 import { MatchingResultContent } from "./matching-result-content/matching-result-content";
 import * as styles from "./matching-result.css";
 
-import type { CompanyDetail } from "@/pages/matching-detail/detail-section/detail-section";
+import type { matchingDetailType } from "./../../../matching-detail/types/matching-detail.type";
 
 export const MatchingResult = () => {
   const navigate = useNavigate();
@@ -27,7 +27,7 @@ export const MatchingResult = () => {
 
   const handleCopyClick = async (data: typeof report) => {
     try {
-      const formattedText = formatMatchingDetail(data as CompanyDetail);
+      const formattedText = formatMatchingDetail(data as matchingDetailType);
       await navigator.clipboard.writeText(formattedText);
 
       setIsCopied(true);

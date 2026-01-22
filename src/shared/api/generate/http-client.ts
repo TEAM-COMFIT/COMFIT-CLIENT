@@ -32,7 +32,8 @@ export interface OnBoardingRequestDTO {
     | "HIGH_SCHOOL"
     | "BACHELOR_STUDENT"
     | "BACHELOR"
-    | "MASTER_STUDENT";
+    | "MASTER_STUDENT"
+    | undefined;
   /** @example "IT" */
   firstIndustry:
     | "CONSUMER_GOODS"
@@ -43,7 +44,8 @@ export interface OnBoardingRequestDTO {
     | "FOOD"
     | "TRAVEL"
     | "FINANCE"
-    | "FITNESS";
+    | "FITNESS"
+    | undefined;
   /** @example "MEDIA_CONTENTS" */
   secondIndustry?:
     | "CONSUMER_GOODS"
@@ -54,7 +56,8 @@ export interface OnBoardingRequestDTO {
     | "FOOD"
     | "TRAVEL"
     | "FINANCE"
-    | "FITNESS";
+    | "FITNESS"
+    | undefined;
   /** @example "RETAIL" */
   thirdIndustry?:
     | "CONSUMER_GOODS"
@@ -65,7 +68,8 @@ export interface OnBoardingRequestDTO {
     | "FOOD"
     | "TRAVEL"
     | "FINANCE"
-    | "FITNESS";
+    | "FITNESS"
+    | undefined;
   /** @example "MARKETING_STRATEGY" */
   firstJob:
     | "MARKETING_STRATEGY"
@@ -78,7 +82,8 @@ export interface OnBoardingRequestDTO {
     | "CRM_MARKETING"
     | "PRODUCT_MARKETING"
     | "PARTNERSHIP_MARKETING"
-    | "GLOBAL_MARKETING";
+    | "GLOBAL_MARKETING"
+    | undefined;
   /** @example "BRAND_MARKETING" */
   secondJob?:
     | "MARKETING_STRATEGY"

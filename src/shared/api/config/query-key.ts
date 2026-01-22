@@ -20,6 +20,7 @@ export const experienceQueryKey = {
 export const meQueryKey = {
   all: () => ["me"],
   profile: () => [...meQueryKey.all(), "profile"], // 사용자 프로필 조회
+  onboarding: () => [...meQueryKey.all(), "onboarding"], // 온보딩 상태 조회
 };
 
 // AI-Report 관련 API (AI-Report)
@@ -44,12 +45,12 @@ export const companyQueryKey = {
   all: () => ["company"],
   keyword: (keyword: string) => [...companyQueryKey.all(), keyword], // 특정 키워드의 상세 조회
   search: (
-    keyword: string,
-    industry: string,
-    scale: string,
-    sort: string,
-    page: number,
-    inRequired: boolean
+    keyword?: string,
+    industry?: string,
+    scale?: string,
+    sort?: string,
+    page?: number,
+    isRecruited?: boolean
   ) => [
     ...companyQueryKey.all(),
     keyword,
@@ -57,9 +58,17 @@ export const companyQueryKey = {
     scale,
     sort,
     page,
-    inRequired,
+    isRecruited,
   ], // 기업 필터링 조회
-  detail: (companyId: number) => [...companyQueryKey.all(), companyId], // 기업 상세 조회
-  suggestion: (companyId: number) => [...companyQueryKey.all(), companyId], // 추천 기업 조회
-  major: (rank: number) => [...companyQueryKey.all(), rank], // 주요 기업 조회(홈)
+  detail: (companyId: number) => [
+    ...companyQueryKey.all(),
+    "detail",
+    companyId,
+  ], // 기업 상세 조회
+  suggestion: (companyId: number) => [
+    ...companyQueryKey.all(),
+    "suggestion",
+    companyId,
+  ], // 추천 기업 조회
+  major: (rank: number) => [...companyQueryKey.all(), "major", rank], // 주요 기업 조회(홈)
 };

@@ -1,12 +1,9 @@
 // 학력종류
 export const EDUCATION_TYPE = {
-  HIGH_SCHOOL: "고졸",
+  HIGH_SCHOOL: "고등학교 졸업",
   BACHELOR_STUDENT: "학사 재학",
   BACHELOR: "학사 졸업",
-  MASTER_STUDENT: "석사 재학",
-  MASTER: "석사 졸업",
-  DOCTOR_STUDENT: "박사 재학",
-  DOCTOR: "박사",
+  MASTER_STUDENT: "석사 이상",
 } as const;
 
 export type EducationTypeCode = keyof typeof EDUCATION_TYPE;

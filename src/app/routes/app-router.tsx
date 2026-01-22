@@ -7,6 +7,7 @@ import { protectedRoutes } from "./protected-routes";
 import { guestRoutes, publicRoutes } from "./public-routes";
 import { RootLayout } from "./root-layout";
 
+// import { useAuthStore } from "../store";
 export const router = createBrowserRouter([
   {
     path: "/",

@@ -3,7 +3,7 @@ export const JOB_TYPE = {
   BRAND_MARKETING: "브랜드마케팅",
   DIGITAL_MARKETING: "디지털마케팅",
   CONTENT_MARKETING: "콘텐츠마케팅",
-  VIRAL_MARKETING: "바이럴/인플루언서마케팅",
+  VIRAL_MARKETING: "바이럴마케팅",
   PERFORMANCE_MARKETING: "퍼포먼스마케팅",
   B2B_MARKETING: "B2B마케팅",
   CRM_MARKETING: "CRM마케팅",
@@ -46,3 +46,13 @@ export const FILTER_JOB_TYPE: JobFilterOption[] = Object.entries(JOB_TYPE).map(
 export const JOB_OPTIONS = FILTER_JOB_TYPE.map(
   (o) => o.label
 ) as JobTypeLabel[];
+
+export const labelToCodeJob = (
+  label: string | null | undefined
+): JobTypeCode | undefined => {
+  if (!label) return undefined;
+  if (label in JOB_LABEL_TO_CODE) {
+    return JOB_LABEL_TO_CODE[label as JobTypeLabel];
+  }
+  console.warn(`존재하지 않는 JobTypeLabel: ${label}`);
+};

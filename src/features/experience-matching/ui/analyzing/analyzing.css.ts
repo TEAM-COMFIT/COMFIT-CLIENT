@@ -1,11 +1,6 @@
-import { style, keyframes } from "@vanilla-extract/css";
+import { style } from "@vanilla-extract/css";
 
 import { themeVars } from "@/app/styles";
-
-const rotate = keyframes({
-  "0%": { transform: "rotate(0deg)" },
-  "100%": { transform: "rotate(360deg)" },
-});
 
 export const layout = style({
   display: "flex",

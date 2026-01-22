@@ -2,9 +2,6 @@ import { style } from "@vanilla-extract/css";
 import { recipe } from "@vanilla-extract/recipes";
 
 import { themeVars } from "@/app/styles";
-import { fontStyles } from "@shared/styles/font-style.css";
-import { shadow } from "@shared/styles/tokens/shadow.css";
-import { typography } from "@shared/styles/tokens/typography.css";
 
 export const container = style({
   display: "grid",
@@ -22,29 +19,24 @@ export const titleRow = style({
   marginBottom: "0.8rem",
 });
 
-export const title = style([
-  fontStyles.body_m_16,
-  {
-    fontWeight: typography.fontWeight.semibold,
-    color: themeVars.color.black,
-  },
-]);
+export const title = style({
+  color: themeVars.color.black,
+  ...themeVars.fontStyles.body_b_16,
+});
 
 export const asterisk = style({
-  fontSize: typography.fontSize[14],
-  fontWeight: typography.fontWeight.semibold,
-  lineHeight: "normal",
   color: themeVars.color.orange500,
+  ...themeVars.fontStyles.body_b_16,
 });
 
 export const inputBox = recipe({
   base: {
     width: "88rem",
     height: "6rem",
-    borderRadius: "16px",
+    borderRadius: "12px",
     padding: "1.4rem 1.6rem",
-    background: themeVars.color.gray100,
-    border: `1px solid ${themeVars.color.gray200}`,
+    background: themeVars.color.white,
+    border: `1.5px solid ${themeVars.color.normal}`,
     display: "flex",
     alignItems: "center",
     gap: "0.8rem",
@@ -60,12 +52,10 @@ export const inputBox = recipe({
   },
 });
 
-export const placeholder = style([
-  fontStyles.body_m_16,
-  {
-    color: themeVars.color.gray400,
-  },
-]);
+export const placeholder = style({
+  color: themeVars.color.gray400,
+  ...themeVars.fontStyles.body_m_16,
+});
 
 export const selectArea = style({
   position: "absolute",
@@ -76,7 +66,7 @@ export const selectArea = style({
   padding: "2.4rem",
   borderRadius: "12px",
   background: themeVars.color.white,
-  boxShadow: shadow.shadow1,
+  boxShadow: themeVars.shadow.shadow1,
 });
 
 export const gridContainer = style({
@@ -87,7 +77,6 @@ export const gridContainer = style({
 
 export const optionButton = recipe({
   base: [
-    fontStyles.body_m_16,
     {
       width: "16rem",
       height: "6rem",
@@ -104,6 +93,7 @@ export const optionButton = recipe({
       background: themeVars.color.gray100,
 
       color: themeVars.color.gray600,
+      ...themeVars.fontStyles.body_m_16,
     },
   ],
   variants: {

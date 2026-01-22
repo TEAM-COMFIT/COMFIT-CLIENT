@@ -17,7 +17,7 @@ const EducationSelect = ({ value, onChange }: EducationSelectProps) => {
 
   return (
     <Select>
-      <Select.Trigger>{triggerLabel}</Select.Trigger>
+      <Select.Trigger hasValue={value !== null}>{triggerLabel}</Select.Trigger>
 
       <Select.Menu>
         {FILTER_EDUCATION_TYPE.map((item) => (
