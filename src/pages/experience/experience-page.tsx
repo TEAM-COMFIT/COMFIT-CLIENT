@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { ROUTES } from "@/app/routes/paths";
-import { useGetExperienctList } from "@/features/experience/api/use-experience-list.query";
+import { useGetExperienceList } from "@/features/experience/api/use-experience-list.query";
 import { IconExp } from "@/shared/assets/icons";
 import { ExperienceFilter } from "@/widgets";
 
@@ -16,7 +16,7 @@ const ExperiencePage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const navigate = useNavigate();
 
-  const { data } = useGetExperienctList({
+  const { data } = useGetExperienceList({
     type: filter,
     page: currentPage,
   });

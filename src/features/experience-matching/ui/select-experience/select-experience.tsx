@@ -49,7 +49,7 @@ export const SelectExperience = ({
             <div
               key={experience.id}
               className={styles.card({
-                isSelect: isSelect ? isSelect.id == experience.id : false,
+                isSelect: isSelect ? isSelect.id === experience.id : false,
               })}
               onClick={() => handleSelectExperience(experience)}
             >

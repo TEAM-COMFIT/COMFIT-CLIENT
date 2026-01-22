@@ -6,7 +6,7 @@ import { experienceQueryKey } from "@/shared/api/config/query-key";
 import type { ExperienceList } from "../type/experience";
 import type { ExperienceTypeCode } from "@/shared/config";
 
-export const getExperienctList = async ({
+export const getExperienceList = async ({
   type,
   page,
 }: {
@@ -20,7 +20,7 @@ export const getExperienctList = async ({
   return response.result as unknown as ExperienceList;
 };
 
-export const useGetExperienctList = ({
+export const useGetExperienceList = ({
   type,
   page,
 }: {
@@ -29,6 +29,6 @@ export const useGetExperienctList = ({
 }) => {
   return useQuery({
     queryKey: experienceQueryKey.list(type ?? "", page),
-    queryFn: () => getExperienctList({ type: type ?? undefined, page }),
+    queryFn: () => getExperienceList({ type: type ?? undefined, page }),
   });
 };

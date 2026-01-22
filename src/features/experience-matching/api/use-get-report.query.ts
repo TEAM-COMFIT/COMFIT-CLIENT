@@ -3,8 +3,6 @@ import { useQuery } from "@tanstack/react-query";
 import { api } from "@/shared/api/axios-instance";
 import { aiReportsQueryKey } from "@/shared/api/config/query-key";
 
-//import type { matchingDetailType } from "../types/matching-detail.type";
-
 export interface matchingDetailType {
   companyName: string;
   experienceTitle: string;

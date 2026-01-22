@@ -20,7 +20,7 @@ export interface ReportState {
   company: Company | null;
   experience: Item | null;
   jobDescription: string | "";
-  reportId: number | 0;
+  reportId: number;
   setCurrentStep: (step: Step) => void;
   setCompany: (company: Company) => void;
   setExperience: (experience: Item) => void;

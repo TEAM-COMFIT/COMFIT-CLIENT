@@ -8,7 +8,7 @@ import { useGetProfile } from "@/features/my-page";
 import { IconCopy, IconCheckOn } from "@/shared/assets/icons";
 import { Button } from "@/shared/ui";
 
-import { useGetAiReport } from "../../api/use-get-aiReport.query";
+import { useGetAiReport } from "../../api/use-get-report.query";
 import { useReportStore } from "../../store/report.store";
 
 import { MatchingResultContent } from "./matching-result-content/matching-result-content";
@@ -72,7 +72,7 @@ export const MatchingResult = () => {
         </div>
 
         {/* 서버에서 받아온 데이터를 객체 전달 */}
-        <MatchingResultContent data={report} />
+        {report && <MatchingResultContent data={report} />}
         <div className={styles.footer}>
           <div className={styles.footerTitle}>
             <p className={styles.subTitle}>매칭 결과가 저장되었어요!</p>

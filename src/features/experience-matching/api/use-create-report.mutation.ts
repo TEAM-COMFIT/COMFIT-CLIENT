@@ -9,8 +9,8 @@ export const createReport = async (data: MatchExperienceRequestDto) => {
   return response.result;
 };
 
-export const useCreateReport = (data: MatchExperienceRequestDto) => {
+export const useCreateReport = () => {
   return useMutation({
-    mutationFn: () => createReport(data),
+    mutationFn: (data: MatchExperienceRequestDto) => createReport(data),
   });
 };

@@ -44,7 +44,7 @@ export const CompanyDetail = ({ nextStep }: { nextStep: () => void }) => {
                       <a
                         href={value as string}
                         target="_blank"
-                        rel="noreferrer"
+                        rel="noopener noreferrer"
                       >
                         {displayValue}
                       </a>

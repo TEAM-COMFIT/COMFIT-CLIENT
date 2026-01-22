@@ -21,3 +21,4 @@ export { useGetExperience } from "./api/use-experience.query";
 export { useGetCompanyList } from "./api/use-company-list.query";
 export { useGetCompanyDetail } from "./api/use-company-detail.query";
 export { useCreateReport } from "./api/use-create-report.mutation";
+export { useGetAiReport } from "./api/use-get-report.query";
