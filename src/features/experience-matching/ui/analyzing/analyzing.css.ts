@@ -6,6 +6,7 @@ export const layout = style({
   display: "flex",
   width: "106rem",
   height: "39.2rem",
+  marginTop: "4.3rem",
   padding: "1.6rem 0.4rem",
   flexDirection: "column",
   justifyContent: "center",

@@ -24,7 +24,7 @@ export const headerLayout = style({
   ...screen.mobile({
     position: "relative",
     height: themeVars.height.mobile_header,
-    padding: "5.8rem 0 1.1rem 1.6rem",
+    padding: "1.6rem 0 1.1rem 1.6rem",
   }),
 });
 
@@ -99,6 +99,10 @@ export const menu = recipe({
 export const profile = style({
   ...flexCenter,
   gap: "2rem",
+
+  ...screen.mobile({
+    display: "none",
+  }),
 });
 
 export const iconLink = style({
@@ -121,8 +125,5 @@ export const name = style([
     border: `1px solid ${themeVars.color.normal}`,
     borderRadius: "8px",
     ...themeVars.fontStyles.body_m_16,
-    ...screen.mobile({
-      display: "none",
-    }),
   },
 ]);

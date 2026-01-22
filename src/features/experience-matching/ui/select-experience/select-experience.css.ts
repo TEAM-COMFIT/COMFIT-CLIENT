@@ -10,7 +10,7 @@ export const layout = style({
 export const totalCount = style({
   marginBottom: "0.8rem",
   color: themeVars.color.gray800,
-  ...themeVars.fontStyles.body_b_14,
+  ...themeVars.fontStyles.body_b_16,
 });
 
 export const blueCount = style({
@@ -22,11 +22,12 @@ export const box = style({
   gridTemplateColumns: "repeat(3, 1fr)",
   alignContent: "start",
   gridAutoRows: "max-content",
-  gap: "1.6rem",
+  gap: "1.3rem",
   width: "106rem",
   height: "39.2rem",
-  padding: "1.6rem 0.2rem 1.6rem 2rem",
+  padding: "1.6rem 4rem 1.6rem 4rem",
 
+  overflowX: "hidden",
   overflowY: "auto",
   borderRadius: "16px",
   border: `1.5px ${themeVars.color.normal} solid`,

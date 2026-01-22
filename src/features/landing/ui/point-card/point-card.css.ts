@@ -40,7 +40,11 @@ export const container = style({
 export const header = style({
   display: "flex",
   flexDirection: "column",
-  textAlign: "center",
+  textAlign: "left",
+
+  ...screen.mobile({
+    textAlign: "center",
+  }),
 });
 
 export const title = style({
