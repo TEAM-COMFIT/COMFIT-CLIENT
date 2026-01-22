@@ -2,22 +2,19 @@ import { useCallback, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { ROUTES } from "@/app/routes/paths";
-
-import {
-  useCreateExperience,
-  useUpdateExperience,
-  useDeleteExperience as useDeleteExperienceMutation,
-  useUpdateExperienceDefault,
-} from "../api";
-import { DEFAULT_BUTTON_LABELS } from "../config";
-import { validateExperienceDraft } from "../lib/validation";
-import { useExperienceDetailStore } from "../store/experience.store";
+import { useCreateExperience } from "@/features/experience-detail/api/use-create-experience.query";
+import { useDeleteExperience as useDeleteExperienceMutation } from "@/features/experience-detail/api/use-delete-experience.query";
+import { useUpdateExperienceDefault } from "@/features/experience-detail/api/use-update-experience-default.query";
+import { useUpdateExperience } from "@/features/experience-detail/api/use-update-experience.query";
+import { DEFAULT_BUTTON_LABELS } from "@/features/experience-detail/config";
+import { validateExperienceDraft } from "@/features/experience-detail/lib/validation";
+import { useExperienceDetailStore } from "@/features/experience-detail/store/experience.store";
 import {
   useExperienceActions,
   useExperienceCurrent,
   useExperienceDraft,
   useExperienceMode,
-} from "../store/use-experience-hooks";
+} from "@/features/experience-detail/store/use-experience-hooks";
 
 import {
   showDefaultSettingError,

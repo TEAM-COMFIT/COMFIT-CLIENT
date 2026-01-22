@@ -1,9 +1,9 @@
 import { useCallback } from "react";
 
-import { toExperienceEntity } from "../lib/to-experience-entity";
-import { useExperienceDetailStore } from "../store/experience.store";
+import { toExperienceEntity } from "@/features/experience-detail/lib/to-experience-entity";
+import { useExperienceDetailStore } from "@/features/experience-detail/store/experience.store";
 
-import type { GetExperienceDetailResponse } from "../api";
+import type { GetExperienceDetailResponse } from "@/features/experience-detail/api/use-get-experience-detail.query";
 
 export const useHydrateExperienceFromApi = () => {
   const { setCurrent, setDefaultExperienceId, hydrateDraftFromCurrent } =

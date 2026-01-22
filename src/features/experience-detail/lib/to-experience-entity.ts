@@ -1,5 +1,5 @@
-import type { GetExperienceDetailResponse } from "../api";
-import type { ExperienceEntity } from "../types/experience-detail.types";
+import type { GetExperienceDetailResponse } from "@/features/experience-detail/api/use-get-experience-detail.query";
+import type { ExperienceEntity } from "@/features/experience-detail/types/experience-detail.types";
 
 export const toExperienceEntity = (
   response: GetExperienceDetailResponse
