@@ -57,6 +57,7 @@ export const menu = style({
   boxShadow: "0 0 8px rgba(0, 0, 0, 0.1)",
 
   zIndex: themeVars.zIndex.dropdownMenu,
+  left: 0,
 });
 
 /* ---------- Menu size ---------- */
@@ -64,20 +65,6 @@ export const menuSize = styleVariants({
   medium: { width: "14.4rem" },
   large: { width: "15rem" },
   full: { width: "20rem" },
-});
-
-/* ---------- Menu alignment ---------- */
-export const menuAlign = styleVariants({
-  medium: {
-    right: 0,
-    left: "auto",
-  },
-  large: {
-    left: 0,
-  },
-  full: {
-    left: 0,
-  },
 });
 
 /* ---------- Item ---------- */

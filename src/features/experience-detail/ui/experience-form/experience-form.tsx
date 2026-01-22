@@ -52,6 +52,7 @@ const ExperienceForm = () => {
                     <ExperienceFilter
                       value={draft.type}
                       onChange={(code) => setDraftField("type", code)}
+                      hasTotal={false}
                     />
                   </div>
                 </div>

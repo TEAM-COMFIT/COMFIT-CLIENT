@@ -97,10 +97,7 @@ const Menu = ({ children }: { children: ReactNode }) => {
   if (!isOpen) return null;
 
   return (
-    <ul
-      role="menu"
-      className={`${styles.menu} ${styles.menuSize[size]} ${styles.menuAlign[size]}`}
-    >
+    <ul role="menu" className={`${styles.menu} ${styles.menuSize[size]}`}>
       {children}
     </ul>
   );
