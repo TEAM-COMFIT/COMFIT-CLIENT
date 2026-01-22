@@ -72,7 +72,6 @@ const DatePicker = ({
     value: tempDate,
     activeStartDate: tempDate,
     minDate: minDate ?? undefined,
-    maxDate: tempDate,
 
     // calendar 타입 설정
     view: "month",
