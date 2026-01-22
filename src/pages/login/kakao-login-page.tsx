@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import { useAuthStore } from "@/app/store";
 import { useLogin } from "@/features/login/api/use-login.query";
+import { KEY_SPINNER } from "@/shared/assets/gifs";
 
 const KakaoLoginPage = () => {
   const navigate = useNavigate();
@@ -26,7 +27,12 @@ const KakaoLoginPage = () => {
     }
   }, [data, navigate, actions, code]);
 
-  return <></>;
+  return (
+    <div>
+      <img src={KEY_SPINNER} alt="로딩중" />
+      <div>잠시만 기다려주세요</div>
+    </div>
+  );
 };
 
 export { KakaoLoginPage };
