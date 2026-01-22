@@ -6,14 +6,14 @@ import type { RecommendCompanyItem } from "@/features/company-detail";
 
 interface CompanyRecommendationSectionProps {
   companyName: string;
-  recommendCompanies: RecommendCompanyItem[];
+  recommendCompanies?: RecommendCompanyItem[];
   onRefresh?: () => void;
   isRefreshing?: boolean;
 }
 
 const CompanyRecommendationSection = ({
   companyName,
-  recommendCompanies,
+  recommendCompanies = [],
   onRefresh,
   isRefreshing = false,
 }: CompanyRecommendationSectionProps) => {
@@ -33,17 +33,16 @@ const CompanyRecommendationSection = ({
         </div>
 
         <div className={styles.companyCardGrid}>
-          {recommendCompanies &&
-            recommendCompanies?.map((company) => (
-              <CompanyCard
-                key={company.id}
-                companyName={company.name}
-                logoUrl={company.logo}
-                id={company.id}
-                industry={company.industry}
-                scale={company.scale}
-              />
-            ))}
+          {recommendCompanies?.map((company) => (
+            <CompanyCard
+              key={company.id}
+              companyName={company.name}
+              logoUrl={company.logo}
+              id={company.id}
+              industry={company.industry}
+              scale={company.scale}
+            />
+          ))}
         </div>
       </div>
     </section>
