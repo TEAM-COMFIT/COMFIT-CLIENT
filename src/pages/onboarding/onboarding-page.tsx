@@ -71,7 +71,6 @@ const OnboardingPage = () => {
         setErrorMsg(serverMessage);
         setOpen(true);
 
-        // 3초 뒤 자동으로 닫히게 설정
         setTimeout(() => setOpen(false), 3000);
       },
     });
