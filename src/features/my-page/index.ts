@@ -1,2 +1,2 @@
-export { useGetProfile } from "./api/my-profile.query";
-export { useLogout } from "./api/use-logout.mutation";
+export { useGetProfile } from "./api/use-get-my-profile.query";
+export { useLogout } from "./api/use-post-logout.mutation";
