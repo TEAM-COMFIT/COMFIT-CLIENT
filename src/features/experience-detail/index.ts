@@ -90,7 +90,7 @@ export {
 
 export { toExperienceEntity } from "./lib/to-experience-entity";
 
-export { EXPERIENCE_MOCK } from "./config";
+export { EXPERIENCE_MOCK } from "./config/experience-mock";
 
 export { validateExperienceDraft } from "./lib/validation";
 
@@ -102,4 +102,4 @@ export type {
   DefaultExperience,
 } from "./types/experience-detail.types";
 
-export { EXPERIENCE_MESSAGES, DEFAULT_BUTTON_LABELS } from "./config";
+export { EXPERIENCE_MESSAGES, DEFAULT_BUTTON_LABELS } from "./config/messages";
