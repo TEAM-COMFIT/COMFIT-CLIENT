@@ -25,6 +25,7 @@ export interface DatePickerProps {
 
   placeholder?: string;
   minDate?: Date | null;
+  maxDate?: Date | null;
 }
 
 const DatePicker = ({
@@ -34,6 +35,7 @@ const DatePicker = ({
   placeholder,
   disabled = false,
   minDate,
+  maxDate,
 }: DatePickerProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const close = () => setIsOpen(false);
@@ -72,6 +74,7 @@ const DatePicker = ({
     value: tempDate,
     activeStartDate: tempDate,
     minDate: minDate ?? undefined,
+    maxDate: maxDate ?? undefined,
 
     // calendar 타입 설정
     view: "month",
