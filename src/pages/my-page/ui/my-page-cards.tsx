@@ -7,6 +7,7 @@ import {
 
 import * as styles from "./my-page-cards.css";
 
+import type { GetMeResponseDto } from "@/shared/api/generate/http-client";
 import type { HTMLAttributes } from "react";
 
 type CardType = keyof typeof styles.boxType;
@@ -38,21 +39,13 @@ const Card = ({
   );
 };
 
-export interface MyPageCardsProps {
-  name: string;
-  email: string;
-  educationLevel: string;
-  firstIndustry: string;
-  firstJob: string;
-}
-
 const MyPageCards = ({
   name,
   email,
   educationLevel,
   firstIndustry,
-  firstJob,
-}: MyPageCardsProps) => {
+  fistJob,
+}: GetMeResponseDto) => {
   return (
     <div className={styles.wrapper}>
       <Card type="large" as="section" aria-label="유저 기본 정보">
@@ -82,7 +75,7 @@ const MyPageCards = ({
 
         <Card type="medium">
           <h2 className={styles.mediumTitle}>관심직무</h2>
-          <p className={styles.mediumBody}>{getJobLabel(firstJob)}</p>
+          <p className={styles.mediumBody}>{getJobLabel(fistJob)}</p>
         </Card>
 
         <Card
