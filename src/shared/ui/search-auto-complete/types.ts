@@ -7,7 +7,7 @@ export type SearchAutocompleteVariant =
 
 export type SearchItem = {
   id: string;
-  label: string;
+  name: string;
 };
 
 export type FetchItems = (query: string) => Promise<SearchItem[]>;

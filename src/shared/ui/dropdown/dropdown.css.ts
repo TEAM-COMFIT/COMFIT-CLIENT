@@ -7,19 +7,7 @@ export const dropdownWrapper = style({
   position: "relative",
   display: "inline-flex",
   flexDirection: "column",
-});
-
-/* ---------- Trigger alignment ---------- */
-export const dropdownAlign = styleVariants({
-  medium: {
-    alignItems: "flex-end",
-  },
-  large: {
-    alignItems: "flex-start",
-  },
-  full: {
-    alignItems: "flex-start",
-  },
+  alignItems: "flex-start",
 });
 
 /* ---------- Trigger ---------- */
@@ -35,6 +23,7 @@ export const trigger = style({
   backgroundColor: themeVars.color.white,
   border: `1.5px solid ${themeVars.color.normal}`,
   borderRadius: "12px",
+  whiteSpace: "nowrap",
 
   ...themeVars.fontStyles.body_r_16,
 });

@@ -21,8 +21,9 @@ declare module "axios" {
 export const axiosInstance = axios.create({
   baseURL: `${SERVER_URL}`,
   headers: {
-    "Content-Type": "x-www-form-urlencoded",
+    "Content-Type": "application/json",
   },
+  withCredentials: true,
 });
 
 axiosInstance.interceptors.request.use(
@@ -31,9 +32,8 @@ axiosInstance.interceptors.request.use(
     if (accessToken) {
       config.headers["Authorization"] = `Bearer ${accessToken}`;
     } else {
-      if (config.secure && !accessToken) {
-        // TODO: 로그인이 필요하다는 Toast Message
-        console.error("로그인이 필요한 서비스입니다.");
+      if (config.secure) {
+        alert("로그인이 필요한 서비스입니다.");
         window.location.replace("/login");
         throw new Error("액세스 토큰이 존재하지 않습니다");
       }
@@ -44,15 +44,21 @@ axiosInstance.interceptors.request.use(
 );
 
 axiosInstance.interceptors.response.use(
-  (response) => response,
+  (response) => {
+    return response;
+  },
   async (error) => {
     const originalRequest = error.config;
     if (error.response?.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
       try {
-        const { data } = await axios.post("/", null, {
-          withCredentials: true,
-        });
+        const { data } = await axios.post(
+          `${SERVER_URL}/api/v1/re-issued`,
+          null,
+          {
+            withCredentials: true,
+          }
+        );
 
         // 새로 발급 받은 액세스 토큰 저장
         const newAccessToken = data.accessToken;
@@ -61,7 +67,7 @@ axiosInstance.interceptors.response.use(
         originalRequest.headers["Authorization"] = `Bearer ${newAccessToken}`;
         return axiosInstance(originalRequest); // 이전 요청 재시도
       } catch (refreshError) {
-        console.error("리프레쉬 토큰 요청에 실패했습니다.", error);
+        alert("리프레쉬 토큰 요청에 실패했습니다.");
         tokenStorage.clear();
         window.location.replace("/login");
 

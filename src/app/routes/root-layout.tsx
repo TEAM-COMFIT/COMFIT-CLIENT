@@ -1,20 +1,15 @@
 import { Outlet } from "react-router-dom";
 
-import useDevice from "@/shared/model/use-device";
 import { Header } from "@widgets/index";
 
-import { themeVars } from "../styles";
+import { StoreResetListener } from "../providers/store-reset-listener";
 
 export const RootLayout = () => {
-  const { isMobile } = useDevice();
   return (
     <>
+      <StoreResetListener />
       <Header />
-      <main
-        style={{
-          marginTop: !isMobile ? themeVars.height.header : "0",
-        }}
-      >
+      <main>
         <Outlet />
       </main>
     </>

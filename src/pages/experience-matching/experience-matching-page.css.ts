@@ -1,12 +1,46 @@
 import { style } from "@vanilla-extract/css";
+import { recipe } from "@vanilla-extract/recipes";
 
 import { themeVars } from "@/app/styles";
 
-export const container = style({
-  display: "flex",
-  flexDirection: "column",
-  margin: "6.1rem auto",
-  maxWidth: "106rem",
+export const pageLayout = recipe({
+  base: {
+    width: "100%",
+    minHeight: "100vh",
+  },
+  variants: {
+    isLast: {
+      true: {
+        backgroundColor: themeVars.color.gray100,
+      },
+      false: {
+        backgroundColor: themeVars.color.white,
+      },
+    },
+  },
+  defaultVariants: {
+    isLast: true,
+  },
+});
+
+export const container = recipe({
+  base: {
+    display: "flex",
+    flexDirection: "column",
+    margin: "0 auto",
+    maxWidth: "106rem",
+    width: "100%",
+  },
+  variants: {
+    isFirst: {
+      true: {
+        paddingTop: `calc(${themeVars.height.header} + 24rem)`,
+      },
+      false: {
+        paddingTop: `calc(${themeVars.height.header} + 6rem)`,
+      },
+    },
+  },
 });
 
 export const titleContainer = style({
@@ -14,6 +48,11 @@ export const titleContainer = style({
   gap: "1.6rem",
   width: "100%",
   marginLeft: "auto",
+});
+
+export const titleIcon = style({
+  width: "6.4rem",
+  height: "6.4rem",
 });
 
 export const wrapper = style({

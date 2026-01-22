@@ -1,7 +1,7 @@
 import {
   getAuthURL,
   type SocialProvider,
-} from "@/features/login/config/authConfig";
+} from "@/features/login/config/auth-config";
 import { IconKakao } from "@/shared/assets/icons";
 
 import * as styles from "./login-page.css";
@@ -10,6 +10,7 @@ const LoginPage = () => {
   const handleLogin = (type: SocialProvider) => {
     window.location.href = getAuthURL[type]();
   };
+
   return (
     <div className={styles.container}>
       <div className={styles.section}>
@@ -19,9 +20,8 @@ const LoginPage = () => {
           <br /> 취준생들에게 용기와 선택의 힘을
         </p>
       </div>
-
       <button className={styles.kakao} onClick={() => handleLogin("KAKAO")}>
-        <IconKakao />
+        <IconKakao className={styles.kakaoIcon} />
         <span className={styles.kakaoText}>카카오 로그인</span>
       </button>
     </div>

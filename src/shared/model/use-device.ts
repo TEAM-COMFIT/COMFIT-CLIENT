@@ -30,4 +30,4 @@ const useDevice = () => {
   return { isMobile };
 };
 
-export default useDevice;
+export { useDevice };

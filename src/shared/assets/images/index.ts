@@ -4,6 +4,12 @@ export { default as Load } from "./company_info_loading.png";
 export { default as Company } from "./img_company.png";
 export { default as COMPANY_DOCS } from "./company_docs.png";
 export { default as COMPANY_BOOK } from "./company_book.png";
+export { default as OnboardingLogo } from "./comfit_onboarding_logo.png";
+
+export { default as homeBanner } from "./home_banner.png";
+
+export { default as COMPANY_DETAIL } from "./company_detail.png";
+export { default as ICON_MATCH } from "./icon_match.png";
 
 // 랜딩페이지 이미지
 export { default as KEY } from "./key.png";
@@ -21,3 +27,10 @@ export { default as COUPANG } from "./coupang.png";
 export { default as POLARIS } from "./polaris.png";
 export { default as SARAMIN } from "./saramin.png";
 export { default as SK } from "./sk.png";
+
+export { default as LOADING } from "./loading-spinner.png";
+export { default as ICONAI } from "./icon_ai.png";
+
+export { default as ERROR } from "./error_img.png";
+
+export { default as PROFILE } from "./icon_profile.png";

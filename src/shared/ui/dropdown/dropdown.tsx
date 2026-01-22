@@ -7,7 +7,7 @@ import {
 } from "react";
 
 import { DropdownArrow } from "@/shared/assets/icons";
-import useOutsideClick from "@/shared/model/use-outsideclick";
+import { useOutsideClick } from "@/shared/model/use-outsideclick";
 
 import * as styles from "./dropdown.css";
 
@@ -68,10 +68,7 @@ const Dropdown = ({
         size: type,
       }}
     >
-      <div
-        ref={wrapperRef}
-        className={`${styles.dropdownWrapper} ${styles.dropdownAlign[type]}`}
-      >
+      <div ref={wrapperRef} className={`${styles.dropdownWrapper}`}>
         {children}
       </div>
     </DropdownContext.Provider>

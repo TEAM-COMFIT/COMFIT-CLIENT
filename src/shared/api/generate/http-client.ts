@@ -15,10 +15,8 @@ export interface ReIssueTokenRequestDto {
   refreshToken: string;
 }
 
-export interface CommonApiResponse {
-  errorCode?: string;
-  message?: string;
-  result?: object;
+export interface ReIssueTokenResponseDto {
+  accessToken?: string;
 }
 
 export interface CustomErrorResponse {
@@ -29,15 +27,100 @@ export interface CustomErrorResponse {
 }
 
 export interface OnBoardingRequestDTO {
-  educationLevel?: string;
-  firstIndustry?: string;
-  secondIndustry?: string;
-  thirdIndustry?: string;
-  firstJob?: string;
-  secondJob?: string;
-  thirdJob?: string;
-  /** @format int64 */
-  universityId?: number;
+  /** @example "HIGH_SCHOOL" */
+  educationLevel:
+    | "HIGH_SCHOOL"
+    | "BACHELOR_STUDENT"
+    | "BACHELOR"
+    | "MASTER_STUDENT"
+    | undefined;
+  /** @example "IT" */
+  firstIndustry:
+    | "CONSUMER_GOODS"
+    | "IT"
+    | "MEDIA_CONTENTS"
+    | "RETAIL"
+    | "LIFESTYLE"
+    | "FOOD"
+    | "TRAVEL"
+    | "FINANCE"
+    | "FITNESS"
+    | undefined;
+  /** @example "MEDIA_CONTENTS" */
+  secondIndustry?:
+    | "CONSUMER_GOODS"
+    | "IT"
+    | "MEDIA_CONTENTS"
+    | "RETAIL"
+    | "LIFESTYLE"
+    | "FOOD"
+    | "TRAVEL"
+    | "FINANCE"
+    | "FITNESS"
+    | undefined;
+  /** @example "RETAIL" */
+  thirdIndustry?:
+    | "CONSUMER_GOODS"
+    | "IT"
+    | "MEDIA_CONTENTS"
+    | "RETAIL"
+    | "LIFESTYLE"
+    | "FOOD"
+    | "TRAVEL"
+    | "FINANCE"
+    | "FITNESS"
+    | undefined;
+  /** @example "MARKETING_STRATEGY" */
+  firstJob:
+    | "MARKETING_STRATEGY"
+    | "BRAND_MARKETING"
+    | "DIGITAL_MARKETING"
+    | "CONTENT_MARKETING"
+    | "VIRAL_MARKETING"
+    | "PERFORMANCE_MARKETING"
+    | "B2B_MARKETING"
+    | "CRM_MARKETING"
+    | "PRODUCT_MARKETING"
+    | "PARTNERSHIP_MARKETING"
+    | "GLOBAL_MARKETING"
+    | undefined;
+  /** @example "BRAND_MARKETING" */
+  secondJob?:
+    | "MARKETING_STRATEGY"
+    | "BRAND_MARKETING"
+    | "DIGITAL_MARKETING"
+    | "CONTENT_MARKETING"
+    | "VIRAL_MARKETING"
+    | "PERFORMANCE_MARKETING"
+    | "B2B_MARKETING"
+    | "CRM_MARKETING"
+    | "PRODUCT_MARKETING"
+    | "PARTNERSHIP_MARKETING"
+    | "GLOBAL_MARKETING";
+  /** @example "DIGITAL_MARKETING" */
+  thirdJob?:
+    | "MARKETING_STRATEGY"
+    | "BRAND_MARKETING"
+    | "DIGITAL_MARKETING"
+    | "CONTENT_MARKETING"
+    | "VIRAL_MARKETING"
+    | "PERFORMANCE_MARKETING"
+    | "B2B_MARKETING"
+    | "CRM_MARKETING"
+    | "PRODUCT_MARKETING"
+    | "PARTNERSHIP_MARKETING"
+    | "GLOBAL_MARKETING";
+  /**
+   * @format int64
+   * @example 1
+   */
+  universityId: number;
+}
+
+export interface CommonApiResponse {
+  errorCode?: string;
+  message?: string;
+  result?: object;
 }
 
 export interface LoginRequestDto {
@@ -133,6 +216,79 @@ export interface MatchExperienceRequestDto {
   jobDescription: string;
 }
 
+export interface AIReportResponseDto {
+  /** @format int64 */
+  id?: number;
+  companyName?: string;
+  experienceTitle?: string;
+  jobDescription?: string;
+  perspectives?: Perspective[];
+  density?: Density[];
+  appealPoint?: AppealPoint[];
+  suggestion?: string;
+  guidance?: string;
+}
+
+export interface AppealPoint {
+  element?: string;
+  importance?: string;
+  starPhase?: string;
+  direction?: string;
+  placement?: string;
+}
+
+export interface Density {
+  perspective?: string;
+  connection?: string;
+  reason?: string;
+}
+
+export interface Perspective {
+  perspective?: string;
+  source?: string;
+  reason?: string;
+}
+
+export interface LoginResponseDto {
+  /** @format int64 */
+  id?: number;
+  isNew?: boolean;
+  accessToken?: string;
+  name?: string;
+}
+
+export interface GetMeResponseDto {
+  name?: string;
+  email?: string;
+  educationLevel?:
+    | "HIGH_SCHOOL"
+    | "BACHELOR_STUDENT"
+    | "BACHELOR"
+    | "MASTER_STUDENT";
+  firstIndustry?:
+    | "CONSUMER_GOODS"
+    | "IT"
+    | "MEDIA_CONTENTS"
+    | "RETAIL"
+    | "LIFESTYLE"
+    | "FOOD"
+    | "TRAVEL"
+    | "FINANCE"
+    | "FITNESS";
+  fistJob?:
+    | "MARKETING_STRATEGY"
+    | "BRAND_MARKETING"
+    | "DIGITAL_MARKETING"
+    | "CONTENT_MARKETING"
+    | "VIRAL_MARKETING"
+    | "PERFORMANCE_MARKETING"
+    | "B2B_MARKETING"
+    | "CRM_MARKETING"
+    | "PRODUCT_MARKETING"
+    | "PARTNERSHIP_MARKETING"
+    | "GLOBAL_MARKETING";
+}
+
 export interface PageDto {
   content?: object[];
   /** @format int32 */
@@ -143,11 +299,95 @@ export interface PageDto {
   totalElements?: number;
 }
 
-export type ReissueTokenData = CommonApiResponse;
+export interface GetExperienceResponseDto {
+  title?: string;
+  isDefault?: boolean;
+  type?: "INTERNSHIP" | "PROJECT" | "EDUCATION" | "ETC";
+  /** @format date */
+  startAt?: string;
+  /** @format date */
+  endAt?: string;
+  situation?: string;
+  task?: string;
+  action?: string;
+  result?: string;
+}
+
+export interface GetCompanyResponseDto {
+  name?: string;
+  logo?: string;
+  isLiked?: boolean;
+  industry?:
+    | "CONSUMER_GOODS"
+    | "IT"
+    | "MEDIA_CONTENTS"
+    | "RETAIL"
+    | "LIFESTYLE"
+    | "FOOD"
+    | "TRAVEL"
+    | "FINANCE"
+    | "FITNESS";
+  scale?:
+    | "LARGE"
+    | "STARTUP"
+    | "PUBLIC_CORP"
+    | "MID_LARGE"
+    | "SME"
+    | "FOREIGN"
+    | "PUBLIC_ORG"
+    | "ETC";
+  companyURL?: string;
+  summary?: string;
+  talentProfile?: string;
+  isRecruiting?: boolean;
+  issueList?: IssueItem[];
+}
+
+export interface IssueItem {
+  title?: string;
+  content?: string;
+  issueURL?: string;
+  /** @format date */
+  issueDate?: string;
+}
+
+export interface GetReportExperienceResponseDto {
+  /** @format int32 */
+  totalElements?: number;
+  content?: Item[];
+}
+
+export interface Item {
+  /** @format int64 */
+  id?: number;
+  title?: string;
+  /** @format date */
+  updatedAt?: string;
+}
+
+export interface GetReportCompanyResponseDto {
+  name?: string;
+  industry?:
+    | "CONSUMER_GOODS"
+    | "IT"
+    | "MEDIA_CONTENTS"
+    | "RETAIL"
+    | "LIFESTYLE"
+    | "FOOD"
+    | "TRAVEL"
+    | "FINANCE"
+    | "FITNESS";
+  recruitUrl?: string;
+  companyUrl?: string;
+  logo?: string;
+}
+
+export type ReissueTokenData = ReIssueTokenResponseDto;
 
 export type AddUserInfoData = CommonApiResponse;
 
-export type AddBookmarkData = CommonApiResponse;
+/** @format int64 */
+export type AddBookmarkData = number;
 
 export type RemoveBookmarkData = CommonApiResponse;
 
@@ -157,43 +397,45 @@ export type JoinData = JwtDto;
 
 export type GetSummaryExperienceListData = PageDto;
 
-export type CreateExperienceData = CommonApiResponse;
+/** @format int64 */
+export type CreateExperienceData = number;
 
-export type GetReportListData = CommonApiResponse;
+export type GetReportListData = PageDto;
 
-export type MatchExperienceData = CommonApiResponse;
+export type MatchExperienceData = AIReportResponseDto;
 
-export type GetExperienceData = CommonApiResponse;
+export type GetExperienceData = GetExperienceResponseDto;
 
-export type DeleteExperienceData = any;
+export type DeleteExperienceData = CommonApiResponse;
 
-export type UpdateExperienceData = CommonApiResponse;
+/** @format int64 */
+export type UpdateExperienceData = number;
 
 export type UpdateDefaultData = any;
 
-export type SearchUniversitiesData = CommonApiResponse;
+export type SearchUniversitiesData = string;
 
-export type KakaoCallbackData = CommonApiResponse;
+export type KakaoCallbackData = LoginResponseDto;
 
-export type GetMeData = CommonApiResponse;
+export type GetMeData = GetMeResponseDto;
 
-export type GetBookmarkCompanyData = CommonApiResponse;
+export type GetBookmarkCompanyData = PageDto;
 
-export type GetCompanyListData = CommonApiResponse;
+export type GetCompanyListData = PageDto;
 
-export type GetCompanyData = CommonApiResponse;
+export type GetCompanyData = GetCompanyResponseDto;
 
-export type GetSuggestionCompanyData = CommonApiResponse;
+export type GetSuggestionCompanyData = string;
 
-export type GetCompanySearchListData = CommonApiResponse;
+export type GetCompanySearchListData = string;
 
-export type GetFeaturedCompaniesData = CommonApiResponse;
+export type GetFeaturedCompaniesData = string;
 
-export type GetReportData = CommonApiResponse;
+export type GetReportData = AIReportResponseDto;
 
-export type GetReportExperienceData = CommonApiResponse;
+export type GetReportExperienceData = GetReportExperienceResponseDto;
 
-export type GetReportCompanyData = CommonApiResponse;
+export type GetReportCompanyData = GetReportCompanyResponseDto;
 
 export interface Response<T> {
   errorCode: number | null;
@@ -643,6 +885,7 @@ export class Api<
         path: `/api/v1/experiences/${experienceId}`,
         method: "DELETE",
         secure: true,
+        format: "json",
         ...params,
       }),
 
