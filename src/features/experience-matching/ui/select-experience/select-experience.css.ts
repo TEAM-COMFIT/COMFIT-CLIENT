@@ -10,7 +10,7 @@ export const layout = style({
 export const totalCount = style({
   marginBottom: "0.8rem",
   color: themeVars.color.gray800,
-  ...themeVars.fontStyles.body_b_14,
+  ...themeVars.fontStyles.body_b_16,
 });
 
 export const blueCount = style({
