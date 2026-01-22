@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
+import { useGetCompanies } from "@/features/home";
 import { ScaleFilter, IndustryFilter } from "@/features/home/ui";
-import { homeBanner, Logo } from "@/shared/assets/images";
+import { homeBanner } from "@/shared/assets/images";
 import { Toggle, Pagination } from "@/shared/ui";
 import { Search } from "@/shared/ui/search/search";
 import { CompanyCard } from "@/widgets";
@@ -20,123 +21,29 @@ interface CompanySearchParamsType {
 }
 
 const SearchSection = () => {
-  // TODO: 서버에서 받아오는 데이터(추후 해당 값으로 변경 필요) -> queryparams로 페이지네이션 처리
-  const [page] = useState(1);
-  const totalPage = 11;
-  const totalElements = 105;
+  const [params, setParams] = useState<CompanySearchParamsType>({
+    page: 1,
+    isRecruited: true,
+  });
+  const { data, isLoading, isPlaceholderData } = useGetCompanies(params);
+  const content = data?.content || [];
+  const hasResult = content.length > 0;
+  const [searchValue, setSearchValue] = useState("");
 
-  const [params, setParams] = useState<CompanySearchParamsType>({});
+  const currentPage = params.page ?? 1;
 
   // 검색 query param 변경 핸들러
   const updateParams = (patch: Partial<CompanySearchParamsType>) => {
     setParams((prev) => ({
       ...prev,
       ...patch,
-      page: "page" in patch ? patch.page : 1, // 필터 변경 시 페이지 1로 초기화
     }));
   };
 
-  // TODO: API 호출용 파라미터. 실제 API 연동 시 사용 예정
-  // const requestParams = useMemo(() => {
-  //   return {
-  //     keyword: params.keyword,
-  //     industry: params.industry,
-  //     scale: params.scale,
-  //     sort: params.sort,
-  //     page: params.page,
-  //     isRecruited: params.isRecruited,
-  //   };
-  // }, [params]);
-
-  // TODO: mock 데이터. api 연동 후 삭제 예정
-  interface MockCompany {
-    id: number;
-    name: string;
-    industry: IndustryCode;
-    scale: ScaleCode;
-    logo: string;
-    isRecruited: boolean;
-    likeCounts: number;
-  }
-
-  const MOCK_COMPANY_LIST: MockCompany[] = [
-    {
-      id: 1,
-      name: "쿠팡",
-      industry: "CONSUMER_GOODS",
-      scale: "LARGE",
-      logo: Logo,
-      isRecruited: false,
-      likeCounts: 0,
-    },
-    {
-      id: 2,
-      name: "하하하하하하",
-      industry: "IT",
-      scale: "LARGE",
-      logo: Logo,
-      isRecruited: false,
-      likeCounts: 0,
-    },
-    {
-      id: 3,
-      name: "㈜레진엔터테인먼트",
-      industry: "MEDIA_CONTENTS",
-      scale: "LARGE",
-      logo: Logo,
-      isRecruited: true,
-      likeCounts: 0,
-    },
-    {
-      id: 4,
-      name: "㈜컴퓨존",
-      industry: "IT",
-      scale: "MID_LARGE",
-      logo: Logo,
-      isRecruited: true,
-      likeCounts: 0,
-    },
-    {
-      id: 5,
-      name: "㈜엘림넷",
-      industry: "IT",
-      scale: "MID_LARGE",
-      logo: Logo,
-      isRecruited: false,
-      likeCounts: 0,
-    },
-    {
-      id: 6,
-      name: "(주)사람인에이치에스",
-      industry: "LIFE_STYLE",
-      scale: "MID_LARGE",
-      logo: Logo,
-      isRecruited: true,
-      likeCounts: 0,
-    },
-    {
-      id: 7,
-      name: "휴먼웍스",
-      industry: "IT",
-      scale: "MID_LARGE",
-      logo: Logo,
-      isRecruited: false,
-      likeCounts: 0,
-    },
-    {
-      id: 8,
-      name: "㈜폴라리스오피스",
-      industry: "IT",
-      scale: "SME",
-      logo: Logo,
-      isRecruited: true,
-      likeCounts: 0,
-    },
-  ];
-
-  useEffect(() => {
-    console.log("Search params changed:", params);
-  }, [params]);
+  const handlePageChange = (newPage: number) => {
+    if (isPlaceholderData) return;
+    updateParams({ page: newPage });
+  };
 
   return (
     <>
@@ -160,7 +67,9 @@ const SearchSection = () => {
             <Search
               size="medium"
               placeholder="지원하고 싶은 기업을 검색해보세요"
-              onSearch={(keyword) => updateParams({ keyword })}
+              value={searchValue}
+              onChange={setSearchValue}
+              onSearch={(keyword) => updateParams({ keyword, page: 1 })}
             />
           </div>
         </div>
@@ -173,44 +82,54 @@ const SearchSection = () => {
           <div className={styles.filterWrapper}>
             <IndustryFilter
               value={params.industry ?? null}
-              onChange={(industry) => updateParams({ industry })}
+              onChange={(industry) => updateParams({ industry, page: 1 })}
             />
 
             <ScaleFilter
               value={params.scale ?? null}
-              onChange={(scale) => updateParams({ scale })}
+              onChange={(scale) => updateParams({ scale, page: 1 })}
             />
 
             <p className={styles.toggle}>
-              총 {totalElements}개 | 채용중인 기업만
+              총 {data?.totalElements ?? 0}개 | 채용중인 기업만
             </p>
 
             <Toggle
-              checked={params.isRecruited ?? false}
-              onCheckedChange={(isRecruited) => updateParams({ isRecruited })}
+              checked={params.isRecruited ?? true}
+              onCheckedChange={(isRecruited) =>
+                updateParams({ isRecruited, page: 1 })
+              }
             />
           </div>
 
-          {/* 카드 리스트 (mock) */}
-          <div className={styles.companyGridStyle}>
-            {MOCK_COMPANY_LIST.map((item) => (
-              <CompanyCard
-                key={item.id}
-                id={item.id}
-                companyName={item.name}
-                industry={item.industry}
-                scale={item.scale}
-                logoUrl={item.logo}
+          {isLoading || hasResult ? (
+            <>
+              <div className={styles.companyGridStyle}>
+                {content.map(({ id, name, industry, scale, logo }) => (
+                  <CompanyCard
+                    key={id}
+                    id={id}
+                    companyName={name}
+                    industry={industry as IndustryCode}
+                    scale={scale as ScaleCode}
+                    logoUrl={logo}
+                  />
+                ))}
+              </div>
+              <Pagination
+                currentPage={currentPage}
+                totalPage={data?.totalPage ?? 1}
+                onPageChange={handlePageChange}
               />
-            ))}
-          </div>
-
-          {/* 페이지네이션 */}
-          <Pagination
-            currentPage={page}
-            totalPage={totalPage}
-            onPageChange={(page) => updateParams({ page })}
-          />
+            </>
+          ) : (
+            <div className={styles.emptyState}>
+              <p className={styles.emptyTitle}>검색 결과가 없습니다</p>
+              <p className={styles.emptyDescription}>
+                다른 키워드로 검색하거나 필터를 변경해 보세요.
+              </p>
+            </div>
+          )}
         </div>
       </section>
     </>

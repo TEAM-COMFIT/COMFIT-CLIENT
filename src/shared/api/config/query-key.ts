@@ -44,12 +44,12 @@ export const companyQueryKey = {
   all: () => ["company"],
   keyword: (keyword: string) => [...companyQueryKey.all(), keyword], // 특정 키워드의 상세 조회
   search: (
-    keyword: string,
-    industry: string,
-    scale: string,
-    sort: string,
-    page: number,
-    inRequired: boolean
+    keyword?: string,
+    industry?: string,
+    scale?: string,
+    sort?: string,
+    page?: number,
+    isRecruited?: boolean
   ) => [
     ...companyQueryKey.all(),
     keyword,
@@ -57,7 +57,7 @@ export const companyQueryKey = {
     scale,
     sort,
     page,
-    inRequired,
+    isRecruited,
   ], // 기업 필터링 조회
   detail: (companyId: number) => [...companyQueryKey.all(), companyId], // 기업 상세 조회
   suggestion: (companyId: number) => [...companyQueryKey.all(), companyId], // 추천 기업 조회

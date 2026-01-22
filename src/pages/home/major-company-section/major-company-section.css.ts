@@ -42,10 +42,19 @@ export const cardGrid = style({
   gap: "2rem",
   alignItems: "stretch",
   width: "100%",
+  minHeight: "34.4rem",
 });
 
 export const smallCards = style({
   display: "flex",
   flexDirection: "column",
   gap: "1.6rem",
+});
+
+export const emptyWrapper = style({
+  display: "grid",
+  gridTemplateColumns: "1fr 1fr",
+  gap: "2rem",
+  width: "100%",
+  minHeight: "45rem",
 });
