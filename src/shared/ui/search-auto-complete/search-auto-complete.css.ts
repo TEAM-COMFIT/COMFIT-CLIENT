@@ -88,16 +88,31 @@ export const iconButtonCursorDefault = style({
   cursor: "default",
 });
 
-export const iconButtonVariant = styleVariants({
-  onboarding: { color: themeVars.color.gray400 },
-  home: { color: themeVars.color.blue600 },
-  matchingExperienceList: { color: themeVars.color.blue600 },
-});
+// export const icon = style({
+//   width: "2.4rem",
+//   height: "2.4rem",
+//   color: "currentColor",
+// });
 
-export const icon = style({
-  width: "2.4rem",
-  height: "2.4rem",
-  color: "currentColor",
+export const icon = recipe({
+  // 공통 스타일
+  base: {
+    width: "2.4rem",
+    height: "2.4rem",
+    color: "currentColor",
+  },
+
+  variants: {
+    selected: {
+      true: { color: themeVars.color.gray400 },
+      false: { color: themeVars.color.gray800 },
+    },
+  },
+
+  // 기본값 설정
+  defaultVariants: {
+    selected: false,
+  },
 });
 
 export const list = style({

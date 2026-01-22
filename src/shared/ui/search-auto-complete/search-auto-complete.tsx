@@ -142,9 +142,9 @@ export const SearchAutocomplete = ({
             }
           >
             {selected ? (
-              <IconCancel className={s.icon} />
+              <IconCancel className={s.icon({ selected: !!selected })} />
             ) : (
-              <IconSearch className={s.icon} />
+              <IconSearch className={s.icon({ selected: !!selected })} />
             )}
           </button>
         </div>
