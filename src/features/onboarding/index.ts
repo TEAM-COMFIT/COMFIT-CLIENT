@@ -4,3 +4,6 @@ export { EducationSelect } from "./ui/education-select/education-select";
 export * from "./config/education";
 export * from "./store/interest-select/store";
 export * from "./store/interest-select/selectors";
+
+export { useGetUniversity } from "./api/use-get-university.query";
+export { usePostOnboarding } from "./api/use-post-onboarding.mutation";

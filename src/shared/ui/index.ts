@@ -21,3 +21,5 @@ export { Tooltip } from "./tooltip/tooltip";
 export { Search } from "./search/search";
 
 export { InterestSelect } from "./interest-select/interest-select";
+
+export { Alert } from "./alert/alert";

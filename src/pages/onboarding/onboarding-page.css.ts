@@ -5,7 +5,7 @@ import { themeVars } from "@/app/styles";
 export const page = style({
   minHeight: "100vh",
   background: themeVars.color.gray100,
-  padding: "8.8rem 0 8.8rem",
+  padding: "14rem 0 8.8rem",
   overflowX: "hidden",
 });
 

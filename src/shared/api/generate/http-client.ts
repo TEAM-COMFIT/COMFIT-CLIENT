@@ -15,6 +15,10 @@ export interface ReIssueTokenRequestDto {
   refreshToken: string;
 }
 
+export interface ReIssueTokenResponseDto {
+  accessToken?: string;
+}
+
 export interface CustomErrorResponse {
   /** @format int32 */
   status?: number;
@@ -22,20 +26,95 @@ export interface CustomErrorResponse {
   message?: string;
 }
 
-export interface ReIssueTokenResponseDto {
-  accessToken?: string;
-}
-
 export interface OnBoardingRequestDTO {
-  educationLevel?: string;
-  firstIndustry?: string;
-  secondIndustry?: string;
-  thirdIndustry?: string;
-  firstJob?: string;
-  secondJob?: string;
-  thirdJob?: string;
-  /** @format int64 */
-  universityId?: number;
+  /** @example "HIGH_SCHOOL" */
+  educationLevel:
+    | "HIGH_SCHOOL"
+    | "BACHELOR_STUDENT"
+    | "BACHELOR"
+    | "MASTER_STUDENT"
+    | undefined;
+  /** @example "IT" */
+  firstIndustry:
+    | "CONSUMER_GOODS"
+    | "IT"
+    | "MEDIA_CONTENTS"
+    | "RETAIL"
+    | "LIFESTYLE"
+    | "FOOD"
+    | "TRAVEL"
+    | "FINANCE"
+    | "FITNESS"
+    | undefined;
+  /** @example "MEDIA_CONTENTS" */
+  secondIndustry?:
+    | "CONSUMER_GOODS"
+    | "IT"
+    | "MEDIA_CONTENTS"
+    | "RETAIL"
+    | "LIFESTYLE"
+    | "FOOD"
+    | "TRAVEL"
+    | "FINANCE"
+    | "FITNESS"
+    | undefined;
+  /** @example "RETAIL" */
+  thirdIndustry?:
+    | "CONSUMER_GOODS"
+    | "IT"
+    | "MEDIA_CONTENTS"
+    | "RETAIL"
+    | "LIFESTYLE"
+    | "FOOD"
+    | "TRAVEL"
+    | "FINANCE"
+    | "FITNESS"
+    | undefined;
+  /** @example "MARKETING_STRATEGY" */
+  firstJob:
+    | "MARKETING_STRATEGY"
+    | "BRAND_MARKETING"
+    | "DIGITAL_MARKETING"
+    | "CONTENT_MARKETING"
+    | "VIRAL_MARKETING"
+    | "PERFORMANCE_MARKETING"
+    | "B2B_MARKETING"
+    | "CRM_MARKETING"
+    | "PRODUCT_MARKETING"
+    | "PARTNERSHIP_MARKETING"
+    | "GLOBAL_MARKETING"
+    | undefined;
+  /** @example "BRAND_MARKETING" */
+  secondJob?:
+    | "MARKETING_STRATEGY"
+    | "BRAND_MARKETING"
+    | "DIGITAL_MARKETING"
+    | "CONTENT_MARKETING"
+    | "VIRAL_MARKETING"
+    | "PERFORMANCE_MARKETING"
+    | "B2B_MARKETING"
+    | "CRM_MARKETING"
+    | "PRODUCT_MARKETING"
+    | "PARTNERSHIP_MARKETING"
+    | "GLOBAL_MARKETING";
+  /** @example "DIGITAL_MARKETING" */
+  thirdJob?:
+    | "MARKETING_STRATEGY"
+    | "BRAND_MARKETING"
+    | "DIGITAL_MARKETING"
+    | "CONTENT_MARKETING"
+    | "VIRAL_MARKETING"
+    | "PERFORMANCE_MARKETING"
+    | "B2B_MARKETING"
+    | "CRM_MARKETING"
+    | "PRODUCT_MARKETING"
+    | "PARTNERSHIP_MARKETING"
+    | "GLOBAL_MARKETING";
+  /**
+   * @format int64
+   * @example 1
+   */
+  universityId: number;
 }
 
 export interface CommonApiResponse {
@@ -138,6 +217,8 @@ export interface MatchExperienceRequestDto {
 }
 
 export interface AIReportResponseDto {
+  /** @format int64 */
+  id?: number;
   companyName?: string;
   experienceTitle?: string;
   jobDescription?: string;
@@ -183,10 +264,7 @@ export interface GetMeResponseDto {
     | "HIGH_SCHOOL"
     | "BACHELOR_STUDENT"
     | "BACHELOR"
-    | "MASTER_STUDENT"
-    | "MASTER"
-    | "DOCTOR_STUDENT"
-    | "DOCTOR";
+    | "MASTER_STUDENT";
   firstIndustry?:
     | "CONSUMER_GOODS"
     | "IT"
@@ -235,52 +313,6 @@ export interface GetExperienceResponseDto {
   result?: string;
 }
 
-export interface Company {
-  /** @format date-time */
-  createdAt?: string;
-  /** @format date-time */
-  updatedAt?: string;
-  /** @format int64 */
-  id?: number;
-  name?: string;
-  summary?: string;
-  talentProfile?: string;
-  scale?:
-    | "LARGE"
-    | "STARTUP"
-    | "PUBLIC_CORP"
-    | "MID_LARGE"
-    | "SME"
-    | "FOREIGN"
-    | "PUBLIC_ORG"
-    | "ETC";
-  industry?:
-    | "CONSUMER_GOODS"
-    | "IT"
-    | "MEDIA_CONTENTS"
-    | "RETAIL"
-    | "LIFESTYLE"
-    | "FOOD"
-    | "TRAVEL"
-    | "FINANCE"
-    | "FITNESS";
-  logo?: string;
-  companyUrl?: string;
-  recruitUrl?: string;
-  recruiting?: boolean;
-}
-
-export interface CompanyIssue {
-  /** @format int64 */
-  id?: number;
-  title?: string;
-  content?: string;
-  issueURL?: string;
-  /** @format date */
-  issueDate?: string;
-  company?: Company;
-}
-
 export interface GetCompanyResponseDto {
   name?: string;
   logo?: string;
@@ -307,7 +339,16 @@ export interface GetCompanyResponseDto {
   companyURL?: string;
   summary?: string;
   talentProfile?: string;
-  issueList?: CompanyIssue[];
+  isRecruiting?: boolean;
+  issueList?: IssueItem[];
+}
+
+export interface IssueItem {
+  title?: string;
+  content?: string;
+  issueURL?: string;
+  /** @format date */
+  issueDate?: string;
 }
 
 export interface GetReportExperienceResponseDto {

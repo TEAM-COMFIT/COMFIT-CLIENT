@@ -1,17 +1,28 @@
 import { useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-import { useInterestSelectStore } from "@/features/onboarding";
+import { ROUTES } from "@/app/routes/paths";
+import {
+  useInterestSelectStore,
+  usePostOnboarding,
+} from "@/features/onboarding";
+import { labelToCodeJob } from "@/features/onboarding/config/job";
 import { isOnboardingFormComplete } from "@/features/onboarding/lib/onboarding-form.validator";
 import { OnboardingLogo } from "@/shared/assets/images";
-import { Button } from "@/shared/ui";
+import { labelToCodeIndustry } from "@/shared/config";
+import { Button, Alert } from "@/shared/ui";
 
 import * as s from "./onboarding-page.css";
 import { SelectSection } from "./ui/select-section";
 
 import type { EducationTypeCode } from "@/features/onboarding";
+import type { OnBoardingRequestDTO } from "@/shared/api/generate/http-client";
 import type { SearchItem } from "@/shared/ui/search-auto-complete/types";
 
 const OnboardingPage = () => {
+  const navigate = useNavigate();
+  const { mutate } = usePostOnboarding();
+
   const [selectedEducation, setSelectedEducation] =
     useState<EducationTypeCode | null>(null);
   const [selectedUniversity, setSelectedUniversity] =
@@ -19,6 +30,9 @@ const OnboardingPage = () => {
 
   const industry = useInterestSelectStore((s) => s.industry);
   const job = useInterestSelectStore((s) => s.job);
+
+  const [open, setOpen] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
 
   const isFormComplete = useMemo(
     () =>
@@ -34,21 +48,33 @@ const OnboardingPage = () => {
   const handleSelectionSubmit = () => {
     if (!isFormComplete) return;
 
-    // 서버 규격에 맞게 데이터 변환
-    const requestBody = {
-      educationLevel: selectedEducation,
-      universityId: selectedUniversity?.id ?? 0,
-      // Industry 매핑
-      firstIndustry: industry[1] ?? "",
-      secondIndustry: industry[2] ?? "",
-      thirdIndustry: industry[3] ?? "",
-      // Job 매핑
-      firstJob: job[1] ?? "",
-      secondJob: job[2] ?? "",
-      thirdJob: job[3] ?? "",
+    const requestBody: OnBoardingRequestDTO = {
+      educationLevel: selectedEducation ?? "HIGH_SCHOOL",
+      universityId: Number(selectedUniversity?.id ?? 0),
+
+      firstIndustry: labelToCodeIndustry(industry[1]),
+      secondIndustry: labelToCodeIndustry(industry[2]) || undefined,
+      thirdIndustry: labelToCodeIndustry(industry[3]) || undefined,
+
+      firstJob: labelToCodeJob(job[1]),
+      secondJob: labelToCodeJob(job[2]) || undefined,
+      thirdJob: labelToCodeJob(job[3]) || undefined,
     };
-    // TODO: api mutation 호출
-    console.log("서버 전송 데이터:", requestBody);
+
+    mutate(requestBody, {
+      onSuccess: () => {
+        navigate(ROUTES.HOME);
+      },
+      onError: (error) => {
+        const serverMessage =
+          error.response?.data.message || "온보딩 중 오류가 발생했습니다.";
+        setErrorMsg(serverMessage);
+        setOpen(true);
+
+        // 3초 뒤 자동으로 닫히게 설정
+        setTimeout(() => setOpen(false), 3000);
+      },
+    });
   };
 
   return (
@@ -85,6 +111,14 @@ const OnboardingPage = () => {
           </div>
         </div>
       </div>
+      {open && (
+        <Alert
+          variant="error"
+          title="Error"
+          description={errorMsg}
+          onClose={() => setOpen(false)}
+        />
+      )}
     </div>
   );
 };

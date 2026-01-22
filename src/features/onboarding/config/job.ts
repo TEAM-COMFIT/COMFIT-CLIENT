@@ -46,3 +46,13 @@ export const FILTER_JOB_TYPE: JobFilterOption[] = Object.entries(JOB_TYPE).map(
 export const JOB_OPTIONS = FILTER_JOB_TYPE.map(
   (o) => o.label
 ) as JobTypeLabel[];
+
+export const labelToCodeJob = (
+  label: string | null | undefined
+): JobTypeCode | undefined => {
+  if (!label) return undefined;
+  if (label in JOB_LABEL_TO_CODE) {
+    return JOB_LABEL_TO_CODE[label as JobTypeLabel];
+  }
+  console.warn(`존재하지 않는 JobTypeLabel: ${label}`);
+};

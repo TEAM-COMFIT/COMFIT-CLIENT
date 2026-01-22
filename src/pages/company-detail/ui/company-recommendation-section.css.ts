@@ -43,6 +43,7 @@ export const companyCardGrid = style({
   gridTemplateColumns: "repeat(4, 25rem)",
   justifyContent: "space-between",
   gap: "2rem",
+  minHeight: "28rem",
 });
 
 export const recommendTextGroup = style({

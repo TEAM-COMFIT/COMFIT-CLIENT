@@ -9,6 +9,7 @@ export const cancelIcon = style({
   cursor: "pointer",
   width: "1.4rem",
   height: "1.4rem",
+  color: themeVars.color.blue400,
 });
 
 export const tag = recipe({
