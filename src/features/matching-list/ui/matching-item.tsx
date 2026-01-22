@@ -14,7 +14,7 @@ interface MatchingItemProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   title: string;
 }
 
-export const MatchingItem = ({
+const MatchingItem = ({
   matchingId,
   companyName,
   createdAt,
@@ -44,3 +44,5 @@ export const MatchingItem = ({
     </button>
   );
 };
+
+export { MatchingItem };

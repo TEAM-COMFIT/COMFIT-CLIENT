@@ -1,9 +1,9 @@
-import { MatchingItem } from "@/features/matching-list/ui/matching-item";
+import { MatchingItem } from "@/features/matching-list";
 import { Pagination } from "@/shared/ui";
 
 import * as styles from "./list-section.css";
 
-import type { MatchingItemType } from "@/features/matching-list/types/matching.type";
+import type { MatchingItemType } from "@/features/matching-list";
 interface ListSectionProps {
   matchingList: MatchingItemType[];
   totalPage: number;
