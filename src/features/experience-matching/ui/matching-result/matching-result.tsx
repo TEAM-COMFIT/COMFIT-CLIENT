@@ -3,12 +3,12 @@ import { useNavigate } from "react-router-dom";
 
 import { ROUTES } from "@/app/routes/paths";
 import { useAuthStore } from "@/app/store";
+import { useGetAiReport } from "@/features/experience-matching/index";
 import { formatMatchingDetail } from "@/features/matching-detail/lib";
 import { useGetProfile } from "@/features/my-page";
 import { IconCopy, IconCheckOn } from "@/shared/assets/icons";
 import { Button } from "@/shared/ui";
 
-import { useGetAiReport } from "../../api/use-get-report.query";
 import { useReportStore } from "../../store/report.store";
 
 import { MatchingResultContent } from "./matching-result-content/matching-result-content";

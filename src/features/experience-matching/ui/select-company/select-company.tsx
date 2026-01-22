@@ -3,9 +3,11 @@ import { useNavigate } from "react-router-dom";
 
 import { ROUTES } from "@/app/routes/paths";
 import { Button, Modal, useModal } from "@/shared/ui";
+import {
+  useGetExperience,
+  useGetCompanyList,
+} from "@features/experience-matching/index";
 
-import { useGetCompanyList } from "../../api/use-company-list.query";
-import { useGetExperience } from "../../api/use-experience.query";
 import { useReportStore } from "../../store/report.store";
 import { MatchingAutoComplete } from "../matching-auto-complete/matching-auto-complete";
 

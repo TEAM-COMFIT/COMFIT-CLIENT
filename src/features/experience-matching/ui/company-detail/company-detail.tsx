@@ -4,8 +4,8 @@ import { IconJob } from "@/shared/assets/icons";
 import { Button, Tooltip } from "@/shared/ui";
 import { Textfield } from "@/shared/ui/textfield";
 import { GUIDE_TOOLTIP_CONTENT } from "@/shared/ui/tooltip/tooltip.content";
+import { useGetCompanyDetail } from "@features/experience-matching";
 
-import { useGetCompanyDetail } from "../../api/use-company-detail.query";
 import { FIELD_CONFIG } from "../../config/matching";
 import { useReportStore } from "../../store/report.store";
 

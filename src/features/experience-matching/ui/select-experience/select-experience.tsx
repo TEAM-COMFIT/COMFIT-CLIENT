@@ -2,8 +2,8 @@ import { useState } from "react";
 
 import { formatDateWithDots } from "@/shared/lib";
 import { Button } from "@/shared/ui";
+import { useGetExperience } from "@features/experience-matching/index";
 
-import { useGetExperience } from "../../api/use-experience.query";
 import { useReportStore } from "../../store/report.store";
 
 import * as styles from "./select-experience.css";

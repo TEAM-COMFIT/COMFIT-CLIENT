@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 
 import { LOADING } from "@/shared/assets/images";
 import { Alert } from "@/shared/ui/alert";
+import { useCreateReport } from "@features/experience-matching/index";
 
-import { useCreateReport } from "../../api/use-create-report.mutation";
 import { useReportStore } from "../../store/report.store";
 
 import * as styles from "./analyzing.css";
