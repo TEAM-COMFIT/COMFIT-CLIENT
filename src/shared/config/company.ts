@@ -61,8 +61,7 @@ export const getIndustryCode = (label: IndustryLabel): IndustryCode => {
   if (label in INDUSTRY_LABEL_TO_CODE) {
     return INDUSTRY_LABEL_TO_CODE[label];
   }
-  console.warn(`존재하지 않는 IndustryLabel: ${label}`);
-  return "IT" as IndustryCode; // 기본값 혹은 에러 처리
+  return "알 수 없음" as IndustryCode; // 기본값 혹은 에러 처리
 };
 
 // 기업 규모 (Scale)

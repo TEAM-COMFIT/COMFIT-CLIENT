@@ -5,7 +5,6 @@ import {
   IndustryInterestSelect,
   JobInterestSelect,
 } from "@/features/onboarding";
-// import { fetchUniversitiesMock } from "@/features/onboarding/api/university.mock";
 import { useGetUniversity } from "@/features/onboarding/api/use-get-university.query";
 import { SearchAutocomplete } from "@/shared/ui/search-auto-complete/search-auto-complete";
 
