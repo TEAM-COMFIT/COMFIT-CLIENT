@@ -66,6 +66,7 @@ const toExperienceRequestDto = (
     task: draft.task,
     action: draft.action,
     result: draft.result,
+    isDefault: draft.isDefault,
   };
 };
 
