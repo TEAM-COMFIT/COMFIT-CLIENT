@@ -49,3 +49,30 @@ export const copyButton = style({
   color: themeVars.color.gray500,
   ...themeVars.fontStyles.body_m_16,
 });
+
+export const footer = style({
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  gap: "4rem",
+  width: "100%",
+  paddingTop: "8rem",
+});
+
+export const footerTitle = style({
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  gap: "0.8rem",
+});
+
+export const mainTitle = style({
+  color: themeVars.color.gray800,
+  ...themeVars.fontStyles.hding_b_22,
+  fontWeight: 700,
+});
+
+export const subTitle = style({
+  color: themeVars.color.gray600,
+  ...themeVars.fontStyles.body_r_16,
+});

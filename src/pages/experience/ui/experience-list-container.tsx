@@ -6,29 +6,10 @@ import { Pagination, Tag } from "@/shared/ui";
 
 import * as styles from "./experience-list-container.css";
 
-import type { ExperienceTypeCode } from "@/shared/config";
-
-export interface ExperienceCardData {
-  id: number;
-  title: string;
-  updatedAt: string;
-  type: ExperienceTypeCode;
-  isDefault?: boolean;
-}
-
-interface ExperienceListResponse {
-  errorCode: string | null;
-  message: string;
-  result: {
-    content: ExperienceCardData[];
-    currentPage: number;
-    totalPage: number;
-    totalElements: number;
-  };
-}
+import type { ExperienceList } from "@/features/experience/type/experience";
 
 interface ExperienceListContainerProps {
-  data: ExperienceListResponse;
+  data?: ExperienceList;
   onPageChange: (page: number) => void;
 }
 
@@ -36,10 +17,9 @@ const ExperienceListContainer = ({
   data,
   onPageChange,
 }: ExperienceListContainerProps) => {
-  const { content, currentPage, totalPage, totalElements } = data.result;
   const navigate = useNavigate();
 
-  const isEmpty = content.length === 0;
+  const isEmpty = data?.content.length === 0;
 
   return (
     <section
@@ -61,7 +41,7 @@ const ExperienceListContainer = ({
         </div>
       ) : (
         <div className={styles.grid}>
-          {content.map((experience) => (
+          {data?.content.map((experience) => (
             <button
               key={experience.id}
               type="button"
@@ -84,11 +64,11 @@ const ExperienceListContainer = ({
         </div>
       )}
 
-      {!!totalElements && (
+      {!!data?.totalElements && (
         <div className={styles.pagination}>
           <Pagination
-            currentPage={currentPage}
-            totalPage={totalPage}
+            currentPage={data.currentPage}
+            totalPage={data.totalPage}
             onPageChange={onPageChange}
           />
         </div>
