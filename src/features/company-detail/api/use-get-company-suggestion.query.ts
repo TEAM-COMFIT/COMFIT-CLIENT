@@ -54,8 +54,6 @@ export const useGetCompanySuggestionsQuery = (companyId: number) => {
   return useQuery({
     queryKey: companyQueryKey.suggestion(companyId),
     queryFn: () => getCompanySuggestions(companyId),
-    enabled:
-      typeof companyId === "number" && !isNaN(companyId) && companyId > 0,
-    staleTime: 0,
+    enabled: Number.isFinite(companyId) && companyId > 0,
   });
 };
