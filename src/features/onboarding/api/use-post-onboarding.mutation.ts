@@ -9,12 +9,12 @@ import type {
 } from "@/shared/api/generate/http-client";
 import type { AxiosError } from "axios";
 
-export const postOnboarding = async (data: OnBoardingRequestDTO) => {
+const postOnboarding = async (data: OnBoardingRequestDTO) => {
   const response = await api.onBoarding.addUserInfo(data);
   return response.result;
 };
 
-export const usePostOnboarding = () => {
+const usePostOnboarding = () => {
   return useMutation<
     CommonApiResponse,
     AxiosError<CustomErrorResponse>,
@@ -27,3 +27,5 @@ export const usePostOnboarding = () => {
     },
   });
 };
+
+export { usePostOnboarding };

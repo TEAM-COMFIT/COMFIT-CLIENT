@@ -2,14 +2,15 @@ import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { ROUTES } from "@/app/routes/paths";
-import { useInterestSelectStore } from "@/features/onboarding";
-import { usePostOnboarding } from "@/features/onboarding/api/use-post-onboarding.mutation";
+import {
+  useInterestSelectStore,
+  usePostOnboarding,
+} from "@/features/onboarding";
 import { labelToCodeJob } from "@/features/onboarding/config/job";
 import { isOnboardingFormComplete } from "@/features/onboarding/lib/onboarding-form.validator";
 import { OnboardingLogo } from "@/shared/assets/images";
 import { labelToCodeIndustry } from "@/shared/config";
-import { Button } from "@/shared/ui";
-import { Alert } from "@/shared/ui/alert";
+import { Button, Alert } from "@/shared/ui";
 
 import * as s from "./onboarding-page.css";
 import { SelectSection } from "./ui/select-section";
