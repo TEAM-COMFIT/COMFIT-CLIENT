@@ -109,14 +109,12 @@ const OnboardingPage = () => {
         </div>
       </div>
       {open && (
-        <div className={s.alertFixedContainer}>
-          <Alert
-            variant="error"
-            title="Error"
-            description={errorMsg}
-            onClose={() => setOpen(false)}
-          />
-        </div>
+        <Alert
+          variant="error"
+          title="Error"
+          description={errorMsg}
+          onClose={() => setOpen(false)}
+        />
       )}
     </div>
   );

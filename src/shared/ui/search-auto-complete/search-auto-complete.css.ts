@@ -88,12 +88,6 @@ export const iconButtonCursorDefault = style({
   cursor: "default",
 });
 
-// export const icon = style({
-//   width: "2.4rem",
-//   height: "2.4rem",
-//   color: "currentColor",
-// });
-
 export const icon = recipe({
   // 공통 스타일
   base: {
