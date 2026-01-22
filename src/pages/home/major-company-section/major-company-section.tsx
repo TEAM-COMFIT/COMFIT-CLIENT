@@ -1,13 +1,13 @@
 import { useState } from "react";
 
 import { useAuthStore } from "@/app/store";
-import { useGetMajorCompanies } from "@/features/home/api/major-companies.query";
+import { useGetMajorCompanies } from "@/features/home/api/use-get-major-companies.query";
 import { MajorCompanyCard } from "@/features/home/ui";
 import { RefreshButton } from "@/widgets";
 
 import * as styles from "./major-company-section.css";
 
-import type { GetMajorCompaniesData } from "@/features/home/api/major-companies.query";
+import type { GetMajorCompaniesData } from "@/features/home/api/use-get-major-companies.query";
 
 const MajorCompanySection = () => {
   const { isLoggedIn } = useAuthStore();
