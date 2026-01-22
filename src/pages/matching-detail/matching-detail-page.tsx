@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 
-import { useGetAiReport } from "@/features/matching-detail/api/use-match";
+import { useGetAiReport } from "@/features/matching-detail";
 import { formatMatchingDetail } from "@/features/matching-detail/lib";
 import { useGetProfile } from "@/features/my-page";
 import { IconCopy, IconCheckOn } from "@/shared/assets/icons";
