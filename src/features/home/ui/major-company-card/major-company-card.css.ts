@@ -9,17 +9,18 @@ export const bgImageUrl = createVar();
 export const card = recipe({
   base: {
     position: "relative",
-    backgroundImage: bgImageUrl,
+    // gray900에 투명도 10%를 적용한 그라데이션 레이어
+    backgroundImage: `linear-gradient(rgba(23, 23, 25, 0.3), rgba(23, 23, 25, 0.3)), ${bgImageUrl}`,
     backgroundSize: "cover",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
     display: "flex",
     alignItems: "center",
     justifyContent: "flex-start",
-
     borderRadius: "16px",
     boxShadow: themeVars.shadow.shadow1,
     textAlign: "left",
+    overflow: "hidden",
   },
 
   variants: {

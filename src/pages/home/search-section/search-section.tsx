@@ -25,14 +25,16 @@ const SearchSection = () => {
     page: 1,
     isRecruited: true,
   });
+
   const { data, isLoading, isPlaceholderData } = useGetCompanies(params);
   const content = data?.content || [];
   const hasResult = content.length > 0;
   const [searchValue, setSearchValue] = useState("");
-
   const currentPage = params.page ?? 1;
 
-  // 검색 query param 변경 핸들러
+  const [isScaleTouched, setIsScaleTouched] = useState(false);
+  const [isIndustryTouched, setIsIndustryTouched] = useState(false);
+
   const updateParams = (patch: Partial<CompanySearchParamsType>) => {
     setParams((prev) => ({
       ...prev,
@@ -47,7 +49,6 @@ const SearchSection = () => {
 
   return (
     <>
-      {/* Hero */}
       <section
         className={styles.heroSection}
         style={{ backgroundImage: `url(${homeBanner})` }}
@@ -56,13 +57,11 @@ const SearchSection = () => {
           <p className={styles.subText}>
             마케터를 위한 기업 분석과 자소서 작성 가이드
           </p>
-
           <h1 className={styles.mainText}>
             기업을 이해하는 깊이만큼,
             <br />
             <span className={styles.highlight}>지원 전략</span>이 달라집니다
           </h1>
-
           <div className={styles.searchWrapper}>
             <Search
               size="medium"
@@ -75,19 +74,25 @@ const SearchSection = () => {
         </div>
       </section>
 
-      {/* 기업 리스트 */}
       <section className={styles.companyListSection}>
         <div className={styles.container}>
-          {/* 필터 */}
           <div className={styles.filterWrapper}>
             <IndustryFilter
               value={params.industry ?? null}
-              onChange={(industry) => updateParams({ industry, page: 1 })}
+              isTouched={isIndustryTouched}
+              onChange={(industry) => {
+                setIsIndustryTouched(true);
+                updateParams({ industry, page: 1 });
+              }}
             />
 
             <ScaleFilter
-              value={params.scale ?? null}
-              onChange={(scale) => updateParams({ scale, page: 1 })}
+              value={params.scale}
+              isTouched={isScaleTouched}
+              onChange={(scale) => {
+                setIsScaleTouched(true);
+                updateParams({ scale, page: 1 });
+              }}
             />
 
             <p className={styles.toggle}>
