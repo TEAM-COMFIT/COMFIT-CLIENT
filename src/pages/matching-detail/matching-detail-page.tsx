@@ -40,7 +40,7 @@ const MatchingDetailPage = () => {
 
   return (
     <div className={styles.pageWrapper}>
-      <main className={styles.contentContainer}>
+      <div className={styles.contentContainer}>
         <h1 className={styles.title}>
           {data?.companyName} 기업 맞춤 경험 매칭 X 자소서 작성 가이드
         </h1>
@@ -69,7 +69,7 @@ const MatchingDetailPage = () => {
 
         {/* 서버에서 받아온 데이터를 객체 전달 */}
         <DetailSection detailData={data} />
-      </main>
+      </div>
     </div>
   );
 };
