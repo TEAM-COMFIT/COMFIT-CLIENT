@@ -88,7 +88,7 @@ export const tooltipBox = style({
 export const tooltipStyle = styleVariants({
   help: {
     width: "28.4rem",
-    height: "24.9rem",
+    height: "26.5rem",
   },
   guide: {
     width: "27rem",
