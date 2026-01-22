@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { useGetAiReportList } from "@/features/matching-list/api/use-matching-list";
+import { useGetAiReportList } from "@/features/matching-list/api/use-get-matching-list";
 import { ICON_MATCH, ERROR } from "@/shared/assets/images";
 import { Search } from "@/shared/ui";
 
