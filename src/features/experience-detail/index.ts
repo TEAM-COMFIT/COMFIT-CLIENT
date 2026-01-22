@@ -90,8 +90,6 @@ export {
 
 export { toExperienceEntity } from "./lib/to-experience-entity";
 
-export { EXPERIENCE_MOCK } from "./config/experience-mock";
-
 export { validateExperienceDraft } from "./lib/validation";
 
 export type {
