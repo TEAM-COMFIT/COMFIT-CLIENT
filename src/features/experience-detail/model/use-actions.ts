@@ -62,7 +62,7 @@ export const useExperienceSubmit = () => {
       hydrateDraftFromCurrent();
       setMode("view");
       setIsSubmitting(false);
-      showSaveSuccess();
+      showSaveSuccess("완료했어요");
 
       navigate(ROUTES.EXPERIENCE_DETAIL(String(data.experienceId)), {
         replace: true,
@@ -82,7 +82,7 @@ export const useExperienceSubmit = () => {
         hydrateDraftFromCurrent();
         setMode("view");
         setIsSubmitting(false);
-        showSaveSuccess();
+        showSaveSuccess("완료했어요");
 
         navigate(ROUTES.EXPERIENCE_DETAIL(String(current.experienceId)), {
           replace: true,
@@ -100,7 +100,7 @@ export const useExperienceSubmit = () => {
     const result = validateExperienceDraft(draft);
 
     if (!result.ok) {
-      showValidationError(result.toastMessage);
+      showValidationError(result.title, result.description);
       return;
     }
 
