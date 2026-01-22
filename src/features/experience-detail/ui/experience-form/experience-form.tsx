@@ -5,15 +5,15 @@ import { HELP_TOOLTIP_CONTENT } from "@/shared/ui/tooltip/tooltip.content";
 import { ExperienceFilter, StickyHeader } from "@/widgets";
 
 import {
+  useExperienceSubmit,
+  useExperienceHeaderActions,
+} from "../../model/use-actions";
+import { useExperienceDateField } from "../../model/use-experience-date-field";
+import {
   useExperienceActions,
   useExperienceDraft,
   useIsDraftDefault,
 } from "../../store/use-experience-hooks";
-import { useExperienceDateField } from "../../model/use-experience-date-field";
-import {
-  useExperienceSubmit,
-  useExperienceHeaderActions,
-} from "../../model/use-actions";
 
 import * as s from "./experience-form.css";
 
@@ -142,7 +142,13 @@ interface StarFieldProps {
   placeholder: string;
 }
 
-const StarField = ({ label, type, value, onChange, placeholder }: StarFieldProps) => {
+const StarField = ({
+  label,
+  type,
+  value,
+  onChange,
+  placeholder,
+}: StarFieldProps) => {
   return (
     <div className={s.starField}>
       <p className={s.starLabel}>{label}</p>

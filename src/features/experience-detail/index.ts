@@ -4,6 +4,34 @@ export { ExperienceViewer } from "./ui/experience-viewer/experience-viewer";
 export { ExperienceAlertRenderer } from "./ui/experience-alert-renderer/experience-alert-renderer";
 
 export {
+  postExperience,
+  usePostExperience,
+  type PostExperienceResponse,
+} from "./api/use-post-experience.query";
+
+export {
+  getExperienceDetail,
+  useGetExperienceDetail,
+  type GetExperienceDetailResponse,
+} from "./api/use-get-experience-detail.query";
+
+export {
+  patchExperience,
+  usePatchExperience,
+} from "./api/use-patch-experience.query";
+
+export {
+  deleteExperience,
+  useDeleteExperience as useDeleteExperienceMutation,
+} from "./api/use-delete-experience.query";
+
+export {
+  patchExperienceDefault,
+  usePatchExperienceDefault,
+  type PatchDefaultResponse,
+} from "./api/use-patch-experience-default.query";
+
+export {
   useExperienceDetailStore,
   initialDraft,
 } from "./store/experience.store";
@@ -49,10 +77,18 @@ export {
 export { useLeaveConfirm } from "./model/use-leave-confirm";
 
 export {
-  EXPERIENCE_MOCK,
+  useInitExperienceDetail,
+  useResetExperienceDetail,
   initExperienceDetail,
   resetExperienceDetail,
-} from "./model/init";
+} from "./model/use-init-experience-detail";
+
+export {
+  useHydrateExperienceFromApi,
+  hydrateExperienceFromApi,
+} from "./model/use-hydrate-experience";
+
+export { toExperienceEntity } from "./lib/to-experience-entity";
 
 export { validateExperienceDraft } from "./lib/validation";
 
@@ -64,4 +100,4 @@ export type {
   DefaultExperience,
 } from "./types/experience-detail.types";
 
-export { EXPERIENCE_MESSAGES, DEFAULT_BUTTON_LABELS } from "./config";
+export { EXPERIENCE_MESSAGES, DEFAULT_BUTTON_LABELS } from "./config/messages";

@@ -1,6 +1,6 @@
 import { parseYMD } from "@/shared/lib/format-date";
 
-import { EXPERIENCE_MESSAGES } from "../config";
+import { EXPERIENCE_MESSAGES } from "../config/messages";
 
 import type { ExperienceUpsertBody } from "../types/experience-detail.types";
 
@@ -26,7 +26,7 @@ const validateStarField = (
   value: string,
   min: number,
   max: number,
-  message: string,
+  message: string
 ): ValidationResult => {
   const len = trimmedLength(value);
 
@@ -44,32 +44,49 @@ const validateStarField = (
   return { ok: true };
 };
 
-export const validateExperienceDraft = (draft: ExperienceUpsertBody): ValidationResult => {
+export const validateExperienceDraft = (
+  draft: ExperienceUpsertBody
+): ValidationResult => {
   // 1) 제목 2~30
   const titleLen = trimmedLength(draft.title);
   if (titleLen < 2 || titleLen > 30) {
-    return { ok: false, toastMessage: EXPERIENCE_MESSAGES.VALIDATION.TITLE_LENGTH };
+    return {
+      ok: false,
+      toastMessage: EXPERIENCE_MESSAGES.VALIDATION.TITLE_LENGTH,
+    };
   }
 
   // 2) 경험 유형 필수
   if (!draft.type) {
-    return { ok: false, toastMessage: EXPERIENCE_MESSAGES.VALIDATION.TYPE_REQUIRED };
+    return {
+      ok: false,
+      toastMessage: EXPERIENCE_MESSAGES.VALIDATION.TYPE_REQUIRED,
+    };
   }
 
   // 3) 날짜 필수 + 형식 + start<=end
   if (!draft.startAt || !draft.endAt) {
-    return { ok: false, toastMessage: EXPERIENCE_MESSAGES.VALIDATION.DATE_FORMAT };
+    return {
+      ok: false,
+      toastMessage: EXPERIENCE_MESSAGES.VALIDATION.DATE_FORMAT,
+    };
   }
 
   const start = parseYMD(draft.startAt);
   const end = parseYMD(draft.endAt);
 
   if (!start || !end) {
-    return { ok: false, toastMessage: EXPERIENCE_MESSAGES.VALIDATION.DATE_FORMAT };
+    return {
+      ok: false,
+      toastMessage: EXPERIENCE_MESSAGES.VALIDATION.DATE_FORMAT,
+    };
   }
 
   if (start.getTime() > end.getTime()) {
-    return { ok: false, toastMessage: EXPERIENCE_MESSAGES.VALIDATION.DATE_FORMAT };
+    return {
+      ok: false,
+      toastMessage: EXPERIENCE_MESSAGES.VALIDATION.DATE_FORMAT,
+    };
   }
 
   // 4) STAR 각 필드 필수 + 최소/최대 글자 수 검증
@@ -77,7 +94,7 @@ export const validateExperienceDraft = (draft: ExperienceUpsertBody): Validation
     draft.situation,
     STAR_MIN_LENGTH.situation,
     STAR_MAX_LENGTH.situation,
-    EXPERIENCE_MESSAGES.VALIDATION.SITUATION_REQUIRED,
+    EXPERIENCE_MESSAGES.VALIDATION.SITUATION_REQUIRED
   );
   if (!situationValid.ok) return situationValid;
 
@@ -85,7 +102,7 @@ export const validateExperienceDraft = (draft: ExperienceUpsertBody): Validation
     draft.task,
     STAR_MIN_LENGTH.task,
     STAR_MAX_LENGTH.task,
-    EXPERIENCE_MESSAGES.VALIDATION.TASK_REQUIRED,
+    EXPERIENCE_MESSAGES.VALIDATION.TASK_REQUIRED
   );
   if (!taskValid.ok) return taskValid;
 
@@ -93,7 +110,7 @@ export const validateExperienceDraft = (draft: ExperienceUpsertBody): Validation
     draft.action,
     STAR_MIN_LENGTH.action,
     STAR_MAX_LENGTH.action,
-    EXPERIENCE_MESSAGES.VALIDATION.ACTION_REQUIRED,
+    EXPERIENCE_MESSAGES.VALIDATION.ACTION_REQUIRED
   );
   if (!actionValid.ok) return actionValid;
 
@@ -101,7 +118,7 @@ export const validateExperienceDraft = (draft: ExperienceUpsertBody): Validation
     draft.result,
     STAR_MIN_LENGTH.result,
     STAR_MAX_LENGTH.result,
-    EXPERIENCE_MESSAGES.VALIDATION.RESULT_REQUIRED,
+    EXPERIENCE_MESSAGES.VALIDATION.RESULT_REQUIRED
   );
   if (!resultValid.ok) return resultValid;
 

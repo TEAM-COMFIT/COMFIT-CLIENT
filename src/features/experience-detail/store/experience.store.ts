@@ -30,6 +30,8 @@ type State = {
 
   isSubmitting: boolean;
 
+  isTransitioning: boolean;
+
   actions: {
     setMode: (m: ExperienceMode) => void;
 
@@ -41,14 +43,18 @@ type State = {
 
     setDraftField: <K extends keyof ExperienceUpsertBody>(
       key: K,
-      value: ExperienceUpsertBody[K],
+      value: ExperienceUpsertBody[K]
     ) => void;
 
     setDefaultExperienceId: (experienceId: number | null) => void;
 
     toggleDraftDefault: () => void;
 
+    setCurrentDefault: (isDefault: boolean) => void;
+
     setIsSubmitting: (v: boolean) => void;
+
+    setIsTransitioning: (v: boolean) => void;
   };
 };
 
@@ -58,6 +64,7 @@ export const useExperienceDetailStore = create<State>((set, get) => ({
   draft: initialDraft,
   defaultExperience: { experienceId: null },
   isSubmitting: false,
+  isTransitioning: false,
 
   actions: {
     setMode: (m) => set({ mode: m }),
@@ -87,7 +94,19 @@ export const useExperienceDetailStore = create<State>((set, get) => ({
       set({ draft: { ...draft, isDefault: next } });
     },
 
+    setCurrentDefault: (isDefault) => {
+      const { current, draft } = get();
+      if (current) {
+        set({
+          current: { ...current, isDefault },
+          draft: { ...draft, isDefault },
+        });
+      }
+    },
+
     setIsSubmitting: (v) => set({ isSubmitting: v }),
+
+    setIsTransitioning: (v) => set({ isTransitioning: v }),
   },
 }));
 

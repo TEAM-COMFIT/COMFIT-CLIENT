@@ -3,7 +3,10 @@ import { useBlocker } from "react-router-dom";
 
 import { useModal } from "@/shared/ui/modal/use-modal";
 
-import { initialDraft, useExperienceDetailStore } from "../store/experience.store";
+import {
+  initialDraft,
+  useExperienceDetailStore,
+} from "../store/experience.store";
 
 import type { ExperienceUpsertBody } from "../types/experience-detail.types";
 
@@ -26,11 +29,21 @@ export const useLeaveConfirm = () => {
 
   const { isOpen, handleModal } = useModal();
 
-  const shouldBlock = (mode === "create" || mode === "edit") && isDraftDirty(draft);
+  const shouldBlock =
+    (mode === "create" || mode === "edit") && isDraftDirty(draft);
 
   const blocker = useBlocker(() => {
-    const isSubmitting = useExperienceDetailStore.getState().isSubmitting;
-    return shouldBlock && !isSubmitting;
+    const state = useExperienceDetailStore.getState();
+    const currentMode = state.mode;
+    const currentDraft = state.draft;
+    const isSubmitting = state.isSubmitting;
+    const isTransitioning = state.isTransitioning;
+
+    const shouldBlockNow =
+      (currentMode === "create" || currentMode === "edit") &&
+      isDraftDirty(currentDraft);
+
+    return shouldBlockNow && !isSubmitting && !isTransitioning;
   });
 
   useEffect(() => {
