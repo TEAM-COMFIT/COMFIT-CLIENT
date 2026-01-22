@@ -62,7 +62,7 @@ export const useExperienceSubmit = () => {
       hydrateDraftFromCurrent();
       setMode("view");
       setIsSubmitting(false);
-      showSaveSuccess();
+      showSaveSuccess("완료했어요");
 
       navigate(ROUTES.EXPERIENCE_DETAIL(String(data.experienceId)), {
         replace: true,
@@ -82,7 +82,7 @@ export const useExperienceSubmit = () => {
         hydrateDraftFromCurrent();
         setMode("view");
         setIsSubmitting(false);
-        showSaveSuccess();
+        showSaveSuccess("완료했어요");
 
         navigate(ROUTES.EXPERIENCE_DETAIL(String(current.experienceId)), {
           replace: true,
@@ -100,7 +100,7 @@ export const useExperienceSubmit = () => {
     const result = validateExperienceDraft(draft);
 
     if (!result.ok) {
-      showValidationError(result.toastMessage);
+      showValidationError(result.title, result.description);
       return;
     }
 
@@ -142,6 +142,7 @@ export const useExperienceHeaderActions = () => {
     setMode,
     hydrateDraftFromCurrent,
     setIsTransitioning,
+    toggleDraftDefault,
   } = useExperienceActions();
 
   const deleteMutation = useDeleteExperienceMutation({
@@ -200,9 +201,14 @@ export const useExperienceHeaderActions = () => {
   );
 
   const onToggleDefault = useCallback(() => {
+    if (mode === "create" || mode === "edit") {
+      toggleDraftDefault();
+      return;
+    }
+
     if (!current?.experienceId) return;
     patchDefaultMutation.mutate(current.experienceId);
-  }, [current, patchDefaultMutation]);
+  }, [mode, current, patchDefaultMutation, toggleDraftDefault]);
 
   return {
     showEditDelete,

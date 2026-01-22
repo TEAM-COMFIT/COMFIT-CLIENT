@@ -1,4 +1,4 @@
-import { useEffect, useCallback } from "react";
+import { useEffect, useCallback, useRef } from "react";
 import { useBlocker } from "react-router-dom";
 
 import { useModal } from "@/shared/ui/modal/use-modal";
@@ -27,7 +27,7 @@ export const useLeaveConfirm = () => {
   const mode = useExperienceDetailStore((s) => s.mode);
   const draft = useExperienceDetailStore((s) => s.draft);
 
-  const { isOpen, handleModal } = useModal();
+  const { isOpen, openModal, closeModal } = useModal();
 
   const shouldBlock =
     (mode === "create" || mode === "edit") && isDraftDirty(draft);
@@ -46,11 +46,17 @@ export const useLeaveConfirm = () => {
     return shouldBlockNow && !isSubmitting && !isTransitioning;
   });
 
+  const prevBlockerStateRef = useRef(blocker.state);
+
   useEffect(() => {
-    if (blocker.state === "blocked" && !isOpen) {
-      handleModal();
+    const wasBlocked = prevBlockerStateRef.current === "blocked";
+    const nowBlocked = blocker.state === "blocked";
+    prevBlockerStateRef.current = blocker.state;
+
+    if (nowBlocked && !wasBlocked && !isOpen) {
+      openModal();
     }
-  }, [blocker.state, isOpen, handleModal]);
+  }, [blocker.state, isOpen, openModal]);
 
   useEffect(() => {
     const handleBeforeUnload = (e: BeforeUnloadEvent) => {
@@ -68,15 +74,15 @@ export const useLeaveConfirm = () => {
     if (blocker.state === "blocked") {
       blocker.proceed();
     }
-    handleModal();
-  }, [blocker, handleModal]);
+    closeModal();
+  }, [blocker, closeModal]);
 
   const cancelLeave = useCallback(() => {
     if (blocker.state === "blocked") {
       blocker.reset();
     }
-    handleModal();
-  }, [blocker, handleModal]);
+    closeModal();
+  }, [blocker, closeModal]);
 
   return {
     isOpen,

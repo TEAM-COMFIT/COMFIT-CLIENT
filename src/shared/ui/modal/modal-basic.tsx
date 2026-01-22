@@ -23,7 +23,7 @@ export const ModalBasic = ({
   title,
   subTitle,
   closeText = "나가기",
-  confirmText = "이동하기",
+  confirmText = "이어서 작성하기",
 }: ModalBasicProps) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
