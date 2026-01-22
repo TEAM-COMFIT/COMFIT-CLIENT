@@ -1,5 +1,4 @@
-// src/shared/ui/auth-guard.tsx
-import { Navigate, Outlet } from "react-router-dom";
+import { useLocation, Navigate, Outlet } from "react-router-dom";
 
 import { useAuthStore } from "../store";
 
@@ -9,10 +8,13 @@ interface AuthGuardProps {
 
 const AuthGuard = ({ type = "private" }: AuthGuardProps) => {
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
+  const location = useLocation();
+
+  if (location.pathname === "/mypage") return <Outlet />;
 
   // 로그인이 되어있지 않은데 private 경로에 접근하는 경우 막음
   if (type === "private" && !isLoggedIn) {
-    return <Navigate to="/login" replace />;
+    return <Navigate to="/login" state={{ from: location }} replace />;
   }
 
   // 이미 로그인되어 있는데 guest 경로에 접근하는 경우 막음

@@ -1,3 +1,5 @@
+import { Navigate } from "react-router-dom";
+
 import { useAuthStore } from "@/app/store";
 import { useGetProfile, useLogout } from "@/features/my-page";
 import { queryClient } from "@/shared/api";
@@ -7,9 +9,13 @@ import * as styles from "./my-page.css";
 import { MyPageCards } from "./ui/my-page-cards";
 
 const MyPage = () => {
-  const { actions } = useAuthStore();
-  const { data } = useGetProfile({ enabled: true });
+  const { actions, isLoggedIn } = useAuthStore();
+  const { data } = useGetProfile({ enabled: isLoggedIn });
   const { mutate: logout, isPending } = useLogout();
+
+  if (!isLoggedIn) {
+    return <Navigate to="/" replace />;
+  }
 
   const handleLogout = () => {
     logout(undefined, {
