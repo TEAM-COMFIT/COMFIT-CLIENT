@@ -38,12 +38,6 @@ axiosInstance.interceptors.request.use(
         throw new Error("액세스 토큰이 존재하지 않습니다");
       }
     }
-    // // 1. 실제로 나가는 전체 URL 확인
-    // console.log("최종 요청 URL:", `${config.baseURL}${config.url}`);
-    // // 2. 쿼리 파라미터 확인
-    // console.log("전달된 파라미터:", config.params);
-    // // 3. 토큰 확인
-    // console.log("포함된 토큰:", config.headers["Authorization"]);
     return config;
   },
   (error) => Promise.reject(error)
@@ -51,7 +45,6 @@ axiosInstance.interceptors.request.use(
 
 axiosInstance.interceptors.response.use(
   (response) => {
-    console.log("응답 인터셉터:", response);
     return response;
   },
   async (error) => {
