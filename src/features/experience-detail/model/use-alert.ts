@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-import { EXPERIENCE_MESSAGES } from "../config";
+import { EXPERIENCE_MESSAGES } from "../config/messages";
 
 import type { AlertVariant } from "@/shared/ui/alert";
 
@@ -22,31 +22,36 @@ interface ExperienceAlertState {
 
 let alertIdCounter = 0;
 
-export const useExperienceAlertStore = create<ExperienceAlertState>((set, get) => ({
-  alerts: [],
-  actions: {
-    show: (variant, title, description) => {
-      const { alerts } = get();
-      const isDuplicate = alerts.some(
-        (a) => a.variant === variant && a.title === title && a.description === description
-      );
-      if (isDuplicate) return;
+export const useExperienceAlertStore = create<ExperienceAlertState>(
+  (set, get) => ({
+    alerts: [],
+    actions: {
+      show: (variant, title, description) => {
+        const { alerts } = get();
+        const isDuplicate = alerts.some(
+          (a) =>
+            a.variant === variant &&
+            a.title === title &&
+            a.description === description
+        );
+        if (isDuplicate) return;
 
-      const id = `exp-alert-${++alertIdCounter}`;
-      set((state) => ({
-        alerts: [...state.alerts, { id, variant, title, description }],
-      }));
+        const id = `exp-alert-${++alertIdCounter}`;
+        set((state) => ({
+          alerts: [...state.alerts, { id, variant, title, description }],
+        }));
+      },
+      close: (id) => {
+        set((state) => ({
+          alerts: state.alerts.filter((a) => a.id !== id),
+        }));
+      },
+      closeAll: () => {
+        set({ alerts: [] });
+      },
     },
-    close: (id) => {
-      set((state) => ({
-        alerts: state.alerts.filter((a) => a.id !== id),
-      }));
-    },
-    closeAll: () => {
-      set({ alerts: [] });
-    },
-  },
-}));
+  })
+);
 
 export const showExperienceError = (message: string) => {
   const { show } = useExperienceAlertStore.getState().actions;

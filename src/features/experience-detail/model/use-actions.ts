@@ -6,7 +6,7 @@ import { useDeleteExperience as useDeleteExperienceMutation } from "@/features/e
 import { usePatchExperienceDefault } from "@/features/experience-detail/api/use-patch-experience-default.query";
 import { usePatchExperience } from "@/features/experience-detail/api/use-patch-experience.query";
 import { usePostExperience } from "@/features/experience-detail/api/use-post-experience.query";
-import { DEFAULT_BUTTON_LABELS } from "@/features/experience-detail/config";
+import { DEFAULT_BUTTON_LABELS } from "@/features/experience-detail/config/messages";
 import { validateExperienceDraft } from "@/features/experience-detail/lib/validation";
 import { useExperienceDetailStore } from "@/features/experience-detail/store/experience.store";
 import {
