@@ -13,6 +13,8 @@ import type { ExperienceTypeCode } from "@/shared/config/experience";
 
 const ExperiencePage = () => {
   const [filter, setFilter] = useState<ExperienceTypeCode | null>(null);
+
+  const [isExpTouched, setIsExpTouched] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const navigate = useNavigate();
 
@@ -22,6 +24,7 @@ const ExperiencePage = () => {
   });
 
   const handleFilterChange = (value: ExperienceTypeCode | null) => {
+    setIsExpTouched(true);
     setFilter(value);
     setCurrentPage(1);
   };
@@ -48,9 +51,16 @@ const ExperiencePage = () => {
           >
             경험 등록하기
           </button>
-          <ExperienceFilter value={filter} onChange={handleFilterChange} />
+
+          <ExperienceFilter
+            value={filter}
+            onChange={handleFilterChange}
+            isTouched={isExpTouched}
+            hasTotal={true}
+          />
         </div>
       </section>
+
       <ExperienceListContainer data={data} onPageChange={setCurrentPage} />
     </div>
   );

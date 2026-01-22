@@ -35,12 +35,7 @@ export const mainText = style({
 });
 
 export const highlight = style({
-  background: themeVars.gradient.bluePrimary,
-  WebkitBackgroundClip: "text",
-  WebkitTextFillColor: "transparent",
-
-  backgroundClip: "text",
-  color: "transparent",
+  color: themeVars.color.blue600,
 });
 
 export const searchWrapper = style({

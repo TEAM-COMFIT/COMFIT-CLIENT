@@ -7,23 +7,18 @@ import { RefreshButton } from "@/widgets";
 
 import * as styles from "./major-company-section.css";
 
-import type { MajorCompanyType } from "@/features/home";
-
 const MajorCompanySection = () => {
   const { isLoggedIn } = useAuthStore();
   const [rank, setRank] = useState<number>(1);
   const { data, isLoading } = useGetMajorCompanies({ rank });
 
-  // 2. 레이아웃 배치를 위한 data 구조 분해 할당
   const safeData = data || [];
-  const [first, second, third]: MajorCompanyType[] = safeData;
 
-  const generateRank = () => {
-    return Math.floor(Math.random() * 100) + 1;
-  };
+  const [first, second, third] = safeData;
 
   const handleRefreshClick = () => {
-    setRank(generateRank());
+    const generateRank = Math.floor(Math.random() * 100) + 1;
+    setRank(generateRank);
   };
 
   const subTitle = isLoggedIn
@@ -35,20 +30,17 @@ const MajorCompanySection = () => {
 
   return (
     <section className={styles.majorSection}>
-      {/* 헤더 */}
       <div className={styles.header}>
         <div className={styles.textGroup}>
           <p className={styles.subTitle}>{subTitle}</p>
           <p className={styles.title}>{title}</p>
         </div>
-
         <RefreshButton onClick={handleRefreshClick} />
       </div>
 
-      {/* 카드 영역 */}
       <div className={styles.cardGrid}>
-        {isLoading && !data ? (
-          <div className={styles.emptyWrapper}></div>
+        {isLoading || safeData.length < 3 ? (
+          <div className={styles.emptyWrapper}>로딩 중...</div>
         ) : (
           <>
             <div className={styles.smallCards}>
