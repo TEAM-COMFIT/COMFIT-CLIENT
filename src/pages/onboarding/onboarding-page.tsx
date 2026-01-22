@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import { ROUTES } from "@/app/routes/paths";
 import { useInterestSelectStore } from "@/features/onboarding";
-import { usePostOnboarding } from "@/features/onboarding/api/use-post-onboarding.query";
+import { usePostOnboarding } from "@/features/onboarding/api/use-post-onboarding.mutation";
 import { labelToCodeJob } from "@/features/onboarding/config/job";
 import { isOnboardingFormComplete } from "@/features/onboarding/lib/onboarding-form.validator";
 import { OnboardingLogo } from "@/shared/assets/images";
