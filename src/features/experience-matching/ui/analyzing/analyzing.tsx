@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { LOADING } from "@/shared/assets/images";
+import { LOVE } from "@/shared/assets/gifs";
 import { Alert } from "@/shared/ui/alert";
 import { useCreateReport } from "@features/experience-matching/index";
 
@@ -45,7 +45,7 @@ export const Analyzing = ({ nextStep }: { nextStep: () => void }) => {
   return (
     <>
       <div className={styles.layout}>
-        <img className={styles.spinner} src={LOADING} alt="로딩 스피너" />
+        <img className={styles.spinner} src={LOVE} alt="로딩 스피너" />
         <div className={styles.titleBox}>
           <div className={styles.title}>기업과 나의 경험을 분석하고 있어요</div>
           <div className={styles.subTitle}>평균 15~30초 소요됩니다</div>

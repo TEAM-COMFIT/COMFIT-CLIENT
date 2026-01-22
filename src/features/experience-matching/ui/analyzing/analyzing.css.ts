@@ -23,9 +23,8 @@ export const layout = style({
 });
 
 export const spinner = style({
-  width: "4rem",
-  height: "4rem",
-  animation: `${rotate} 2s linear infinite`,
+  width: "22.9rem",
+  height: "15.3rem",
 });
 
 export const titleBox = style({
