@@ -58,9 +58,9 @@ export const showExperienceError = (message: string) => {
   show("error", "오류", message);
 };
 
-export const showExperienceSuccess = (message: string) => {
+export const showExperienceSuccess = (message: string, title = "완료") => {
   const { show } = useExperienceAlertStore.getState().actions;
-  show("success", "완료", message);
+  show("success", title, message);
 };
 
 export const showExperienceInfo = (message: string) => {
@@ -73,8 +73,9 @@ export const showExperienceWarning = (message: string) => {
   show("warning", "주의", message);
 };
 
-export const showValidationError = (message: string) => {
-  showExperienceError(message);
+export const showValidationError = (title: string, description: string) => {
+  const { show } = useExperienceAlertStore.getState().actions;
+  show("error", title, description);
 };
 
 export const showSaveError = () => {
@@ -89,8 +90,8 @@ export const showDefaultSettingError = () => {
   showExperienceError(EXPERIENCE_MESSAGES.API.DEFAULT_SETTING_FAILED);
 };
 
-export const showSaveSuccess = () => {
-  showExperienceSuccess(EXPERIENCE_MESSAGES.SUCCESS.SAVED);
+export const showSaveSuccess = (title?: string) => {
+  showExperienceSuccess(EXPERIENCE_MESSAGES.SUCCESS.SAVED, title);
 };
 
 export const showDeleteSuccess = () => {

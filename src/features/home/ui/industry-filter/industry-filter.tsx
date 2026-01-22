@@ -1,22 +1,34 @@
-import { FILTER_INDUSTRY, INDUSTRY } from "@/shared/config/company";
-import { Dropdown } from "@/shared/ui";
-
-import type { IndustryCode } from "@/shared/config/company";
+import {
+  INDUSTRY_FILTER_OPTIONS,
+  type IndustryFilterCode,
+} from "@/features/home/config/filter-constant";
+import { INDUSTRY } from "@/shared/config/company";
+import { Dropdown } from "@/shared/ui/dropdown/dropdown";
 
 interface IndustryFilterProps {
-  value: IndustryCode | null;
-  onChange: (value: IndustryCode) => void;
+  value: IndustryFilterCode | null;
+  isTouched: boolean;
+  onChange: (value: IndustryFilterCode) => void;
 }
 
-const IndustryFilter = ({ value, onChange }: IndustryFilterProps) => {
-  const triggerLabel = value === null ? "산업" : INDUSTRY[value];
+const IndustryFilter = ({
+  value,
+  isTouched,
+  onChange,
+}: IndustryFilterProps) => {
+  let triggerLabel = "산업";
+
+  if (value) {
+    triggerLabel = INDUSTRY[value];
+  } else if (isTouched) {
+    triggerLabel = "전체";
+  }
 
   return (
     <Dropdown type="full">
       <Dropdown.Trigger>{triggerLabel}</Dropdown.Trigger>
-
       <Dropdown.Menu>
-        {FILTER_INDUSTRY.map((option) => (
+        {INDUSTRY_FILTER_OPTIONS.map((option) => (
           <Dropdown.Item key={option.id} onClick={() => onChange(option.code)}>
             {option.label}
           </Dropdown.Item>

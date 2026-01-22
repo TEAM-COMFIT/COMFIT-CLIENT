@@ -52,6 +52,7 @@ const ExperienceForm = () => {
                     <ExperienceFilter
                       value={draft.type}
                       onChange={(code) => setDraftField("type", code)}
+                      hasTotal={false}
                     />
                   </div>
                 </div>
@@ -78,6 +79,7 @@ const ExperienceForm = () => {
                     selectedDate={startDateField.selectedDate}
                     onChangeSelectedDate={startDateField.onChangeSelectedDate}
                     placeholder="시작일"
+                    maxDate={new Date()}
                   />
                   <span className={s.dateDash} aria-hidden="true">
                     —
@@ -87,6 +89,7 @@ const ExperienceForm = () => {
                     onChangeSelectedDate={endDateField.onChangeSelectedDate}
                     placeholder="종료일"
                     minDate={startDateField.selectedDate ?? undefined}
+                    maxDate={new Date()}
                   />
                 </div>
               </div>

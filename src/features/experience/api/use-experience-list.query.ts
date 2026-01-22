@@ -10,7 +10,7 @@ export const getExperienceList = async ({
   type,
   page,
 }: {
-  type?: ExperienceTypeCode;
+  type?: ExperienceTypeCode | undefined;
   page: number;
 }) => {
   const response = await api.experiences.getSummaryExperienceList({

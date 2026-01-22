@@ -4,7 +4,8 @@ import { EXPERIENCE_MESSAGES } from "../config/messages";
 
 import type { ExperienceUpsertBody } from "../types/experience-detail.types";
 
-type ValidationResult = { ok: true } | { ok: false; toastMessage: string };
+type ValidationMessage = { title: string; description: string };
+type ValidationResult = { ok: true } | ({ ok: false } & ValidationMessage);
 
 const trimmedLength = (v: string) => v.trim().length;
 
@@ -26,18 +27,18 @@ const validateStarField = (
   value: string,
   min: number,
   max: number,
-  message: string
+  message: ValidationMessage
 ): ValidationResult => {
   const len = trimmedLength(value);
 
   if (len < min) {
-    return { ok: false, toastMessage: message };
+    return { ok: false, ...message };
   }
 
   if (len > max) {
     return {
       ok: false,
-      toastMessage: EXPERIENCE_MESSAGES.VALIDATION.CONTENT_MAX_EXCEEDED,
+      ...EXPERIENCE_MESSAGES.VALIDATION.CONTENT_MAX_EXCEEDED,
     };
   }
 
@@ -52,7 +53,7 @@ export const validateExperienceDraft = (
   if (titleLen < 2 || titleLen > 30) {
     return {
       ok: false,
-      toastMessage: EXPERIENCE_MESSAGES.VALIDATION.TITLE_LENGTH,
+      ...EXPERIENCE_MESSAGES.VALIDATION.TITLE_LENGTH,
     };
   }
 
@@ -60,7 +61,7 @@ export const validateExperienceDraft = (
   if (!draft.type) {
     return {
       ok: false,
-      toastMessage: EXPERIENCE_MESSAGES.VALIDATION.TYPE_REQUIRED,
+      ...EXPERIENCE_MESSAGES.VALIDATION.TYPE_REQUIRED,
     };
   }
 
@@ -68,7 +69,7 @@ export const validateExperienceDraft = (
   if (!draft.startAt || !draft.endAt) {
     return {
       ok: false,
-      toastMessage: EXPERIENCE_MESSAGES.VALIDATION.DATE_FORMAT,
+      ...EXPERIENCE_MESSAGES.VALIDATION.DATE_FORMAT,
     };
   }
 
@@ -78,14 +79,14 @@ export const validateExperienceDraft = (
   if (!start || !end) {
     return {
       ok: false,
-      toastMessage: EXPERIENCE_MESSAGES.VALIDATION.DATE_FORMAT,
+      ...EXPERIENCE_MESSAGES.VALIDATION.DATE_FORMAT,
     };
   }
 
   if (start.getTime() > end.getTime()) {
     return {
       ok: false,
-      toastMessage: EXPERIENCE_MESSAGES.VALIDATION.DATE_FORMAT,
+      ...EXPERIENCE_MESSAGES.VALIDATION.DATE_FORMAT,
     };
   }
 

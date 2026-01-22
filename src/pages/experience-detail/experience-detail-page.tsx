@@ -71,12 +71,12 @@ const ExperienceDetailPage = ({ mode }: ExperiencePageProps) => {
       <ExperienceAlertRenderer />
       <ModalBasic
         isOpen={isOpen}
-        onClose={cancelLeave}
-        onConfirm={confirmLeave}
+        onClose={confirmLeave}
+        onConfirm={cancelLeave}
         title={`작성중인 내용이 있습니다.\n정말 나가시겠습니까?`}
         subTitle="저장하지 않으면 내용이 사라져요."
         closeText="나가기"
-        confirmText="이동하기"
+        confirmText="이어서 작성하기"
       />
     </>
   );

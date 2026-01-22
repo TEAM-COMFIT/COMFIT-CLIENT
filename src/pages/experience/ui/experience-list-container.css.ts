@@ -41,7 +41,7 @@ export const title = style({
   minHeight: "4.8rem",
   whiteSpace: "pre-line",
   color: themeVars.color.gray800,
-  ...themeVars.fontStyles.body_r_16,
+  ...themeVars.fontStyles.hline_b_18,
 });
 
 export const tag = style({
