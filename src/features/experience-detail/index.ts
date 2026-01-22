@@ -4,10 +4,10 @@ export { ExperienceViewer } from "./ui/experience-viewer/experience-viewer";
 export { ExperienceAlertRenderer } from "./ui/experience-alert-renderer/experience-alert-renderer";
 
 export {
-  createExperience,
-  useCreateExperience,
-  type CreateExperienceResponse,
-} from "./api/use-create-experience.query";
+  postExperience,
+  usePostExperience,
+  type PostExperienceResponse,
+} from "./api/use-post-experience.query";
 
 export {
   getExperienceDetail,
@@ -16,9 +16,9 @@ export {
 } from "./api/use-get-experience-detail.query";
 
 export {
-  updateExperience,
-  useUpdateExperience,
-} from "./api/use-update-experience.query";
+  patchExperience,
+  usePatchExperience,
+} from "./api/use-patch-experience.query";
 
 export {
   deleteExperience,
@@ -26,10 +26,10 @@ export {
 } from "./api/use-delete-experience.query";
 
 export {
-  updateExperienceDefault,
-  useUpdateExperienceDefault,
-  type UpdateDefaultResponse,
-} from "./api/use-update-experience-default.query";
+  patchExperienceDefault,
+  usePatchExperienceDefault,
+  type PatchDefaultResponse,
+} from "./api/use-patch-experience-default.query";
 
 export {
   useExperienceDetailStore,

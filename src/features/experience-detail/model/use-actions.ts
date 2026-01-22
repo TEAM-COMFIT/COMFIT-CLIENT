@@ -2,10 +2,10 @@ import { useCallback, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { ROUTES } from "@/app/routes/paths";
-import { useCreateExperience } from "@/features/experience-detail/api/use-create-experience.query";
 import { useDeleteExperience as useDeleteExperienceMutation } from "@/features/experience-detail/api/use-delete-experience.query";
-import { useUpdateExperienceDefault } from "@/features/experience-detail/api/use-update-experience-default.query";
-import { useUpdateExperience } from "@/features/experience-detail/api/use-update-experience.query";
+import { usePatchExperienceDefault } from "@/features/experience-detail/api/use-patch-experience-default.query";
+import { usePatchExperience } from "@/features/experience-detail/api/use-patch-experience.query";
+import { usePostExperience } from "@/features/experience-detail/api/use-post-experience.query";
 import { DEFAULT_BUTTON_LABELS } from "@/features/experience-detail/config";
 import { validateExperienceDraft } from "@/features/experience-detail/lib/validation";
 import { useExperienceDetailStore } from "@/features/experience-detail/store/experience.store";
@@ -57,7 +57,7 @@ export const useExperienceSubmit = () => {
   const { setMode, setCurrent, hydrateDraftFromCurrent, setIsSubmitting } =
     useExperienceDetailStore((s) => s.actions);
 
-  const createMutation = useCreateExperience({
+  const createMutation = usePostExperience({
     onSuccess: (data) => {
       hydrateDraftFromCurrent();
       setMode("view");
@@ -75,7 +75,7 @@ export const useExperienceSubmit = () => {
     },
   });
 
-  const updateMutation = useUpdateExperience({
+  const patchMutation = usePatchExperience({
     onSuccess: () => {
       if (current) {
         setCurrent({ ...current, ...draft });
@@ -115,7 +115,7 @@ export const useExperienceSubmit = () => {
       }
 
       if (mode === "edit" && current && current.experienceId) {
-        updateMutation.mutate({
+        patchMutation.mutate({
           experienceId: current.experienceId,
           body: requestDto,
         });
@@ -126,7 +126,7 @@ export const useExperienceSubmit = () => {
       showSaveError();
       console.error("Experience save failed:", error);
     }
-  }, [draft, mode, current, createMutation, updateMutation, setIsSubmitting]);
+  }, [draft, mode, current, createMutation, patchMutation, setIsSubmitting]);
 
   return { submit };
 };
@@ -155,7 +155,7 @@ export const useExperienceHeaderActions = () => {
     },
   });
 
-  const updateDefaultMutation = useUpdateExperienceDefault({
+  const patchDefaultMutation = usePatchExperienceDefault({
     onSuccess: (data) => {
       const newIsDefault = data?.isDefault ?? !current?.isDefault;
       setCurrentDefault(newIsDefault);
@@ -201,8 +201,8 @@ export const useExperienceHeaderActions = () => {
 
   const onToggleDefault = useCallback(() => {
     if (!current?.experienceId) return;
-    updateDefaultMutation.mutate(current.experienceId);
-  }, [current, updateDefaultMutation]);
+    patchDefaultMutation.mutate(current.experienceId);
+  }, [current, patchDefaultMutation]);
 
   return {
     showEditDelete,
