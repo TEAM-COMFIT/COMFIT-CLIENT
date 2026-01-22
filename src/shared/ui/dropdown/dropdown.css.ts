@@ -62,8 +62,8 @@ export const menu = style({
 /* ---------- Menu size ---------- */
 export const menuSize = styleVariants({
   medium: { width: "14.4rem" },
-  large: { width: "14.4rem" },
-  full: { width: "20.5rem" },
+  large: { width: "15rem" },
+  full: { width: "20rem" },
 });
 
 /* ---------- Menu alignment ---------- */

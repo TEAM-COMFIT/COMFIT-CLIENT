@@ -9,7 +9,7 @@ interface ExperienceFilterProps {
 }
 
 const ExperienceFilter = ({ value, onChange }: ExperienceFilterProps) => {
-  const triggerLabel = value === null ? "경험종류" : EXPERIENCE_TYPE[value];
+  const triggerLabel = value === null ? "경험 유형" : EXPERIENCE_TYPE[value];
 
   return (
     <Dropdown type="medium">
