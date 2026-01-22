@@ -1,4 +1,5 @@
-import { useParams } from "react-router-dom";
+import { isAxiosError } from "axios";
+import { Navigate, useParams } from "react-router-dom";
 
 import {
   useGetCompanyDetail,
@@ -15,9 +16,12 @@ import type { IndustryCode, ScaleCode } from "@/shared/config";
 const CompanyDetailPage = () => {
   useScrollToTop();
   const { id } = useParams<{ id: string }>();
-  const companyId = Number.isFinite(Number(id)) ? Number(id) : 1;
+  const parsedId = Number(id);
+  const isValidCompanyId = Number.isFinite(parsedId) && parsedId > 0;
+  const companyId = isValidCompanyId ? parsedId : 0;
 
-  const { data: companyDetail } = useGetCompanyDetail(companyId);
+  const { data: companyDetail, error: companyDetailError } =
+    useGetCompanyDetail(companyId);
   const companyData = companyDetail
     ? {
         companyId,
@@ -44,6 +48,14 @@ const CompanyDetailPage = () => {
     refetch: refetchRecommendCompanies,
     isFetching: isRefreshing,
   } = useGetCompanySuggestionsQuery(companyId);
+
+  const isNotFoundError =
+    isAxiosError(companyDetailError) &&
+    companyDetailError.response?.status === 404;
+
+  if (!isValidCompanyId || isNotFoundError) {
+    return <Navigate to="/not-found" replace />;
+  }
 
   const handleRefresh = () => {
     refetchRecommendCompanies();

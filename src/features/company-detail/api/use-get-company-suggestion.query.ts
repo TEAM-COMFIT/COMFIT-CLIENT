@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { isAxiosError } from "axios";
 
 import { api } from "@/shared/api/axios-instance";
 import { companyQueryKey } from "@/shared/api/config/query-key";
@@ -55,5 +56,7 @@ export const useGetCompanySuggestionsQuery = (companyId: number) => {
     queryKey: companyQueryKey.suggestion(companyId),
     queryFn: () => getCompanySuggestions(companyId),
     enabled: Number.isFinite(companyId) && companyId > 0,
+    throwOnError: (error) =>
+      !(isAxiosError(error) && error.response?.status === 404),
   });
 };
