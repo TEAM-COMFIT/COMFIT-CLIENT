@@ -26,8 +26,7 @@ const CompanyDetailPage = () => {
     ? {
         companyId,
         name: companyDetail.name ?? "",
-        isRecruiting: (companyDetail as { isRecruiting?: boolean })
-          .isRecruiting,
+        isRecruiting: companyDetail.isRecruiting,
         logo: companyDetail.logo ?? "",
         industry: companyDetail.industry as IndustryCode | undefined,
         scale: companyDetail.scale as ScaleCode | undefined,
