@@ -1,11 +1,13 @@
 import { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
+import { ROUTES } from "@/app/routes/paths";
+import { useAuthStore } from "@/app/store";
 import {
   LandingCard,
   WorryCard,
   PointCard,
   CompanySlider,
-  AlertModal,
 } from "@/features/landing";
 import { LANDING_CARD_ITEMS } from "@/features/landing/config/landing-card.constant";
 import { CHARACTER, FLOAT_IMG, KEY } from "@/shared/assets/images";
@@ -16,11 +18,16 @@ import * as styles from "./landing-page.css";
 const LandingPage = () => {
   useScrollToTop();
   const { isMobile } = useDevice();
-  const modalRef = useRef<HTMLDialogElement>(null);
+  const { isLoggedIn } = useAuthStore();
+  const navigate = useNavigate();
   const sectionRef = useRef<HTMLDivElement>(null);
 
-  const handleModal = () => {
-    modalRef.current?.showModal();
+  const handleMovetoPage = () => {
+    if (isLoggedIn) {
+      navigate(ROUTES.EXPERIENCE_MATCHING);
+    } else {
+      navigate(ROUTES.HOME);
+    }
   };
 
   const handleScrollToSection = () => {
@@ -115,12 +122,10 @@ const LandingPage = () => {
             <br /> 하지만 올바른 방향과 전략이 있다면 충분히 해낼 수 있습니다
           </p>
         </div>
-        <button className={styles.footerButton} onClick={handleModal}>
+        <button className={styles.footerButton} onClick={handleMovetoPage}>
           경험 매칭하기
         </button>
       </footer>
-      {/** 모달  */}
-      <AlertModal ref={modalRef} />
     </div>
   );
 };
