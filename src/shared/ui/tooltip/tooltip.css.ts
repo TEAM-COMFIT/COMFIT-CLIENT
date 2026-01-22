@@ -45,18 +45,17 @@ export const icon = styleVariants({
 /* ---------- tooltipBox ---------- */
 export const tooltipBox = style({
   position: "absolute",
-  top: "100%",
+  top: "132%",
   right: 0,
   display: "flex",
   flexDirection: "column",
-  alignItems: "flex-start",
+  alignItems: "center",
   justifyContent: "center",
   backgroundColor: themeVars.color.white,
   border: `1.5px solid ${themeVars.color.normal}`,
   borderRadius: "12px",
   boxShadow: themeVars.shadow.shadow1,
 
-  padding: "2.8rem 4.4rem",
   color: themeVars.color.gray500,
   whiteSpace: "pre-line",
 
@@ -82,20 +81,18 @@ export const tooltipBox = style({
       background: "transparent",
     },
   },
-  ...themeVars.fontStyles.cap_m_12,
+  ...themeVars.fontStyles.body_r_14,
 });
 
 /* ---------- 타입 별 박스 사이즈 및 여백 ---------- */
 export const tooltipStyle = styleVariants({
   help: {
-    width: "29.1rem",
-    height: "23rem",
-    marginTop: "0.8rem",
+    width: "28.4rem",
+    height: "24.9rem",
   },
   guide: {
-    width: "28.2rem",
-    height: "27.2rem",
-    marginTop: "1.2rem",
+    width: "27rem",
+    height: "29rem",
   },
 });
 

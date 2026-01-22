@@ -10,7 +10,7 @@ export const card = recipe({
   base: {
     position: "relative",
     // gray900에 투명도 10%를 적용한 그라데이션 레이어
-    backgroundImage: `linear-gradient(rgba(23, 23, 25, 0.3), rgba(23, 23, 25, 0.3)), ${bgImageUrl}`,
+    backgroundImage: `linear-gradient(rgba(23, 23, 25, 0.2), rgba(23, 23, 25, 0.2)), ${bgImageUrl}`,
     backgroundSize: "cover",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
