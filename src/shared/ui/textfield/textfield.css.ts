@@ -6,7 +6,7 @@ export const wrapper = style({
   display: "flex",
   flexDirection: "column",
 
-  padding: "2.8rem 2rem",
+  padding: "2rem 2rem",
   borderRadius: "16px",
   border: `1px solid ${themeVars.color.normal}`,
 });
