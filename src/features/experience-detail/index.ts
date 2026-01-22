@@ -4,23 +4,32 @@ export { ExperienceViewer } from "./ui/experience-viewer/experience-viewer";
 export { ExperienceAlertRenderer } from "./ui/experience-alert-renderer/experience-alert-renderer";
 
 export {
-  useGetExperienceDetail,
-  useCreateExperience,
-  useUpdateExperience,
-  useDeleteExperience as useDeleteExperienceMutation,
-  useUpdateExperienceDefault,
   createExperience,
-  getExperienceDetail,
-  deleteExperience,
-  updateExperience,
-  updateExperienceDefault,
-} from "./api";
+  useCreateExperience,
+  type CreateExperienceResponse,
+} from "./api/use-create-experience.query";
 
-export type {
-  CreateExperienceResponse,
-  GetExperienceDetailResponse,
-  UpdateDefaultResponse,
-} from "./api";
+export {
+  getExperienceDetail,
+  useGetExperienceDetail,
+  type GetExperienceDetailResponse,
+} from "./api/use-get-experience-detail.query";
+
+export {
+  updateExperience,
+  useUpdateExperience,
+} from "./api/use-update-experience.query";
+
+export {
+  deleteExperience,
+  useDeleteExperience as useDeleteExperienceMutation,
+} from "./api/use-delete-experience.query";
+
+export {
+  updateExperienceDefault,
+  useUpdateExperienceDefault,
+  type UpdateDefaultResponse,
+} from "./api/use-update-experience-default.query";
 
 export {
   useExperienceDetailStore,
