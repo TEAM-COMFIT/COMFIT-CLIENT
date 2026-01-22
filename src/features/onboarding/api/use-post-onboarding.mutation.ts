@@ -21,10 +21,6 @@ const usePostOnboarding = () => {
     OnBoardingRequestDTO
   >({
     mutationFn: (data: OnBoardingRequestDTO) => postOnboarding(data),
-    onSuccess: () => {},
-    onError: (error) => {
-      console.error("온보딩 실패:", error);
-    },
   });
 };
 

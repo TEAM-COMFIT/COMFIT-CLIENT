@@ -1,12 +1,11 @@
-import { MatchingItem } from "@/features/matching-list/ui/matching-item";
+import { MatchingItem } from "@/features/matching-list";
 import { Pagination } from "@/shared/ui";
 
 import * as styles from "./list-section.css";
 
-import type { MatchingItemDto } from "../matching-list-page";
-
+import type { MatchingItemType } from "@/features/matching-list";
 interface ListSectionProps {
-  matchingList: MatchingItemDto[];
+  matchingList: MatchingItemType[];
   totalPage: number;
   currentPage: number;
   onPageChange: (page: number) => void;

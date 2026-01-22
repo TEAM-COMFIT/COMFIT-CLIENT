@@ -9,6 +9,7 @@ export const pageWrapper = style({
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
+  paddingTop: themeVars.height.header,
 });
 
 export const contentContainer = style({
@@ -19,7 +20,7 @@ export const contentContainer = style({
   borderTopLeftRadius: "40px",
   borderTopRightRadius: "40px",
   margin: "6.4rem 19rem 0 19rem",
-  padding: "6.5rem 8.5rem 12rem 9.5rem",
+  padding: "9rem 8.5rem 12rem 9.5rem",
   flex: 1,
 });
 

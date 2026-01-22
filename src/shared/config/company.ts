@@ -114,21 +114,19 @@ export const getScaleLabel = (code: string): ScaleLabel => {
 
 export const labelToCodeIndustry = (
   label: string | null | undefined
-): IndustryCode | "" => {
-  if (!label) return "";
+): IndustryCode | undefined => {
+  if (!label) return undefined;
   if (label in INDUSTRY_LABEL_TO_CODE) {
     return INDUSTRY_LABEL_TO_CODE[label as IndustryLabel];
   }
-  return "";
 };
 
 // 규모 코드 변환 유틸 (string 타입을 수용하되 안전하게 반환)
 export const labelToCodeScale = (
   label: string | null | undefined
-): ScaleCode | "" => {
-  if (!label) return "";
+): ScaleCode | undefined => {
+  if (!label) return undefined;
   if (label in SCALE_LABEL_TO_CODE) {
     return SCALE_LABEL_TO_CODE[label as ScaleLabel];
   }
-  return "";
 };

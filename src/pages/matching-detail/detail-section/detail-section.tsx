@@ -2,49 +2,20 @@ import { Textbox } from "@/widgets";
 
 import * as styles from "./detail-section.css";
 
-interface Perspective {
-  perspective: string;
-  source: string;
-  reason: string;
-}
-
-interface Density {
-  perspective: string;
-  connection: string;
-  reason: string;
-}
-
-interface AppealPoint {
-  element: string;
-  importance: string;
-  starPhase: string;
-  direction: string;
-  placement: string;
-}
-
-export interface CompanyDetail {
-  companyName: string;
-  experienceTitle: string;
-  jobDescription: string;
-  perspectives: Perspective[];
-  density: Density[];
-  appealPoint: AppealPoint[];
-  suggestion: string;
-  guidance: string;
-}
+import type { matchingDetailType } from "@/features/matching-detail/types/matching-detail.type";
 
 interface DetailSectionProps {
-  data: CompanyDetail;
+  detailData?: matchingDetailType;
 }
 
-const DetailSection = ({ data }: DetailSectionProps) => {
+const DetailSection = ({ detailData }: DetailSectionProps) => {
   return (
     <section className={styles.sectionContainer}>
       {/* 지원 기업 */}
       <div className={styles.itemWrapper}>
         <h2 className={styles.itemTitle}>지원 기업</h2>
         <Textbox type="medium">
-          <p className={styles.contentBold}>{data.companyName}</p>
+          <p className={styles.contentBold}>{detailData?.companyName}</p>
         </Textbox>
       </div>
 
@@ -52,7 +23,7 @@ const DetailSection = ({ data }: DetailSectionProps) => {
       <div className={styles.itemWrapper}>
         <h2 className={styles.itemTitle}>선택된 경험</h2>
         <Textbox type="medium">
-          <p className={styles.contentBold}>{data.experienceTitle}</p>
+          <p className={styles.contentBold}>{detailData?.experienceTitle}</p>
         </Textbox>
       </div>
 
@@ -60,7 +31,9 @@ const DetailSection = ({ data }: DetailSectionProps) => {
       <div className={styles.itemWrapper}>
         <h2 className={styles.itemTitle}>직무 설명 (Job Description)</h2>
         <Textbox type="medium">
-          <div className={styles.whiteSpacePre}>{data.jobDescription}</div>
+          <div className={styles.whiteSpacePre}>
+            {detailData?.jobDescription}
+          </div>
         </Textbox>
       </div>
 
@@ -70,7 +43,7 @@ const DetailSection = ({ data }: DetailSectionProps) => {
           [1] 이 기업이 이 직무에서 중요하게 보는 관점
         </h2>
         <Textbox type="medium">
-          {data.perspectives.map((p, i) => (
+          {detailData?.perspectives.map((p, i) => (
             <div key={p.perspective} className={styles.listContent}>
               <p
                 className={styles.blueTitle({
@@ -82,7 +55,7 @@ const DetailSection = ({ data }: DetailSectionProps) => {
               </p>
               <p className={styles.highlightText}>{p.perspective}</p>
               <p className={styles.perspectiveReason}>{p.reason}</p>
-              {i < data.perspectives.length - 1 && <br />}
+              {i < detailData?.perspectives.length - 1 && <br />}
             </div>
           ))}
         </Textbox>
@@ -92,7 +65,7 @@ const DetailSection = ({ data }: DetailSectionProps) => {
       <div className={styles.itemWrapper}>
         <h2 className={styles.itemTitle}>[2] 선택한 경험과의 연결 강도</h2>
         <Textbox type="medium">
-          {data.density.map((d, i) => (
+          {detailData?.density.map((d, i) => (
             <div key={d.perspective} className={styles.listContent}>
               <p
                 className={styles.blueTitle({
@@ -107,7 +80,7 @@ const DetailSection = ({ data }: DetailSectionProps) => {
                 {d.connection === "간접 연결" ? "(간접 연결)" : ""}
               </p>
               <p className={styles.perspectiveReason}>{d.reason}</p>
-              {i < data.density.length - 1 && <br />}
+              {i < detailData?.density.length - 1 && <br />}
             </div>
           ))}
         </Textbox>
@@ -117,7 +90,7 @@ const DetailSection = ({ data }: DetailSectionProps) => {
       <div className={styles.itemWrapper}>
         <h2 className={styles.itemTitle}>[3] 반드시 드러내야 할 요소</h2>
         <Textbox type="medium">
-          {data.appealPoint.map((a, i) => (
+          {detailData?.appealPoint.map((a, i) => (
             <div key={a.element} className={styles.listContent}>
               <p
                 className={styles.blueTitle({
@@ -140,7 +113,7 @@ const DetailSection = ({ data }: DetailSectionProps) => {
                 <p>
                   <strong>• 자소서 배치 위치</strong>: {a.placement}
                 </p>
-                {i < data.appealPoint.length - 1 && <br />}
+                {i < detailData?.appealPoint.length - 1 && <br />}
               </div>
             </div>
           ))}
@@ -151,7 +124,7 @@ const DetailSection = ({ data }: DetailSectionProps) => {
       <div className={styles.itemWrapper}>
         <h2 className={styles.itemTitle}>[4] 표현 조정 또는 주의 포인트</h2>
         <Textbox type="medium">
-          <div className={styles.whiteSpacePre}>{data.suggestion}</div>
+          <div className={styles.whiteSpacePre}>{detailData?.suggestion}</div>
         </Textbox>
       </div>
 
@@ -159,7 +132,7 @@ const DetailSection = ({ data }: DetailSectionProps) => {
       <div className={styles.itemWrapper}>
         <h2 className={styles.itemTitle}>[5] 자소서 활용 구조 가이드</h2>
         <Textbox type="medium">
-          <div className={styles.whiteSpacePre}>{data.guidance}</div>
+          <div className={styles.whiteSpacePre}>{detailData?.guidance}</div>
         </Textbox>
       </div>
     </section>

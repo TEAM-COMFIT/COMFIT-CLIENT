@@ -16,6 +16,7 @@ import * as s from "./onboarding-page.css";
 import { SelectSection } from "./ui/select-section";
 
 import type { EducationTypeCode } from "@/features/onboarding";
+import type { OnBoardingRequestDTO } from "@/shared/api/generate/http-client";
 import type { SearchItem } from "@/shared/ui/search-auto-complete/types";
 
 const OnboardingPage = () => {
@@ -47,8 +48,8 @@ const OnboardingPage = () => {
   const handleSelectionSubmit = () => {
     if (!isFormComplete) return;
 
-    const requestBody = {
-      educationLevel: selectedEducation ?? undefined,
+    const requestBody: OnBoardingRequestDTO = {
+      educationLevel: selectedEducation ?? "HIGH_SCHOOL",
       universityId: Number(selectedUniversity?.id ?? 0),
 
       firstIndustry: labelToCodeIndustry(industry[1]),
@@ -59,6 +60,7 @@ const OnboardingPage = () => {
       secondJob: labelToCodeJob(job[2]) || undefined,
       thirdJob: labelToCodeJob(job[3]) || undefined,
     };
+
     mutate(requestBody, {
       onSuccess: () => {
         navigate(ROUTES.HOME);
@@ -69,7 +71,6 @@ const OnboardingPage = () => {
         setErrorMsg(serverMessage);
         setOpen(true);
 
-        // 3초 뒤 자동으로 닫히게 설정
         setTimeout(() => setOpen(false), 3000);
       },
     });

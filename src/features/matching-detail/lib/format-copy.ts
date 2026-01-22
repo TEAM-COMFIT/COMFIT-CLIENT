@@ -1,5 +1,5 @@
-import type { CompanyDetail } from "@/pages/matching-detail/detail-section/detail-section";
-export const formatMatchingDetail = (data: CompanyDetail): string => {
+import type { matchingDetailType } from "../types/matching-detail.type";
+export const formatMatchingDetail = (data: matchingDetailType): string => {
   return `
 [기업 분석 보고서: ${data.companyName}]
 

@@ -1,7 +1,7 @@
-import type { MatchingResult } from "./matching-result-content/matching-result-content";
+import type { matchingDetailType } from "@/features/matching-detail/types/matching-detail.type";
 
 // TODO: 예시 데이터 (실제로는 TanStack Query 등으로 가져온 데이터 사용)
-export const MOCK_COMPANY_DETAIL: MatchingResult = {
+export const MOCK_COMPANY_DETAIL: matchingDetailType = {
   companyName: "쿠팡",
   experienceTitle: "인스타그램 마케팅 캠페인 기획 및 실행",
   jobDescription: `[직무 설명 (JD 원문)]
