@@ -8,7 +8,7 @@ import {
   useUpdateExperience,
   useDeleteExperience as useDeleteExperienceMutation,
   useUpdateExperienceDefault,
-} from "../api/experience.query";
+} from "../api";
 import { DEFAULT_BUTTON_LABELS } from "../config";
 import { validateExperienceDraft } from "../lib/validation";
 import { useExperienceDetailStore } from "../store/experience.store";

@@ -14,13 +14,13 @@ export {
   deleteExperience,
   updateExperience,
   updateExperienceDefault,
-} from "./api/experience.query";
+} from "./api";
 
 export type {
   CreateExperienceResponse,
   GetExperienceDetailResponse,
   UpdateDefaultResponse,
-} from "./api/experience.query";
+} from "./api";
 
 export {
   useExperienceDetailStore,

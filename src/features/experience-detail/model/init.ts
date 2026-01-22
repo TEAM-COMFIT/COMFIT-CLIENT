@@ -1,6 +1,6 @@
 import { useExperienceDetailStore } from "../store/experience.store";
 
-import type { GetExperienceDetailResponse } from "../api/experience.query";
+import type { GetExperienceDetailResponse } from "../api";
 import type {
   ExperienceEntity,
   ExperienceMode,
