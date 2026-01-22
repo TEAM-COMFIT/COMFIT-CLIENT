@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 
 import {
@@ -23,6 +23,7 @@ const ExperienceDetailPage = ({ mode }: ExperiencePageProps) => {
   const { id: experienceId } = useParams<{ id: string }>();
   const currentMode = useExperienceMode();
   const { isOpen, confirmLeave, cancelLeave } = useLeaveConfirm();
+  const initializedExperienceIdRef = useRef<string | null>(null);
 
   const shouldFetch = mode !== "create" && Boolean(experienceId);
   const { data, isLoading, isError } = useGetExperienceDetail({
@@ -35,10 +36,11 @@ const ExperienceDetailPage = ({ mode }: ExperiencePageProps) => {
   }, [mode, experienceId]);
 
   useEffect(() => {
-    if (data) {
+    if (data && initializedExperienceIdRef.current !== experienceId) {
+      initializedExperienceIdRef.current = experienceId ?? null;
       hydrateExperienceFromApi(data);
     }
-  }, [data]);
+  }, [data, experienceId]);
 
   if (shouldFetch && isLoading) {
     return null;
