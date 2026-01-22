@@ -15,3 +15,10 @@ export const container = style({
   margin: "0 auto",
   padding: "0 2rem 0",
 });
+
+export const skeletonWrapper = style({
+  width: "100%",
+  height: "600px",
+  backgroundColor: themeVars.color.gray100,
+  borderRadius: "16px",
+});

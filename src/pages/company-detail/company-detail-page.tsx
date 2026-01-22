@@ -65,7 +65,9 @@ const CompanyDetailPage = () => {
       <div className={styles.container}>
         {companyData ? (
           <CompanyDetailSection companyData={companyData} />
-        ) : null}
+        ) : (
+          <div className={styles.skeletonWrapper} />
+        )}
       </div>
 
       <CompanyRecommendationSection

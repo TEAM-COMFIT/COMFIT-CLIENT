@@ -1,6 +1,12 @@
 import { assignInlineVars } from "@vanilla-extract/dynamic";
 import { useNavigate } from "react-router-dom";
 
+import {
+  getCompanyDetail,
+  getCompanySuggestions,
+} from "@/features/company-detail";
+import { queryClient } from "@/shared/api";
+import { companyQueryKey } from "@/shared/api/config/query-key";
 import { IconMove } from "@/shared/assets/icons";
 import { getScaleLabel } from "@/shared/config";
 import { Tag } from "@/shared/ui/tag/tag";
@@ -28,7 +34,20 @@ const MajorCompanyCard = ({
 }: MajorCompanyCardProps) => {
   const navigate = useNavigate();
 
+  const prefetchCompany = () => {
+    void queryClient.prefetchQuery({
+      queryKey: companyQueryKey.detail(id),
+      queryFn: () => getCompanyDetail(id),
+    });
+    void queryClient.prefetchQuery({
+      queryKey: companyQueryKey.suggestion(id),
+      queryFn: () => getCompanySuggestions(id),
+    });
+  };
+
   const handleClick = () => {
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    prefetchCompany();
     navigate(`/company/${id}`);
   };
 
@@ -36,7 +55,10 @@ const MajorCompanyCard = ({
     <button
       type="button"
       onClick={handleClick}
-      aria-label="기업 상세로 이동"
+      onMouseEnter={prefetchCompany}
+      onFocus={prefetchCompany}
+      onTouchStart={prefetchCompany}
+      aria-label="旮办梾 ?侅劯搿??措彊"
       className={styles.card({ type })}
       style={assignInlineVars({ [styles.bgImageUrl]: `url(${imgUrl})` })}
     >
