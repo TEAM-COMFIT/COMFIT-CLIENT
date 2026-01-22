@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { useGetCompanies } from "@/features/home/api/use-get-companies.query";
+import { useGetCompanies } from "@/features/home";
 import { ScaleFilter, IndustryFilter } from "@/features/home/ui";
 import { homeBanner } from "@/shared/assets/images";
 import { Toggle, Pagination } from "@/shared/ui";

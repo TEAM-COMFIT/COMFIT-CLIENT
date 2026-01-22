@@ -3,28 +3,21 @@ import { useQuery } from "@tanstack/react-query";
 import { api } from "@/shared/api/axios-instance";
 import { companyQueryKey } from "@/shared/api/config/query-key";
 
-import type { ScaleCode, IndustryCode } from "@/shared/config";
-export interface GetMajorCompaniesData {
-  id: number;
-  name: string;
-  industry: IndustryCode;
-  scale: ScaleCode;
-  logo: string;
-  photoUrl: string;
-}
-
-export const getMajorCompanies = async ({ rank }: { rank: number }) => {
+import type { MajorCompanyType } from "@/features/home";
+const getMajorCompanies = async ({ rank }: { rank: number }) => {
   const response = await api.companies.getFeaturedCompanies(
     { rank },
     { secure: false }
   );
-  return response.result as unknown as GetMajorCompaniesData[];
+  return response.result as unknown as MajorCompanyType[];
 };
 
-export const useGetMajorCompanies = ({ rank }: { rank: number }) => {
+const useGetMajorCompanies = ({ rank }: { rank: number }) => {
   return useQuery({
     queryKey: companyQueryKey.major(rank),
     queryFn: () => getMajorCompanies({ rank }),
     placeholderData: (previousData) => previousData,
   });
 };
+
+export { useGetMajorCompanies };

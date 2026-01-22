@@ -3,12 +3,9 @@ import { useQuery } from "@tanstack/react-query";
 import { api } from "@/shared/api/axios-instance";
 import { companyQueryKey } from "@/shared/api/config/query-key";
 
-import type {
-  CompanyResponseType,
-  GetCompaniesParams,
-} from "../types/get-company.type";
+import type { CompanyResponseType, GetCompaniesParams } from "@/features/home";
 
-export const getCompanies = async ({
+const getCompanies = async ({
   keyword,
   industry,
   scale,
@@ -30,7 +27,7 @@ export const getCompanies = async ({
   return response.result as unknown as CompanyResponseType;
 };
 
-export const useGetCompanies = ({
+const useGetCompanies = ({
   keyword,
   industry,
   scale,
@@ -60,3 +57,5 @@ export const useGetCompanies = ({
     placeholderData: (previousData) => previousData,
   });
 };
+
+export { useGetCompanies };

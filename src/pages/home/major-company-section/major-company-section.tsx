@@ -7,7 +7,7 @@ import { RefreshButton } from "@/widgets";
 
 import * as styles from "./major-company-section.css";
 
-import type { GetMajorCompaniesData } from "@/features/home/api/use-get-major-companies.query";
+import type { MajorCompanyType } from "@/features/home";
 
 const MajorCompanySection = () => {
   const { isLoggedIn } = useAuthStore();
@@ -16,7 +16,7 @@ const MajorCompanySection = () => {
 
   // 2. 레이아웃 배치를 위한 data 구조 분해 할당
   const safeData = data || [];
-  const [first, second, third]: GetMajorCompaniesData[] = safeData;
+  const [first, second, third]: MajorCompanyType[] = safeData;
 
   const generateRank = () => {
     return Math.floor(Math.random() * 100) + 1;
