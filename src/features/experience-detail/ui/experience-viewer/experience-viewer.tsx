@@ -5,7 +5,7 @@ import { Button } from "@/shared/ui/button/button";
 import { useModal } from "@/shared/ui/modal/use-modal";
 import { Tag } from "@/shared/ui/tag/tag";
 import { Textfield } from "@/shared/ui/textfield/textfield";
-import { GUIDE_TOOLTIP_CONTENT } from "@/shared/ui/tooltip/tooltip.content";
+import { HELP_TOOLTIP_CONTENT } from "@/shared/ui/tooltip/tooltip.content";
 import { StickyHeader } from "@/widgets";
 
 import { useExperienceHeaderActions } from "../../model/use-actions";
@@ -76,8 +76,8 @@ const ExperienceViewer = () => {
               <h1 className={s.viewerTitle}>{current.title}</h1>
 
               <div className={s.tooltipWrap}>
-                <Tooltip type="guide" label="작성 가이드">
-                  {GUIDE_TOOLTIP_CONTENT}
+                <Tooltip type="help" label="도움말">
+                  {HELP_TOOLTIP_CONTENT}
                 </Tooltip>
               </div>
             </div>
