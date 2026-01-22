@@ -1,34 +1,25 @@
-import { useCallback, useMemo, useRef } from "react";
+import { useCallback, useRef, useState, useEffect } from "react";
 
 import { IconCancel, IconSearch } from "@/shared/assets/icons";
-import { Tag } from "@shared/ui/tag/tag";
+import { Tag } from "@/shared/ui/tag/tag";
 
 import * as s from "./search-auto-complete.css";
-import { useAutocomplete } from "./use-auto-complete";
 
-import type {
-  FetchItems,
-  SearchAutocompleteVariant,
-  SearchItem,
-} from "./types";
+import type { SearchItem, SearchAutocompleteVariant } from "./types";
 
 interface SearchAutocompleteProps {
   variant: SearchAutocompleteVariant;
   placeholder: string;
   disabled?: boolean;
-
-  fetchItems: FetchItems;
-
+  items: SearchItem[] | [];
+  isLoading?: boolean;
+  onQueryChange: (query: string) => void;
   onSelect?: (item: SearchItem) => void;
   onClear?: () => void;
-
-  maxItems?: number;
   showSelectedTag?: boolean;
   minQueryLength?: number;
-
   selectedItem?: SearchItem | null;
   setSelectedItem?: (item: SearchItem | null) => void;
-
   ariaLabel?: string;
 }
 
@@ -36,116 +27,83 @@ export const SearchAutocomplete = ({
   variant,
   placeholder,
   disabled = false,
-  fetchItems,
+  items,
+  isLoading = false,
+  onQueryChange,
   onSelect,
   onClear,
-  maxItems = 4,
   showSelectedTag = true,
   minQueryLength = 2,
-
   selectedItem,
   setSelectedItem,
-
   ariaLabel,
 }: SearchAutocompleteProps) => {
-  const {
-    query = "",
-    setQuery,
-    isOpen,
-    open,
-    close,
-
-    state,
-    items,
-    highlightedIndex,
-    setHighlightedIndex,
-
-    selected: innerSelected,
-    selectItem: innerSelectItem,
-    clearSelected: innerClearSelected,
-
-    errorMessage,
-    onKeyDown,
-  } = useAutocomplete({
-    fetchItems,
-    debounceMs: 300,
-    minQueryLength,
-    maxItems,
-  });
-
-  const selected = selectedItem ?? innerSelected;
-
+  const [query, setQuery] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
+  const [highlightedIndex, setHighlightedIndex] = useState(-1);
   const inputRef = useRef<HTMLInputElement | null>(null);
+  const debounceTimer = useRef<NodeJS.Timeout | null>(null);
 
+  const selected = selectedItem ?? null;
   const isLocked = Boolean(selected) && showSelectedTag;
-  const hasValue = (query || "").trim().length > 0;
 
-  const rightIconMode = useMemo<"search" | "clear">(() => {
-    if (isLocked) return "search";
-    return hasValue ? "clear" : "search";
-  }, [hasValue, isLocked]);
+  const inputValue = showSelectedTag
+    ? selected
+      ? ""
+      : query
+    : selected
+      ? selected.name
+      : query;
+  const inputPlaceholder = showSelectedTag && selected ? "" : placeholder;
 
-  const inputValue = useMemo(() => {
-    if (showSelectedTag) return selected ? "" : query;
-    return selected ? selected.name : query;
-  }, [query, selected, showSelectedTag]);
+  // 컴포넌트 언마운트 시 타이머 정리
+  useEffect(() => {
+    return () => {
+      if (debounceTimer.current) clearTimeout(debounceTimer.current);
+    };
+  }, []);
 
-  const inputPlaceholder = useMemo(() => {
-    if (showSelectedTag) return selected ? "" : placeholder;
-    return placeholder;
-  }, [placeholder, selected, showSelectedTag]);
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (disabled || isLocked) return;
+    const nextValue = e.target.value;
+
+    // 1. UI용 로컬 상태는 즉시 업데이트 (타이핑 버벅임 방지)
+    setQuery(nextValue);
+
+    // 2. 이전에 예약된 디바운스 타이머 취소
+    if (debounceTimer.current) clearTimeout(debounceTimer.current);
+
+    if (nextValue.trim().length >= minQueryLength) {
+      setIsOpen(true);
+      // 3. 300ms 후에 부모의 쿼리(API 호출용) 상태 업데이트
+      debounceTimer.current = setTimeout(() => {
+        onQueryChange(nextValue);
+      }, 300);
+    } else {
+      setIsOpen(false);
+      onQueryChange(""); // 글자 수가 적어지면 쿼리 초기화
+    }
+  };
 
   const handleSelect = useCallback(
     (item: SearchItem) => {
-      innerSelectItem(item);
       setSelectedItem?.(item);
       onSelect?.(item);
+      setIsOpen(false);
+      setQuery("");
+      onQueryChange(""); // 선택 후 쿼리 초기화
     },
-    [innerSelectItem, onSelect, setSelectedItem]
+    [onSelect, setSelectedItem, onQueryChange]
   );
 
   const handleClear = useCallback(() => {
     setQuery("");
-    innerClearSelected();
+    onQueryChange("");
     setSelectedItem?.(null);
-
-    close();
+    setIsOpen(false);
     onClear?.();
     window.setTimeout(() => inputRef.current?.focus(), 0);
-  }, [setQuery, innerClearSelected, close, onClear, setSelectedItem]);
-
-  const mode = variant === "onboarding" ? "onboarding" : "normal";
-
-  const shouldShowDropdown =
-    isOpen &&
-    !disabled &&
-    !isLocked &&
-    (state === "error" || state === "success");
-
-  const renderHighlightedLabel = useCallback(
-    (label: string) => {
-      if (!label) return "";
-      const q = (query || "").trim();
-      if (!q) return label;
-
-      const lowerLabel = label.toLowerCase();
-      const lowerQ = q.toLowerCase();
-
-      const start = lowerLabel.indexOf(lowerQ);
-      if (start < 0) return label;
-
-      const end = start + q.length;
-
-      return (
-        <>
-          {label.slice(0, start)}
-          <span className={s.highlight}>{label.slice(start, end)}</span>
-          {label.slice(end)}
-        </>
-      );
-    },
-    [query]
-  );
+  }, [onQueryChange, onClear, setSelectedItem]);
 
   return (
     <div className={s.root}>
@@ -163,95 +121,59 @@ export const SearchAutocomplete = ({
             placeholder={inputPlaceholder}
             value={inputValue}
             disabled={disabled || isLocked}
-            onChange={(e) => {
-              if (disabled || isLocked) return;
-
-              const next = e.target.value || "";
-              setQuery(next);
-
-              if (next.trim().length >= minQueryLength) open();
-              else close();
-            }}
+            onChange={handleInputChange}
             onFocus={() => {
-              if (disabled || isLocked) return;
-              if ((query || "").trim().length >= minQueryLength) open();
+              if (
+                !disabled &&
+                !isLocked &&
+                query.trim().length >= minQueryLength
+              )
+                setIsOpen(true);
             }}
-            onBlur={() => {
-              window.setTimeout(() => close(), 120);
-            }}
-            onKeyDown={onKeyDown}
+            onBlur={() => window.setTimeout(() => setIsOpen(false), 150)}
             aria-label={ariaLabel ?? placeholder}
           />
 
           <button
             type="button"
-            className={[
-              s.iconButton,
-              s.iconButtonVariant[variant],
-              rightIconMode === "search" ? s.iconButtonCursorDefault : "",
-            ]
-              .filter(Boolean)
-              .join(" ")}
-            disabled={disabled}
-            onClick={() => {
-              if (disabled) return;
-              if (isLocked) return;
-
-              if (rightIconMode === "clear") handleClear();
-              else {
-                inputRef.current?.focus();
-                if (query.trim().length >= minQueryLength) open();
-              }
-            }}
-            aria-label={rightIconMode === "clear" ? "지우기" : "검색"}
+            className={s.iconButton}
+            onClick={() =>
+              selected ? handleClear() : inputRef.current?.focus()
+            }
           >
-            {rightIconMode === "clear" ? (
-              <IconCancel className={s.icon} />
+            {selected ? (
+              <IconCancel className={s.icon({ selected: !!selected })} />
             ) : (
-              <IconSearch className={s.icon} />
+              <IconSearch className={s.icon({ selected: !!selected })} />
             )}
           </button>
         </div>
 
-        {/* 드롭다운 */}
-        {shouldShowDropdown && (
+        {isOpen && !disabled && !isLocked && (
           <div className={[s.list, s.listTopVariant[variant]].join(" ")}>
-            {state === "error" && (
-              <div className={s.emptyBox}>
-                {errorMessage ?? "기업 검색에 실패했습니다. 다시 시도해주세요."}
-              </div>
+            {isLoading ? (
+              <div className={s.emptyBox}>검색 중...</div>
+            ) : items.length === 0 ? (
+              <div className={s.emptyBox}>결과가 없습니다.</div>
+            ) : (
+              items.map((it, idx) => (
+                <button
+                  key={it.id}
+                  type="button"
+                  className={s.item({
+                    mode: variant === "onboarding" ? "onboarding" : "normal",
+                    state: idx === highlightedIndex ? "hover" : "default",
+                  })}
+                  onMouseEnter={() => setHighlightedIndex(idx)}
+                  onMouseDown={(e) => {
+                    e.preventDefault();
+                    handleSelect(it);
+                  }}
+                >
+                  {it.name}
+                </button>
+              ))
             )}
-
-            {state === "success" && items.length === 0 && (
-              <div className={s.emptyBox}>
-                해당 키워드가 포함된 결과가 없습니다.
-              </div>
-            )}
-
-            {state === "success" &&
-              items.length > 0 &&
-              items.map((it, idx) => {
-                const isHighlighted = idx === highlightedIndex;
-
-                return (
-                  <button
-                    key={it.id}
-                    type="button"
-                    tabIndex={isHighlighted ? 0 : -1}
-                    className={s.item({
-                      mode,
-                      state: isHighlighted ? "hover" : "default",
-                    })}
-                    onMouseEnter={() => setHighlightedIndex(idx)}
-                    onMouseDown={(e) => {
-                      e.preventDefault();
-                      handleSelect(it);
-                    }}
-                  >
-                    {renderHighlightedLabel(it.name)}
-                  </button>
-                );
-              })}
           </div>
         )}
       </div>

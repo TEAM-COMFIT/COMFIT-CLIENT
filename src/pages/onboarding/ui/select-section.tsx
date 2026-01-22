@@ -1,9 +1,11 @@
+import { useState } from "react";
+
 import {
   EducationSelect,
   IndustryInterestSelect,
   JobInterestSelect,
+  useGetUniversity,
 } from "@/features/onboarding";
-import { fetchUniversitiesMock } from "@/features/onboarding/api/university.mock";
 import { SearchAutocomplete } from "@/shared/ui/search-auto-complete/search-auto-complete";
 
 import * as s from "../onboarding-page.css";
@@ -24,6 +26,11 @@ const SelectSection = ({
   selectedUniversity,
   setSelectedUniversity,
 }: SelectSectionProps) => {
+  const [universitySearch, setUniversitySearch] = useState("");
+  const { data, isLoading } = useGetUniversity({
+    keyword: universitySearch,
+  });
+
   return (
     <>
       <div className={s.field}>
@@ -43,11 +50,16 @@ const SelectSection = ({
         <SearchAutocomplete
           variant="onboarding"
           placeholder="대학교를 검색하세요"
-          fetchItems={fetchUniversitiesMock}
+          items={Array.isArray(data) ? data : []}
+          isLoading={isLoading} // 로딩 상태 주입
+          onQueryChange={setUniversitySearch} // 컴포넌트 내부에서 디바운스 후 호출됨
           selectedItem={selectedUniversity}
           setSelectedItem={setSelectedUniversity}
           onSelect={setSelectedUniversity}
-          onClear={() => setSelectedUniversity(null)}
+          onClear={() => {
+            setSelectedUniversity(null);
+            setUniversitySearch("");
+          }}
         />
       </div>
 

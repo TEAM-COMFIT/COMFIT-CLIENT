@@ -1,4 +1,4 @@
-import CancelIcon from "@icons/icon_cancel.svg?react";
+import { IconCancel } from "@/shared/assets/icons";
 
 import { tag, cancelIcon } from "./tag.css";
 
@@ -33,7 +33,7 @@ const Tag = ({
           }}
           className={cancelIcon}
         >
-          <CancelIcon />
+          <IconCancel />
         </button>
       )}
     </div>
