@@ -87,7 +87,7 @@ export const menuItem = style({
   height: "4.4rem",
   borderRadius: "8px",
   cursor: "pointer",
-  ...themeVars.fontStyles.body_m_14,
+  ...themeVars.fontStyles.body_r_16,
   color: themeVars.color.gray800,
   transition: "background-color 0.2s",
 
