@@ -38,7 +38,7 @@ export const inputFocused = style({
 
 export const icon = style({
   position: "absolute",
-  right: "1.8rem",
+  right: "1.2rem",
   top: "50%",
   transform: "translateY(-50%)",
   color: themeVars.color.blue600,
@@ -66,15 +66,18 @@ export const menu = style({
 
   selectors: {
     "&::-webkit-scrollbar": {
-      width: "0.4rem",
+      width: "1.2rem",
     },
     "&::-webkit-scrollbar-thumb": {
       backgroundColor: themeVars.color.gray300,
+      height: "50px",
       borderRadius: "100px",
+      backgroundClip: "padding-box",
+      border: `4px solid transparent`,
     },
     "&::-webkit-scrollbar-track": {
       backgroundColor: "transparent",
-      margin: "0.4rem 0",
+      margin: "0.8rem 1rem",
     },
   },
 });
