@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-
 import {
   useFunnel,
   ProgressBar,
@@ -26,7 +24,6 @@ const STEP: Step[] = [
 
 const ExperienceMatchingPage = () => {
   const setCurrentStep = useReportStore((state) => state.setCurrentStep);
-  const reset = useReportStore((state) => state.reset);
   const step = useReportStore((state) => state.currentStep);
 
   const { currentStep, Step, Funnel, prevStep, nextStep } = useFunnel({
@@ -34,13 +31,6 @@ const ExperienceMatchingPage = () => {
     stepList: STEP,
     onStepChange: (step) => setCurrentStep(step), // useFunnel step의 변경에 따른 zustand 동기화
   });
-
-  // 페이지 마운트 시, store 초기화
-  useEffect(() => {
-    return () => {
-      reset();
-    };
-  }, [reset]);
 
   return (
     <div className={styles.pageLayout({ isLast: currentStep === STEP[4] })}>
