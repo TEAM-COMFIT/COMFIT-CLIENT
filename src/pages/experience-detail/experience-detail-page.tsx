@@ -25,9 +25,13 @@ const ExperienceDetailPage = ({ mode }: ExperiencePageProps) => {
   const { isOpen, confirmLeave, cancelLeave } = useLeaveConfirm();
   const initializedExperienceIdRef = useRef<string | null>(null);
 
-  const shouldFetch = mode !== "create" && Boolean(experienceId);
+  const parsedExperienceId = experienceId ? Number(experienceId) : NaN;
+  const isValidExperienceId =
+    Number.isFinite(parsedExperienceId) && parsedExperienceId > 0;
+
+  const shouldFetch = mode !== "create" && isValidExperienceId;
   const { data, isLoading, isError } = useGetExperienceDetail({
-    experienceId: experienceId ? Number(experienceId) : 0,
+    experienceId: parsedExperienceId,
     enabled: shouldFetch,
   });
 
