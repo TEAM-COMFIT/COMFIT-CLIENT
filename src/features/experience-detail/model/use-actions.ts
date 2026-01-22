@@ -142,6 +142,7 @@ export const useExperienceHeaderActions = () => {
     setMode,
     hydrateDraftFromCurrent,
     setIsTransitioning,
+    toggleDraftDefault,
   } = useExperienceActions();
 
   const deleteMutation = useDeleteExperienceMutation({
@@ -200,9 +201,14 @@ export const useExperienceHeaderActions = () => {
   );
 
   const onToggleDefault = useCallback(() => {
+    if (mode === "create" || mode === "edit") {
+      toggleDraftDefault();
+      return;
+    }
+
     if (!current?.experienceId) return;
     patchDefaultMutation.mutate(current.experienceId);
-  }, [current, patchDefaultMutation]);
+  }, [mode, current, patchDefaultMutation, toggleDraftDefault]);
 
   return {
     showEditDelete,
