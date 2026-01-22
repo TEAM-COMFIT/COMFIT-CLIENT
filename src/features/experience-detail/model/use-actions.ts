@@ -29,30 +29,11 @@ import {
 } from "./use-alert";
 
 import type { ExperienceUpsertBody } from "../types/experience-detail.types";
-
-export interface ExperienceRequestType {
-  title: string;
-
-  type: "INTERNSHIP" | "PROJECT" | "EDUCATION" | "ETC";
-
-  startAt: string;
-
-  endAt: string;
-
-  situation: string;
-
-  task: string;
-
-  action: string;
-
-  result: string;
-
-  isDefault?: boolean;
-}
+import type { ExperienceRequestDto } from "@/shared/api/generate/http-client";
 
 const toExperienceRequestDto = (
   draft: ExperienceUpsertBody
-): ExperienceRequestType => {
+): ExperienceRequestDto => {
   if (!draft.type || !draft.startAt || !draft.endAt) {
     throw new Error("필수 필드가 누락되었습니다.");
   }
