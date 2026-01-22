@@ -5,19 +5,19 @@ import { experienceQueryKey } from "@/shared/api/config/query-key";
 
 import type { ExperienceRequestDto } from "@/shared/api/generate/http-client";
 
-export const updateExperience = async (
+export const patchExperience = async (
   experienceId: number,
   body: ExperienceRequestDto
 ): Promise<void> => {
   await api.experiences.updateExperience(experienceId, body);
 };
 
-interface UseUpdateExperienceOptions {
+interface UsePatchExperienceOptions {
   onSuccess?: () => void;
   onError?: (error: unknown) => void;
 }
 
-export const useUpdateExperience = (options?: UseUpdateExperienceOptions) => {
+export const usePatchExperience = (options?: UsePatchExperienceOptions) => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -27,7 +27,7 @@ export const useUpdateExperience = (options?: UseUpdateExperienceOptions) => {
     }: {
       experienceId: number;
       body: ExperienceRequestDto;
-    }) => updateExperience(experienceId, body),
+    }) => patchExperience(experienceId, body),
     onSuccess: (_, variables) => {
       queryClient.invalidateQueries({
         queryKey: experienceQueryKey.detail(variables.experienceId),

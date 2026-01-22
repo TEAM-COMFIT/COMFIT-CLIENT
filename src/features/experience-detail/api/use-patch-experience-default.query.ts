@@ -3,31 +3,31 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { api } from "@/shared/api/axios-instance";
 import { experienceQueryKey } from "@/shared/api/config/query-key";
 
-export interface UpdateDefaultResponse {
+export interface PatchDefaultResponse {
   isDefault: boolean;
 }
 
-export const updateExperienceDefault = async (
+export const patchExperienceDefault = async (
   experienceId: number
-): Promise<UpdateDefaultResponse> => {
+): Promise<PatchDefaultResponse> => {
   const response = await api.experiences.updateDefault(experienceId, {
     format: "json",
   });
-  return response.result as UpdateDefaultResponse;
+  return response.result as PatchDefaultResponse;
 };
 
-interface UseUpdateExperienceDefaultOptions {
-  onSuccess?: (data: UpdateDefaultResponse) => void;
+interface UsePatchExperienceDefaultOptions {
+  onSuccess?: (data: PatchDefaultResponse) => void;
   onError?: (error: unknown) => void;
 }
 
-export const useUpdateExperienceDefault = (
-  options?: UseUpdateExperienceDefaultOptions
+export const usePatchExperienceDefault = (
+  options?: UsePatchExperienceDefaultOptions
 ) => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (experienceId: number) => updateExperienceDefault(experienceId),
+    mutationFn: (experienceId: number) => patchExperienceDefault(experienceId),
     onSuccess: (data, experienceId) => {
       queryClient.invalidateQueries({
         queryKey: experienceQueryKey.detail(experienceId),
