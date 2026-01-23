@@ -6,16 +6,9 @@
 > Comfit은 기업의 핵심 정보와 나의 경험을 하나로 엮어 지원 기업별 맞춤 자소서 전략을 제안하는 AI 기반 분석 플랫폼입니다.
 
 <br/> 
+<img width="1080" alt="comfit_background" src="https://github.com/user-attachments/assets/26653123-9674-4584-b94a-242c36db19b7" />
 
-<img width="1920" height="1080" alt="표지" src="https://github.com/user-attachments/assets/7a762bb6-c28e-4fce-8f81-ec89755d30f3" />
 
-<img width="1920" height="1080" alt="12" src="https://github.com/user-attachments/assets/838eb28c-b53c-45b6-b8eb-127dd7c6d974" />
-<img width="1920" height="1080" alt="13" src="https://github.com/user-attachments/assets/e1ebf7f3-454b-4135-afb3-6262931cf020" />
-<img width="1920" height="1080" alt="14" src="https://github.com/user-attachments/assets/ca46d235-1a46-4064-894e-8ada6ff3ece9" />
-<img width="1920" height="1080" alt="15" src="https://github.com/user-attachments/assets/6b48386c-dbe6-41e2-bfaa-59fdb10fa27d" />
-
-<img width="1920" height="1080" alt="16" src="https://github.com/user-attachments/assets/b90d821b-88bf-4281-808e-f1c62919e222" />
-<img width="1920" height="1080" alt="17" src="https://github.com/user-attachments/assets/c9b11902-1f65-498d-8a46-50e87db29251" />
 
 
 <br/><br/>
