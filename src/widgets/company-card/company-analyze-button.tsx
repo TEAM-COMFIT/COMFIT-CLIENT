@@ -17,32 +17,25 @@ interface CompanyAnalyzeButtonProps {
 const CompanyAnalyzeButton = ({ companyId }: CompanyAnalyzeButtonProps) => {
   const navigate = useNavigate();
 
-  const prefetchCompany = () => {
-    void queryClient.prefetchQuery({
-      queryKey: companyQueryKey.detail(companyId),
-      queryFn: () => getCompanyDetail(companyId),
-    });
-    void queryClient.prefetchQuery({
-      queryKey: companyQueryKey.suggestion(companyId),
-      queryFn: () => getCompanySuggestions(companyId),
-    });
-  };
+  // TODO: prefetch 기능 다시 살리기
+  // const prefetchCompany = () => {
+  //   void queryClient.prefetchQuery({
+  //     queryKey: companyQueryKey.detail(companyId),
+  //     queryFn: () => getCompanyDetail(companyId),
+  //   });
+  //   void queryClient.prefetchQuery({
+  //     queryKey: companyQueryKey.suggestion(companyId),
+  //     queryFn: () => getCompanySuggestions(companyId),
+  //   });
+  // };
 
   const handleClick = () => {
     window.scrollTo({ top: 0, left: 0, behavior: "auto" });
-    prefetchCompany();
     navigate(`/company/${companyId}`);
   };
 
   return (
-    <button
-      type="button"
-      className={styles.button}
-      onClick={handleClick}
-      onMouseEnter={prefetchCompany}
-      onFocus={prefetchCompany}
-      onTouchStart={prefetchCompany}
-    >
+    <button type="button" className={styles.button} onClick={handleClick}>
       <IconCompany className={styles.icon} />
       <span>기업 분석 보기</span>
     </button>

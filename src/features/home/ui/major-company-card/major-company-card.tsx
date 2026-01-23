@@ -34,20 +34,21 @@ const MajorCompanyCard = ({
 }: MajorCompanyCardProps) => {
   const navigate = useNavigate();
 
-  const prefetchCompany = () => {
-    void queryClient.prefetchQuery({
-      queryKey: companyQueryKey.detail(id),
-      queryFn: () => getCompanyDetail(id),
-    });
-    void queryClient.prefetchQuery({
-      queryKey: companyQueryKey.suggestion(id),
-      queryFn: () => getCompanySuggestions(id),
-    });
-  };
+  // TODO: prefetch 기능 다시 살리기
+  // const prefetchCompany = () => {
+  //   void queryClient.prefetchQuery({
+  //     queryKey: companyQueryKey.detail(id),
+  //     queryFn: () => getCompanyDetail(id),
+  //   });
+  //   void queryClient.prefetchQuery({
+  //     queryKey: companyQueryKey.suggestion(id),
+  //     queryFn: () => getCompanySuggestions(id),
+  //   });
+  // };
 
   const handleClick = () => {
     window.scrollTo({ top: 0, left: 0, behavior: "auto" });
-    prefetchCompany();
+    // prefetchCompany();
     navigate(`/company/${id}`);
   };
 
@@ -55,10 +56,7 @@ const MajorCompanyCard = ({
     <button
       type="button"
       onClick={handleClick}
-      onMouseEnter={prefetchCompany}
-      onFocus={prefetchCompany}
-      onTouchStart={prefetchCompany}
-      aria-label="旮办梾 ?侅劯搿??措彊"
+      aria-label="주요 기업 카드"
       className={styles.card({ type })}
       style={assignInlineVars({ [styles.bgImageUrl]: `url(${imgUrl})` })}
     >
