@@ -23,8 +23,6 @@ const KakaoLoginPage = () => {
     if (result && result.accessToken) {
       actions.login(result.accessToken);
       const targetPath = result.isNew ? "/onboarding" : "/";
-      console.log("응답값:", result);
-      console.log("응답값:", result.isNew);
       navigate(targetPath, { replace: true });
     } else {
       navigate("/login", { replace: true });
