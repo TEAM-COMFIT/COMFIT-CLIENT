@@ -1,12 +1,12 @@
 import { assignInlineVars } from "@vanilla-extract/dynamic";
 import { useNavigate } from "react-router-dom";
 
-import {
-  getCompanyDetail,
-  getCompanySuggestions,
-} from "@/features/company-detail";
-import { queryClient } from "@/shared/api";
-import { companyQueryKey } from "@/shared/api/config/query-key";
+// import {
+//   getCompanyDetail,
+//   getCompanySuggestions,
+// } from "@/features/company-detail";
+// import { queryClient } from "@/shared/api";
+// import { companyQueryKey } from "@/shared/api/config/query-key";
 import { IconMove } from "@/shared/assets/icons";
 import { getScaleLabel } from "@/shared/config";
 import { Tag } from "@/shared/ui/tag/tag";

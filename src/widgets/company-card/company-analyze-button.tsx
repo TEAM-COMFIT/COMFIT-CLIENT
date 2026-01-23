@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom";
 
-import {
-  getCompanyDetail,
-  getCompanySuggestions,
-} from "@/features/company-detail";
-import { queryClient } from "@/shared/api";
-import { companyQueryKey } from "@/shared/api/config/query-key";
+// import {
+//   getCompanyDetail,
+//   getCompanySuggestions,
+// } from "@/features/company-detail";
+// import { queryClient } from "@/shared/api";
+// import { companyQueryKey } from "@/shared/api/config/query-key";
 import { IconCompany } from "@/shared/assets/icons";
 
 import * as styles from "./company-analyze-button.css";
