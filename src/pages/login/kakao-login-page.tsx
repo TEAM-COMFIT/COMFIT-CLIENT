@@ -21,7 +21,8 @@ const KakaoLoginPage = () => {
     const result = data.result || data;
     if (result && result.accessToken) {
       actions.login(result.accessToken);
-      navigate(result.isNew ? "/onboarding" : "/", { replace: true });
+      const targetPath = result.isNew ? "/onboarding" : "/";
+      navigate(targetPath, { replace: true });
     } else {
       navigate("/login", { replace: true });
     }
