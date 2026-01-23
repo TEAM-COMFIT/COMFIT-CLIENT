@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useAuthStore } from "@/app/store";
 import { useGetMajorCompanies } from "@/features/home/api/use-get-major-companies.query";
 import { MajorCompanyCard } from "@/features/home/ui";
+import { CAT_SPINNER } from "@/shared/assets/gifs";
 import { RefreshButton } from "@/widgets";
 
 import * as styles from "./major-company-section.css";
@@ -40,7 +41,10 @@ const MajorCompanySection = () => {
 
       <div className={styles.cardGrid}>
         {isLoading || safeData.length < 3 ? (
-          <div className={styles.emptyWrapper}>로딩 중...</div>
+          <div className={styles.emptyWrapper}>
+            <img src={CAT_SPINNER} className={styles.spinner} alt="로딩중" />
+            <p className={styles.spinnerText}>기업 정보를 불러오고 있어요</p>
+          </div>
         ) : (
           <>
             <div className={styles.smallCards}>

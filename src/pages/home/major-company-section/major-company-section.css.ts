@@ -52,9 +52,27 @@ export const smallCards = style({
 });
 
 export const emptyWrapper = style({
-  display: "grid",
-  gridTemplateColumns: "1fr 1fr",
-  gap: "2rem",
+  // 1. 부모 그리드에서 가로를 꽉 채우기 (2컬럼 기준)
+  gridColumn: "1 / -1",
+
+  // 2. 내부 이미지 중앙 정렬을 위해 flex 사용
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  alignItems: "center", // 부모 그리드 수직 중앙 정렬 (필요시)
+
   width: "100%",
   minHeight: "45rem",
+});
+
+export const spinner = style({
+  width: "20rem",
+  aspectRatio: "1 / 1",
+  objectFit: "contain",
+});
+
+export const spinnerText = style({
+  marginTop: "0.2rem",
+  ...themeVars.fontStyles.hline_m_18,
+  color: themeVars.color.gray600,
 });

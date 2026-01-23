@@ -6,18 +6,20 @@
 > Comfit은 기업의 핵심 정보와 나의 경험을 하나로 엮어 지원 기업별 맞춤 자소서 전략을 제안하는 AI 기반 분석 플랫폼입니다.
 
 <br/> 
+<img width="1080" alt="comfit_background" src="https://github.com/user-attachments/assets/26653123-9674-4584-b94a-242c36db19b7" />
 
 
- 
+
+
+<br/><br/>
 
 ## 👥 Team member
 
-| <img src="https://avatars.githubusercontent.com/u/84303489?v=4" width="150" /> | <img src="https://avatars.githubusercontent.com/u/91336314?v=4" width="150" /> | <img src="https://avatars.githubusercontent.com/u/108409327?v=4" width="150" /> | <img src="https://avatars.githubusercontent.com/u/101101694?v=4" width="150" /> |
+| <img width="200" height="300" alt="채리드" src="https://github.com/user-attachments/assets/c59d5e55-e980-48b6-b745-27c10d470f74" /> | <img width="200" height="300" alt="오두콩" src="https://github.com/user-attachments/assets/74c2eb7e-ef44-4a9a-a71d-b4271cddd038" /> | <img width="200" height="300" alt="막냉이" src="https://github.com/user-attachments/assets/1480d054-19c9-4f9d-8b15-08052ad14e38" /> | <img width="200" height="300" alt="배정민" src="https://github.com/user-attachments/assets/8644c3db-81da-44cb-9979-0bc672810b47" /> |
 | :--: | :--: | :--: | :--: |
 | <div align="center"><b>이채영 👑</b></div> | <div align="center"><b>오수빈</b></div> | <div align="center"><b>정유진</b></div> | <div align="center"><b>배정민</b></div> |
 | [@hummingbbird](https://github.com/hummingbbird) |  [@odukong](https://github.com/odukong)   |    [@u-zzn](https://github.com/u-zzn)     | [@qowjdals23](https://github.com/qowjdals23) |
 
-<br/>
 <br/>
 
 ## 🔧 Tech Stack
@@ -71,7 +73,6 @@ type: description (#이슈 넘버)
 <br>
 
 ### 👀 Git Convention
-<img width="585" height="682" alt="git flow 이미지" src="https://github.com/user-attachments/assets/e98f22e2-a1a4-4627-b27d-c3b2ffc3651c" />
 
 - 기본 틀: **[type]/#[이슈넘버]/기능 이름** (ex)`feat/#914/company-card-component`)
 - 기능 타입에 맞게 가장 앞단의 키워드를 변경해주세요. (feat / refactor / fix / hotfix/ chore 등)
