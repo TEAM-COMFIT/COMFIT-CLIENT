@@ -12,7 +12,7 @@
 
 ## 👥 Team member
 
-| <img width="2512" height="3900" alt="채리드" src="https://github.com/user-attachments/assets/c59d5e55-e980-48b6-b745-27c10d470f74" /> | <img width="2451" height="3900" alt="오두콩" src="https://github.com/user-attachments/assets/74c2eb7e-ef44-4a9a-a71d-b4271cddd038" /> | <img width="2451" height="3903" alt="배정민" src="https://github.com/user-attachments/assets/8644c3db-81da-44cb-9979-0bc672810b47" /> | <img width="2451" height="3902" alt="막냉이" src="https://github.com/user-attachments/assets/1480d054-19c9-4f9d-8b15-08052ad14e38" /> |
+| <img width="500"  alt="채리드" src="https://github.com/user-attachments/assets/c59d5e55-e980-48b6-b745-27c10d470f74" /> | <img width="500"  alt="오두콩" src="https://github.com/user-attachments/assets/74c2eb7e-ef44-4a9a-a71d-b4271cddd038" /> | <img width="500"  alt="배정민" src="https://github.com/user-attachments/assets/8644c3db-81da-44cb-9979-0bc672810b47" /> | <img width="500"  alt="막냉이" src="https://github.com/user-attachments/assets/1480d054-19c9-4f9d-8b15-08052ad14e38" /> |
 | :--: | :--: | :--: | :--: |
 | <div align="center"><b>이채영 👑</b></div> | <div align="center"><b>오수빈</b></div> | <div align="center"><b>정유진</b></div> | <div align="center"><b>배정민</b></div> |
 | [@hummingbbird](https://github.com/hummingbbird) |  [@odukong](https://github.com/odukong)   |    [@u-zzn](https://github.com/u-zzn)     | [@qowjdals23](https://github.com/qowjdals23) |
