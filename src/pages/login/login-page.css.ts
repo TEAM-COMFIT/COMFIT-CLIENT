@@ -11,11 +11,14 @@ const AppleFont = fontFace({
 
 export const container = style({
   margin: `0 auto`,
-  paddingTop: `calc(${themeVars.height.header} + 28.4rem)`,
+  paddingTop: `calc(${themeVars.height.header})`,
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
+  justifyContent: "center",
   gap: "8rem",
+  border: "1px solid red",
+  height: "100vh",
 });
 
 export const section = style({
