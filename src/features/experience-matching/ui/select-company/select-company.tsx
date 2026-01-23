@@ -43,6 +43,16 @@ export const SelectCompany = ({ onClick }: { onClick: () => void }) => {
     }
   }, [data, alertModal]);
 
+  // useEffect(() => {
+  //   if (company?.id) {
+  //     const temp={
+  //       id:company.id,
+  //       name:company.name
+  //     }
+  //     setSelectedCompany(temp);
+  //   }
+  // }, [company]);
+
   const { data: searchResults = [] } = useGetCompanyList(searchKeyword); // 기업 검색 API
 
   // 모달 닫힘 여부 확인 후 페이지 이동
