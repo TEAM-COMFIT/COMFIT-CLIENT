@@ -153,6 +153,7 @@ const CompanyDetailSection = ({ companyData }: CompanyDetailSectionProps) => {
 
       <CompanyCtaBanner
         className={styles.ctaBanner}
+        companyName={companyData.name}
         companyId={companyData.companyId}
       />
     </div>
