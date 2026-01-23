@@ -7,6 +7,7 @@
 
 <br/> 
 
+<img width="1920" height="1080" alt="표지" src="https://github.com/user-attachments/assets/485c8c2f-2d8d-48f4-8b9a-023b451cb2e2" />
 
  
 
@@ -18,6 +19,16 @@
 | [@hummingbbird](https://github.com/hummingbbird) |  [@odukong](https://github.com/odukong)   |    [@u-zzn](https://github.com/u-zzn)     | [@qowjdals23](https://github.com/qowjdals23) |
 
 <br/>
+<img width="1920" height="1080" alt="12" src="https://github.com/user-attachments/assets/838eb28c-b53c-45b6-b8eb-127dd7c6d974" />
+<img width="1920" height="1080" alt="13" src="https://github.com/user-attachments/assets/e1ebf7f3-454b-4135-afb3-6262931cf020" />
+<img width="1920" height="1080" alt="14" src="https://github.com/user-attachments/assets/ca46d235-1a46-4064-894e-8ada6ff3ece9" />
+<img width="1920" height="1080" alt="15" src="https://github.com/user-attachments/assets/6b48386c-dbe6-41e2-bfaa-59fdb10fa27d" />
+
+<img width="1920" height="1080" alt="16" src="https://github.com/user-attachments/assets/b90d821b-88bf-4281-808e-f1c62919e222" />
+<img width="1920" height="1080" alt="17" src="https://github.com/user-attachments/assets/c9b11902-1f65-498d-8a46-50e87db29251" />
+
+
+
 <br/>
 
 ## 🔧 Tech Stack
