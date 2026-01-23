@@ -7,17 +7,25 @@
 
 <br/> 
 
+<img width="1920" height="1080" alt="표지" src="https://github.com/user-attachments/assets/485c8c2f-2d8d-48f4-8b9a-023b451cb2e2" />
+<img width="1920" height="1080" alt="12" src="https://github.com/user-attachments/assets/838eb28c-b53c-45b6-b8eb-127dd7c6d974" />
+<img width="1920" height="1080" alt="13" src="https://github.com/user-attachments/assets/e1ebf7f3-454b-4135-afb3-6262931cf020" />
+<img width="1920" height="1080" alt="14" src="https://github.com/user-attachments/assets/ca46d235-1a46-4064-894e-8ada6ff3ece9" />
+<img width="1920" height="1080" alt="15" src="https://github.com/user-attachments/assets/6b48386c-dbe6-41e2-bfaa-59fdb10fa27d" />
 
- 
+<img width="1920" height="1080" alt="16" src="https://github.com/user-attachments/assets/b90d821b-88bf-4281-808e-f1c62919e222" />
+<img width="1920" height="1080" alt="17" src="https://github.com/user-attachments/assets/c9b11902-1f65-498d-8a46-50e87db29251" />
+
+
+<br/><br/>
 
 ## 👥 Team member
 
-| <img src="https://avatars.githubusercontent.com/u/84303489?v=4" width="150" /> | <img src="https://avatars.githubusercontent.com/u/91336314?v=4" width="150" /> | <img src="https://avatars.githubusercontent.com/u/108409327?v=4" width="150" /> | <img src="https://avatars.githubusercontent.com/u/101101694?v=4" width="150" /> |
+| <img width="200" height="300" alt="채리드" src="https://github.com/user-attachments/assets/c59d5e55-e980-48b6-b745-27c10d470f74" /> | <img width="200" height="300" alt="오두콩" src="https://github.com/user-attachments/assets/74c2eb7e-ef44-4a9a-a71d-b4271cddd038" /> | <img width="200" height="300" alt="막냉이" src="https://github.com/user-attachments/assets/1480d054-19c9-4f9d-8b15-08052ad14e38" /> | <img width="200" height="300" alt="배정민" src="https://github.com/user-attachments/assets/8644c3db-81da-44cb-9979-0bc672810b47" /> |
 | :--: | :--: | :--: | :--: |
 | <div align="center"><b>이채영 👑</b></div> | <div align="center"><b>오수빈</b></div> | <div align="center"><b>정유진</b></div> | <div align="center"><b>배정민</b></div> |
 | [@hummingbbird](https://github.com/hummingbbird) |  [@odukong](https://github.com/odukong)   |    [@u-zzn](https://github.com/u-zzn)     | [@qowjdals23](https://github.com/qowjdals23) |
 
-<br/>
 <br/>
 
 ## 🔧 Tech Stack
@@ -71,7 +79,6 @@ type: description (#이슈 넘버)
 <br>
 
 ### 👀 Git Convention
-<img width="585" height="682" alt="git flow 이미지" src="https://github.com/user-attachments/assets/e98f22e2-a1a4-4627-b27d-c3b2ffc3651c" />
 
 - 기본 틀: **[type]/#[이슈넘버]/기능 이름** (ex)`feat/#914/company-card-component`)
 - 기능 타입에 맞게 가장 앞단의 키워드를 변경해주세요. (feat / refactor / fix / hotfix/ chore 등)
