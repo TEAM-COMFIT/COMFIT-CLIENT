@@ -1,20 +1,35 @@
 import { useNavigate } from "react-router-dom";
 
 import { ROUTES } from "@/app/routes/paths";
+import { useAuthStore } from "@/app/store";
+import { useReportStore } from "@/features/experience-matching";
 import { COMPANY_BOOK } from "@/shared/assets/images";
 import { Button } from "@/shared/ui";
 
 import * as styles from "./company-cta-banner.css";
 
 export interface CompanyCtaBannerProps {
+  companyName: string;
   companyId: number;
   className?: string;
 }
 
-const CompanyCtaBanner = ({ companyId, className }: CompanyCtaBannerProps) => {
+const CompanyCtaBanner = ({
+  companyName,
+  companyId,
+  className,
+}: CompanyCtaBannerProps) => {
   const navigate = useNavigate();
+  const setCompany = useReportStore((state) => state.setCompany);
+  const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
+
   const handleCtaClick = () => {
-    navigate(`${ROUTES.EXPERIENCE_MATCHING}?companyId=${companyId}`);
+    if (!isLoggedIn) {
+      navigate(ROUTES.HOME);
+    } else {
+      setCompany({ name: companyName, id: companyId });
+      navigate(ROUTES.EXPERIENCE_MATCHING);
+    }
   };
   return (
     <section
