@@ -34,7 +34,7 @@ export const SelectCompany = ({ onClick }: { onClick: () => void }) => {
 
   // 경험 등록 여부 확인 모달
   useEffect(() => {
-    if (data?.totalElements !== 0) {
+    if (data?.totalElements === 0) {
       modalStore.open(
         <>
           <Modal.Content>
