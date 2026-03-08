@@ -1,8 +1,8 @@
 import { EXPERIENCE_TYPE } from "@/shared/config/experience";
 import { parseYMD } from "@/shared/lib/format-date";
+import { modalStore } from "@/shared/model/store";
 import { ModalBasic, Tooltip } from "@/shared/ui";
 import { Button } from "@/shared/ui/button/button";
-import { useModal } from "@/shared/ui/modal/use-modal";
 import { Tag } from "@/shared/ui/tag/tag";
 import { Textfield } from "@/shared/ui/textfield/textfield";
 import { HELP_TOOLTIP_CONTENT } from "@/shared/ui/tooltip/tooltip.content";
@@ -24,9 +24,6 @@ const ExperienceViewer = () => {
   const { showEditDelete, onClickEdit, onClickDelete, onToggleDefault } =
     useExperienceHeaderActions();
 
-  const { isOpen: isDeleteModalOpen, handleModal: toggleDeleteModal } =
-    useModal();
-
   const startDate = current?.startAt ? parseYMD(current.startAt) : null;
   const endDate = current?.endAt ? parseYMD(current.endAt) : null;
 
@@ -42,6 +39,22 @@ const ExperienceViewer = () => {
 
   const typeLabel = current.type ? EXPERIENCE_TYPE[current.type] : "미지정";
 
+  const handleOpenDeleteModal = () => {
+    modalStore.open(
+      <ModalBasic
+        title="이 경험을 삭제하시겠습니까?"
+        subTitle="작성한 내용은 즉시 제거되며, 복구할 수 없습니다."
+        closeText="취소"
+        confirmText="삭제"
+        onClose={() => modalStore.reset()} // 취소 시 닫기
+        onConfirm={() => {
+          onClickDelete(); // 실제 삭제 동작
+          modalStore.reset(); // 모달 닫기
+        }}
+      />
+    );
+  };
+
   return (
     <main className={s.page}>
       <StickyHeader
@@ -53,7 +66,7 @@ const ExperienceViewer = () => {
               <Button
                 variant="secondary"
                 size="small"
-                onClick={toggleDeleteModal}
+                onClick={handleOpenDeleteModal}
               >
                 삭제하기
               </Button>
@@ -130,19 +143,6 @@ const ExperienceViewer = () => {
           </div>
         </div>
       </section>
-
-      <ModalBasic
-        title="이 경험을 삭제하시겠습니까?"
-        subTitle="작성한 내용은 즉시 제거되며, 복구할 수 없습니다."
-        closeText="취소"
-        confirmText="삭제"
-        isOpen={isDeleteModalOpen}
-        onClose={toggleDeleteModal}
-        onConfirm={() => {
-          toggleDeleteModal();
-          onClickDelete();
-        }}
-      />
     </main>
   );
 };
