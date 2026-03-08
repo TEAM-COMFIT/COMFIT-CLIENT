@@ -1,4 +1,5 @@
 import { useEffect, useState, type ReactNode } from "react";
+import { useLocation } from "react-router-dom";
 
 import { modalStore } from "@/shared/model/store";
 
@@ -11,12 +12,17 @@ interface ModalItem {
 }
 
 export const ModalProvider = () => {
+  const { pathname } = useLocation();
   const [modals, setModals] = useState<ModalItem[]>([]);
 
   useEffect(() => {
     modalStore.subscribe(setModals);
     return () => modalStore.unsubscribe();
   }, []);
+
+  useEffect(() => {
+    modalStore.reset();
+  }, [pathname]);
 
   return (
     <>

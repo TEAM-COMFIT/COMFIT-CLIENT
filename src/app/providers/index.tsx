@@ -1,4 +1,3 @@
-import { ModalProvider } from "./modal-provider";
 import { QueryProvider } from "./query-provider";
 import ThemeProvider from "./theme-provider";
 
@@ -17,7 +16,6 @@ export const AppProviders = ({
     <QueryProvider>
       <ThemeProvider theme={theme} className={className}>
         {children}
-        <ModalProvider />
       </ThemeProvider>
     </QueryProvider>
   );
