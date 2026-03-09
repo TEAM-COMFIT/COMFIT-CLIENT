@@ -812,7 +812,7 @@ export class Api<
      */
     getSummaryExperienceList: (
       query?: {
-        type?: "INTERNSHIP" | "PROJECT" | "EDUCATION" | "ETC";
+        type?: string;
         /**
          * @format int32
          * @default 1

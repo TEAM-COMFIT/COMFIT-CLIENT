@@ -9,18 +9,17 @@ import { ExperienceFilter } from "@/widgets";
 import * as styles from "./experience-page.css";
 import { ExperienceListContainer } from "./ui/experience-list-container";
 
-import type { ExperienceTypeCode } from "@/shared/config/experience";
-
 const ExperiencePage = () => {
+  const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
+
   const currentPage = Number(searchParams.get("page")) || 1;
-  const type = searchParams.get("type");
+  const type = searchParams.get("type") || "";
 
   const [isExpTouched, setIsExpTouched] = useState(false);
-  const navigate = useNavigate();
 
   const { data } = useGetExperienceList({
-    type: type as ExperienceTypeCode | null,
+    type,
     page: currentPage,
   });
 
