@@ -42,6 +42,7 @@ const MatchingListPage = () => {
     setSearchValue(keyword);
   };
 
+  // 검색값 유지
   useEffect(() => {
     setSearchValue(keyword);
   }, [keyword]);

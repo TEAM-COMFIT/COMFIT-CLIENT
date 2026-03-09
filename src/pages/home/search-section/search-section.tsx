@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 
 import { useGetCompanies } from "@/features/home";
 import { ScaleFilter, IndustryFilter } from "@/features/home/ui";
@@ -11,41 +12,65 @@ import * as styles from "./search-section.css";
 
 import type { IndustryCode, ScaleCode } from "@/shared/config";
 
-interface CompanySearchParamsType {
-  keyword?: string;
-  industry?: IndustryCode;
-  scale?: ScaleCode;
-  sort?: string;
-  page?: number;
-  isRecruited?: boolean;
-}
-
 const SearchSection = () => {
-  const [params, setParams] = useState<CompanySearchParamsType>({
-    page: 1,
-    isRecruited: true,
-  });
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const keyword = searchParams.get("keyword") || "";
+  const industry = (searchParams.get("industry") as IndustryCode) || undefined;
+  const scale = (searchParams.get("scale") as ScaleCode) || undefined;
+  const page = Number(searchParams.get("page")) || 1;
+  const isRecruited = searchParams.get("isRecruited") !== "false";
+
+  const params = {
+    keyword,
+    industry,
+    scale,
+    page,
+    isRecruited,
+  };
 
   const { data, isLoading, isPlaceholderData } = useGetCompanies(params);
   const content = data?.content || [];
   const hasResult = content.length > 0;
-  const [searchValue, setSearchValue] = useState("");
-  const currentPage = params.page ?? 1;
+
+  const [searchValue, setSearchValue] = useState(keyword);
 
   const [isScaleTouched, setIsScaleTouched] = useState(false);
   const [isIndustryTouched, setIsIndustryTouched] = useState(false);
 
-  const updateParams = (patch: Partial<CompanySearchParamsType>) => {
-    setParams((prev) => ({
-      ...prev,
-      ...patch,
-    }));
+  const updateSearchParams = (
+    patch: Record<string, string | number | boolean | undefined>
+  ) => {
+    const newParams = new URLSearchParams(searchParams);
+
+    Object.entries(patch).forEach(([key, value]) => {
+      if (value === undefined || value === "") {
+        newParams.delete(key);
+      } else {
+        newParams.set(key, String(value));
+      }
+    });
+
+    if (!patch.page) {
+      newParams.set("page", "1");
+    }
+
+    setSearchParams(newParams);
   };
 
   const handlePageChange = (newPage: number) => {
     if (isPlaceholderData) return;
-    updateParams({ page: newPage });
+    updateSearchParams({ page: newPage });
   };
+
+  const handleSearch = (newKeyword: string) => {
+    updateSearchParams({ keyword: newKeyword });
+  };
+
+  // 검색값 유지
+  useEffect(() => {
+    setSearchValue(keyword);
+  }, [keyword]);
 
   return (
     <>
@@ -68,7 +93,7 @@ const SearchSection = () => {
               placeholder="지원하고 싶은 기업을 검색해보세요"
               value={searchValue}
               onChange={setSearchValue}
-              onSearch={(keyword) => updateParams({ keyword, page: 1 })}
+              onSearch={handleSearch}
             />
           </div>
         </div>
@@ -78,20 +103,20 @@ const SearchSection = () => {
         <div className={styles.container}>
           <div className={styles.filterWrapper}>
             <IndustryFilter
-              value={params.industry ?? null}
+              value={industry ?? null}
               isTouched={isIndustryTouched}
-              onChange={(industry) => {
+              onChange={(newIndustry) => {
                 setIsIndustryTouched(true);
-                updateParams({ industry, page: 1 });
+                updateSearchParams({ industry: newIndustry });
               }}
             />
 
             <ScaleFilter
-              value={params.scale}
+              value={scale}
               isTouched={isScaleTouched}
-              onChange={(scale) => {
+              onChange={(newScale) => {
                 setIsScaleTouched(true);
-                updateParams({ scale, page: 1 });
+                updateSearchParams({ scale: newScale });
               }}
             />
 
@@ -100,9 +125,9 @@ const SearchSection = () => {
             </p>
 
             <Toggle
-              checked={params.isRecruited ?? true}
-              onCheckedChange={(isRecruited) =>
-                updateParams({ isRecruited, page: 1 })
+              checked={isRecruited}
+              onCheckedChange={(checked) =>
+                updateSearchParams({ isRecruited: checked })
               }
             />
           </div>
@@ -122,7 +147,7 @@ const SearchSection = () => {
                 ))}
               </div>
               <Pagination
-                currentPage={currentPage}
+                currentPage={page}
                 totalPage={data?.totalPage ?? 1}
                 onPageChange={handlePageChange}
               />
