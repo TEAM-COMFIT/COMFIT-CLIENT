@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 
 import { ROUTES } from "@/app/routes/paths";
 import { useGetExperienceList } from "@/features/experience/api/use-experience-list.query";
@@ -12,21 +12,31 @@ import { ExperienceListContainer } from "./ui/experience-list-container";
 import type { ExperienceTypeCode } from "@/shared/config/experience";
 
 const ExperiencePage = () => {
-  const [filter, setFilter] = useState<ExperienceTypeCode | null>(null);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const currentPage = Number(searchParams.get("page")) || 1;
+  const type = searchParams.get("type");
 
   const [isExpTouched, setIsExpTouched] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
   const navigate = useNavigate();
 
   const { data } = useGetExperienceList({
-    type: filter,
+    type: type as ExperienceTypeCode | null,
     page: currentPage,
   });
 
-  const handleFilterChange = (value: ExperienceTypeCode | null) => {
+  const handleFilterChange = (value: string) => {
     setIsExpTouched(true);
-    setFilter(value);
-    setCurrentPage(1);
+    setSearchParams({
+      type: value,
+      page: "1",
+    });
+  };
+
+  const handlePageChange = (page: number) => {
+    setSearchParams({
+      type: type ?? "",
+      page: String(page),
+    });
   };
 
   return (
@@ -53,7 +63,7 @@ const ExperiencePage = () => {
           </button>
 
           <ExperienceFilter
-            value={filter}
+            value={type}
             onChange={handleFilterChange}
             isTouched={isExpTouched}
             hasTotal={true}
@@ -61,7 +71,7 @@ const ExperiencePage = () => {
         </div>
       </section>
 
-      <ExperienceListContainer data={data} onPageChange={setCurrentPage} />
+      <ExperienceListContainer data={data} onPageChange={handlePageChange} />
     </div>
   );
 };

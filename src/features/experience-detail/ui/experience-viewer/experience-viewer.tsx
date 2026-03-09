@@ -1,4 +1,7 @@
-import { EXPERIENCE_TYPE } from "@/shared/config/experience";
+import {
+  EXPERIENCE_TYPE,
+  type ExperienceTypeCode,
+} from "@/shared/config/experience";
 import { parseYMD } from "@/shared/lib/format-date";
 import { ModalBasic, Tooltip } from "@/shared/ui";
 import { Button } from "@/shared/ui/button/button";
@@ -40,7 +43,10 @@ const ExperienceViewer = () => {
     );
   }
 
-  const typeLabel = current.type ? EXPERIENCE_TYPE[current.type] : "미지정";
+  const typeLabel =
+    current.type && current.type in EXPERIENCE_TYPE
+      ? EXPERIENCE_TYPE[current.type as ExperienceTypeCode]
+      : "미지정";
 
   return (
     <main className={s.page}>
