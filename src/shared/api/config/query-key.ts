@@ -6,7 +6,7 @@ export const universityQueryKey = {
 
 // 경험 관련 API (experience)
 export const experienceQueryKey = {
-  all: () => ["experiene"],
+  all: () => ["experience"],
   lists: () => [...experienceQueryKey.all(), "list"], // 모든 경험 리스트
   list: (type: string, page: number) => [
     ...experienceQueryKey.lists(),
@@ -27,7 +27,7 @@ export const meQueryKey = {
 export const aiReportsQueryKey = {
   all: () => ["aiReports"],
   list: (page: number, keyword?: string) => [
-    ...experienceQueryKey.all(),
+    ...aiReportsQueryKey.all(),
     page,
     keyword,
   ], // page, keyword에 따른 AI report 리스트
