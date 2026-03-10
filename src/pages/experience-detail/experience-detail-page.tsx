@@ -10,6 +10,7 @@ import {
   useLeaveConfirm,
   useGetExperienceDetail,
   hydrateExperienceFromApi,
+  EXPERIENCE_MESSAGES,
 } from "@/features/experience-detail";
 import { ModalBasic } from "@/shared/ui/modal/modal-basic";
 
@@ -51,7 +52,7 @@ const ExperienceDetailPage = ({ mode }: ExperiencePageProps) => {
   }
 
   if (shouldFetch && isError) {
-    return <div>경험 데이터를 불러오는데 실패했습니다.</div>;
+    return <div>{EXPERIENCE_MESSAGES.API.FETCH_FAILED}</div>;
   }
 
   const content = (() => {

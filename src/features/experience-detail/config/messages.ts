@@ -40,6 +40,7 @@ export const EXPERIENCE_MESSAGES = {
     SAVE_FAILED: "경험 저장에 실패했습니다. 다시 시도해주세요",
     DELETE_FAILED: "경험 삭제에 실패했습니다. 다시 시도해주세요",
     DEFAULT_SETTING_FAILED: "기본 경험 설정에 실패했습니다",
+    FETCH_FAILED: "경험 데이터를 불러오는데 실패했습니다.",
   },
 
   SUCCESS: {
