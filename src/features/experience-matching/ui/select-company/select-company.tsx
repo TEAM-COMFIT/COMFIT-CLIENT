@@ -1,3 +1,4 @@
+import { josa } from "es-hangul";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -15,7 +16,6 @@ import { MatchingAutoComplete } from "../matching-auto-complete/matching-auto-co
 import * as styles from "./select-company.css";
 
 import type { Company } from "../../type";
-
 export const SelectCompany = ({ onClick }: { onClick: () => void }) => {
   const navigate = useNavigate();
   const { data } = useGetExperience(); // 경험 조회 API
@@ -63,7 +63,9 @@ export const SelectCompany = ({ onClick }: { onClick: () => void }) => {
     modalStore.open(
       <>
         <Modal.Content type="auto">
-          <Modal.Title>{selectedCompany.name}을 선택하셨습니다</Modal.Title>
+          <Modal.Title>
+            {josa(selectedCompany.name, "을/를")} 선택하셨습니다
+          </Modal.Title>
           <Modal.SubTitle>기업분석 내용을 불러오는 중입니다.</Modal.SubTitle>
         </Modal.Content>
         <Modal.Image />

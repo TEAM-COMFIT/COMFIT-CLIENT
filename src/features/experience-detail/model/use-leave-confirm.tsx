@@ -24,8 +24,9 @@ const isDraftDirty = (draft: ExperienceUpsertBody): boolean => {
   );
 };
 
+const LEAVE_MODAL_ID = "leave-confirm-modal";
+
 export const useLeaveConfirm = () => {
-  const LEAVE_MODAL_ID = "leave-confirm-modal";
   const mode = useExperienceDetailStore((s) => s.mode);
   const draft = useExperienceDetailStore((s) => s.draft);
 
@@ -50,6 +51,7 @@ export const useLeaveConfirm = () => {
     if (blocker.state === "blocked") {
       blocker.proceed();
     }
+    modalStore.close(LEAVE_MODAL_ID);
   }, [blocker]);
 
   const cancelLeave = useCallback(() => {

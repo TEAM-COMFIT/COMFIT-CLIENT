@@ -1,11 +1,11 @@
 import type { ReactNode } from "react";
 
-type ModalItem = {
+interface ModalItem {
   id: string;
   content: ReactNode;
   onClose?: () => void;
   autoPlay?: number;
-};
+}
 
 class ModalStore {
   private _modalList: ModalItem[] = []; // 모달 리스트 관리
@@ -55,6 +55,10 @@ class ModalStore {
   }
 
   reset() {
+    // 예약된 타이머 제거
+    this._timers.forEach(clearTimeout);
+    this._timers.clear(); // 메모리 참조 제거
+
     this._modalList = [];
     this._listner?.(this._modalList);
   }
