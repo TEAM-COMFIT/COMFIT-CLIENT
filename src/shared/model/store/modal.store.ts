@@ -9,15 +9,21 @@ interface ModalItem {
 
 class ModalStore {
   private _modalList: ModalItem[] = []; // 모달 리스트 관리
-  private _listner: ((list: ModalItem[]) => void) | null = null;
+  private _listeners = new Set<(list: ModalItem[]) => void>();
   private _timers = new Map<string, NodeJS.Timeout>(); // 타이머 관리
 
-  subscribe(callback: (list: ModalItem[]) => void) {
-    this._listner = callback; // 모달 리스트 상태 업데이트 함수 등록
+  private notify() {
+    this._listeners.forEach((listener) => {
+      listener(this._modalList);
+    });
   }
 
-  unsubscribe() {
-    this._listner = null;
+  subscribe(callback: (list: ModalItem[]) => void) {
+    this._listeners.add(callback); // 모달 리스트 상태 업데이트 함수 등록
+
+    return () => {
+      this._listeners.delete(callback);
+    };
   }
 
   open(
@@ -28,7 +34,7 @@ class ModalStore {
   ) {
     const new_modal = { id: id, content: content, autoPlay, onClose };
     this._modalList = [...this._modalList, new_modal];
-    this._listner?.(this._modalList);
+    this.notify();
 
     if (autoPlay && autoPlay > 0) {
       const timer = setTimeout(() => {
@@ -49,7 +55,7 @@ class ModalStore {
     const target = this._modalList.find((m) => m.id === id);
 
     this._modalList = this._modalList.filter((modal) => modal.id !== id);
-    this._listner?.(this._modalList);
+    this.notify();
 
     if (target?.onClose) target.onClose();
   }
@@ -60,7 +66,7 @@ class ModalStore {
     this._timers.clear(); // 메모리 참조 제거
 
     this._modalList = [];
-    this._listner?.(this._modalList);
+    this.notify();
   }
 }
 

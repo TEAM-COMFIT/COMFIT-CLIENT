@@ -16,8 +16,8 @@ export const ModalProvider = () => {
   const [modals, setModals] = useState<ModalItem[]>([]);
 
   useEffect(() => {
-    modalStore.subscribe(setModals);
-    return () => modalStore.unsubscribe();
+    const unsubscribe = modalStore.subscribe(setModals);
+    return unsubscribe;
   }, []);
 
   useEffect(() => {
