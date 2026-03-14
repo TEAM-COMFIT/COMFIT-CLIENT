@@ -33,7 +33,7 @@ const ExperiencePage = () => {
 
   const handlePageChange = (page: number) => {
     setSearchParams({
-      type: type ?? "",
+      type,
       page: String(page),
     });
   };
