@@ -52,7 +52,10 @@ export const SelectCompany = ({ onClick }: { onClick: () => void }) => {
               이동하기
             </Button>
           </Modal.Buttons>
-        </>
+        </>,
+        undefined,
+        undefined,
+        "NO-EXPERIENCE"
       );
     }
   }, [data, navigate]);
