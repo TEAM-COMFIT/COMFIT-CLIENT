@@ -12,7 +12,7 @@ interface ModalItem {
 }
 
 export const ModalProvider = () => {
-  const { pathname } = useLocation();
+  const location = useLocation();
   const [modals, setModals] = useState<ModalItem[]>([]);
 
   useEffect(() => {
@@ -22,7 +22,7 @@ export const ModalProvider = () => {
 
   useEffect(() => {
     modalStore.reset();
-  }, [pathname]);
+  }, [location.key]);
 
   return (
     <>
