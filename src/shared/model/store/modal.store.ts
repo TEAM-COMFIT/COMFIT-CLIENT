@@ -32,10 +32,21 @@ class ModalStore {
     onClose?: () => void,
     id: string = new Date().toString()
   ) {
-    const new_modal = { id: id, content: content, autoPlay, onClose };
-    this._modalList = [...this._modalList, new_modal];
+    const newModal = { id, content, autoPlay, onClose }; // 새로 열고자 하는 모달
+
+    // 기존 타이머(중복)가 있다면 제거
+    if (this._timers.has(id)) {
+      clearTimeout(this._timers.get(id));
+      this._timers.delete(id);
+    }
+
+    // 리스트에서 기존 모달을 제거하고, 최상단에 새 모달 삽입
+    const filteredList = this._modalList.filter((m) => m.id !== id);
+    this._modalList = [...filteredList, newModal];
+
     this.notify();
 
+    // 타이머 재설정
     if (autoPlay && autoPlay > 0) {
       const timer = setTimeout(() => {
         this.close(id);
