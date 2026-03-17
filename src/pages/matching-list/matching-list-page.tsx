@@ -10,19 +10,48 @@ import * as styles from "./matching-list-page.css";
 
 const MatchingListPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const currentPage = Number(searchParams.get("page")) || 1;
+
+  // 1URL 파라미터 추출
+  const pageParam = searchParams.get("page");
   const keyword = searchParams.get("keyword") || "";
+
+  // 유효성 검사
+  const isInvalidPage =
+    pageParam !== null && (isNaN(Number(pageParam)) || Number(pageParam) < 1);
+  const currentPage = isInvalidPage ? 1 : Number(pageParam) || 1;
 
   const { data, isLoading } = useGetAiReportList({
     page: currentPage,
     keyword,
   });
+
   const { content = [], totalPage = 1 } = data ?? {};
 
   const showEmptyState = !isLoading && content.length === 0;
   const showList = content.length > 0;
 
   const [searchValue, setSearchValue] = useState(keyword);
+
+  // URL 강제 교정
+  useEffect(() => {
+    if (isLoading) return;
+
+    const isExceedingPage = currentPage > totalPage && totalPage > 0;
+
+    if (isInvalidPage || isExceedingPage) {
+      const newParams = new URLSearchParams(searchParams);
+      newParams.set("page", "1");
+
+      setSearchParams(newParams, { replace: true });
+    }
+  }, [
+    currentPage,
+    totalPage,
+    isInvalidPage,
+    isLoading,
+    searchParams,
+    setSearchParams,
+  ]);
 
   const handleSearch = (newKeyword: string) => {
     setSearchParams({
@@ -42,14 +71,12 @@ const MatchingListPage = () => {
     setSearchValue(keyword);
   };
 
-  // 검색값 유지
   useEffect(() => {
     setSearchValue(keyword);
   }, [keyword]);
 
   return (
     <main className={styles.container}>
-      {/* header 섹션 */}
       <div className={styles.headerWrapper}>
         <div className={styles.headerLeft}>
           <img
@@ -74,7 +101,7 @@ const MatchingListPage = () => {
           onSearch={handleSearch}
         />
       </div>
-      {/* 매칭 아이템 리스트 섹션 */}
+
       {showList ? (
         <ListSection
           matchingList={content}
