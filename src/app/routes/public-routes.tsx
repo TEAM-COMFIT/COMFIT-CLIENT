@@ -32,6 +32,12 @@ const CompanyDetailPage = lazy(() =>
   }))
 );
 
+const BookmarkPage = lazy(() =>
+  import("@/pages/bookmark/bookmark-page").then((module) => ({
+    default: module.BookmarkPage,
+  }))
+);
+
 export const guestRoutes = [{ path: ROUTES.LOGIN, element: <LoginPage /> }];
 
 export const publicRoutes = [
@@ -39,4 +45,5 @@ export const publicRoutes = [
   { path: ROUTES.LANDING, element: <LandingPage /> },
   { path: ROUTES.HOME, element: <HomePage /> },
   { path: ROUTES.COMPANY(), element: <CompanyDetailPage /> },
+  { path: ROUTES.BOOKMARK, element: <BookmarkPage /> },
 ];
