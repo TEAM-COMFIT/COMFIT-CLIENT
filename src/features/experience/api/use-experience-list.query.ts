@@ -4,13 +4,12 @@ import { api } from "@/shared/api/axios-instance";
 import { experienceQueryKey } from "@/shared/api/config/query-key";
 
 import type { ExperienceList } from "../type/experience";
-import type { ExperienceTypeCode } from "@/shared/config";
 
 export const getExperienceList = async ({
   type,
   page,
 }: {
-  type?: ExperienceTypeCode | undefined;
+  type?: string;
   page: number;
 }) => {
   const response = await api.experiences.getSummaryExperienceList({
@@ -24,7 +23,7 @@ export const useGetExperienceList = ({
   type,
   page,
 }: {
-  type: ExperienceTypeCode | null;
+  type?: string | null;
   page: number;
 }) => {
   return useQuery({
