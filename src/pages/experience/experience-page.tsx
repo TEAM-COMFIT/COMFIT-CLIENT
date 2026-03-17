@@ -107,7 +107,7 @@ const ExperiencePage = () => {
       {isLoading ? (
         <section className={styles.listContainer}>
           <img src={CAT_SPINNER} className={styles.spinner} alt="로딩중" />
-          <p className={styles.spinnerText}>기업 정보를 불러오고 있어요</p>
+          <p className={styles.spinnerText}>경험 목록을 불러오고 있어요</p>
         </section>
       ) : (
         <ExperienceListContainer data={data} onPageChange={handlePageChange} />
