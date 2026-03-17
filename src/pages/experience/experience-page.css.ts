@@ -62,3 +62,26 @@ export const icon = style({
   width: "6.4rem",
   height: "6.4rem",
 });
+
+export const listContainer = style({
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
+  width: "100%",
+  maxWidth: "106rem",
+  minHeight: "50rem",
+  margin: "4rem auto 0",
+});
+
+export const spinner = style({
+  width: "20rem",
+  aspectRatio: "1 / 1",
+  objectFit: "contain",
+});
+
+export const spinnerText = style({
+  marginTop: "0.2rem",
+  ...themeVars.fontStyles.hline_m_18,
+  color: themeVars.color.gray600,
+});
