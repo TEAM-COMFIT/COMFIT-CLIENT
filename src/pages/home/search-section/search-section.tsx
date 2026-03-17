@@ -15,28 +15,88 @@ import type { IndustryCode, ScaleCode } from "@/shared/config";
 const SearchSection = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
+  // URL 파라미터 추출
   const keyword = searchParams.get("keyword") || "";
-  const industry = (searchParams.get("industry") as IndustryCode) || undefined;
-  const scale = (searchParams.get("scale") as ScaleCode) || undefined;
-  const page = Number(searchParams.get("page")) || 1;
-  const isRecruited = searchParams.get("isRecruited") !== "false";
+  const pageParam = searchParams.get("page");
+  const industryParam = searchParams.get("industry");
+  const scaleParam = searchParams.get("scale");
+  const recruitedParam = searchParams.get("isRecruited");
+
+  // 유효성 검사(page, industry, scale, isRecruited)
+  const isInvalidPage =
+    pageParam !== null && (isNaN(Number(pageParam)) || Number(pageParam) < 1);
+  const currentPage = isInvalidPage ? 1 : Number(pageParam) || 1;
+
+  const isValidIndustry =
+    industryParam === null ||
+    ["IT_SERVICE", "COMMERCE", "FINANCE", "CONSUMER_GOODS"].includes(
+      industryParam
+    );
+  const industry = isValidIndustry
+    ? (industryParam as IndustryCode)
+    : undefined;
+
+  const isValidScale =
+    scaleParam === null ||
+    ["STARTUP", "SMALL", "MID_LARGE", "LARGE"].includes(scaleParam);
+  const scale = isValidScale ? (scaleParam as ScaleCode) : undefined;
+
+  const isRecruited = recruitedParam !== "false";
 
   const params = {
     keyword,
     industry,
     scale,
-    page,
+    page: currentPage,
     isRecruited,
   };
 
   const { data, isLoading, isPlaceholderData } = useGetCompanies(params);
   const content = data?.content || [];
   const hasResult = content.length > 0;
+  const totalPage = data?.totalPage ?? 1;
 
   const [searchValue, setSearchValue] = useState(keyword);
-
   const [isScaleTouched, setIsScaleTouched] = useState(false);
   const [isIndustryTouched, setIsIndustryTouched] = useState(false);
+
+  // URL 강제 교정
+  useEffect(() => {
+    if (isLoading) return;
+
+    const isExceedingPage = currentPage > totalPage && totalPage > 0;
+    const isInvalidRecruited =
+      recruitedParam !== null &&
+      recruitedParam !== "true" &&
+      recruitedParam !== "false";
+
+    if (
+      isInvalidPage ||
+      isExceedingPage ||
+      !isValidIndustry ||
+      !isValidScale ||
+      isInvalidRecruited
+    ) {
+      const newParams = new URLSearchParams(searchParams);
+
+      if (isInvalidPage || isExceedingPage) newParams.set("page", "1");
+      if (!isValidIndustry) newParams.delete("industry");
+      if (!isValidScale) newParams.delete("scale");
+      if (isInvalidRecruited) newParams.set("isRecruited", "true");
+
+      setSearchParams(newParams, { replace: true });
+    }
+  }, [
+    currentPage,
+    totalPage,
+    isInvalidPage,
+    isValidIndustry,
+    isValidScale,
+    recruitedParam,
+    isLoading,
+    searchParams,
+    setSearchParams,
+  ]);
 
   const updateSearchParams = (
     patch: Record<string, string | number | boolean | undefined>
@@ -51,7 +111,7 @@ const SearchSection = () => {
       }
     });
 
-    if (!patch.page) {
+    if (!("page" in patch)) {
       newParams.set("page", "1");
     }
 
@@ -67,7 +127,6 @@ const SearchSection = () => {
     updateSearchParams({ keyword: newKeyword });
   };
 
-  // 검색값 유지
   useEffect(() => {
     setSearchValue(keyword);
   }, [keyword]);
@@ -135,20 +194,28 @@ const SearchSection = () => {
           {isLoading || hasResult ? (
             <>
               <div className={styles.companyGridStyle}>
-                {content.map(({ id, name, industry, scale, logo }) => (
-                  <CompanyCard
-                    key={id}
-                    id={id}
-                    companyName={name}
-                    industry={industry as IndustryCode}
-                    scale={scale as ScaleCode}
-                    logoUrl={logo}
-                  />
-                ))}
+                {content.map(
+                  ({
+                    id,
+                    name,
+                    industry: itemIndustry,
+                    scale: itemScale,
+                    logo,
+                  }) => (
+                    <CompanyCard
+                      key={id}
+                      id={id}
+                      companyName={name}
+                      industry={itemIndustry as IndustryCode}
+                      scale={itemScale as ScaleCode}
+                      logoUrl={logo}
+                    />
+                  )
+                )}
               </div>
               <Pagination
-                currentPage={page}
-                totalPage={data?.totalPage ?? 1}
+                currentPage={currentPage}
+                totalPage={totalPage}
                 onPageChange={handlePageChange}
               />
             </>
