@@ -1,0 +1,277 @@
+﻿import { useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+import { ROUTES } from "@/app/routes/paths";
+import IconBookmarkBefore from "@/shared/assets/icons/icon_bookmark_before.svg?react";
+import IconTrashOff from "@/shared/assets/icons/icon_trash_off.svg?react";
+import { Button, Modal, Pagination, Search } from "@/shared/ui";
+
+import * as styles from "./bookmark-page.css";
+import {
+  BOOKMARK_MOCK_ROWS,
+  BOOKMARK_PAGE_SIZE,
+} from "./config/bookmark-page.constant";
+import { BookmarkCheckbox } from "./ui/bookmark-checkbox";
+
+const TABLE_COLUMN_COUNT = 4;
+
+const BookmarkPage = () => {
+  const navigate = useNavigate();
+
+  const [rows, setRows] = useState(BOOKMARK_MOCK_ROWS);
+  const [searchInput, setSearchInput] = useState("");
+  const [keyword, setKeyword] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [selectedIds, setSelectedIds] = useState<number[]>([]);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+
+  const filteredRows = useMemo(() => {
+    if (!keyword) return rows;
+
+    const normalizedKeyword = keyword.toLowerCase();
+    return rows.filter((row) =>
+      row.companyName.toLowerCase().includes(normalizedKeyword)
+    );
+  }, [keyword, rows]);
+
+  const totalPage = Math.ceil(filteredRows.length / BOOKMARK_PAGE_SIZE);
+  const resolvedCurrentPage =
+    totalPage === 0 ? 1 : Math.min(currentPage, totalPage);
+
+  const currentPageRows = useMemo(() => {
+    const startIndex = (resolvedCurrentPage - 1) * BOOKMARK_PAGE_SIZE;
+    return filteredRows.slice(startIndex, startIndex + BOOKMARK_PAGE_SIZE);
+  }, [filteredRows, resolvedCurrentPage]);
+
+  const placeholderRowCount =
+    currentPageRows.length > 0
+      ? BOOKMARK_PAGE_SIZE - currentPageRows.length
+      : 0;
+
+  const visibleIds = useMemo(
+    () => currentPageRows.map((row) => row.id),
+    [currentPageRows]
+  );
+
+  const isAllSelected =
+    visibleIds.length > 0 && visibleIds.every((id) => selectedIds.includes(id));
+
+  const isDeleteDisabled = selectedIds.length === 0;
+
+  const handleSearch = (value: string) => {
+    const trimmedValue = value.trim();
+
+    if (value.length > 0 && trimmedValue.length === 0) {
+      return;
+    }
+
+    setKeyword(trimmedValue);
+    setCurrentPage(1);
+    setSelectedIds([]);
+  };
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
+
+  const toggleAll = (checked: boolean) => {
+    if (checked) {
+      setSelectedIds((prev) => Array.from(new Set([...prev, ...visibleIds])));
+      return;
+    }
+
+    setSelectedIds((prev) => prev.filter((id) => !visibleIds.includes(id)));
+  };
+
+  const toggleRow = (rowId: number, checked: boolean) => {
+    setSelectedIds((prev) =>
+      checked
+        ? Array.from(new Set([...prev, rowId]))
+        : prev.filter((id) => id !== rowId)
+    );
+  };
+
+  const openDeleteModal = () => {
+    if (isDeleteDisabled) return;
+    setIsDeleteModalOpen(true);
+  };
+
+  const closeDeleteModal = () => {
+    setIsDeleteModalOpen(false);
+  };
+
+  const handleDeleteConfirm = () => {
+    setRows((prev) => prev.filter((row) => !selectedIds.includes(row.id)));
+    setSelectedIds([]);
+    setIsDeleteModalOpen(false);
+  };
+
+  const handleClickCompany = (companyId: number) => {
+    navigate(ROUTES.COMPANY(String(companyId)));
+  };
+
+  return (
+    <main className={styles.page}>
+      <section className={styles.topRow}>
+        <div className={styles.headerSection}>
+          <IconBookmarkBefore className={styles.titleIcon} aria-hidden="true" />
+          <div className={styles.titleWrap}>
+            <h1 className={styles.title}>기업 북마크</h1>
+            <p className={styles.subtitle}>
+              최근 6개월 이내에 스크랩한 기업정보 입니다
+            </p>
+          </div>
+        </div>
+
+        <div className={styles.actionSection}>
+          <div className={styles.searchWrap}>
+            <Search
+              size="small"
+              value={searchInput}
+              onChange={setSearchInput}
+              onSearch={handleSearch}
+              placeholder="기업명 검색"
+              inputAriaLabel="기업명 검색"
+            />
+          </div>
+
+          <div className={styles.deleteButtonWrap}>
+            <Button
+              variant="secondary"
+              size="medium"
+              disabled={isDeleteDisabled}
+              onClick={openDeleteModal}
+              aria-label="북마크 삭제"
+            >
+              <IconTrashOff className={styles.trashIcon} aria-hidden="true" />
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      <section className={styles.tableSection}>
+        <table className={styles.table}>
+          <caption className={styles.srOnly}>기업 북마크 목록</caption>
+          <colgroup>
+            <col className={styles.checkboxColumn} />
+            <col className={styles.companyColumn} />
+            <col className={styles.dateColumn} />
+            <col className={styles.statusColumn} />
+          </colgroup>
+          <thead>
+            <tr>
+              <th className={`${styles.headerCell} ${styles.checkboxCell}`}>
+                <BookmarkCheckbox
+                  checked={isAllSelected}
+                  onCheckedChange={toggleAll}
+                  ariaLabel="전체 선택"
+                />
+              </th>
+              <th className={`${styles.headerCell} ${styles.leftCell}`}>
+                기업명
+              </th>
+              <th className={`${styles.headerCell} ${styles.centerCell}`}>
+                스크랩일
+              </th>
+              <th className={`${styles.headerCell} ${styles.centerCell}`}>
+                경험 연결 여부
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {currentPageRows.length === 0 ? (
+              <tr>
+                <td className={styles.emptyCell} colSpan={TABLE_COLUMN_COUNT}>
+                  검색 결과가 없습니다.
+                </td>
+              </tr>
+            ) : (
+              <>
+                {currentPageRows.map((row) => (
+                  <tr key={row.id}>
+                    <td className={`${styles.bodyCell} ${styles.checkboxCell}`}>
+                      <BookmarkCheckbox
+                        checked={selectedIds.includes(row.id)}
+                        onCheckedChange={(checked) =>
+                          toggleRow(row.id, checked)
+                        }
+                        ariaLabel={`${row.companyName} 선택`}
+                      />
+                    </td>
+                    <td className={`${styles.bodyCell} ${styles.leftCell}`}>
+                      <button
+                        type="button"
+                        className={styles.companyButton}
+                        onClick={() => handleClickCompany(row.id)}
+                      >
+                        {row.companyName}
+                      </button>
+                    </td>
+                    <td className={`${styles.bodyCell} ${styles.centerCell}`}>
+                      {row.scrapedAt}
+                    </td>
+                    <td className={`${styles.bodyCell} ${styles.centerCell}`}>
+                      <span
+                        className={styles.connectionStatus({
+                          connected: row.isConnected,
+                        })}
+                      >
+                        연결
+                      </span>
+                    </td>
+                  </tr>
+                ))}
+
+                {Array.from({ length: placeholderRowCount }).map((_, idx) => (
+                  <tr key={`placeholder-${idx}`} aria-hidden="true">
+                    {Array.from({ length: TABLE_COLUMN_COUNT }).map(
+                      (__, colIdx) => {
+                        let alignClass = styles.centerCell;
+                        if (colIdx === 0) alignClass = styles.checkboxCell;
+                        if (colIdx === 1) alignClass = styles.leftCell;
+
+                        return (
+                          <td
+                            key={`placeholder-cell-${idx}-${colIdx}`}
+                            className={`${styles.bodyCell} ${alignClass} ${styles.placeholderCell}`}
+                          >
+                            &nbsp;
+                          </td>
+                        );
+                      }
+                    )}
+                  </tr>
+                ))}
+              </>
+            )}
+          </tbody>
+        </table>
+      </section>
+
+      <section className={styles.paginationSection}>
+        <Pagination
+          currentPage={resolvedCurrentPage}
+          totalPage={totalPage}
+          onPageChange={handlePageChange}
+        />
+      </section>
+
+      <Modal isOpen={isDeleteModalOpen} onClose={closeDeleteModal}>
+        <Modal.XButton />
+        <Modal.Content>
+          <Modal.Title>선택한 북마크를 삭제하시겠습니까?</Modal.Title>
+        </Modal.Content>
+        <Modal.Buttons>
+          <Button variant="secondary" size="large" onClick={closeDeleteModal}>
+            취소
+          </Button>
+          <Button variant="primary" size="large" onClick={handleDeleteConfirm}>
+            삭제
+          </Button>
+        </Modal.Buttons>
+      </Modal>
+    </main>
+  );
+};
+
+export { BookmarkPage };
