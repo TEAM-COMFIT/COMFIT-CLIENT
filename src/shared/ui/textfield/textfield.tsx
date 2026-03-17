@@ -14,7 +14,7 @@ export type TextfieldType =
   | "action";
 
 const TEXTFIELD_MAX_LENGTH: Record<TextfieldType, number> = {
-  jobDescription: 300,
+  jobDescription: 500,
   situation: 200,
   task: 200,
   result: 300,

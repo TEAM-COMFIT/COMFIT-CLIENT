@@ -29,6 +29,7 @@
     "@vanilla-extract/recipes": "^0.5.7",
     "@vanilla-extract/vite-plugin": "^5.1.4",
     "axios": "^1.13.2",
+    "es-hangul": "^2.3.8",
     "eslint-import-resolver-typescript": "^4.4.4",
     "framer-motion": "^12.27.1",
     "react": "^19.2.0",
