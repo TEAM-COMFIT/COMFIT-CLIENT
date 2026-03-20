@@ -1,4 +1,6 @@
+import { UsePolicyModal } from "@/features/onboarding";
 import { AgreeCheckIcon } from "@/shared/assets/icons";
+import { modalStore } from "@/shared/model/store";
 
 import * as styles from "../onboarding-page.css";
 
@@ -8,6 +10,19 @@ interface AgreeSectionProps {
 }
 
 const AgreeSection = ({ isAgreed, setIsAgreed }: AgreeSectionProps) => {
+  const handleModal = (e: React.MouseEvent, type: "USE" | "PRIVACY") => {
+    e.preventDefault();
+    const MODAL_ID = "ONBOARD_MODAL";
+    let content = <></>;
+
+    if (type === "USE") {
+      content = <UsePolicyModal onClose={() => modalStore.close(MODAL_ID)} />;
+    } else {
+      content = <div></div>;
+    }
+    modalStore.open(content, undefined, undefined, MODAL_ID, "auto");
+  };
+
   return (
     <div className={styles.agreeGroup}>
       <input
@@ -22,9 +37,21 @@ const AgreeSection = ({ isAgreed, setIsAgreed }: AgreeSectionProps) => {
           <AgreeCheckIcon />
         </div>
         <p>
-          Comfit <span className={styles.underlineText}>이용약관</span> 및{" "}
-          <span className={styles.underlineText}>개인정보처리방침</span>에
-          동의합니다.
+          Comfit{" "}
+          <span
+            className={styles.underlineText}
+            onClick={(e) => handleModal(e, "USE")}
+          >
+            이용약관
+          </span>{" "}
+          및{" "}
+          <span
+            className={styles.underlineText}
+            onClick={(e) => handleModal(e, "PRIVACY")}
+          >
+            개인정보처리방침
+          </span>
+          에 동의합니다.
         </p>
       </label>
     </div>
