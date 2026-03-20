@@ -13,6 +13,7 @@ import { labelToCodeIndustry } from "@/shared/config";
 import { Button, Alert } from "@/shared/ui";
 
 import * as s from "./onboarding-page.css";
+import { AgreeSection } from "./ui/agree-section";
 import { SelectSection } from "./ui/select-section";
 
 import type { EducationTypeCode } from "@/features/onboarding";
@@ -27,6 +28,7 @@ const OnboardingPage = () => {
     useState<EducationTypeCode | null>(null);
   const [selectedUniversity, setSelectedUniversity] =
     useState<SearchItem | null>(null);
+  const [isAgreed, setIsAgreed] = useState<boolean>(false); // 이용약관 및 개인정보처리방침 동의 여부
 
   const industry = useInterestSelectStore((s) => s.industry);
   const job = useInterestSelectStore((s) => s.job);
@@ -97,6 +99,8 @@ const OnboardingPage = () => {
             selectedUniversity={selectedUniversity}
             setSelectedUniversity={setSelectedUniversity}
           />
+
+          <AgreeSection isAgreed={isAgreed} setIsAgreed={setIsAgreed} />
 
           <div className={s.buttonWrap}>
             <Button
