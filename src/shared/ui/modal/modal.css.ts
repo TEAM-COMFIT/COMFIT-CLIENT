@@ -46,6 +46,8 @@ export const modalContent = recipe({
 });
 
 export const XButton = style({
+  maxWidth: "4.4rem",
+  maxHeight: "4.4rem",
   alignSelf: "flex-end",
   color: "black",
 });
