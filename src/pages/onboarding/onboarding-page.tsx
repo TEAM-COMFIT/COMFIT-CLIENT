@@ -43,8 +43,9 @@ const OnboardingPage = () => {
         selectedUniversity,
         industry,
         job,
+        isAgreed,
       }),
-    [selectedEducation, selectedUniversity, industry, job]
+    [selectedEducation, selectedUniversity, industry, job, isAgreed]
   );
 
   const handleSelectionSubmit = () => {
