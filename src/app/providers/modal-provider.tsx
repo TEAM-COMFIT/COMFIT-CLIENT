@@ -9,6 +9,7 @@ interface ModalItem {
   id: string;
   content: ReactNode;
   autoPlay?: number;
+  size?: "default" | "auto";
 }
 
 export const ModalProvider = () => {
@@ -33,6 +34,7 @@ export const ModalProvider = () => {
             isOpen={true}
             autoPlay={modal.autoPlay}
             onClose={() => modalStore.close(modal.id)}
+            size={modal.size}
           >
             {modal.content}
           </Modal>

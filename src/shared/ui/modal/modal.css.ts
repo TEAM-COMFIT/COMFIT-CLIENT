@@ -18,15 +18,31 @@ export const modal = style({
   background: "transparent",
 });
 
-export const modalContent = style({
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  width: "60rem",
-  height: "46rem",
-  padding: "1.5rem 1.6rem 4.8rem 1.6rem",
-  borderRadius: "1.2rem",
-  backgroundColor: themeVars.color.white,
+export const modalContent = recipe({
+  base: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    borderRadius: "1.2rem",
+    backgroundColor: themeVars.color.white,
+  },
+  variants: {
+    size: {
+      default: {
+        width: "60rem",
+        height: "46rem",
+        padding: "1.5rem 1.6rem 4.8rem 1.6rem",
+      },
+      auto: {
+        width: "auto",
+        height: "auto",
+        padding: "0",
+      },
+    },
+  },
+  defaultVariants: {
+    size: "default",
+  },
 });
 
 export const XButton = style({

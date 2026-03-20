@@ -28,9 +28,10 @@ interface ModalProps {
   autoPlay?: number;
   isOpen: boolean;
   onClose: () => void;
+  size?: "default" | "auto";
 }
 
-const Modal = ({ children, autoPlay, isOpen, onClose }: ModalProps) => {
+const Modal = ({ children, autoPlay, isOpen, onClose, size }: ModalProps) => {
   const ref = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
@@ -53,7 +54,7 @@ const Modal = ({ children, autoPlay, isOpen, onClose }: ModalProps) => {
   return (
     <modalContext.Provider value={{ onClose }}>
       <dialog ref={ref} onClick={handleBackdropClick} className={styles.modal}>
-        <div className={styles.modalContent}>{children}</div>
+        <div className={styles.modalContent({ size })}>{children}</div>
       </dialog>
     </modalContext.Provider>
   );
