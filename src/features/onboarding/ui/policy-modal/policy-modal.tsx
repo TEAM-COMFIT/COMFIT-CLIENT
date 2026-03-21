@@ -1,6 +1,7 @@
 import { Button, Modal } from "@/shared/ui";
 
 import * as styles from "./policy-modal.css";
+import { PrivacyPolicyContent } from "./privacy-policy-content";
 import { UsePolicyContent } from "./use-policy-content";
 
 interface modalProps {
@@ -19,7 +20,7 @@ export const PolicyModal = ({ type, onClose }: modalProps) => {
       </div>
       <Modal.Content>
         <div className={styles.modalCotent}>
-          {type === "USE" ? <UsePolicyContent /> : <></>}
+          {type === "USE" ? <UsePolicyContent /> : <PrivacyPolicyContent />}
         </div>
       </Modal.Content>
       <Modal.Buttons>

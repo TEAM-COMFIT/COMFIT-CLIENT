@@ -153,6 +153,11 @@ export const underlineText = style({
   textDecoration: "underline",
   textUnderlinePosition: "under",
   color: themeVars.color.blue600,
+  selectors: {
+    "&:hover": {
+      cursor: "pointer",
+    },
+  },
 });
 
 export const buttonWrap = style({
