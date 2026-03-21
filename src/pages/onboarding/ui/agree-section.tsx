@@ -1,4 +1,4 @@
-import { UsePolicyModal } from "@/features/onboarding";
+import { PolicyModal } from "@/features/onboarding/ui/policy-modal/policy-modal";
 import { AgreeCheckIcon } from "@/shared/assets/icons";
 import { modalStore } from "@/shared/model/store";
 
@@ -13,14 +13,14 @@ const AgreeSection = ({ isAgreed, setIsAgreed }: AgreeSectionProps) => {
   const handleModal = (e: React.MouseEvent, type: "USE" | "PRIVACY") => {
     e.preventDefault();
     const MODAL_ID = "ONBOARD_MODAL";
-    let content = <></>;
 
-    if (type === "USE") {
-      content = <UsePolicyModal onClose={() => modalStore.close(MODAL_ID)} />;
-    } else {
-      content = <div></div>;
-    }
-    modalStore.open(content, undefined, undefined, MODAL_ID, "auto");
+    modalStore.open(
+      <PolicyModal type={type} onClose={() => modalStore.close(MODAL_ID)} />,
+      undefined,
+      undefined,
+      MODAL_ID,
+      "auto"
+    );
   };
 
   return (

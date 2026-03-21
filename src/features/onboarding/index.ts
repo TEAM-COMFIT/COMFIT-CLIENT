@@ -8,4 +8,4 @@ export * from "./store/interest-select/selectors";
 export { useGetUniversity } from "./api/use-get-university.query";
 export { usePostOnboarding } from "./api/use-post-onboarding.mutation";
 
-export { UsePolicyModal } from "./ui/policy-modal/use-policy-modal";
+export { PolicyModal } from "./ui/policy-modal/policy-modal";
