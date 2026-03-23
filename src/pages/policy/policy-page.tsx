@@ -25,8 +25,6 @@ const POLICY_CONTENT = {
 const PolicyPage = ({ mode }: PolicyPageProps) => {
   const currentPolicy = POLICY_CONTENT[mode];
 
-  if (!currentPolicy) return <></>;
-
   return (
     <div className={styles.background}>
       <div

@@ -6,7 +6,6 @@ export { usePagination } from "./pagination/use-pagination";
 
 export { Modal } from "./modal/modal";
 export { ModalBasic } from "./modal/modal-basic";
-export { useModal } from "./modal/use-modal";
 
 export { Button } from "./button/button";
 

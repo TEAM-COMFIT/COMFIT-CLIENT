@@ -23,7 +23,7 @@ export const modalContent = recipe({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    borderRadius: "1.2rem",
+    borderRadius: "12px",
     backgroundColor: themeVars.color.white,
   },
   variants: {

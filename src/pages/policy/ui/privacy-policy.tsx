@@ -50,7 +50,7 @@ export const PrivacyPolicy = () => {
                       {/* 테이블 형태의 컨텐츠 */}
                       {"table" in article.content && (
                         <div className={`${styles.tableWrapper}`}>
-                          <table className={`${styles.table} ${styles.tCell}`}>
+                          <table className={`${styles.table}`}>
                             <thead className={styles.thead}>
                               <tr>
                                 {article.content.table.header.map(

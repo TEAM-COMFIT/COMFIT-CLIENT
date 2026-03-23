@@ -26,7 +26,7 @@ export const buttonWrapper = style({
   height: "2.4rem",
 });
 
-export const modalCotent = style({
+export const modalContent = style({
   display: "flex",
   flexDirection: "column",
   gap: "2.4rem",
@@ -42,7 +42,7 @@ export const modalCotent = style({
     },
     "&::-webkit-scrollbar-thumb": {
       backgroundColor: themeVars.color.gray300,
-      height: "50px",
+      height: "5rem",
       borderRadius: "100px",
       backgroundClip: "padding-box",
       border: `4px solid transparent`,

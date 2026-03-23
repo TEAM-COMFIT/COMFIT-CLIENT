@@ -94,10 +94,10 @@ export const table = style({
   width: "max-content",
   minWidth: "100%",
   borderCollapse: "collapse",
+  maxWidth: "25rem",
 });
 
 export const tCell = style({
-  maxWidth: "25rem",
   padding: "0.8rem",
   border: `1px solid ${themeVars.color.gray200}`,
 

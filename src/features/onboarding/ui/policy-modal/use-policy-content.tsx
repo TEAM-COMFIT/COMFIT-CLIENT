@@ -8,8 +8,8 @@ export const UsePolicyContent = () => {
       <section key={policy.chapterTitle}>
         <h2 className={styles.title}>{policy.chapterTitle}</h2>
 
-        {policy.chapter.map((chapter: Chapter) => (
-          <article key={chapter.title}>
+        {policy.chapter.map((chapter: Chapter, idx) => (
+          <article key={idx}>
             {chapter.title && (
               <h3 className={styles.subTitle}>{chapter.title}</h3>
             )}

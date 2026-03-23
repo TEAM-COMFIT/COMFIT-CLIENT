@@ -16,11 +16,9 @@ export const UsePolicy = () => {
         <div>
           {policy.chapter.map((chapter: Chapter) => (
             <article key={chapter.title}>
-              {chapter.title && (
-                <h3 className={styles.textStyle({ type: "title3" })}>
-                  {chapter.title}
-                </h3>
-              )}
+              <h3 className={styles.textStyle({ type: "title3" })}>
+                {chapter?.title}
+              </h3>
               <div className={styles.content}>
                 {chapter.contents.map((content, idx) => (
                   <p key={idx}>{content}</p>
