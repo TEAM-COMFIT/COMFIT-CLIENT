@@ -27,6 +27,11 @@ const ScaleFilter = ({ value, isTouched, onChange }: ScaleFilterProps) => {
             {option.label}
           </Dropdown.Item>
         ))}
+        <Dropdown.CheckboxItem
+          onClick={() => onChange(SCALE_FILTER_OPTIONS[0].code)}
+        >
+          체크박스
+        </Dropdown.CheckboxItem>
       </Dropdown.Menu>
     </Dropdown>
   );

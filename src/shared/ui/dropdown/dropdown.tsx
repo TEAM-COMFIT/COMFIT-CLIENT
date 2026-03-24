@@ -20,6 +20,7 @@ interface DropdownContextValue {
   toggle: () => void;
   close: () => void;
   size: DropdownSize;
+  isMultiple?: boolean;
 }
 
 const DropdownContext = createContext<DropdownContextValue | null>(null);
@@ -127,8 +128,38 @@ const Item = ({
   );
 };
 
+/* ---------- Checkbox Item ---------- */
+const CheckboxItem = ({
+  children,
+  onClick,
+}: {
+  children: ReactNode;
+  onClick?: () => void;
+}) => {
+  const { close } = useDropdown();
+
+  const handleClick = () => {
+    onClick?.();
+    close();
+  };
+
+  return (
+    <li role="none">
+      <label className={styles.checkboxItem}>
+        <input
+          type="checkbox"
+          onClick={handleClick}
+          className={styles.checkboxInput}
+        />
+        {children}
+      </label>
+    </li>
+  );
+};
+
 Dropdown.Trigger = Trigger;
 Dropdown.Menu = Menu;
 Dropdown.Item = Item;
+Dropdown.CheckboxItem = CheckboxItem;
 
 export { Dropdown };

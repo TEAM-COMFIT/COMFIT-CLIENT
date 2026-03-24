@@ -73,7 +73,6 @@ export const item = style({
   width: "100%",
   borderRadius: "8px",
   textAlign: "left",
-  cursor: "pointer",
 
   backgroundColor: themeVars.color.white,
   ...themeVars.fontStyles.body_r_16,
@@ -81,6 +80,40 @@ export const item = style({
   selectors: {
     "&:hover": {
       backgroundColor: themeVars.color.blue200,
+    },
+  },
+});
+
+/* ---------- Checkbox Item ---------- */
+export const checkboxItem = style({
+  padding: "1rem 1.2rem",
+  width: "100%",
+  borderRadius: "8px",
+  textAlign: "left",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
+  flexDirection: "row-reverse",
+
+  color: themeVars.color.gray800,
+  backgroundColor: "gray",
+  ...themeVars.fontStyles.body_r_16,
+});
+
+export const checkboxInput = style({
+  width: "1.8rem",
+  height: "1.8rem",
+  border: `1px solid ${themeVars.color.gray400}`,
+  backgroundColor: themeVars.color.white,
+  borderRadius: "2px",
+  marginRight: "0.8rem",
+  padding: "0.3rem",
+  cursor: "pointer",
+
+  selectors: {
+    "&:checked": {
+      backgroundColor: themeVars.color.blue500,
+      borderColor: themeVars.color.blue500,
     },
   },
 });
