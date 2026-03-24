@@ -72,6 +72,7 @@ export const flexColumn = recipe({
   },
   variants: {
     gap: {
+      0: { gap: "0rem" },
       8: { gap: "0.8rem" },
       16: { gap: "1.6rem" },
       24: { gap: "2.4rem" },

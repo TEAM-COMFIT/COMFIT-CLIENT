@@ -19,7 +19,7 @@ export const PrivacyPolicy = () => {
       </div>
       {/** 조항 리스트 (ex. 1. 개인정보의 수집 및 이용) */}
       {TERMS_OF_PRIVACY_INFO.sections.map((section: Section) => (
-        <section key={section.title} className={styles.flexColumn({ gap: 16 })}>
+        <section key={section.title} className={styles.flexColumn({ gap: 8 })}>
           {/* 조항 타이틀 및 설명 */}
           <div>
             <h4 className={styles.textStyle({ type: "title2" })}>
@@ -28,7 +28,7 @@ export const PrivacyPolicy = () => {
             <p>{section.description}</p>
           </div>
           {/** 조항 상세설명 */}
-          <div className={styles.flexColumn({ gap: 16 })}>
+          <div className={styles.flexColumn({ gap: 8 })}>
             {section.articles?.map((article: Article, idx) => (
               <article
                 key={`article-${idx}`}
