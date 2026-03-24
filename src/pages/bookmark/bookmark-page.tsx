@@ -11,10 +11,8 @@ import {
   BOOKMARK_MOCK_ROWS,
   BOOKMARK_PAGE_SIZE,
 } from "./config/bookmark-page.constant";
-import { BookmarkCheckbox } from "./ui/bookmark-checkbox";
 import { BookmarkEmptyState } from "./ui/bookmark-empty-state";
-
-const TABLE_COLUMN_COUNT = 4;
+import { BookmarkTable } from "./ui/bookmark-table";
 
 const BookmarkPage = () => {
   const navigate = useNavigate();
@@ -43,11 +41,6 @@ const BookmarkPage = () => {
     const startIndex = (resolvedCurrentPage - 1) * BOOKMARK_PAGE_SIZE;
     return filteredRows.slice(startIndex, startIndex + BOOKMARK_PAGE_SIZE);
   }, [filteredRows, resolvedCurrentPage]);
-
-  const placeholderRowCount =
-    currentPageRows.length > 0
-      ? BOOKMARK_PAGE_SIZE - currentPageRows.length
-      : 0;
 
   const visibleIds = useMemo(
     () => currentPageRows.map((row) => row.id),
@@ -158,90 +151,15 @@ const BookmarkPage = () => {
         ) : isSearchResultEmpty ? (
           <BookmarkEmptyState type="search" />
         ) : (
-          <table className={styles.table}>
-            <caption className={styles.srOnly}>기업 북마크 목록</caption>
-            <colgroup>
-              <col className={styles.checkboxColumn} />
-              <col className={styles.companyColumn} />
-              <col className={styles.dateColumn} />
-              <col className={styles.statusColumn} />
-            </colgroup>
-            <thead>
-              <tr>
-                <th className={`${styles.headerCell} ${styles.checkboxCell}`}>
-                  <BookmarkCheckbox
-                    checked={isAllSelected}
-                    onCheckedChange={toggleAll}
-                    ariaLabel="전체 선택"
-                  />
-                </th>
-                <th className={`${styles.headerCell} ${styles.leftCell}`}>
-                  기업명
-                </th>
-                <th className={`${styles.headerCell} ${styles.centerCell}`}>
-                  스크랩일
-                </th>
-                <th className={`${styles.headerCell} ${styles.centerCell}`}>
-                  경험 연결 여부
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {currentPageRows.map((row) => (
-                <tr key={row.id}>
-                  <td className={`${styles.bodyCell} ${styles.checkboxCell}`}>
-                    <BookmarkCheckbox
-                      checked={selectedIds.includes(row.id)}
-                      onCheckedChange={(checked) => toggleRow(row.id, checked)}
-                      ariaLabel={`${row.companyName} 선택`}
-                    />
-                  </td>
-                  <td className={`${styles.bodyCell} ${styles.leftCell}`}>
-                    <button
-                      type="button"
-                      className={styles.companyButton}
-                      onClick={() => handleClickCompany(row.id)}
-                    >
-                      {row.companyName}
-                    </button>
-                  </td>
-                  <td className={`${styles.bodyCell} ${styles.centerCell}`}>
-                    {row.scrapedAt}
-                  </td>
-                  <td className={`${styles.bodyCell} ${styles.centerCell}`}>
-                    <span
-                      className={styles.connectionStatus({
-                        connected: row.isConnected,
-                      })}
-                    >
-                      연결
-                    </span>
-                  </td>
-                </tr>
-              ))}
-
-              {Array.from({ length: placeholderRowCount }).map((_, idx) => (
-                <tr key={`placeholder-${idx}`} aria-hidden="true">
-                  {Array.from({ length: TABLE_COLUMN_COUNT }).map(
-                    (__, colIdx) => {
-                      let alignClass = styles.centerCell;
-                      if (colIdx === 0) alignClass = styles.checkboxCell;
-                      if (colIdx === 1) alignClass = styles.leftCell;
-
-                      return (
-                        <td
-                          key={`placeholder-cell-${idx}-${colIdx}`}
-                          className={`${styles.bodyCell} ${alignClass} ${styles.placeholderCell}`}
-                        >
-                          &nbsp;
-                        </td>
-                      );
-                    }
-                  )}
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <BookmarkTable
+            rows={currentPageRows}
+            pageSize={BOOKMARK_PAGE_SIZE}
+            selectedIds={selectedIds}
+            isAllSelected={isAllSelected}
+            onToggleAll={toggleAll}
+            onToggleRow={toggleRow}
+            onClickCompany={handleClickCompany}
+          />
         )}
       </section>
 
@@ -256,14 +174,18 @@ const BookmarkPage = () => {
       <Modal isOpen={isDeleteModalOpen} onClose={closeDeleteModal}>
         <Modal.XButton />
         <Modal.Content>
-          <Modal.Title>선택한 북마크를 삭제하시겠습니까?</Modal.Title>
+          <Modal.Title>선택한 북마크를 삭제할까요?</Modal.Title>
         </Modal.Content>
         <Modal.Buttons>
-          <Button variant="secondary" size="large" onClick={closeDeleteModal}>
-            취소
+          <Button
+            variant="secondary"
+            size="large"
+            onClick={handleDeleteConfirm}
+          >
+            삭제하기
           </Button>
-          <Button variant="primary" size="large" onClick={handleDeleteConfirm}>
-            삭제
+          <Button variant="primary" size="large" onClick={closeDeleteModal}>
+            취소하기
           </Button>
         </Modal.Buttons>
       </Modal>
