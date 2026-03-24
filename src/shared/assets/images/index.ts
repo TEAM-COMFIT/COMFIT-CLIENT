@@ -32,5 +32,6 @@ export { default as LOADING } from "./loading-spinner.png";
 export { default as ICONAI } from "./icon_ai.png";
 
 export { default as ERROR } from "./error_img.png";
+export { default as SEARCH_IMG } from "./search_img.png";
 
 export { default as PROFILE } from "./icon_profile.png";

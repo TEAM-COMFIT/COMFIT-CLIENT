@@ -22,9 +22,5 @@ export const checkbox = style({
     "&:checked": {
       backgroundImage: `url("${checkboxPressed}")`,
     },
-    "&:disabled": {
-      backgroundImage: `url("${checkboxDisabled}")`,
-      cursor: "not-allowed",
-    },
   },
 });

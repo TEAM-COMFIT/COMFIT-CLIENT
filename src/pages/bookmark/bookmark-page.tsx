@@ -12,6 +12,7 @@ import {
   BOOKMARK_PAGE_SIZE,
 } from "./config/bookmark-page.constant";
 import { BookmarkCheckbox } from "./ui/bookmark-checkbox";
+import { BookmarkEmptyState } from "./ui/bookmark-empty-state";
 
 const TABLE_COLUMN_COUNT = 4;
 
@@ -35,8 +36,8 @@ const BookmarkPage = () => {
   }, [keyword, rows]);
 
   const totalPage = Math.ceil(filteredRows.length / BOOKMARK_PAGE_SIZE);
-  const resolvedCurrentPage =
-    totalPage === 0 ? 1 : Math.min(currentPage, totalPage);
+  const paginationTotalPage = Math.max(totalPage, 1);
+  const resolvedCurrentPage = Math.min(currentPage, paginationTotalPage);
 
   const currentPageRows = useMemo(() => {
     const startIndex = (resolvedCurrentPage - 1) * BOOKMARK_PAGE_SIZE;
@@ -57,6 +58,8 @@ const BookmarkPage = () => {
     visibleIds.length > 0 && visibleIds.every((id) => selectedIds.includes(id));
 
   const isDeleteDisabled = selectedIds.length === 0;
+  const isBookmarkEmpty = rows.length === 0;
+  const isSearchResultEmpty = rows.length > 0 && filteredRows.length === 0;
 
   const handleSearch = (value: string) => {
     const trimmedValue = value.trim();
@@ -150,108 +153,102 @@ const BookmarkPage = () => {
       </section>
 
       <section className={styles.tableSection}>
-        <table className={styles.table}>
-          <caption className={styles.srOnly}>기업 북마크 목록</caption>
-          <colgroup>
-            <col className={styles.checkboxColumn} />
-            <col className={styles.companyColumn} />
-            <col className={styles.dateColumn} />
-            <col className={styles.statusColumn} />
-          </colgroup>
-          <thead>
-            <tr>
-              <th className={`${styles.headerCell} ${styles.checkboxCell}`}>
-                <BookmarkCheckbox
-                  checked={isAllSelected}
-                  onCheckedChange={toggleAll}
-                  ariaLabel="전체 선택"
-                />
-              </th>
-              <th className={`${styles.headerCell} ${styles.leftCell}`}>
-                기업명
-              </th>
-              <th className={`${styles.headerCell} ${styles.centerCell}`}>
-                스크랩일
-              </th>
-              <th className={`${styles.headerCell} ${styles.centerCell}`}>
-                경험 연결 여부
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {currentPageRows.length === 0 ? (
+        {isBookmarkEmpty ? (
+          <BookmarkEmptyState type="bookmark" />
+        ) : isSearchResultEmpty ? (
+          <BookmarkEmptyState type="search" />
+        ) : (
+          <table className={styles.table}>
+            <caption className={styles.srOnly}>기업 북마크 목록</caption>
+            <colgroup>
+              <col className={styles.checkboxColumn} />
+              <col className={styles.companyColumn} />
+              <col className={styles.dateColumn} />
+              <col className={styles.statusColumn} />
+            </colgroup>
+            <thead>
               <tr>
-                <td className={styles.emptyCell} colSpan={TABLE_COLUMN_COUNT}>
-                  검색 결과가 없습니다.
-                </td>
+                <th className={`${styles.headerCell} ${styles.checkboxCell}`}>
+                  <BookmarkCheckbox
+                    checked={isAllSelected}
+                    onCheckedChange={toggleAll}
+                    ariaLabel="전체 선택"
+                  />
+                </th>
+                <th className={`${styles.headerCell} ${styles.leftCell}`}>
+                  기업명
+                </th>
+                <th className={`${styles.headerCell} ${styles.centerCell}`}>
+                  스크랩일
+                </th>
+                <th className={`${styles.headerCell} ${styles.centerCell}`}>
+                  경험 연결 여부
+                </th>
               </tr>
-            ) : (
-              <>
-                {currentPageRows.map((row) => (
-                  <tr key={row.id}>
-                    <td className={`${styles.bodyCell} ${styles.checkboxCell}`}>
-                      <BookmarkCheckbox
-                        checked={selectedIds.includes(row.id)}
-                        onCheckedChange={(checked) =>
-                          toggleRow(row.id, checked)
-                        }
-                        ariaLabel={`${row.companyName} 선택`}
-                      />
-                    </td>
-                    <td className={`${styles.bodyCell} ${styles.leftCell}`}>
-                      <button
-                        type="button"
-                        className={styles.companyButton}
-                        onClick={() => handleClickCompany(row.id)}
-                      >
-                        {row.companyName}
-                      </button>
-                    </td>
-                    <td className={`${styles.bodyCell} ${styles.centerCell}`}>
-                      {row.scrapedAt}
-                    </td>
-                    <td className={`${styles.bodyCell} ${styles.centerCell}`}>
-                      <span
-                        className={styles.connectionStatus({
-                          connected: row.isConnected,
-                        })}
-                      >
-                        연결
-                      </span>
-                    </td>
-                  </tr>
-                ))}
+            </thead>
+            <tbody>
+              {currentPageRows.map((row) => (
+                <tr key={row.id}>
+                  <td className={`${styles.bodyCell} ${styles.checkboxCell}`}>
+                    <BookmarkCheckbox
+                      checked={selectedIds.includes(row.id)}
+                      onCheckedChange={(checked) => toggleRow(row.id, checked)}
+                      ariaLabel={`${row.companyName} 선택`}
+                    />
+                  </td>
+                  <td className={`${styles.bodyCell} ${styles.leftCell}`}>
+                    <button
+                      type="button"
+                      className={styles.companyButton}
+                      onClick={() => handleClickCompany(row.id)}
+                    >
+                      {row.companyName}
+                    </button>
+                  </td>
+                  <td className={`${styles.bodyCell} ${styles.centerCell}`}>
+                    {row.scrapedAt}
+                  </td>
+                  <td className={`${styles.bodyCell} ${styles.centerCell}`}>
+                    <span
+                      className={styles.connectionStatus({
+                        connected: row.isConnected,
+                      })}
+                    >
+                      연결
+                    </span>
+                  </td>
+                </tr>
+              ))}
 
-                {Array.from({ length: placeholderRowCount }).map((_, idx) => (
-                  <tr key={`placeholder-${idx}`} aria-hidden="true">
-                    {Array.from({ length: TABLE_COLUMN_COUNT }).map(
-                      (__, colIdx) => {
-                        let alignClass = styles.centerCell;
-                        if (colIdx === 0) alignClass = styles.checkboxCell;
-                        if (colIdx === 1) alignClass = styles.leftCell;
+              {Array.from({ length: placeholderRowCount }).map((_, idx) => (
+                <tr key={`placeholder-${idx}`} aria-hidden="true">
+                  {Array.from({ length: TABLE_COLUMN_COUNT }).map(
+                    (__, colIdx) => {
+                      let alignClass = styles.centerCell;
+                      if (colIdx === 0) alignClass = styles.checkboxCell;
+                      if (colIdx === 1) alignClass = styles.leftCell;
 
-                        return (
-                          <td
-                            key={`placeholder-cell-${idx}-${colIdx}`}
-                            className={`${styles.bodyCell} ${alignClass} ${styles.placeholderCell}`}
-                          >
-                            &nbsp;
-                          </td>
-                        );
-                      }
-                    )}
-                  </tr>
-                ))}
-              </>
-            )}
-          </tbody>
-        </table>
+                      return (
+                        <td
+                          key={`placeholder-cell-${idx}-${colIdx}`}
+                          className={`${styles.bodyCell} ${alignClass} ${styles.placeholderCell}`}
+                        >
+                          &nbsp;
+                        </td>
+                      );
+                    }
+                  )}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
       </section>
 
       <section className={styles.paginationSection}>
         <Pagination
           currentPage={resolvedCurrentPage}
-          totalPage={totalPage}
+          totalPage={paginationTotalPage}
           onPageChange={handlePageChange}
         />
       </section>

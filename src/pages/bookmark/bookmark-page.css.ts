@@ -188,14 +188,6 @@ export const connectionStatus = recipe({
   },
 });
 
-export const emptyCell = style({
-  height: "22rem",
-  borderBottom: rowBorder,
-  textAlign: "center",
-  color: themeVars.color.gray500,
-  ...themeVars.fontStyles.hline_m_18,
-});
-
 export const placeholderCell = style({
   color: "transparent",
 });

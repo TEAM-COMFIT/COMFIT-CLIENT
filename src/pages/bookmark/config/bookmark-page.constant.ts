@@ -1,4 +1,4 @@
-﻿export interface BookmarkRow {
+﻿interface BookmarkRow {
   id: number;
   companyName: string;
   scrapedAt: string;
