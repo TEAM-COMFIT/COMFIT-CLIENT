@@ -110,12 +110,12 @@ export const sectionGroup = style({
 export const agreeGroup = style({
   display: "flex",
   alignItems: "center",
+  gap: "1.6rem",
 });
 
 export const agreeContent = style({
   display: "flex",
   alignItems: "center",
-  gap: "1.6rem",
   color: themeVars.color.gray800,
   ...themeVars.fontStyles.body_m_16,
   fontWeight: 500,

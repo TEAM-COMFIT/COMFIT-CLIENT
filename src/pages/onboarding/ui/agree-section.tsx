@@ -10,8 +10,7 @@ interface AgreeSectionProps {
 }
 
 const AgreeSection = ({ isAgreed, setIsAgreed }: AgreeSectionProps) => {
-  const handleModal = (e: React.MouseEvent, type: "USE" | "PRIVACY") => {
-    e.preventDefault();
+  const handleModal = (type: "USE" | "PRIVACY") => {
     const MODAL_ID = "ONBOARD_MODAL";
 
     modalStore.open(
@@ -32,28 +31,28 @@ const AgreeSection = ({ isAgreed, setIsAgreed }: AgreeSectionProps) => {
         onChange={() => setIsAgreed(!isAgreed)}
       />
       {/** 실제 눈에 보이는 체크박스, 텍스트 */}
-      <label htmlFor="agree" className={styles.agreeContent}>
+      <label htmlFor="agree" aria-label="이용약관 및 개인정보처리방침 동의">
         <div className={styles.checkbox({ isAgreed })}>
           <AgreeCheckIcon />
         </div>
-        <p>
-          Comfit{" "}
-          <span
-            className={styles.underlineText}
-            onClick={(e) => handleModal(e, "USE")}
-          >
-            이용약관
-          </span>{" "}
-          및{" "}
-          <span
-            className={styles.underlineText}
-            onClick={(e) => handleModal(e, "PRIVACY")}
-          >
-            개인정보처리방침
-          </span>
-          에 동의합니다.
-        </p>
       </label>
+      <div className={styles.agreeContent}>
+        Comfit&nbsp;
+        <span
+          className={styles.underlineText}
+          onClick={() => handleModal("USE")}
+        >
+          이용약관&nbsp;
+        </span>
+        및&nbsp;
+        <span
+          className={styles.underlineText}
+          onClick={() => handleModal("PRIVACY")}
+        >
+          개인정보처리방침
+        </span>
+        에 동의합니다.
+      </div>
     </div>
   );
 };
