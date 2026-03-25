@@ -14,8 +14,8 @@ export const UsePolicyContent = () => {
               <h3 className={styles.subTitle}>{chapter.title}</h3>
             )}
             <div className={styles.content}>
-              {chapter.contents.map((content) => (
-                <p>{content}</p>
+              {chapter.contents.map((content, idx) => (
+                <p key={idx}>{content}</p>
               ))}
             </div>
           </article>
