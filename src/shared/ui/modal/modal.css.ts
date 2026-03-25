@@ -36,6 +36,8 @@ export const modalContent = recipe({
       auto: {
         width: "auto",
         height: "auto",
+        maxWidth: "90vw",
+        maxHeight: "60vh",
         padding: "0",
       },
     },
