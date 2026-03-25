@@ -9,18 +9,31 @@ interface PolicyModalProps {
   onClose: () => void;
 }
 
+const POLICY_MODAL_CONTENT = {
+  USE: {
+    title: "이용약관",
+    Content: UsePolicyContent,
+  },
+  PRIVACY: {
+    title: "개인정보처리방침",
+    Content: PrivacyPolicyContent,
+  },
+};
+
 export const PolicyModal = ({ type, onClose }: PolicyModalProps) => {
+  const { title, Content } = POLICY_MODAL_CONTENT[type]; // 타입에 따른 약관모달 선택
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.modalHeader}>
-        <h2>{type === "USE" ? "이용약관" : "개인정보처리방침"}</h2>
+        <h2>{title}</h2>
         <div className={styles.buttonWrapper}>
           <Modal.XButton />
         </div>
       </div>
       <Modal.Content>
         <div className={styles.modalContent}>
-          {type === "USE" ? <UsePolicyContent /> : <PrivacyPolicyContent />}
+          <Content />
         </div>
       </Modal.Content>
       <Modal.Buttons>
