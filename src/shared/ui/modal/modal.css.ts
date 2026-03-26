@@ -58,6 +58,7 @@ export const Content = recipe({
   base: {
     display: "flex",
     flexDirection: "column",
+    alignItems: "center",
     flex: 1,
     textAlign: "center",
   },
@@ -88,6 +89,14 @@ export const SubTitle = style({
   whiteSpace: "pre-wrap",
   color: themeVars.color.gray500,
   ...themeVars.fontStyles.hline_m_18,
+});
+
+export const Icon = style({
+  width: "8rem",
+  height: "8rem",
+  padding: "1.6rem",
+  borderRadius: "40px",
+  backgroundColor: themeVars.color.blue100,
 });
 
 export const Image = style({

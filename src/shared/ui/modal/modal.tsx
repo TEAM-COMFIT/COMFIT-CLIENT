@@ -87,6 +87,10 @@ const SubTitle = ({ children }: { children: ReactNode }) => {
   return <div className={styles.SubTitle}>{children}</div>;
 };
 
+const Icon = ({ children }: { children: ReactNode }) => {
+  return <div className={styles.Icon}>{children}</div>;
+};
+
 const Image = () => {
   return <img className={styles.Image} src={LOADING} alt="모달 이미지" />;
 };
@@ -100,6 +104,7 @@ Modal.XButton = XButton;
 Modal.Content = Content;
 Modal.Title = Title;
 Modal.SubTitle = SubTitle;
+Modal.Icon = Icon;
 Modal.Image = Image;
 Modal.Buttons = Buttons;
 
