@@ -3,8 +3,9 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { ROUTES } from "@/app/routes/paths";
+import { IconPen } from "@/shared/assets/icons";
 import { modalStore } from "@/shared/model/store";
-import { Button, Modal } from "@/shared/ui";
+import { Modal, ModalBasic } from "@/shared/ui";
 import {
   useGetExperience,
   useGetCompanyList,
@@ -36,23 +37,21 @@ export const SelectCompany = ({ onClick }: { onClick: () => void }) => {
   useEffect(() => {
     if (data?.totalElements === 0) {
       modalStore.open(
-        <>
-          <Modal.Content>
-            <Modal.Title>아직 등록된 경험이 없습니다</Modal.Title>
-            <Modal.SubTitle>지금 바로 경험을 등록하러 가볼까요?</Modal.SubTitle>
-          </Modal.Content>
-          <Modal.Buttons>
-            <Button variant="secondary" onClick={() => navigate(ROUTES.HOME)}>
-              나가기
-            </Button>
-            <Button
-              variant="primary"
-              onClick={() => navigate(ROUTES.EXPERIENCE_CREATE)}
-            >
-              이동하기
-            </Button>
-          </Modal.Buttons>
-        </>,
+        <ModalBasic
+          onClose={() => {
+            modalStore.close("NO-EXPERIENCE");
+            navigate(ROUTES.HOME);
+          }}
+          onConfirm={() => {
+            modalStore.close("NO-EXPERIENCE");
+            navigate(ROUTES.EXPERIENCE_CREATE);
+          }}
+          icon={<IconPen width={48} height={48} />}
+          title="아직 등록된 경험이 없어요"
+          subTitle="경험을 등록하고 AI매칭을 시작해보세요"
+          closeText="나중에할게요"
+          confirmText="경험 등록하기"
+        />,
         undefined,
         undefined,
         "NO-EXPERIENCE"
@@ -65,13 +64,15 @@ export const SelectCompany = ({ onClick }: { onClick: () => void }) => {
     // 기업 선택 후, 대기하는 모달
     modalStore.open(
       <>
-        <Modal.Content type="auto">
-          <Modal.Title>
-            {josa(selectedCompany.name, "을/를")} 선택하셨습니다
-          </Modal.Title>
-          <Modal.SubTitle>기업분석 내용을 불러오는 중입니다.</Modal.SubTitle>
+        <Modal.Content>
+          <Modal.Image />
+          <Modal.TitleGroup>
+            <Modal.Title>
+              {josa(selectedCompany.name, "을/를")} 선택했어요
+            </Modal.Title>
+            <Modal.SubTitle>기업분석 내용을 불러오고 있어요</Modal.SubTitle>
+          </Modal.TitleGroup>
         </Modal.Content>
-        <Modal.Image />
       </>,
       3000,
       () => {

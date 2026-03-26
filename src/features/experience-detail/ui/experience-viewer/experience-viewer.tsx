@@ -1,3 +1,4 @@
+import { IconTrash } from "@/shared/assets/icons";
 import { EXPERIENCE_TYPE } from "@/shared/config/experience";
 import { parseYMD } from "@/shared/lib/format-date";
 import { modalStore } from "@/shared/model/store";
@@ -42,14 +43,17 @@ const ExperienceViewer = () => {
   const handleOpenDeleteModal = () => {
     modalStore.open(
       <ModalBasic
-        title="이 경험을 삭제하시겠습니까?"
-        subTitle="작성한 내용은 즉시 제거되며, 복구할 수 없습니다."
-        closeText="취소"
-        confirmText="삭제"
-        onClose={() => modalStore.reset()} // 취소 시 닫기
-        onConfirm={() => {
+        icon={<IconTrash width={48} height={48} />}
+        title="이 경험을 삭제할까요?"
+        subTitle="삭제하면 다시 복구할 수 없어요"
+        closeText="삭제하기"
+        confirmText="취소하기"
+        onClose={() => {
           onClickDelete(); // 실제 삭제 동작
           modalStore.reset(); // 모달 닫기
+        }}
+        onConfirm={() => {
+          modalStore.reset(); // 취소 시 닫기
         }}
       />
     );
