@@ -29,9 +29,9 @@ export const modalContent = recipe({
   variants: {
     size: {
       default: {
-        width: "60rem",
-        height: "46rem",
-        padding: "1.5rem 1.6rem 4.8rem 1.6rem",
+        width: "52rem",
+        height: "36.2rem",
+        padding: "1.6rem 1.6rem 4rem 1.6rem",
       },
       auto: {
         width: "auto",
@@ -48,47 +48,39 @@ export const modalContent = recipe({
 });
 
 export const XButton = style({
-  maxWidth: "4.4rem",
-  maxHeight: "4.4rem",
+  maxWidth: "2.4rem",
+  maxHeight: "2.4rem",
   alignSelf: "flex-end",
   color: "black",
 });
 
-export const Content = recipe({
-  base: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    flex: 1,
-    textAlign: "center",
-  },
-  variants: {
-    type: {
-      default: {
-        justifyContent: "center",
-        gap: "1.6rem",
-      },
-      auto: {
-        justifyContent: "flex-end",
-        gap: "0.8rem",
-      },
-    },
-  },
-  defaultVariants: {
-    type: "default",
-  },
+export const Content = style({
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "flex-end",
+  gap: "1.6rem",
+  flex: 1,
+  textAlign: "center",
+  padding: "1.6rem",
+});
+
+export const TitleGroup = style({
+  display: "flex",
+  flexDirection: "column",
+  gap: "0.4rem",
 });
 
 export const Title = style({
   whiteSpace: "pre-wrap",
-  color: themeVars.color.blue600,
-  ...themeVars.fontStyles.title_b_28,
+  color: themeVars.color.gray700,
+  ...themeVars.fontStyles.hding_b_22,
 });
 
 export const SubTitle = style({
   whiteSpace: "pre-wrap",
   color: themeVars.color.gray500,
-  ...themeVars.fontStyles.hline_m_18,
+  ...themeVars.fontStyles.body_m_14,
 });
 
 export const Icon = style({
@@ -101,10 +93,9 @@ export const Icon = style({
 
 export const Image = style({
   alignItems: "flex-end",
-  width: "28rem",
-  height: "28rem",
+  width: "17.5rem",
+  height: "17.5rem",
   aspectRatio: 1 / 1,
-  marginBottom: "-2rem",
 });
 
 export const Buttons = style({
@@ -112,4 +103,5 @@ export const Buttons = style({
   display: "flex",
   justifyContent: "center",
   gap: "1.6rem",
+  padding: "1.6rem",
 });

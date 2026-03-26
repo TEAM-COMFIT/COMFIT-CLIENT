@@ -69,14 +69,12 @@ const XButton = () => {
   );
 };
 
-const Content = ({
-  children,
-  type,
-}: {
-  children: ReactNode;
-  type?: "default" | "auto";
-}) => {
-  return <div className={styles.Content({ type: type })}>{children}</div>;
+const Content = ({ children }: { children: ReactNode }) => {
+  return <div className={styles.Content}>{children}</div>;
+};
+
+const TitleGroup = ({ children }: { children: ReactNode }) => {
+  return <div className={styles.TitleGroup}>{children}</div>;
 };
 
 const Title = ({ children }: { children: ReactNode }) => {
@@ -102,6 +100,7 @@ const Buttons = ({ children }: { children: ReactNode }) => {
 // 내보내기
 Modal.XButton = XButton;
 Modal.Content = Content;
+Modal.TitleGroup = TitleGroup;
 Modal.Title = Title;
 Modal.SubTitle = SubTitle;
 Modal.Icon = Icon;
