@@ -51,7 +51,6 @@ export const XButton = style({
   maxWidth: "2.4rem",
   maxHeight: "2.4rem",
   alignSelf: "flex-end",
-  color: "black",
 });
 
 export const Content = style({
