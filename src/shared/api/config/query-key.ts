@@ -46,8 +46,8 @@ export const companyQueryKey = {
   keyword: (keyword: string) => [...companyQueryKey.all(), keyword], // 특정 키워드의 상세 조회
   search: (
     keyword?: string,
-    industry?: string,
-    scale?: string,
+    industry?: string[],
+    scale?: string[],
     sort?: string,
     page?: number,
     isRecruited?: boolean

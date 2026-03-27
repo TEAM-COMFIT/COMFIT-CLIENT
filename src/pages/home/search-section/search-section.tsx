@@ -4,6 +4,8 @@ import { useSearchParams } from "react-router-dom";
 import { useGetCompanies } from "@/features/home";
 import { ScaleFilter, IndustryFilter } from "@/features/home/ui";
 import { homeBanner } from "@/shared/assets/images";
+// import { SCALE } from "@/shared/config";
+import { SCALE, INDUSTRY } from "@/shared/config";
 import { Toggle, Pagination } from "@/shared/ui";
 import { Search } from "@/shared/ui/search/search";
 import { CompanyCard } from "@/widgets";
@@ -22,6 +24,16 @@ const SearchSection = () => {
   const scaleParam = searchParams.get("scale");
   const recruitedParam = searchParams.get("isRecruited");
 
+  // 다중 선택을 위한 파라미터 파싱 (쉼표 기준 분리)
+
+  const selectedIndustries = industryParam
+    ? (industryParam.split(",") as IndustryCode[])
+    : [];
+
+  const selectedScales = scaleParam
+    ? (scaleParam.split(",") as ScaleCode[])
+    : [];
+
   // 유효성 검사(page, industry, scale, isRecruited)
   const isInvalidPage =
     pageParam !== null && (isNaN(Number(pageParam)) || Number(pageParam) < 1);
@@ -29,24 +41,18 @@ const SearchSection = () => {
 
   const isValidIndustry =
     industryParam === null ||
-    ["IT_SERVICE", "COMMERCE", "FINANCE", "CONSUMER_GOODS"].includes(
-      industryParam
-    );
-  const industry = isValidIndustry
-    ? (industryParam as IndustryCode)
-    : undefined;
+    selectedIndustries.every((ind) => Object.keys(INDUSTRY).includes(ind));
 
   const isValidScale =
     scaleParam === null ||
-    ["STARTUP", "SMALL", "MID_LARGE", "LARGE"].includes(scaleParam);
-  const scale = isValidScale ? (scaleParam as ScaleCode) : undefined;
+    selectedScales.every((sc) => Object.keys(SCALE).includes(sc));
 
   const isRecruited = recruitedParam !== "false";
 
   const params = {
     keyword,
-    industry,
-    scale,
+    industry: selectedIndustries.length > 0 ? selectedIndustries : undefined,
+    scale: selectedScales.length > 0 ? selectedScales : undefined,
     page: currentPage,
     isRecruited,
   };
@@ -57,8 +63,6 @@ const SearchSection = () => {
   const totalPage = data?.totalPage ?? 1;
 
   const [searchValue, setSearchValue] = useState(keyword);
-  const [isScaleTouched, setIsScaleTouched] = useState(false);
-  const [isIndustryTouched, setIsIndustryTouched] = useState(false);
 
   // URL 강제 교정
   useEffect(() => {
@@ -118,6 +122,20 @@ const SearchSection = () => {
     setSearchParams(newParams);
   };
 
+  const handleToggleFilter = (
+    currentList: string[],
+    key: "industry" | "scale",
+    checkedValue: string
+  ) => {
+    const nextList = currentList.includes(checkedValue)
+      ? currentList.filter((item) => item !== checkedValue)
+      : [...currentList, checkedValue];
+
+    updateSearchParams({
+      [key]: nextList.length > 0 ? nextList.join(",") : undefined,
+    });
+  };
+
   const handlePageChange = (newPage: number) => {
     if (isPlaceholderData) return;
     updateSearchParams({ page: newPage });
@@ -162,21 +180,25 @@ const SearchSection = () => {
         <div className={styles.container}>
           <div className={styles.filterWrapper}>
             <IndustryFilter
-              value={industry ?? null}
-              isTouched={isIndustryTouched}
-              onChange={(newIndustry) => {
-                setIsIndustryTouched(true);
-                updateSearchParams({ industry: newIndustry });
-              }}
+              values={selectedIndustries}
+              onChange={(code) =>
+                handleToggleFilter(selectedIndustries, "industry", code)
+              }
             />
 
-            <ScaleFilter
+            {/* <ScaleFilter
               value={scale}
               isTouched={isScaleTouched}
               onChange={(newScale) => {
                 setIsScaleTouched(true);
                 updateSearchParams({ scale: newScale });
               }}
+            /> */}
+            <ScaleFilter
+              values={selectedScales}
+              onChange={(code) =>
+                handleToggleFilter(selectedScales, "scale", code)
+              }
             />
 
             <p className={styles.toggle}>

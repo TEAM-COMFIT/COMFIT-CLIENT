@@ -27,7 +27,7 @@ const ExperienceFilter = ({
     : EXPERIENCE_FILTER_OPTIONS;
 
   return (
-    <Dropdown type="medium">
+    <Dropdown size="medium">
       <Dropdown.Trigger>{triggerLabel}</Dropdown.Trigger>
 
       <Dropdown.Menu>

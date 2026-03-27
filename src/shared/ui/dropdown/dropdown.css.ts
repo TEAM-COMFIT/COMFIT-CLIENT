@@ -93,8 +93,7 @@ export const checkboxItem = style({
   alignItems: "center",
   justifyContent: "space-between",
   flexDirection: "row-reverse",
-
-  backgroundColor: themeVars.color.gray200,
+  backgroundColor: themeVars.color.white,
 
   color: themeVars.color.gray800,
   ...themeVars.fontStyles.body_r_16,

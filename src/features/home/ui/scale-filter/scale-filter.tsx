@@ -1,37 +1,43 @@
-import { SCALE } from "@/shared/config/company";
+import { SCALE, FILTER_SCALE } from "@/shared/config/company";
 import { Dropdown } from "@/shared/ui/dropdown/dropdown";
 
-import { SCALE_FILTER_OPTIONS } from "../../config/filter-constant";
-
-import type { ScaleFilterCode } from "@/features/home/config/filter-constant";
+import type { ScaleCode } from "@/shared/config/company";
 interface ScaleFilterProps {
-  value: ScaleFilterCode;
-  isTouched: boolean;
-  onChange: (value: ScaleFilterCode) => void;
+  values: ScaleCode[];
+  onChange: (value: ScaleCode) => void;
 }
 
-const ScaleFilter = ({ value, isTouched, onChange }: ScaleFilterProps) => {
-  let triggerLabel = "기업 규모";
+const ScaleFilter = ({ values, onChange }: ScaleFilterProps) => {
+  const renderTriggerLabel = () => {
+    if (values.length === 0) {
+      return <span>기업 규모</span>;
+    }
 
-  if (value) {
-    triggerLabel = SCALE[value];
-  } else if (isTouched) {
-    triggerLabel = "전체";
-  }
+    const firstLabel = SCALE[values[0]];
+    const extraCount = values.length - 1;
+
+    return (
+      <div>
+        <span>기업 규모 </span>
+        <span>
+          {firstLabel} {extraCount > 0 && `외 ${extraCount}`}
+        </span>
+      </div>
+    );
+  };
+
   return (
-    <Dropdown type="large">
-      <Dropdown.Trigger>{triggerLabel}</Dropdown.Trigger>
+    <Dropdown size="large" mode="multiple">
+      <Dropdown.Trigger>{renderTriggerLabel()}</Dropdown.Trigger>
       <Dropdown.Menu>
-        {SCALE_FILTER_OPTIONS.map((option) => (
-          <Dropdown.Item key={option.id} onClick={() => onChange(option.code)}>
+        {FILTER_SCALE.map((option) => (
+          <Dropdown.CheckboxItem
+            key={option.id}
+            onClick={() => onChange(option.code)}
+          >
             {option.label}
-          </Dropdown.Item>
+          </Dropdown.CheckboxItem>
         ))}
-        <Dropdown.CheckboxItem
-          onClick={() => onChange(SCALE_FILTER_OPTIONS[0].code)}
-        >
-          체크박스
-        </Dropdown.CheckboxItem>
       </Dropdown.Menu>
     </Dropdown>
   );

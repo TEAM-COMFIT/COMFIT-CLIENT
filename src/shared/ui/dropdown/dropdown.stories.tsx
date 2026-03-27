@@ -10,7 +10,7 @@ const meta = {
     componentSubtitle: "Trigger / Menu / Item 합성 컴포넌트 기반 드롭다운",
   },
   argTypes: {
-    type: {
+    size: {
       control: "radio",
       options: ["medium", "large", "full"],
       description: "드롭다운 메뉴 크기 타입",
@@ -34,7 +34,7 @@ type Story = StoryObj<typeof Dropdown>;
 
 export const Medium: Story = {
   args: {
-    type: "medium",
+    size: "medium",
   },
   render: (args) => (
     <Dropdown {...args}>
@@ -50,7 +50,7 @@ export const Medium: Story = {
 
 export const Large: Story = {
   args: {
-    type: "large",
+    size: "large",
   },
   render: (args) => (
     <Dropdown {...args}>
@@ -66,7 +66,7 @@ export const Large: Story = {
 
 export const FullWidth: Story = {
   args: {
-    type: "full",
+    size: "full",
   },
   render: (args) => (
     <Dropdown {...args}>

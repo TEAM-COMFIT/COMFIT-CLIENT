@@ -116,6 +116,7 @@ export const avatar = style({
   textAlign: "center",
   width: "3.8rem",
   height: "3.8rem",
+  flexShrink: "0",
 });
 
 export const name = style([

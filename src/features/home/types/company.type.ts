@@ -16,8 +16,8 @@ export interface CompanyResponseType {
 
 export interface GetCompaniesParams {
   keyword?: string;
-  industry?: string;
-  scale?: string;
+  industry?: string[];
+  scale?: string[];
   sort?: string;
   page?: number;
   isRecruited?: boolean;

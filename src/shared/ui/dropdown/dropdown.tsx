@@ -14,13 +14,13 @@ import * as styles from "./dropdown.css";
 import type { ReactNode } from "react";
 
 type DropdownSize = "medium" | "large" | "full";
-
+type DropdownMode = "single" | "multiple";
 interface DropdownContextValue {
   isOpen: boolean;
   toggle: () => void;
   close: () => void;
   size: DropdownSize;
-  isMultiple?: boolean;
+  mode: DropdownMode;
 }
 
 const DropdownContext = createContext<DropdownContextValue | null>(null);
@@ -36,10 +36,12 @@ const useDropdown = () => {
 /* ---------- Root ---------- */
 const Dropdown = ({
   children,
-  type = "medium",
+  size = "medium",
+  mode = "single",
 }: {
   children: ReactNode;
-  type?: DropdownSize;
+  size?: DropdownSize;
+  mode?: DropdownMode;
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen((prev) => !prev);
@@ -66,7 +68,8 @@ const Dropdown = ({
         isOpen,
         toggle,
         close,
-        size: type,
+        size,
+        mode,
       }}
     >
       <div ref={wrapperRef} className={`${styles.dropdownWrapper}`}>
@@ -136,11 +139,8 @@ const CheckboxItem = ({
   children: ReactNode;
   onClick?: () => void;
 }) => {
-  const { close } = useDropdown();
-
   const handleClick = () => {
     onClick?.();
-    close();
   };
 
   return (
