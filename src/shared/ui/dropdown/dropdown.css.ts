@@ -88,32 +88,53 @@ export const item = style({
 export const checkboxItem = style({
   padding: "1rem 1.2rem",
   width: "100%",
-  borderRadius: "8px",
   textAlign: "left",
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
   flexDirection: "row-reverse",
 
+  backgroundColor: themeVars.color.gray200,
+
   color: themeVars.color.gray800,
-  backgroundColor: "gray",
   ...themeVars.fontStyles.body_r_16,
 });
 
+/* ---------- Checkbox Input(네모 박스) ---------- */
 export const checkboxInput = style({
   width: "1.8rem",
   height: "1.8rem",
   border: `1px solid ${themeVars.color.gray400}`,
   backgroundColor: themeVars.color.white,
   borderRadius: "2px",
-  marginRight: "0.8rem",
   padding: "0.3rem",
   cursor: "pointer",
+  display: "inline-flex",
+  alignItems: "center",
+  justifyContent: "center",
 
   selectors: {
     "&:checked": {
       backgroundColor: themeVars.color.blue500,
-      borderColor: themeVars.color.blue500,
+      border: `1.6px solid ${themeVars.color.blue400}`,
+    },
+
+    "&:after": {
+      content: '""',
+      width: "0.6rem",
+      height: "1.0rem",
+      border: `2px solid ${themeVars.color.white}`,
+      borderLeft: "none",
+      borderTop: "none",
+      transform: "rotate(45deg) scale(0)",
+      opacity: 0,
+      transition: "all 0.2s ease",
+      marginBottom: "0.2rem",
+    },
+
+    "&:checked:after": {
+      transform: "rotate(45deg) scale(1)",
+      opacity: 1,
     },
   },
 });
