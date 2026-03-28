@@ -225,12 +225,3 @@ export const useExperienceHeaderActions = () => {
     onToggleDefault,
   };
 };
-
-export const useDeleteExperience = () => {
-  const current = useExperienceCurrent();
-
-  return {
-    targetExperience: current,
-    canDelete: Boolean(current),
-  };
-};
