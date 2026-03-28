@@ -70,7 +70,7 @@ const BookmarkPage = () => {
     setCurrentPage(page);
   };
 
-  const toggleAll = (checked: boolean) => {
+  const handleToggleAll = (checked: boolean) => {
     if (checked) {
       setSelectedIds((prev) => Array.from(new Set([...prev, ...visibleIds])));
       return;
@@ -79,7 +79,7 @@ const BookmarkPage = () => {
     setSelectedIds((prev) => prev.filter((id) => !visibleIds.includes(id)));
   };
 
-  const toggleRow = (rowId: number, checked: boolean) => {
+  const handleToggleRow = (rowId: number, checked: boolean) => {
     setSelectedIds((prev) =>
       checked
         ? Array.from(new Set([...prev, rowId]))
@@ -87,12 +87,12 @@ const BookmarkPage = () => {
     );
   };
 
-  const openDeleteModal = () => {
+  const handleOpenDeleteModal = () => {
     if (isDeleteDisabled) return;
     setIsDeleteModalOpen(true);
   };
 
-  const closeDeleteModal = () => {
+  const handleCloseDeleteModal = () => {
     setIsDeleteModalOpen(false);
   };
 
@@ -136,7 +136,7 @@ const BookmarkPage = () => {
               variant="secondary"
               size="medium"
               disabled={isDeleteDisabled}
-              onClick={openDeleteModal}
+              onClick={handleOpenDeleteModal}
               aria-label="북마크 삭제"
             >
               <IconTrashOff className={styles.trashIcon} aria-hidden="true" />
@@ -156,8 +156,8 @@ const BookmarkPage = () => {
             pageSize={BOOKMARK_PAGE_SIZE}
             selectedIds={selectedIds}
             isAllSelected={isAllSelected}
-            onToggleAll={toggleAll}
-            onToggleRow={toggleRow}
+            onToggleAll={handleToggleAll}
+            onToggleRow={handleToggleRow}
             onClickCompany={handleClickCompany}
           />
         )}
@@ -171,7 +171,7 @@ const BookmarkPage = () => {
         />
       </section>
 
-      <Modal isOpen={isDeleteModalOpen} onClose={closeDeleteModal}>
+      <Modal isOpen={isDeleteModalOpen} onClose={handleCloseDeleteModal}>
         <Modal.XButton />
         <Modal.Content>
           <Modal.Title>선택한 북마크를 삭제할까요?</Modal.Title>
@@ -184,7 +184,11 @@ const BookmarkPage = () => {
           >
             삭제하기
           </Button>
-          <Button variant="primary" size="large" onClick={closeDeleteModal}>
+          <Button
+            variant="primary"
+            size="large"
+            onClick={handleCloseDeleteModal}
+          >
             취소하기
           </Button>
         </Modal.Buttons>
