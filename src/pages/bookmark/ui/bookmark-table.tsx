@@ -1,15 +1,10 @@
 import { BookmarkCheckbox } from "./bookmark-checkbox";
 import * as styles from "./bookmark-table.css";
 
-interface BookmarkTableRow {
-  id: number;
-  companyName: string;
-  scrapedAt: string;
-  isConnected: boolean;
-}
+import type { BookmarkRow } from "../config/bookmark-page.constant";
 
 interface BookmarkTableProps {
-  rows: BookmarkTableRow[];
+  rows: BookmarkRow[];
   pageSize: number;
   selectedIds: number[];
   isAllSelected: boolean;

@@ -71,7 +71,7 @@ globalStyle(`${deleteButtonWrap} > button`, {
   minWidth: "4.8rem",
   height: "4.8rem",
   padding: 0,
-  borderRadius: "1.2rem",
+  borderRadius: "12px",
   backgroundColor: themeVars.color.blue600,
   borderColor: themeVars.color.blue600,
   color: themeVars.color.white,
