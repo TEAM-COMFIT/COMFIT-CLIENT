@@ -25,15 +25,18 @@ const EMPTY_STATE_CONTENT = {
 
 const BookmarkEmptyState = ({ type }: BookmarkEmptyStateProps) => {
   const { image, alt, title, description } = EMPTY_STATE_CONTENT[type];
+  const titleId = `${type}-empty-state-title`;
 
   return (
-    <div className={styles.emptySection}>
+    <section className={styles.emptySection} aria-labelledby={titleId}>
       <div className={styles.emptyContent}>
         <img className={styles.emptyImage} src={image} alt={alt} />
-        <p className={styles.emptyTitle}>{title}</p>
+        <h2 id={titleId} className={styles.emptyTitle}>
+          {title}
+        </h2>
         <p className={styles.emptyDescription}>{description}</p>
       </div>
-    </div>
+    </section>
   );
 };
 
