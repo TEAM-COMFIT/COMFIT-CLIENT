@@ -63,16 +63,6 @@ export const showExperienceSuccess = (message: string, title = "완료") => {
   show("success", title, message);
 };
 
-export const showExperienceInfo = (message: string) => {
-  const { show } = useExperienceAlertStore.getState().actions;
-  show("info", "안내", message);
-};
-
-export const showExperienceWarning = (message: string) => {
-  const { show } = useExperienceAlertStore.getState().actions;
-  show("warning", "주의", message);
-};
-
 export const showValidationError = (title: string, description: string) => {
   const { show } = useExperienceAlertStore.getState().actions;
   show("error", title, description);
