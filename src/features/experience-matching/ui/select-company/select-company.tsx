@@ -49,7 +49,7 @@ export const SelectCompany = ({ onClick }: { onClick: () => void }) => {
           icon={<IconPen width={48} height={48} />}
           title="아직 등록된 경험이 없어요"
           subTitle="경험을 등록하고 AI매칭을 시작해보세요"
-          closeText="나중에할게요"
+          closeText="나중에 할게요"
           confirmText="경험 등록하기"
         />,
         undefined,
