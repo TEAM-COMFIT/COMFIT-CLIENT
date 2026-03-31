@@ -1,5 +1,4 @@
 import { IconTrash } from "@/shared/assets/icons";
-import { EXPERIENCE_TYPE } from "@/shared/config/experience";
 import {
   EXPERIENCE_TYPE,
   type ExperienceTypeCode,
