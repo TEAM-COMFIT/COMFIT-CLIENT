@@ -95,7 +95,7 @@ export const Confirm: Story = {
 export const WithImage: Story = {
   render: () => (
     <ModalTemplate storyButtonLabel="이미지 모달 열기">
-      <Modal.Content type="auto">
+      <Modal.Content>
         <Modal.Title>CJ ENM을 선택하셨습니다</Modal.Title>
         <Modal.SubTitle>
           기업 내용 분석 내용을 불러오는 중입니다.

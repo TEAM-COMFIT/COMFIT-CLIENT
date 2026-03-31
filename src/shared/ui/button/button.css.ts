@@ -77,7 +77,7 @@ export const buttonSizes = styleVariants({
   medium: {
     width: "12rem",
     height: "4.8rem",
-    ...themeVars.fontStyles.body_m_16,
+    ...themeVars.fontStyles.body_m_14,
   },
   small: {
     width: "8rem",

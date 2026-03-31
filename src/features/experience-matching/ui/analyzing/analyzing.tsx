@@ -10,38 +10,44 @@ import * as styles from "./analyzing.css";
 
 import type { CustomErrorResponse } from "@/shared/api/generate/http-client";
 
+let isRequesting = false;
+
 export const Analyzing = ({ nextStep }: { nextStep: () => void }) => {
   const { company, experience, jobDescription, setReportId } = useReportStore();
-  const { mutate } = useCreateReport();
+  const { mutateAsync } = useCreateReport();
 
   // 에러 핸들링 (임시)
   const [open, setOpen] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
 
   useEffect(() => {
-    mutate(
-      {
-        companyId: company?.id ?? 0,
-        experienceId: experience?.id ?? 0,
-        jobDescription: jobDescription,
-      },
-      {
-        onSuccess: (response) => {
-          setReportId(response?.id ?? 0);
-          nextStep();
-        },
-        onError: (error: CustomErrorResponse) => {
-          const serverMessage =
-            error.message || "리포트 생성 중 에러가 발생했습니다";
-          setErrorMsg(serverMessage);
-          setOpen(true);
+    if (isRequesting) return;
+    isRequesting = true;
 
-          setTimeout(() => setOpen(false), 3000);
-        },
+    const handleRequest = async () => {
+      try {
+        const response = await mutateAsync({
+          companyId: company?.id ?? 0,
+          experienceId: experience?.id ?? 0,
+          jobDescription: jobDescription,
+        });
+
+        setReportId(response?.id ?? 0);
+        nextStep();
+      } catch (err) {
+        const error = err as CustomErrorResponse;
+        const serverMessage =
+          error.message || "리포트 생성 중 에러가 발생했습니다";
+        setErrorMsg(serverMessage);
+        setOpen(true);
+        setTimeout(() => setOpen(false), 3000);
+      } finally {
+        isRequesting = false;
       }
-    );
-  }, [nextStep, setReportId, mutate]);
+    };
 
+    handleRequest();
+  }, []);
   return (
     <>
       <div className={styles.layout}>
