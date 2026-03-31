@@ -2,17 +2,17 @@
 import { useNavigate } from "react-router-dom";
 
 import { ROUTES } from "@/app/routes/paths";
+import {
+  BOOKMARK_MOCK_ROWS,
+  BOOKMARK_PAGE_SIZE,
+  BookmarkEmptyState,
+  BookmarkTable,
+} from "@/features/bookmark";
 import IconBookmarkBefore from "@/shared/assets/icons/icon_bookmark_before.svg?react";
 import IconTrashOff from "@/shared/assets/icons/icon_trash_off.svg?react";
 import { Button, Modal, Pagination, Search } from "@/shared/ui";
 
 import * as styles from "./bookmark-page.css";
-import {
-  BOOKMARK_MOCK_ROWS,
-  BOOKMARK_PAGE_SIZE,
-} from "./config/bookmark-page.constant";
-import { BookmarkEmptyState } from "./ui/bookmark-empty-state";
-import { BookmarkTable } from "./ui/bookmark-table";
 
 const BookmarkPage = () => {
   const navigate = useNavigate();

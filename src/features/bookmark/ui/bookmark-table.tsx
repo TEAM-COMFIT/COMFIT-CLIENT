@@ -1,7 +1,7 @@
 import { BookmarkCheckbox } from "./bookmark-checkbox";
 import * as styles from "./bookmark-table.css";
 
-import type { BookmarkRow } from "../config/bookmark-page.constant";
+import type { BookmarkRow } from "../config/bookmark-page.constants";
 
 interface BookmarkTableProps {
   rows: BookmarkRow[];
