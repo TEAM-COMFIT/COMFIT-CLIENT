@@ -1,16 +1,13 @@
 import { EXPERIENCE_TYPE } from "@/shared/config/experience";
 import { Dropdown } from "@/shared/ui";
 
-import {
-  EXPERIENCE_FILTER_OPTIONS,
-  type ExperienceFilterCode,
-} from "./filter-experience-constant";
+import { EXPERIENCE_FILTER_OPTIONS } from "./filter-experience-constant";
 
 import type { ExperienceTypeCode } from "@/shared/config/experience";
 
 interface ExperienceFilterProps {
-  value: ExperienceTypeCode | null;
-  onChange: (value: ExperienceTypeCode | null) => void;
+  value: string | null;
+  onChange: (value: string) => void;
   isTouched?: boolean;
   hasTotal?: boolean;
 }
@@ -22,7 +19,7 @@ const ExperienceFilter = ({
   hasTotal = true,
 }: ExperienceFilterProps) => {
   let triggerLabel = "경험 유형";
-  if (value) triggerLabel = EXPERIENCE_TYPE[value];
+  if (value) triggerLabel = EXPERIENCE_TYPE[value as ExperienceTypeCode];
   else if (isTouched && hasTotal) triggerLabel = "전체";
 
   const options = hasTotal
@@ -37,7 +34,7 @@ const ExperienceFilter = ({
         {options.map((option) => (
           <Dropdown.Item
             key={option.id}
-            onClick={() => onChange(option.code as ExperienceFilterCode | null)}
+            onClick={() => onChange(option.code ?? "")}
           >
             {option.label}
           </Dropdown.Item>

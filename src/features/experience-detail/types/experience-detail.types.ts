@@ -7,7 +7,7 @@ export type ExperienceType = ExperienceTypeCode;
 export interface ExperienceUpsertBody {
   title: string;
 
-  type: ExperienceType | null;
+  type: string | null;
 
   startAt: string | null;
 

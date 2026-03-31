@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 
 import { useGetCompanies } from "@/features/home";
 import { ScaleFilter, IndustryFilter } from "@/features/home/ui";
@@ -11,41 +12,124 @@ import * as styles from "./search-section.css";
 
 import type { IndustryCode, ScaleCode } from "@/shared/config";
 
-interface CompanySearchParamsType {
-  keyword?: string;
-  industry?: IndustryCode;
-  scale?: ScaleCode;
-  sort?: string;
-  page?: number;
-  isRecruited?: boolean;
-}
-
 const SearchSection = () => {
-  const [params, setParams] = useState<CompanySearchParamsType>({
-    page: 1,
-    isRecruited: true,
-  });
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  // URL 파라미터 추출
+  const keyword = searchParams.get("keyword") || "";
+  const pageParam = searchParams.get("page");
+  const industryParam = searchParams.get("industry");
+  const scaleParam = searchParams.get("scale");
+  const recruitedParam = searchParams.get("isRecruited");
+
+  // 유효성 검사(page, industry, scale, isRecruited)
+  const isInvalidPage =
+    pageParam !== null && (isNaN(Number(pageParam)) || Number(pageParam) < 1);
+  const currentPage = isInvalidPage ? 1 : Number(pageParam) || 1;
+
+  const isValidIndustry =
+    industryParam === null ||
+    ["IT_SERVICE", "COMMERCE", "FINANCE", "CONSUMER_GOODS"].includes(
+      industryParam
+    );
+  const industry = isValidIndustry
+    ? (industryParam as IndustryCode)
+    : undefined;
+
+  const isValidScale =
+    scaleParam === null ||
+    ["STARTUP", "SMALL", "MID_LARGE", "LARGE"].includes(scaleParam);
+  const scale = isValidScale ? (scaleParam as ScaleCode) : undefined;
+
+  const isRecruited = recruitedParam !== "false";
+
+  const params = {
+    keyword,
+    industry,
+    scale,
+    page: currentPage,
+    isRecruited,
+  };
 
   const { data, isLoading, isPlaceholderData } = useGetCompanies(params);
   const content = data?.content || [];
   const hasResult = content.length > 0;
-  const [searchValue, setSearchValue] = useState("");
-  const currentPage = params.page ?? 1;
+  const totalPage = data?.totalPage ?? 1;
 
+  const [searchValue, setSearchValue] = useState(keyword);
   const [isScaleTouched, setIsScaleTouched] = useState(false);
   const [isIndustryTouched, setIsIndustryTouched] = useState(false);
 
-  const updateParams = (patch: Partial<CompanySearchParamsType>) => {
-    setParams((prev) => ({
-      ...prev,
-      ...patch,
-    }));
+  // URL 강제 교정
+  useEffect(() => {
+    if (isLoading) return;
+
+    const isExceedingPage = currentPage > totalPage && totalPage > 0;
+    const isInvalidRecruited =
+      recruitedParam !== null &&
+      recruitedParam !== "true" &&
+      recruitedParam !== "false";
+
+    if (
+      isInvalidPage ||
+      isExceedingPage ||
+      !isValidIndustry ||
+      !isValidScale ||
+      isInvalidRecruited
+    ) {
+      const newParams = new URLSearchParams(searchParams);
+
+      if (isInvalidPage || isExceedingPage) newParams.set("page", "1");
+      if (!isValidIndustry) newParams.delete("industry");
+      if (!isValidScale) newParams.delete("scale");
+      if (isInvalidRecruited) newParams.set("isRecruited", "true");
+
+      setSearchParams(newParams, { replace: true });
+    }
+  }, [
+    currentPage,
+    totalPage,
+    isInvalidPage,
+    isValidIndustry,
+    isValidScale,
+    recruitedParam,
+    isLoading,
+    searchParams,
+    setSearchParams,
+  ]);
+
+  const updateSearchParams = (
+    patch: Record<string, string | number | boolean | undefined>
+  ) => {
+    const newParams = new URLSearchParams(searchParams);
+
+    Object.entries(patch).forEach(([key, value]) => {
+      if (value === undefined || value === "") {
+        newParams.delete(key);
+      } else {
+        newParams.set(key, String(value));
+      }
+    });
+
+    if (!("page" in patch)) {
+      newParams.set("page", "1");
+    }
+
+    setSearchParams(newParams);
   };
 
   const handlePageChange = (newPage: number) => {
     if (isPlaceholderData) return;
-    updateParams({ page: newPage });
+    updateSearchParams({ page: newPage });
   };
+
+  const handleSearch = (newKeyword: string) => {
+    updateSearchParams({ keyword: newKeyword });
+  };
+
+  useEffect(() => {
+    setSearchValue(keyword);
+  }, [keyword]);
 
   return (
     <>
@@ -68,7 +152,7 @@ const SearchSection = () => {
               placeholder="지원하고 싶은 기업을 검색해보세요"
               value={searchValue}
               onChange={setSearchValue}
-              onSearch={(keyword) => updateParams({ keyword, page: 1 })}
+              onSearch={handleSearch}
             />
           </div>
         </div>
@@ -78,20 +162,20 @@ const SearchSection = () => {
         <div className={styles.container}>
           <div className={styles.filterWrapper}>
             <IndustryFilter
-              value={params.industry ?? null}
+              value={industry ?? null}
               isTouched={isIndustryTouched}
-              onChange={(industry) => {
+              onChange={(newIndustry) => {
                 setIsIndustryTouched(true);
-                updateParams({ industry, page: 1 });
+                updateSearchParams({ industry: newIndustry });
               }}
             />
 
             <ScaleFilter
-              value={params.scale}
+              value={scale}
               isTouched={isScaleTouched}
-              onChange={(scale) => {
+              onChange={(newScale) => {
                 setIsScaleTouched(true);
-                updateParams({ scale, page: 1 });
+                updateSearchParams({ scale: newScale });
               }}
             />
 
@@ -100,9 +184,9 @@ const SearchSection = () => {
             </p>
 
             <Toggle
-              checked={params.isRecruited ?? true}
-              onCheckedChange={(isRecruited) =>
-                updateParams({ isRecruited, page: 1 })
+              checked={isRecruited}
+              onCheckedChange={(checked) =>
+                updateSearchParams({ isRecruited: checked })
               }
             />
           </div>
@@ -110,20 +194,28 @@ const SearchSection = () => {
           {isLoading || hasResult ? (
             <>
               <div className={styles.companyGridStyle}>
-                {content.map(({ id, name, industry, scale, logo }) => (
-                  <CompanyCard
-                    key={id}
-                    id={id}
-                    companyName={name}
-                    industry={industry as IndustryCode}
-                    scale={scale as ScaleCode}
-                    logoUrl={logo}
-                  />
-                ))}
+                {content.map(
+                  ({
+                    id,
+                    name,
+                    industry: itemIndustry,
+                    scale: itemScale,
+                    logo,
+                  }) => (
+                    <CompanyCard
+                      key={id}
+                      id={id}
+                      companyName={name}
+                      industry={itemIndustry as IndustryCode}
+                      scale={itemScale as ScaleCode}
+                      logoUrl={logo}
+                    />
+                  )
+                )}
               </div>
               <Pagination
                 currentPage={currentPage}
-                totalPage={data?.totalPage ?? 1}
+                totalPage={totalPage}
                 onPageChange={handlePageChange}
               />
             </>

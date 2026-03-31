@@ -9,6 +9,7 @@ import {
   useExperienceHeaderActions,
 } from "../../model/use-actions";
 import { useExperienceDateField } from "../../model/use-experience-date-field";
+import { useExperienceDetailStore } from "../../store/experience.store";
 import {
   useExperienceActions,
   useExperienceDraft,
@@ -22,6 +23,7 @@ import type { TextfieldType } from "@/shared/ui/textfield/textfield";
 const ExperienceForm = () => {
   const draft = useExperienceDraft();
   const isDraftDefault = useIsDraftDefault();
+  const isSubmitting = useExperienceDetailStore((s) => s.isSubmitting);
   const { setDraftField } = useExperienceActions();
 
   const { onToggleDefault } = useExperienceHeaderActions();
@@ -36,7 +38,7 @@ const ExperienceForm = () => {
         isDefault={isDraftDefault}
         onToggle={onToggleDefault}
         rightSlot={
-          <Button variant="primary" size="small" onClick={submit}>
+          <Button variant="primary" size="small" onClick={submit} disabled={isSubmitting}>
             작성완료
           </Button>
         }

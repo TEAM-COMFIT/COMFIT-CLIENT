@@ -1,5 +1,9 @@
 import { IconTrash } from "@/shared/assets/icons";
 import { EXPERIENCE_TYPE } from "@/shared/config/experience";
+import {
+  EXPERIENCE_TYPE,
+  type ExperienceTypeCode,
+} from "@/shared/config/experience";
 import { parseYMD } from "@/shared/lib/format-date";
 import { modalStore } from "@/shared/model/store";
 import { ModalBasic, Tooltip } from "@/shared/ui";
@@ -38,7 +42,10 @@ const ExperienceViewer = () => {
     );
   }
 
-  const typeLabel = current.type ? EXPERIENCE_TYPE[current.type] : "미지정";
+  const typeLabel =
+    current.type && current.type in EXPERIENCE_TYPE
+      ? EXPERIENCE_TYPE[current.type as ExperienceTypeCode]
+      : "미지정";
 
   const handleOpenDeleteModal = () => {
     modalStore.open(

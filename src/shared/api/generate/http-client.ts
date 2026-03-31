@@ -143,7 +143,7 @@ export interface ExperienceRequestDto {
    */
   title: string;
   /** @example "INTERNSHIP" */
-  type: "INTERNSHIP" | "PROJECT" | "EDUCATION" | "ETC";
+  type: string;
   /**
    * @format date
    * @example "2025-12-23"
@@ -812,7 +812,7 @@ export class Api<
      */
     getSummaryExperienceList: (
       query?: {
-        type?: "INTERNSHIP" | "PROJECT" | "EDUCATION" | "ETC";
+        type?: string;
         /**
          * @format int32
          * @default 1
