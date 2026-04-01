@@ -1,5 +1,5 @@
-﻿import { useMemo, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useMemo, useState } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 import { ROUTES } from "@/app/routes/paths";
 import {
@@ -14,15 +14,28 @@ import { Button, Modal, Pagination, Search } from "@/shared/ui";
 
 import * as styles from "./bookmark-page.css";
 
+const BOOKMARK_QUERY_KEY = "keyword";
+const BOOKMARK_PAGE_QUERY_KEY = "page";
+
 const BookmarkPage = () => {
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const [rows, setRows] = useState(BOOKMARK_MOCK_ROWS);
-  const [searchInput, setSearchInput] = useState("");
-  const [keyword, setKeyword] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
   const [selectedIds, setSelectedIds] = useState<number[]>([]);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+
+  const keyword = searchParams.get(BOOKMARK_QUERY_KEY)?.trim() ?? "";
+  const currentPageParam = Number(searchParams.get(BOOKMARK_PAGE_QUERY_KEY));
+  const currentPage =
+    Number.isInteger(currentPageParam) && currentPageParam > 0
+      ? currentPageParam
+      : 1;
+  const [searchInput, setSearchInput] = useState(keyword);
+
+  useEffect(() => {
+    setSearchInput(keyword);
+  }, [keyword]);
 
   const filteredRows = useMemo(() => {
     if (!keyword) return rows;
@@ -55,6 +68,24 @@ const BookmarkPage = () => {
   const isSearchResultEmpty = rows.length > 0 && filteredRows.length === 0;
   const showPagination = !isBookmarkEmpty && !isSearchResultEmpty;
 
+  const updateSearchParams = (nextKeyword: string, nextPage: number) => {
+    const nextSearchParams = new URLSearchParams(searchParams);
+
+    if (nextKeyword) {
+      nextSearchParams.set(BOOKMARK_QUERY_KEY, nextKeyword);
+    } else {
+      nextSearchParams.delete(BOOKMARK_QUERY_KEY);
+    }
+
+    if (nextPage > 1) {
+      nextSearchParams.set(BOOKMARK_PAGE_QUERY_KEY, String(nextPage));
+    } else {
+      nextSearchParams.delete(BOOKMARK_PAGE_QUERY_KEY);
+    }
+
+    setSearchParams(nextSearchParams);
+  };
+
   const handleSearch = (value: string) => {
     const trimmedValue = value.trim();
 
@@ -62,13 +93,12 @@ const BookmarkPage = () => {
       return;
     }
 
-    setKeyword(trimmedValue);
-    setCurrentPage(1);
+    updateSearchParams(trimmedValue, 1);
     setSelectedIds([]);
   };
 
   const handlePageChange = (page: number) => {
-    setCurrentPage(page);
+    updateSearchParams(keyword, page);
   };
 
   const handleToggleAll = (checked: boolean) => {
