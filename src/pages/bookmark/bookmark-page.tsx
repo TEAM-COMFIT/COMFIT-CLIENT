@@ -53,6 +53,7 @@ const BookmarkPage = () => {
   const isDeleteDisabled = selectedIds.length === 0;
   const isBookmarkEmpty = rows.length === 0;
   const isSearchResultEmpty = rows.length > 0 && filteredRows.length === 0;
+  const showPagination = !isBookmarkEmpty && !isSearchResultEmpty;
 
   const handleSearch = (value: string) => {
     const trimmedValue = value.trim();
@@ -162,13 +163,15 @@ const BookmarkPage = () => {
         )}
       </section>
 
-      <section className={styles.paginationSection}>
-        <Pagination
-          currentPage={resolvedCurrentPage}
-          totalPage={paginationTotalPage}
-          onPageChange={handlePageChange}
-        />
-      </section>
+      {showPagination && (
+        <section className={styles.paginationSection}>
+          <Pagination
+            currentPage={resolvedCurrentPage}
+            totalPage={paginationTotalPage}
+            onPageChange={handlePageChange}
+          />
+        </section>
+      )}
 
       <Modal isOpen={isDeleteModalOpen} onClose={handleCloseDeleteModal}>
         <Modal.XButton />
