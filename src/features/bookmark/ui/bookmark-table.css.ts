@@ -7,6 +7,7 @@ const tableTopBorder = `1px solid ${themeVars.color.gray400}`;
 const rowBorder = `1px solid ${themeVars.color.gray200}`;
 
 export const table = style({
+  alignSelf: "flex-start",
   width: "100%",
   borderCollapse: "collapse",
   borderTop: tableTopBorder,
@@ -91,10 +92,6 @@ export const connectionStatus = recipe({
   defaultVariants: {
     connected: false,
   },
-});
-
-export const placeholderCell = style({
-  color: "transparent",
 });
 
 export const srOnly = style({

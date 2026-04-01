@@ -5,7 +5,6 @@ import type { BookmarkRow } from "../config/bookmark-page.constants";
 
 interface BookmarkTableProps {
   rows: BookmarkRow[];
-  pageSize: number;
   selectedIds: number[];
   isAllSelected: boolean;
   onToggleAll: (checked: boolean) => void;
@@ -13,19 +12,14 @@ interface BookmarkTableProps {
   onClickCompany: (companyId: number) => void;
 }
 
-const TABLE_COLUMN_COUNT = 4;
-
 const BookmarkTable = ({
   rows,
-  pageSize,
   selectedIds,
   isAllSelected,
   onToggleAll,
   onToggleRow,
   onClickCompany,
 }: BookmarkTableProps) => {
-  const placeholderRowCount = rows.length > 0 ? pageSize - rows.length : 0;
-
   return (
     <table className={styles.table}>
       <caption className={styles.srOnly}>기업 북마크 목록</caption>
@@ -84,25 +78,6 @@ const BookmarkTable = ({
                 연결
               </span>
             </td>
-          </tr>
-        ))}
-
-        {Array.from({ length: placeholderRowCount }).map((_, idx) => (
-          <tr key={`placeholder-${idx}`} aria-hidden="true">
-            {Array.from({ length: TABLE_COLUMN_COUNT }).map((__, colIdx) => {
-              let alignClass = styles.centerCell;
-              if (colIdx === 0) alignClass = styles.checkboxCell;
-              if (colIdx === 1) alignClass = styles.leftCell;
-
-              return (
-                <td
-                  key={`placeholder-cell-${idx}-${colIdx}`}
-                  className={`${styles.bodyCell} ${alignClass} ${styles.placeholderCell}`}
-                >
-                  &nbsp;
-                </td>
-              );
-            })}
           </tr>
         ))}
       </tbody>

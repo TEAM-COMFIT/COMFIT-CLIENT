@@ -153,7 +153,6 @@ const BookmarkPage = () => {
         ) : (
           <BookmarkTable
             rows={currentPageRows}
-            pageSize={BOOKMARK_PAGE_SIZE}
             selectedIds={selectedIds}
             isAllSelected={isAllSelected}
             onToggleAll={handleToggleAll}
