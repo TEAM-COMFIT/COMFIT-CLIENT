@@ -5,7 +5,7 @@ import type { BookmarkRow } from "../config/bookmark-page.constants";
 
 interface BookmarkTableProps {
   rows: BookmarkRow[];
-  selectedIds: number[];
+  selectedIds: Set<number>;
   isAllSelected: boolean;
   onToggleAll: (checked: boolean) => void;
   onToggleRow: (rowId: number, checked: boolean) => void;
@@ -52,7 +52,7 @@ const BookmarkTable = ({
           <tr key={row.id}>
             <td className={`${styles.bodyCell} ${styles.checkboxCell}`}>
               <BookmarkCheckbox
-                checked={selectedIds.includes(row.id)}
+                checked={selectedIds.has(row.id)}
                 onCheckedChange={(checked) => onToggleRow(row.id, checked)}
                 ariaLabel={`${row.companyName} 선택`}
               />

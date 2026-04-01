@@ -22,7 +22,7 @@ const BookmarkPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const [rows, setRows] = useState(BOOKMARK_MOCK_ROWS);
-  const [selectedIds, setSelectedIds] = useState<number[]>([]);
+  const [selectedIds, setSelectedIds] = useState<Set<number>>(new Set());
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
   const keyword = searchParams.get(BOOKMARK_QUERY_KEY)?.trim() ?? "";
@@ -61,9 +61,9 @@ const BookmarkPage = () => {
   );
 
   const isAllSelected =
-    visibleIds.length > 0 && visibleIds.every((id) => selectedIds.includes(id));
+    visibleIds.length > 0 && visibleIds.every((id) => selectedIds.has(id));
 
-  const isDeleteDisabled = selectedIds.length === 0;
+  const isDeleteDisabled = selectedIds.size === 0;
   const isBookmarkEmpty = rows.length === 0;
   const isSearchResultEmpty = rows.length > 0 && filteredRows.length === 0;
   const showPagination = !isBookmarkEmpty && !isSearchResultEmpty;
@@ -94,7 +94,7 @@ const BookmarkPage = () => {
     }
 
     updateSearchParams(trimmedValue, 1);
-    setSelectedIds([]);
+    setSelectedIds(new Set());
   };
 
   const handlePageChange = (page: number) => {
@@ -103,19 +103,33 @@ const BookmarkPage = () => {
 
   const handleToggleAll = (checked: boolean) => {
     if (checked) {
-      setSelectedIds((prev) => Array.from(new Set([...prev, ...visibleIds])));
+      setSelectedIds((prev) => {
+        const next = new Set(prev);
+        visibleIds.forEach((id) => next.add(id));
+        return next;
+      });
       return;
     }
 
-    setSelectedIds((prev) => prev.filter((id) => !visibleIds.includes(id)));
+    setSelectedIds((prev) => {
+      const next = new Set(prev);
+      visibleIds.forEach((id) => next.delete(id));
+      return next;
+    });
   };
 
   const handleToggleRow = (rowId: number, checked: boolean) => {
-    setSelectedIds((prev) =>
-      checked
-        ? Array.from(new Set([...prev, rowId]))
-        : prev.filter((id) => id !== rowId)
-    );
+    setSelectedIds((prev) => {
+      const next = new Set(prev);
+
+      if (checked) {
+        next.add(rowId);
+      } else {
+        next.delete(rowId);
+      }
+
+      return next;
+    });
   };
 
   const handleOpenDeleteModal = () => {
@@ -128,8 +142,8 @@ const BookmarkPage = () => {
   };
 
   const handleDeleteConfirm = () => {
-    setRows((prev) => prev.filter((row) => !selectedIds.includes(row.id)));
-    setSelectedIds([]);
+    setRows((prev) => prev.filter((row) => !selectedIds.has(row.id)));
+    setSelectedIds(new Set());
     setIsDeleteModalOpen(false);
   };
 
