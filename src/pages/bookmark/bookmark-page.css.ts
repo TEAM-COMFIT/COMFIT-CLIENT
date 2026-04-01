@@ -95,6 +95,10 @@ globalStyle(`${deleteButtonWrap} > button:disabled`, {
 
 export const tableSection = style({
   marginTop: "5rem",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  height: "48.5rem",
 });
 
 export const paginationSection = style({

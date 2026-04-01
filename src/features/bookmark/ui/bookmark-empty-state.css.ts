@@ -2,14 +2,6 @@ import { style } from "@vanilla-extract/css";
 
 import { themeVars } from "@/app/styles";
 
-export const emptySection = style({
-  width: "100%",
-  height: "48rem",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-});
-
 export const emptyContent = style({
   display: "flex",
   flexDirection: "column",

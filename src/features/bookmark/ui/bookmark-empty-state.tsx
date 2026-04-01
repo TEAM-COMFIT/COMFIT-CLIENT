@@ -28,14 +28,12 @@ const BookmarkEmptyState = ({ type }: BookmarkEmptyStateProps) => {
   const titleId = `${type}-empty-state-title`;
 
   return (
-    <section className={styles.emptySection} aria-labelledby={titleId}>
-      <div className={styles.emptyContent}>
-        <img className={styles.emptyImage} src={image} alt={alt} />
-        <h2 id={titleId} className={styles.emptyTitle}>
-          {title}
-        </h2>
-        <p className={styles.emptyDescription}>{description}</p>
-      </div>
+    <section className={styles.emptyContent} aria-labelledby={titleId}>
+      <img className={styles.emptyImage} src={image} alt={alt} />
+      <h2 id={titleId} className={styles.emptyTitle}>
+        {title}
+      </h2>
+      <p className={styles.emptyDescription}>{description}</p>
     </section>
   );
 };
