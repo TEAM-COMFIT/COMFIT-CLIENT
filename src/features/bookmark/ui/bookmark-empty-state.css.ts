@@ -10,9 +10,13 @@ export const emptyContent = style({
   textAlign: "center",
 });
 
+export const emptyImageWrap = style({
+  width: "36rem",
+});
+
 export const emptyImage = style({
-  width: "34.3rem",
-  height: "25.2rem",
+  width: "100%",
+  height: "auto",
   display: "block",
 });
 

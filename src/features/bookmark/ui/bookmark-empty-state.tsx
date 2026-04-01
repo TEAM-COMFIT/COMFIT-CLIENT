@@ -29,7 +29,9 @@ const BookmarkEmptyState = ({ type }: BookmarkEmptyStateProps) => {
 
   return (
     <section className={styles.emptyContent} aria-labelledby={titleId}>
-      <img className={styles.emptyImage} src={image} alt={alt} />
+      <div className={styles.emptyImageWrap}>
+        <img className={styles.emptyImage} src={image} alt={alt} />
+      </div>
       <h2 id={titleId} className={styles.emptyTitle}>
         {title}
       </h2>
