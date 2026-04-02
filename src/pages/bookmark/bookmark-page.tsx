@@ -8,14 +8,17 @@ import {
   BookmarkEmptyState,
   BookmarkTable,
 } from "@/features/bookmark";
+import { IconTrash } from "@/shared/assets/icons";
 import IconBookmarkBefore from "@/shared/assets/icons/icon_bookmark_before.svg?react";
 import IconTrashOff from "@/shared/assets/icons/icon_trash_off.svg?react";
-import { Button, Modal, Pagination, Search } from "@/shared/ui";
+import { modalStore } from "@/shared/model/store";
+import { Button, ModalBasic, Pagination, Search } from "@/shared/ui";
 
 import * as styles from "./bookmark-page.css";
 
 const BOOKMARK_QUERY_KEY = "keyword";
 const BOOKMARK_PAGE_QUERY_KEY = "page";
+const BOOKMARK_DELETE_MODAL_ID = "bookmark-delete-modal";
 
 const BookmarkPage = () => {
   const navigate = useNavigate();
@@ -23,7 +26,6 @@ const BookmarkPage = () => {
 
   const [rows, setRows] = useState(BOOKMARK_MOCK_ROWS);
   const [selectedIds, setSelectedIds] = useState<Set<number>>(new Set());
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
   const keyword = searchParams.get(BOOKMARK_QUERY_KEY)?.trim() ?? "";
   const currentPageParam = Number(searchParams.get(BOOKMARK_PAGE_QUERY_KEY));
@@ -132,19 +134,29 @@ const BookmarkPage = () => {
     });
   };
 
-  const handleOpenDeleteModal = () => {
-    if (isDeleteDisabled) return;
-    setIsDeleteModalOpen(true);
-  };
-
-  const handleCloseDeleteModal = () => {
-    setIsDeleteModalOpen(false);
-  };
-
-  const handleDeleteConfirm = () => {
+  const handleDeleteSelected = () => {
     setRows((prev) => prev.filter((row) => !selectedIds.has(row.id)));
     setSelectedIds(new Set());
-    setIsDeleteModalOpen(false);
+    modalStore.close(BOOKMARK_DELETE_MODAL_ID);
+  };
+
+  const handleOpenDeleteModal = () => {
+    if (isDeleteDisabled) return;
+
+    modalStore.open(
+      <ModalBasic
+        icon={<IconTrash width={48} height={48} />}
+        title="선택한 북마크를 삭제할까요?"
+        subTitle="삭제하면 다시 복구할 수 없어요"
+        closeText="취소하기"
+        confirmText="삭제하기"
+        onClose={() => modalStore.close(BOOKMARK_DELETE_MODAL_ID)}
+        onConfirm={handleDeleteSelected}
+      />,
+      undefined,
+      undefined,
+      BOOKMARK_DELETE_MODAL_ID
+    );
   };
 
   const handleClickCompany = (companyId: number) => {
@@ -216,29 +228,6 @@ const BookmarkPage = () => {
           />
         </section>
       )}
-
-      <Modal isOpen={isDeleteModalOpen} onClose={handleCloseDeleteModal}>
-        <Modal.XButton />
-        <Modal.Content>
-          <Modal.Title>선택한 북마크를 삭제할까요?</Modal.Title>
-        </Modal.Content>
-        <Modal.Buttons>
-          <Button
-            variant="secondary"
-            size="large"
-            onClick={handleDeleteConfirm}
-          >
-            삭제하기
-          </Button>
-          <Button
-            variant="primary"
-            size="large"
-            onClick={handleCloseDeleteModal}
-          >
-            취소하기
-          </Button>
-        </Modal.Buttons>
-      </Modal>
     </main>
   );
 };
