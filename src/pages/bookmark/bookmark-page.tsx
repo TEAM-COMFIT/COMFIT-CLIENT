@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+﻿import { useEffect, useMemo, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 import { ROUTES } from "@/app/routes/paths";
@@ -100,6 +100,7 @@ const BookmarkPage = () => {
   };
 
   const handlePageChange = (page: number) => {
+    setSelectedIds(new Set());
     updateSearchParams(keyword, page);
   };
 
