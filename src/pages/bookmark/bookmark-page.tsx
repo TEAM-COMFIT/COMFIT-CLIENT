@@ -92,6 +92,7 @@ const BookmarkPage = () => {
     const trimmedValue = value.trim();
 
     if (value.length > 0 && trimmedValue.length === 0) {
+      setSearchInput(keyword);
       return;
     }
 
