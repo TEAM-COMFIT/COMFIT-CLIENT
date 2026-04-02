@@ -1,4 +1,4 @@
-﻿import { globalStyle, style } from "@vanilla-extract/css";
+import { globalStyle, style } from "@vanilla-extract/css";
 
 import { themeVars } from "@/app/styles";
 
@@ -60,10 +60,17 @@ export const deleteButtonWrap = style({
   display: "inline-flex",
 });
 
+export const deleteButtonWrapActive = style({});
+
 export const trashIcon = style({
   width: "2.4rem",
   height: "2.4rem",
   flexShrink: 0,
+  color: "currentColor",
+});
+
+export const modalTrashIcon = style({
+  color: themeVars.color.blue500,
 });
 
 globalStyle(`${deleteButtonWrap} > button`, {
@@ -72,24 +79,32 @@ globalStyle(`${deleteButtonWrap} > button`, {
   height: "4.8rem",
   padding: 0,
   borderRadius: "12px",
+  border: `1.5px solid ${themeVars.color.blue600}`,
   backgroundColor: themeVars.color.blue600,
-  borderColor: themeVars.color.blue600,
   color: themeVars.color.white,
 });
 
 globalStyle(`${deleteButtonWrap} > button:hover:not(:disabled)`, {
-  backgroundColor: themeVars.color.blue600,
   borderColor: themeVars.color.blue600,
+  backgroundColor: themeVars.color.blue600,
+  color: themeVars.color.white,
 });
 
 globalStyle(`${deleteButtonWrap} > button:active:not(:disabled)`, {
-  backgroundColor: themeVars.color.blue600,
-  borderColor: themeVars.color.blue600,
+  borderColor: themeVars.color.gray300,
+  backgroundColor: themeVars.color.white,
+  color: themeVars.color.gray300,
+});
+
+globalStyle(`${deleteButtonWrapActive} > button:not(:disabled)`, {
+  borderColor: themeVars.color.gray300,
+  backgroundColor: themeVars.color.white,
+  color: themeVars.color.gray300,
 });
 
 globalStyle(`${deleteButtonWrap} > button:disabled`, {
-  backgroundColor: themeVars.color.blue600,
   borderColor: themeVars.color.blue600,
+  backgroundColor: themeVars.color.blue600,
   color: themeVars.color.white,
 });
 

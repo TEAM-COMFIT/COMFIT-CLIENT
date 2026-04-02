@@ -1,4 +1,4 @@
-﻿import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 import { ROUTES } from "@/app/routes/paths";
@@ -8,9 +8,7 @@ import {
   BookmarkEmptyState,
   BookmarkTable,
 } from "@/features/bookmark";
-import { IconTrash } from "@/shared/assets/icons";
-import IconBookmarkBefore from "@/shared/assets/icons/icon_bookmark_before.svg?react";
-import IconTrashOff from "@/shared/assets/icons/icon_trash_off.svg?react";
+import { IconBookmarkBefore, IconTrash } from "@/shared/assets/icons";
 import { modalStore } from "@/shared/model/store";
 import { Button, ModalBasic, Pagination, Search } from "@/shared/ui";
 
@@ -26,6 +24,7 @@ const BookmarkPage = () => {
 
   const [rows, setRows] = useState(BOOKMARK_MOCK_ROWS);
   const [selectedIds, setSelectedIds] = useState<Set<number>>(new Set());
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
   const keyword = searchParams.get(BOOKMARK_QUERY_KEY)?.trim() ?? "";
   const currentPageParam = Number(searchParams.get(BOOKMARK_PAGE_QUERY_KEY));
@@ -38,6 +37,16 @@ const BookmarkPage = () => {
   useEffect(() => {
     setSearchInput(keyword);
   }, [keyword]);
+
+  useEffect(() => {
+    const unsubscribe = modalStore.subscribe((modals) => {
+      setIsDeleteModalOpen(
+        modals.some((modal) => modal.id === BOOKMARK_DELETE_MODAL_ID)
+      );
+    });
+
+    return unsubscribe;
+  }, []);
 
   const filteredRows = useMemo(() => {
     if (!keyword) return rows;
@@ -147,7 +156,9 @@ const BookmarkPage = () => {
 
     modalStore.open(
       <ModalBasic
-        icon={<IconTrash width={48} height={48} />}
+        icon={
+          <IconTrash className={styles.modalTrashIcon} width={48} height={48} />
+        }
         title="선택한 북마크를 삭제할까요?"
         subTitle="삭제하면 다시 복구할 수 없어요"
         closeText="취소하기"
@@ -190,7 +201,11 @@ const BookmarkPage = () => {
             />
           </div>
 
-          <div className={styles.deleteButtonWrap}>
+          <div
+            className={`${styles.deleteButtonWrap} ${
+              isDeleteModalOpen ? styles.deleteButtonWrapActive : ""
+            }`}
+          >
             <Button
               variant="secondary"
               size="medium"
@@ -198,7 +213,7 @@ const BookmarkPage = () => {
               onClick={handleOpenDeleteModal}
               aria-label="북마크 삭제"
             >
-              <IconTrashOff className={styles.trashIcon} aria-hidden="true" />
+              <IconTrash className={styles.trashIcon} aria-hidden="true" />
             </Button>
           </div>
         </div>

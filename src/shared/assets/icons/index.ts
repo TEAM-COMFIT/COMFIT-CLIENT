@@ -24,6 +24,7 @@ export { default as IconLinkDefault } from "./icon_link_default.svg?react";
 export { default as IconInformation } from "./icon_information.svg?react";
 export { default as IconQuestion } from "./icon_question.svg?react";
 export { default as IconCalendar } from "./icon_date.svg?react";
+export { default as IconBookmarkBefore } from "./icon_bookmark_before.svg?react";
 
 export { default as DateLeftArrow } from "./date_arrow_left.svg?react";
 export { default as DateRightArrow } from "./date_arrow_right.svg?react";
@@ -56,4 +57,4 @@ export { default as IconCheckOn } from "./icon_check_on.svg?react";
 
 export { default as IconPen } from "./icon_pen.svg?react";
 export { default as IconWarn } from "./icon_warning.svg?react";
-export { default as IconTrash } from "./icon_trash_on.svg?react";
+export { default as IconTrash } from "./icon_trash.svg?react";
