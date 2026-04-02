@@ -1,31 +1,43 @@
 import { style } from "@vanilla-extract/css";
 
 import { themeVars } from "@/app/styles";
-import checkboxDisabled from "@/shared/assets/icons/checkbox_small_disabled.svg";
-import checkboxPressed from "@/shared/assets/icons/checkbox_small_pressed.svg";
 
 export const checkbox = style({
-  appearance: "none",
-  boxSizing: "border-box",
+  position: "relative",
+  display: "inline-flex",
+  alignItems: "center",
+  justifyContent: "center",
   width: "2.4rem",
   height: "2.4rem",
-
-  borderRadius: 0,
-  backgroundColor: "transparent",
-  backgroundPosition: "center",
-  backgroundSize: "2.4rem 2.4rem",
-  backgroundImage: `url("${checkboxDisabled}")`,
   cursor: "pointer",
-  display: "inline-block",
   verticalAlign: "middle",
-  outline: "none",
+});
+
+export const input = style({
+  position: "absolute",
+  inset: 0,
+  margin: 0,
+  opacity: 0,
+  cursor: "pointer",
   selectors: {
-    "&:focus-visible": {
+    "&:focus-visible + span": {
       outline: `0.2rem solid ${themeVars.color.blue400}`,
       outlineOffset: "0.2rem",
     },
-    "&:checked": {
-      backgroundImage: `url("${checkboxPressed}")`,
-    },
   },
+});
+
+export const icon = style({
+  width: "2.4rem",
+  height: "2.4rem",
+  display: "inline-flex",
+  alignItems: "center",
+  justifyContent: "center",
+  pointerEvents: "none",
+});
+
+export const iconSvg = style({
+  width: "2.4rem",
+  height: "2.4rem",
+  flexShrink: 0,
 });

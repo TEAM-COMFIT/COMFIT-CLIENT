@@ -25,6 +25,8 @@ export { default as IconInformation } from "./icon_information.svg?react";
 export { default as IconQuestion } from "./icon_question.svg?react";
 export { default as IconCalendar } from "./icon_date.svg?react";
 export { default as IconBookmarkBefore } from "./icon_bookmark_before.svg?react";
+export { default as CheckboxSmallDisabled } from "./checkbox_small_disabled.svg?react";
+export { default as CheckboxSmallPressed } from "./checkbox_small_pressed.svg?react";
 
 export { default as DateLeftArrow } from "./date_arrow_left.svg?react";
 export { default as DateRightArrow } from "./date_arrow_right.svg?react";
