@@ -1,4 +1,4 @@
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import { ROUTES } from "@/app/routes/paths";
 import { useAuthStore } from "@/app/store";
@@ -17,11 +17,7 @@ const NAV_ITEMS = [
 
 export const Header = () => {
   const { isLoggedIn } = useAuthStore();
-  const location = useLocation();
-  const isBookmarkRoute = location.pathname === ROUTES.BOOKMARK;
-  const { data } = useGetProfile({
-    enabled: isLoggedIn && !isBookmarkRoute,
-  });
+  const { data } = useGetProfile({ enabled: isLoggedIn });
 
   return (
     <header className={styles.headerLayout}>
