@@ -19,12 +19,6 @@ export const input = style({
   margin: 0,
   opacity: 0,
   cursor: "pointer",
-  selectors: {
-    "&:focus-visible + span": {
-      outline: `0.2rem solid ${themeVars.color.blue400}`,
-      outlineOffset: "0.2rem",
-    },
-  },
 });
 
 export const icon = style({
@@ -34,6 +28,12 @@ export const icon = style({
   alignItems: "center",
   justifyContent: "center",
   pointerEvents: "none",
+  selectors: {
+    [`${input}:focus-visible + &`]: {
+      outline: `0.2rem solid ${themeVars.color.blue400}`,
+      outlineOffset: "0.2rem",
+    },
+  },
 });
 
 export const iconSvg = style({
