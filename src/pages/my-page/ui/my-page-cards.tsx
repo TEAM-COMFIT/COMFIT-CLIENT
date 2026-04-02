@@ -17,6 +17,10 @@ type CardProps = HTMLAttributes<HTMLElement> & {
   as?: "section" | "div";
 };
 
+type MyPageCardsProps = GetMeResponseDto & {
+  onBookmarkClick: () => void;
+};
+
 const Card = ({
   type,
   as: Component = "div",
@@ -45,7 +49,8 @@ const MyPageCards = ({
   educationLevel,
   firstIndustry,
   fistJob,
-}: GetMeResponseDto) => {
+  onBookmarkClick,
+}: MyPageCardsProps) => {
   return (
     <div className={styles.wrapper}>
       <Card type="large" as="section" aria-label="유저 기본 정보">
@@ -80,7 +85,16 @@ const MyPageCards = ({
 
         <Card
           type="medium"
-          className={styles.mediumIconPadding}
+          className={`${styles.mediumIconPadding} ${styles.clickableCard}`}
+          onClick={onBookmarkClick}
+          onKeyDown={(event) => {
+            if (event.key === "Enter" || event.key === " ") {
+              event.preventDefault();
+              onBookmarkClick();
+            }
+          }}
+          role="button"
+          tabIndex={0}
           aria-label="기업 북마크"
         >
           <div className={styles.titleWithIcon}>
