@@ -10,8 +10,8 @@ import {
   useLeaveConfirm,
   useGetExperienceDetail,
   hydrateExperienceFromApi,
+  EXPERIENCE_MESSAGES,
 } from "@/features/experience-detail";
-import { ModalBasic } from "@/shared/ui/modal/modal-basic";
 
 import type { ExperienceMode } from "@/features/experience-detail";
 
@@ -22,7 +22,7 @@ interface ExperiencePageProps {
 const ExperienceDetailPage = ({ mode }: ExperiencePageProps) => {
   const { id: experienceId } = useParams<{ id: string }>();
   const currentMode = useExperienceMode();
-  const { isOpen, confirmLeave, cancelLeave } = useLeaveConfirm();
+  useLeaveConfirm();
   const initializedExperienceIdRef = useRef<string | null>(null);
 
   const parsedExperienceId = experienceId ? Number(experienceId) : NaN;
@@ -51,7 +51,7 @@ const ExperienceDetailPage = ({ mode }: ExperiencePageProps) => {
   }
 
   if (shouldFetch && isError) {
-    return <div>경험 데이터를 불러오는데 실패했습니다.</div>;
+    return <div>{EXPERIENCE_MESSAGES.API.FETCH_FAILED}</div>;
   }
 
   const content = (() => {
@@ -69,15 +69,6 @@ const ExperienceDetailPage = ({ mode }: ExperiencePageProps) => {
     <>
       {content}
       <ExperienceAlertRenderer />
-      <ModalBasic
-        isOpen={isOpen}
-        onClose={cancelLeave}
-        onConfirm={confirmLeave}
-        title={`작성중인 내용이 있습니다.\n정말 나가시겠습니까?`}
-        subTitle="저장하지 않으면 내용이 사라져요."
-        closeText="이어서 작성"
-        confirmText="나가기"
-      />
     </>
   );
 };

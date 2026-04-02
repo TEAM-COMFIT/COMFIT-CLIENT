@@ -15,6 +15,9 @@ export const ROUTES = {
   EXPERIENCE_DETAIL: (id = ":id") => `/experience/${id}`, // 경험 상세
   EXPERIENCE_EDIT: (id = ":id") => `/experience/${id}/edit`, // 경험 수정
 
+  POLICY_USE: "/policy/terms", // 이용약관
+  POLICY_PRIVACY: "/policy/privacy", // 개인정보처리방침
+
   MYPAGE: "/mypage",
   BOOKMARK: "/bookmark",
 };

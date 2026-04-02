@@ -97,6 +97,9 @@ export const useExperienceSubmit = () => {
   });
 
   const submit = useCallback(async () => {
+    const { isSubmitting } = useExperienceDetailStore.getState();
+    if (isSubmitting) return;
+
     const result = validateExperienceDraft(draft);
 
     if (!result.ok) {

@@ -1,4 +1,5 @@
 import { style } from "@vanilla-extract/css";
+import { recipe } from "@vanilla-extract/recipes";
 
 import { themeVars } from "@/app/styles";
 
@@ -104,6 +105,59 @@ export const sectionGroup = style({
   display: "flex",
   flexDirection: "column",
   gap: "4rem",
+});
+
+export const agreeGroup = style({
+  display: "flex",
+  alignItems: "center",
+  gap: "1.6rem",
+});
+
+export const agreeContent = style({
+  display: "flex",
+  alignItems: "center",
+  color: themeVars.color.gray800,
+  ...themeVars.fontStyles.body_m_16,
+  fontWeight: 500,
+});
+
+export const checkbox = recipe({
+  base: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    width: "1.8rem",
+    height: "1.8rem",
+    aspectRatio: 1 / 1,
+    borderRadius: "2px",
+    cursor: "pointer",
+  },
+  variants: {
+    isAgreed: {
+      true: {
+        border: `1.6px solid ${themeVars.color.blue400}`,
+        background: themeVars.color.blue500,
+      },
+      false: {
+        border: `1px solid ${themeVars.color.gray400}`,
+        background: themeVars.color.white,
+      },
+    },
+  },
+  defaultVariants: {
+    isAgreed: false,
+  },
+});
+
+export const underlineText = style({
+  textDecoration: "underline",
+  textUnderlinePosition: "under",
+  color: themeVars.color.blue600,
+  selectors: {
+    "&:hover": {
+      cursor: "pointer",
+    },
+  },
 });
 
 export const buttonWrap = style({

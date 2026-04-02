@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 
 import { useGetAiReportList } from "@/features/matching-list/api/use-get-matching-list";
 import { ICON_MATCH, ERROR } from "@/shared/assets/images";
@@ -7,42 +8,75 @@ import { Search } from "@/shared/ui";
 import { ListSection } from "./list-section/list-section";
 import * as styles from "./matching-list-page.css";
 
-interface MatchingListParams {
-  keyword?: string;
-  page: number;
-}
 const MatchingListPage = () => {
-  const [params, setParams] = useState<MatchingListParams>({
-    keyword: "",
-    page: 1,
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  // 1URL 파라미터 추출
+  const pageParam = searchParams.get("page");
+  const keyword = searchParams.get("keyword") || "";
+
+  // 유효성 검사
+  const isInvalidPage =
+    pageParam !== null && (isNaN(Number(pageParam)) || Number(pageParam) < 1);
+  const currentPage = isInvalidPage ? 1 : Number(pageParam) || 1;
+
+  const { data, isLoading } = useGetAiReportList({
+    page: currentPage,
+    keyword,
   });
 
-  const { data, isLoading } = useGetAiReportList(params);
-  const { content = [], currentPage = 1, totalPage = 1 } = data ?? {};
+  const { content = [], totalPage = 1 } = data ?? {};
 
   const showEmptyState = !isLoading && content.length === 0;
   const showList = content.length > 0;
 
-  const [searchValue, setSearchValue] = useState("");
+  const [searchValue, setSearchValue] = useState(keyword);
 
-  const handleSearch = (keyword: string) => {
-    setParams({ keyword, page: 1 });
+  // URL 강제 교정
+  useEffect(() => {
+    if (isLoading) return;
+
+    const isExceedingPage = currentPage > totalPage && totalPage > 0;
+
+    if (isInvalidPage || isExceedingPage) {
+      const newParams = new URLSearchParams(searchParams);
+      newParams.set("page", "1");
+
+      setSearchParams(newParams, { replace: true });
+    }
+  }, [
+    currentPage,
+    totalPage,
+    isInvalidPage,
+    isLoading,
+    searchParams,
+    setSearchParams,
+  ]);
+
+  const handleSearch = (newKeyword: string) => {
+    setSearchParams({
+      keyword: newKeyword,
+      page: "1",
+    });
   };
 
   const handlePageChange = (page: number) => {
-    setParams((prev) => ({
-      ...prev,
-      page,
-    }));
+    setSearchParams({
+      keyword,
+      page: String(page),
+    });
   };
 
   const handleSearchChange = (keyword: string) => {
     setSearchValue(keyword);
   };
 
+  useEffect(() => {
+    setSearchValue(keyword);
+  }, [keyword]);
+
   return (
     <main className={styles.container}>
-      {/* header 섹션 */}
       <div className={styles.headerWrapper}>
         <div className={styles.headerLeft}>
           <img
@@ -67,7 +101,7 @@ const MatchingListPage = () => {
           onSearch={handleSearch}
         />
       </div>
-      {/* 매칭 아이템 리스트 섹션 */}
+
       {showList ? (
         <ListSection
           matchingList={content}
@@ -84,7 +118,7 @@ const MatchingListPage = () => {
           />
           <p className={styles.emptyTitle}>"검색 결과가 없습니다"</p>
           <p className={styles.emptyDescription}>
-            {params.keyword
+            {keyword
               ? "다른 검색어로 다시 시도해보세요."
               : "경험 등록하기 버튼을 눌러 경험을 등록해보세요."}
           </p>

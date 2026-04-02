@@ -1,7 +1,9 @@
-import { useEffect, useCallback, useRef } from "react";
+import { useEffect, useCallback } from "react";
 import { useBlocker } from "react-router-dom";
 
-import { useModal } from "@/shared/ui/modal/use-modal";
+import { IconWarn } from "@/shared/assets/icons";
+import { modalStore } from "@/shared/model/store";
+import { ModalBasic } from "@/shared/ui";
 
 import {
   initialDraft,
@@ -23,11 +25,11 @@ const isDraftDirty = (draft: ExperienceUpsertBody): boolean => {
   );
 };
 
+const LEAVE_MODAL_ID = "leave-confirm-modal";
+
 export const useLeaveConfirm = () => {
   const mode = useExperienceDetailStore((s) => s.mode);
   const draft = useExperienceDetailStore((s) => s.draft);
-
-  const { isOpen, openModal, closeModal } = useModal();
 
   const shouldBlock =
     (mode === "create" || mode === "edit") && isDraftDirty(draft);
@@ -46,17 +48,38 @@ export const useLeaveConfirm = () => {
     return shouldBlockNow && !isSubmitting && !isTransitioning;
   });
 
-  const prevBlockerStateRef = useRef(blocker.state);
+  const confirmLeave = useCallback(() => {
+    if (blocker.state === "blocked") {
+      blocker.proceed();
+    }
+    modalStore.close(LEAVE_MODAL_ID);
+  }, [blocker]);
+
+  const cancelLeave = useCallback(() => {
+    if (blocker.state === "blocked") {
+      blocker.reset();
+    }
+    modalStore.close(LEAVE_MODAL_ID);
+  }, [blocker]);
 
   useEffect(() => {
-    const wasBlocked = prevBlockerStateRef.current === "blocked";
-    const nowBlocked = blocker.state === "blocked";
-    prevBlockerStateRef.current = blocker.state;
-
-    if (nowBlocked && !wasBlocked && !isOpen) {
-      openModal();
+    if (blocker.state === "blocked") {
+      modalStore.open(
+        <ModalBasic
+          icon={<IconWarn width={48} height={48} />}
+          title={`작성 중인 내용이 있어요`}
+          subTitle="저장하지 않으면 내용이 모두 사라져요."
+          closeText="나가기"
+          confirmText="계속 작성하기"
+          onClose={confirmLeave}
+          onConfirm={cancelLeave}
+        />,
+        0,
+        undefined,
+        LEAVE_MODAL_ID
+      );
     }
-  }, [blocker.state, isOpen, openModal]);
+  }, [blocker.state, cancelLeave, confirmLeave]);
 
   useEffect(() => {
     const handleBeforeUnload = (e: BeforeUnloadEvent) => {
@@ -70,23 +93,5 @@ export const useLeaveConfirm = () => {
     return () => window.removeEventListener("beforeunload", handleBeforeUnload);
   }, [shouldBlock]);
 
-  const confirmLeave = useCallback(() => {
-    if (blocker.state === "blocked") {
-      blocker.proceed();
-    }
-    closeModal();
-  }, [blocker, closeModal]);
-
-  const cancelLeave = useCallback(() => {
-    if (blocker.state === "blocked") {
-      blocker.reset();
-    }
-    closeModal();
-  }, [blocker, closeModal]);
-
-  return {
-    isOpen,
-    confirmLeave,
-    cancelLeave,
-  };
+  return {};
 };

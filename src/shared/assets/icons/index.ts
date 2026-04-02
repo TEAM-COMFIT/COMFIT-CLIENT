@@ -1,6 +1,7 @@
 export { default as IconSearch } from "./search.svg?react";
 export { default as CancelIcon } from "./cancel.svg?react";
 export { default as CheckIcon } from "./check2.svg?react";
+export { default as AgreeCheckIcon } from "./check3.svg?react";
 export { default as CloseIcon } from "./close.svg?react";
 export { default as ExclamationIcon } from "./exclamation.svg?react";
 export { default as InfoIcon } from "./i.svg?react";
@@ -52,3 +53,7 @@ export { default as IconJob } from "./icon_job.svg?react";
 
 export { default as IconCopy } from "./icon_copy.svg?react";
 export { default as IconCheckOn } from "./icon_check_on.svg?react";
+
+export { default as IconPen } from "./icon_pen.svg?react";
+export { default as IconWarn } from "./icon_warning.svg?react";
+export { default as IconTrash } from "./icon_trash_on.svg?react";
