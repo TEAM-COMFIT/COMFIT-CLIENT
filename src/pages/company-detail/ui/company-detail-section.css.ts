@@ -1,4 +1,5 @@
-import { style } from "@vanilla-extract/css";
+import { globalStyle, style } from "@vanilla-extract/css";
+import { recipe } from "@vanilla-extract/recipes";
 
 import { themeVars } from "@/app/styles";
 
@@ -21,7 +22,7 @@ export const header = style({
 export const headerLeft = style({
   display: "flex",
   alignItems: "center",
-  gap: "2rem",
+  gap: "2.4rem",
   minWidth: 0,
 });
 
@@ -39,14 +40,14 @@ export const logo = style({
 export const headerMeta = style({
   display: "flex",
   flexDirection: "column",
-  gap: "1.2rem",
+  gap: "0.8rem",
   minWidth: 0,
 });
 
-export const nameRow = style({
+export const titleRow = style({
   display: "flex",
   alignItems: "center",
-  gap: "0.8rem",
+  gap: "0.4rem",
   minWidth: 0,
 });
 
@@ -58,17 +59,68 @@ export const companyName = style({
   textOverflow: "ellipsis",
 });
 
+export const bookmarkButton = style({
+  width: "4.4rem",
+  height: "4.4rem",
+  padding: 0,
+  border: "none",
+  backgroundColor: "transparent",
+  display: "inline-flex",
+  alignItems: "center",
+  justifyContent: "center",
+  color: themeVars.color.black,
+  cursor: "pointer",
+  flexShrink: 0,
+});
+
+export const bookmarkIcon = recipe({
+  base: {
+    width: "4.4rem",
+    height: "4.4rem",
+    display: "block",
+    color: themeVars.color.black,
+    flexShrink: 0,
+  },
+  variants: {
+    active: {
+      true: {},
+      false: {},
+    },
+  },
+  defaultVariants: {
+    active: false,
+  },
+});
+
+globalStyle(`${bookmarkIcon.classNames.base} path`, {
+  stroke: "currentColor",
+});
+
+globalStyle(`${bookmarkIcon.classNames.variants.active.true} path`, {
+  fill: "currentColor",
+});
+
+globalStyle(`${bookmarkIcon.classNames.variants.active.false} path`, {
+  fill: "transparent",
+});
+
+export const statusRow = style({
+  display: "flex",
+  alignItems: "center",
+  gap: "0.8rem",
+});
+
 export const dot = style({
   width: "0.4rem",
   height: "0.4rem",
   borderRadius: "999px",
-  backgroundColor: themeVars.color.gray800,
+  backgroundColor: themeVars.color.black,
   display: "inline-block",
   flexShrink: 0,
 });
 
 export const hireStatus = style({
-  color: themeVars.color.gray800,
+  color: themeVars.color.black,
   ...themeVars.fontStyles.body_m_16,
   flexShrink: 0,
 });
@@ -87,6 +139,16 @@ export const headerRight = style({
 export const sectionBase = style({
   display: "flex",
   flexDirection: "column",
+});
+
+export const keywordSection = style({
+  marginTop: "6rem",
+  gap: "1.6rem",
+});
+
+export const keywordTitle = style({
+  color: themeVars.color.black,
+  ...themeVars.fontStyles.hline_b_18,
 });
 
 export const sectionTitleRow = style({
@@ -110,7 +172,7 @@ export const sectionTitle = style({
 });
 
 export const summarySection = style({
-  marginTop: "8rem",
+  marginTop: "5.2rem",
   gap: "1.6rem",
 });
 

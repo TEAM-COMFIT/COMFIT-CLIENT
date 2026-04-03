@@ -1,13 +1,16 @@
+import { useState } from "react";
+
 import {
   CompanyCtaBanner,
   CompanyIssue,
   CompanyLinkButton,
 } from "@/features/company-detail";
 import {
+  IconBookmark,
   IconIdeal,
   IconIssue,
   IconSummary,
-} from "@/shared/assets/icons/index.ts";
+} from "@/shared/assets/icons";
 import {
   getIndustryLabel,
   getScaleLabel,
@@ -42,7 +45,21 @@ interface CompanyDetailSectionProps {
   companyData: CompanyDetailSummary;
 }
 
+const getSectionClassName = (sectionStyle: string) =>
+  [styles.sectionBase, sectionStyle].join(" ");
+
 const CompanyDetailSection = ({ companyData }: CompanyDetailSectionProps) => {
+  const [isBookmarked, setIsBookmarked] = useState(false);
+
+  const keywordTags = [
+    companyData.industry ? `#${getIndustryLabel(companyData.industry)}` : null,
+    companyData.scale ? `#${getScaleLabel(companyData.scale)}` : null,
+  ].filter((keyword): keyword is string => keyword !== null);
+
+  const handleBookmarkClick = () => {
+    setIsBookmarked((prev) => !prev);
+  };
+
   return (
     <div className={styles.sectionWrap}>
       <section className={styles.header}>
@@ -54,40 +71,50 @@ const CompanyDetailSection = ({ companyData }: CompanyDetailSectionProps) => {
           />
 
           <div className={styles.headerMeta}>
-            <div className={styles.nameRow}>
+            <div className={styles.titleRow}>
               <h1 className={styles.companyName}>{companyData.name}</h1>
-              {companyData.isRecruiting ? (
-                <>
-                  <span className={styles.dot} aria-hidden="true" />
-                  <span className={styles.hireStatus}>채용중</span>
-                </>
-              ) : null}
+              <button
+                type="button"
+                aria-label={
+                  isBookmarked ? "기업 북마크 해제" : "기업 북마크 추가"
+                }
+                aria-pressed={isBookmarked}
+                className={styles.bookmarkButton}
+                onClick={handleBookmarkClick}
+              >
+                <IconBookmark
+                  className={styles.bookmarkIcon({ active: isBookmarked })}
+                />
+              </button>
             </div>
 
-            <div className={styles.tagRow}>
-              {companyData.industry ? (
-                <Tag type="secondary">
-                  #{getIndustryLabel(companyData.industry)}
-                </Tag>
-              ) : null}
-              {companyData.scale ? (
-                <Tag type="secondary">#{getScaleLabel(companyData.scale)}</Tag>
-              ) : null}
-            </div>
+            {companyData.isRecruiting ? (
+              <div className={styles.statusRow}>
+                <span className={styles.dot} aria-hidden="true" />
+                <span className={styles.hireStatus}>채용중</span>
+              </div>
+            ) : null}
           </div>
         </div>
 
         <div className={styles.headerRight}>
-          <CompanyLinkButton
-            href={companyData.companyURL}
-            label="기업 홈페이지"
-          />
+          <CompanyLinkButton href={companyData.companyURL} />
         </div>
       </section>
 
-      <section
-        className={[styles.sectionBase, styles.summarySection].join(" ")}
-      >
+      <section className={getSectionClassName(styles.keywordSection)}>
+        <h2 className={styles.keywordTitle}>기업 관련 키워드</h2>
+
+        <div className={styles.tagRow}>
+          {keywordTags.map((keywordTag) => (
+            <Tag key={keywordTag} type="secondary">
+              {keywordTag}
+            </Tag>
+          ))}
+        </div>
+      </section>
+
+      <section className={getSectionClassName(styles.summarySection)}>
         <div className={styles.sectionTitleRow}>
           <img
             className={styles.sectionIcon}
@@ -106,7 +133,7 @@ const CompanyDetailSection = ({ companyData }: CompanyDetailSectionProps) => {
         </Textbox>
       </section>
 
-      <section className={[styles.sectionBase, styles.talentSection].join(" ")}>
+      <section className={getSectionClassName(styles.talentSection)}>
         <div className={styles.sectionTitleRow}>
           <img
             className={styles.sectionIcon}
@@ -125,7 +152,7 @@ const CompanyDetailSection = ({ companyData }: CompanyDetailSectionProps) => {
         </Textbox>
       </section>
 
-      <section className={[styles.sectionBase, styles.issueSection].join(" ")}>
+      <section className={getSectionClassName(styles.issueSection)}>
         <div className={styles.sectionTitleRow}>
           <img
             className={styles.sectionIcon}
