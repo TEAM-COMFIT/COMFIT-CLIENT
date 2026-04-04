@@ -29,21 +29,42 @@ interface BookmarkCompaniesApiResponse {
   totalElements?: number;
 }
 
+const isValidBookmarkCompany = (
+  bookmarkCompany: BookmarkCompanyItemApiResponse
+): bookmarkCompany is BookmarkCompanyItemApiResponse & {
+  id: number;
+  companyId: number;
+} => {
+  const { id, companyId } = bookmarkCompany;
+
+  return (
+    typeof id === "number" &&
+    Number.isInteger(id) &&
+    id > 0 &&
+    typeof companyId === "number" &&
+    Number.isInteger(companyId) &&
+    companyId > 0
+  );
+};
+
 export const getBookmarkCompanies = async (
   page: number,
   sort: BookmarkCompanySort = "LATEST"
 ): Promise<BookmarkCompaniesResponse> => {
   const response = await api.me.getBookmarkCompany({ page, sort });
-  const result = response.result as unknown as BookmarkCompaniesApiResponse;
+  const result =
+    (response.result as BookmarkCompaniesApiResponse | undefined) ?? {};
 
   return {
-    content: (result.content ?? []).map((bookmarkCompany) => ({
-      id: bookmarkCompany.id ?? 0,
-      companyId: bookmarkCompany.companyId ?? 0,
-      companyName: bookmarkCompany.name ?? "",
-      scrapedAt: bookmarkCompany.createdAt ?? "",
-      isConnected: bookmarkCompany.isConnected ?? false,
-    })),
+    content: (result.content ?? [])
+      .filter(isValidBookmarkCompany)
+      .map((bookmarkCompany) => ({
+        id: bookmarkCompany.id,
+        companyId: bookmarkCompany.companyId,
+        companyName: bookmarkCompany.name ?? "",
+        scrapedAt: bookmarkCompany.createdAt ?? "",
+        isConnected: bookmarkCompany.isConnected ?? false,
+      })),
     currentPage: result.currentPage ?? page,
     totalPage: result.totalPage ?? 0,
     totalElements: result.totalElements ?? 0,
