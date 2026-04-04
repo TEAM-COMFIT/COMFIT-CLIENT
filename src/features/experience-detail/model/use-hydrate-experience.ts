@@ -3,7 +3,7 @@ import { useExperienceDetailStore } from "@/features/experience-detail/store/exp
 
 import type { GetExperienceDetailResponse } from "@/features/experience-detail/api/use-get-experience-detail.query";
 
-export const hydrateExperienceFromApi = (data: GetExperienceDetailResponse) => {
+export const applyExperienceDetailFromApi = (data: GetExperienceDetailResponse) => {
   const { actions } = useExperienceDetailStore.getState();
   const entity = toExperienceEntity(data);
 
