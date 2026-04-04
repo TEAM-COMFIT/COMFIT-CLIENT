@@ -66,7 +66,7 @@ const ExperienceViewer = () => {
     <ExperienceLayout
       isDefault={isDraftDefault}
       onToggle={onToggleDefault}
-      rightSlot={
+      headerRightContent={
         showEditDelete && (
           <>
             <Button

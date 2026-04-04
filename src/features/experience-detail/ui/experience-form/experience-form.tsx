@@ -37,7 +37,7 @@ const ExperienceForm = () => {
     <ExperienceLayout
       isDefault={isDraftDefault}
       onToggle={onToggleDefault}
-      rightSlot={
+      headerRightContent={
         <Button variant="primary" size="small" onClick={submit} disabled={isSubmitting}>
           작성완료
         </Button>
