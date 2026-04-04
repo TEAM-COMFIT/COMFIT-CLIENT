@@ -8,7 +8,7 @@ export { useExperienceMode } from "./store/use-experience-hooks";
 
 export { useLeaveConfirm } from "./model/use-leave-confirm";
 export { initExperienceDetail } from "./model/use-init-experience-detail";
-export { hydrateExperienceFromApi } from "./model/use-hydrate-experience";
+export { applyExperienceDetailFromApi } from "./model/use-hydrate-experience";
 
 export type { ExperienceMode } from "./types/experience-detail.types";
 
