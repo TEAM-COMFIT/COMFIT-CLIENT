@@ -1,5 +1,4 @@
 import { create } from "zustand";
-import { createJSONStorage, persist } from "zustand/middleware";
 
 interface BookmarkState {
   bookmarkOverrides: Record<number, boolean>;
@@ -7,30 +6,22 @@ interface BookmarkState {
   clearBookmarkOverride: (companyId: number) => void;
 }
 
-export const useBookmarkStore = create(
-  persist<BookmarkState>(
-    (set) => ({
-      bookmarkOverrides: {},
-      setBookmarkOverride: (companyId, isBookmarked) =>
-        set((state) => ({
-          bookmarkOverrides: {
-            ...state.bookmarkOverrides,
-            [companyId]: isBookmarked,
-          },
-        })),
-      clearBookmarkOverride: (companyId) =>
-        set((state) => {
-          const nextOverrides = { ...state.bookmarkOverrides };
-          delete nextOverrides[companyId];
+export const useBookmarkStore = create<BookmarkState>((set) => ({
+  bookmarkOverrides: {},
+  setBookmarkOverride: (companyId, isBookmarked) =>
+    set((state) => ({
+      bookmarkOverrides: {
+        ...state.bookmarkOverrides,
+        [companyId]: isBookmarked,
+      },
+    })),
+  clearBookmarkOverride: (companyId) =>
+    set((state) => {
+      const nextOverrides = { ...state.bookmarkOverrides };
+      delete nextOverrides[companyId];
 
-          return {
-            bookmarkOverrides: nextOverrides,
-          };
-        }),
+      return {
+        bookmarkOverrides: nextOverrides,
+      };
     }),
-    {
-      name: "bookmark",
-      storage: createJSONStorage(() => sessionStorage),
-    }
-  )
-);
+}));
