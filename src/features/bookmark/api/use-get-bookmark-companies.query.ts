@@ -58,5 +58,8 @@ export const useGetBookmarkCompaniesQuery = (
     queryKey: meQueryKey.bookmarkCompanyList(page, sort),
     queryFn: () => getBookmarkCompanies(page, sort),
     enabled: Number.isFinite(page) && page > 0,
+    staleTime: 0,
+    refetchOnMount: "always",
+    refetchOnWindowFocus: true,
   });
 };

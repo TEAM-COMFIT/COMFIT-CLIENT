@@ -26,6 +26,7 @@ const CompanyDetailPage = () => {
     ? {
         companyId,
         name: companyDetail.name ?? "",
+        isBookmarked: companyDetail.isLiked ?? false,
         isRecruiting: companyDetail.isRecruiting,
         logo: companyDetail.logo ?? "",
         industry: companyDetail.industry as IndustryCode | undefined,

@@ -1,5 +1,4 @@
-import { useState } from "react";
-
+import { useCompanyBookmark } from "@/features/bookmark";
 import {
   CompanyCtaBanner,
   CompanyIssue,
@@ -17,7 +16,7 @@ import {
   type IndustryCode,
   type ScaleCode,
 } from "@/shared/config";
-import { Tag, Textbox } from "@/shared/ui";
+import { Alert, Tag, Textbox } from "@/shared/ui";
 
 import * as styles from "./company-detail-section.css.ts";
 
@@ -31,6 +30,7 @@ type IssueItem = {
 type CompanyDetailSummary = {
   companyId: number;
   name: string;
+  isBookmarked: boolean;
   isRecruiting?: boolean;
   logo: string;
   industry?: IndustryCode;
@@ -49,16 +49,25 @@ const getSectionClassName = (sectionStyle: string) =>
   [styles.sectionBase, sectionStyle].join(" ");
 
 const CompanyDetailSection = ({ companyData }: CompanyDetailSectionProps) => {
-  const [isBookmarked, setIsBookmarked] = useState(false);
+  const {
+    isBookmarked,
+    isAddingBookmark,
+    isBookmarkErrorOpen,
+    handleBookmarkClick,
+    closeBookmarkError,
+  } = useCompanyBookmark({
+    companyId: companyData.companyId,
+    initialIsBookmarked: companyData.isBookmarked,
+  });
 
   const keywordTags = [
     companyData.industry ? `#${getIndustryLabel(companyData.industry)}` : null,
     companyData.scale ? `#${getScaleLabel(companyData.scale)}` : null,
   ].filter((keyword): keyword is string => keyword !== null);
 
-  const handleBookmarkClick = () => {
-    setIsBookmarked((prev) => !prev);
-  };
+  const bookmarkAriaLabel = isBookmarked
+    ? "기업 북마크 완료"
+    : "기업 북마크 추가";
 
   return (
     <div className={styles.sectionWrap}>
@@ -75,12 +84,11 @@ const CompanyDetailSection = ({ companyData }: CompanyDetailSectionProps) => {
               <h1 className={styles.companyName}>{companyData.name}</h1>
               <button
                 type="button"
-                aria-label={
-                  isBookmarked ? "기업 북마크 해제" : "기업 북마크 추가"
-                }
+                aria-label={bookmarkAriaLabel}
                 aria-pressed={isBookmarked}
                 className={styles.bookmarkButton}
                 onClick={handleBookmarkClick}
+                disabled={isAddingBookmark}
               >
                 <IconBookmark
                   className={styles.bookmarkIcon({ active: isBookmarked })}
@@ -183,6 +191,15 @@ const CompanyDetailSection = ({ companyData }: CompanyDetailSectionProps) => {
         companyName={companyData.name}
         companyId={companyData.companyId}
       />
+
+      {isBookmarkErrorOpen ? (
+        <Alert
+          variant="error"
+          title="오류"
+          description="북마크 저장에 실패했습니다"
+          onClose={closeBookmarkError}
+        />
+      ) : null}
     </div>
   );
 };
