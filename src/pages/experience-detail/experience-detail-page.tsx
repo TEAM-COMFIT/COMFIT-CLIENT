@@ -15,11 +15,7 @@ import {
 
 import type { ExperienceMode } from "@/features/experience-detail";
 
-interface ExperiencePageProps {
-  mode: ExperienceMode;
-}
-
-const ExperienceDetailPage = ({ mode }: ExperiencePageProps) => {
+const ExperienceDetailPage = ({ mode }: { mode: ExperienceMode }) => {
   const { id: experienceId } = useParams<{ id: string }>();
   const currentMode = useExperienceMode();
   useLeaveConfirm();
