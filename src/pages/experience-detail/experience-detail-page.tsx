@@ -9,7 +9,7 @@ import {
   initExperienceDetail,
   useLeaveConfirm,
   useGetExperienceDetail,
-  hydrateExperienceFromApi,
+  applyExperienceDetailFromApi,
   EXPERIENCE_MESSAGES,
 } from "@/features/experience-detail";
 
@@ -42,7 +42,7 @@ const ExperienceDetailPage = ({ mode }: ExperiencePageProps) => {
   useEffect(() => {
     if (data && initializedExperienceIdRef.current !== experienceId) {
       initializedExperienceIdRef.current = experienceId ?? null;
-      hydrateExperienceFromApi(data);
+      applyExperienceDetailFromApi(data);
     }
   }, [data, experienceId]);
 
