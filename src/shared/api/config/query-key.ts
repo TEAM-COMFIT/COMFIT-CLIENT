@@ -21,6 +21,10 @@ export const meQueryKey = {
   all: () => ["me"],
   profile: () => [...meQueryKey.all(), "profile"], // 사용자 프로필 조회
   onboarding: () => [...meQueryKey.all(), "onboarding"], // 온보딩 상태 조회
+  bookmarkCompanyList: (
+    page: number,
+    sort: "NAME" | "LIKE" | "LATEST" | "OLDEST"
+  ) => [...meQueryKey.all(), "bookmark-company-list", page, sort],
 };
 
 // AI-Report 관련 API (AI-Report)

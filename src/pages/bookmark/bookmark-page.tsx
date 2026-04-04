@@ -3,10 +3,9 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 
 import { ROUTES } from "@/app/routes/paths";
 import {
-  BOOKMARK_MOCK_ROWS,
-  BOOKMARK_PAGE_SIZE,
   BookmarkEmptyState,
   BookmarkTable,
+  useGetBookmarkCompaniesQuery,
 } from "@/features/bookmark";
 import { IconBookmarkBefore, IconTrash } from "@/shared/assets/icons";
 import { modalStore } from "@/shared/model/store";
@@ -14,15 +13,17 @@ import { Button, ModalBasic, Pagination, Search } from "@/shared/ui";
 
 import * as styles from "./bookmark-page.css";
 
+import type { BookmarkRow } from "@/features/bookmark";
+
 const BOOKMARK_QUERY_KEY = "keyword";
 const BOOKMARK_PAGE_QUERY_KEY = "page";
 const BOOKMARK_DELETE_MODAL_ID = "bookmark-delete-modal";
+const BOOKMARK_PAGE_SIZE = 4;
 
 const BookmarkPage = () => {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
-
-  const [rows, setRows] = useState(BOOKMARK_MOCK_ROWS);
+  const [rows, setRows] = useState<BookmarkRow[]>([]);
   const [selectedIds, setSelectedIds] = useState<Set<number>>(new Set());
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
@@ -32,11 +33,21 @@ const BookmarkPage = () => {
     Number.isInteger(currentPageParam) && currentPageParam > 0
       ? currentPageParam
       : 1;
+
+  const {
+    data: bookmarkCompanies,
+    isLoading,
+    isFetching,
+  } = useGetBookmarkCompaniesQuery(currentPage);
   const [searchInput, setSearchInput] = useState(keyword);
 
   useEffect(() => {
     setSearchInput(keyword);
   }, [keyword]);
+
+  useEffect(() => {
+    setRows(bookmarkCompanies?.content ?? []);
+  }, [bookmarkCompanies?.content]);
 
   useEffect(() => {
     const unsubscribe = modalStore.subscribe((modals) => {
@@ -49,7 +60,9 @@ const BookmarkPage = () => {
   }, []);
 
   const filteredRows = useMemo(() => {
-    if (!keyword) return rows;
+    if (!keyword) {
+      return rows;
+    }
 
     const normalizedKeyword = keyword.toLowerCase();
     return rows.filter((row) =>
@@ -57,14 +70,20 @@ const BookmarkPage = () => {
     );
   }, [keyword, rows]);
 
-  const totalPage = Math.ceil(filteredRows.length / BOOKMARK_PAGE_SIZE);
+  const totalPage = keyword
+    ? Math.ceil(filteredRows.length / BOOKMARK_PAGE_SIZE)
+    : (bookmarkCompanies?.totalPage ?? 0);
   const paginationTotalPage = Math.max(totalPage, 1);
   const resolvedCurrentPage = Math.min(currentPage, paginationTotalPage);
 
   const currentPageRows = useMemo(() => {
+    if (!keyword) {
+      return rows;
+    }
+
     const startIndex = (resolvedCurrentPage - 1) * BOOKMARK_PAGE_SIZE;
     return filteredRows.slice(startIndex, startIndex + BOOKMARK_PAGE_SIZE);
-  }, [filteredRows, resolvedCurrentPage]);
+  }, [filteredRows, keyword, resolvedCurrentPage, rows]);
 
   const visibleIds = useMemo(
     () => currentPageRows.map((row) => row.id),
@@ -75,7 +94,7 @@ const BookmarkPage = () => {
     visibleIds.length > 0 && visibleIds.every((id) => selectedIds.has(id));
 
   const isDeleteDisabled = selectedIds.size === 0;
-  const isBookmarkEmpty = rows.length === 0;
+  const isBookmarkEmpty = !isLoading && !isFetching && rows.length === 0;
   const isSearchResultEmpty = rows.length > 0 && filteredRows.length === 0;
   const showPagination = !isBookmarkEmpty && !isSearchResultEmpty;
 
