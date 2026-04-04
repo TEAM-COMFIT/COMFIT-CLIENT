@@ -1,20 +1,20 @@
-import type { ReactNode } from "react";
-
 import { StickyHeader } from "@/widgets";
 
 import * as s from "./experience-layout.css";
 
+import type { ReactNode } from "react";
+
 interface ExperienceLayoutProps {
   isDefault: boolean;
   onToggle: () => void;
-  rightSlot?: ReactNode;
+  headerRightContent?: ReactNode;
   children: ReactNode;
 }
 
 const ExperienceLayout = ({
   isDefault,
   onToggle,
-  rightSlot,
+  headerRightContent,
   children,
 }: ExperienceLayoutProps) => {
   return (
@@ -22,7 +22,7 @@ const ExperienceLayout = ({
       <StickyHeader
         isDefault={isDefault}
         onToggle={onToggle}
-        rightSlot={rightSlot}
+        rightSlot={headerRightContent}
       />
 
       <section className={s.outerSection}>
