@@ -66,11 +66,13 @@ export const useCompanyBookmark = ({
   const { mutate: addBookmark, isPending: isAddingBookmark } = usePostBookmark({
     onSuccess: () => {
       updateDetailQuery(true);
+      clearBookmarkOverride(companyId);
     },
     onError: (error) => {
       if (isDuplicateBookmarkError(error)) {
         setBookmarkOverride(companyId, true);
         updateDetailQuery(true);
+        clearBookmarkOverride(companyId);
         return;
       }
 
@@ -83,6 +85,7 @@ export const useCompanyBookmark = ({
     useDeleteBookmark({
       onSuccess: () => {
         updateDetailQuery(false);
+        clearBookmarkOverride(companyId);
         queryClient.invalidateQueries({
           queryKey: companyQueryKey.detail(companyId),
         });
