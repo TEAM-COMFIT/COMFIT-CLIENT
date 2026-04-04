@@ -26,12 +26,14 @@ const useExperienceAlertStore = create<ExperienceAlertState>((set, get) => ({
   actions: {
     show: (variant, title, description) => {
       const { alerts } = get();
-      const isDuplicate = alerts.some(
-        (a) =>
-          a.variant === variant &&
-          a.title === title &&
-          a.description === description
-      );
+      const lastAlert = alerts[alerts.length - 1];
+
+      const isDuplicate =
+        lastAlert != null &&
+        lastAlert.variant === variant &&
+        lastAlert.title === title &&
+        lastAlert.description === description;
+
       if (isDuplicate) return;
 
       const id = `exp-alert-${++alertIdCounter}`;
@@ -39,6 +41,7 @@ const useExperienceAlertStore = create<ExperienceAlertState>((set, get) => ({
         alerts: [...state.alerts, { id, variant, title, description }],
       }));
     },
+
     close: (id) => {
       set((state) => ({
         alerts: state.alerts.filter((a) => a.id !== id),
