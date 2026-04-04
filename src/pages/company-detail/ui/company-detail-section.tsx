@@ -187,7 +187,7 @@ const CompanyDetailSection = ({ companyData }: CompanyDetailSectionProps) => {
         <Alert
           variant="error"
           title="오류"
-          description="북마크 저장에 실패했습니다"
+          description="북마크 처리에 실패했습니다"
           onClose={closeBookmarkError}
         />
       ) : null}
