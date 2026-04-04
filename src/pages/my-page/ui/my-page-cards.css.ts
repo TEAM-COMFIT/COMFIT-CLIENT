@@ -46,6 +46,10 @@ export const mediumIconPadding = style({
   padding: "2.2rem 2.8rem 3.1rem",
 });
 
+export const clickableCard = style({
+  cursor: "pointer",
+});
+
 export const largeRow = style({
   display: "flex",
   alignItems: "center",

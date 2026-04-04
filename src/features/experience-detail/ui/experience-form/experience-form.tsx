@@ -38,7 +38,12 @@ const ExperienceForm = () => {
         isDefault={isDraftDefault}
         onToggle={onToggleDefault}
         rightSlot={
-          <Button variant="primary" size="small" onClick={submit} disabled={isSubmitting}>
+          <Button
+            variant="primary"
+            size="small"
+            onClick={submit}
+            disabled={isSubmitting}
+          >
             작성완료
           </Button>
         }
