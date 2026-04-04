@@ -1,4 +1,5 @@
 import { useQueryClient } from "@tanstack/react-query";
+import { isAxiosError } from "axios";
 import { useCallback, useState } from "react";
 
 import { companyQueryKey } from "@/shared/api/config/query-key";
@@ -13,6 +14,9 @@ interface UseCompanyBookmarkParams {
   companyId: number;
   initialIsBookmarked: boolean;
 }
+
+const isDuplicateBookmarkError = (error: unknown) =>
+  isAxiosError(error) && error.response?.status === 400;
 
 const updateCompanyBookmarkCache = (
   previousData: GetCompanyResponseDto | undefined,
@@ -64,7 +68,16 @@ export const useCompanyBookmark = ({
         queryKey: companyQueryKey.detail(companyId),
       });
     },
-    onError: () => {
+    onError: (error) => {
+      if (isDuplicateBookmarkError(error)) {
+        setBookmarkOverride(companyId, true);
+        updateDetailQuery(true);
+        queryClient.invalidateQueries({
+          queryKey: companyQueryKey.detail(companyId),
+        });
+        return;
+      }
+
       clearBookmarkOverride(companyId);
       setIsBookmarkErrorOpen(true);
     },
