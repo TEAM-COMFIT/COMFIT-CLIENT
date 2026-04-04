@@ -10,12 +10,7 @@
  * ---------------------------------------------------------------
  */
 
-export interface ReIssueTokenRequestDto {
-  /** @example "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..." */
-  refreshToken: string;
-}
-
-export interface ReIssueTokenResponseDto {
+export interface AccessTokenResponseDto {
   accessToken?: string;
 }
 
@@ -28,88 +23,19 @@ export interface CustomErrorResponse {
 
 export interface OnBoardingRequestDTO {
   /** @example "HIGH_SCHOOL" */
-  educationLevel:
-    | "HIGH_SCHOOL"
-    | "BACHELOR_STUDENT"
-    | "BACHELOR"
-    | "MASTER_STUDENT"
-    | undefined;
+  educationLevel: string;
   /** @example "IT" */
-  firstIndustry:
-    | "CONSUMER_GOODS"
-    | "IT"
-    | "MEDIA_CONTENTS"
-    | "RETAIL"
-    | "LIFESTYLE"
-    | "FOOD"
-    | "TRAVEL"
-    | "FINANCE"
-    | "FITNESS"
-    | undefined;
+  firstIndustry: string;
   /** @example "MEDIA_CONTENTS" */
-  secondIndustry?:
-    | "CONSUMER_GOODS"
-    | "IT"
-    | "MEDIA_CONTENTS"
-    | "RETAIL"
-    | "LIFESTYLE"
-    | "FOOD"
-    | "TRAVEL"
-    | "FINANCE"
-    | "FITNESS"
-    | undefined;
+  secondIndustry?: string;
   /** @example "RETAIL" */
-  thirdIndustry?:
-    | "CONSUMER_GOODS"
-    | "IT"
-    | "MEDIA_CONTENTS"
-    | "RETAIL"
-    | "LIFESTYLE"
-    | "FOOD"
-    | "TRAVEL"
-    | "FINANCE"
-    | "FITNESS"
-    | undefined;
+  thirdIndustry?: string;
   /** @example "MARKETING_STRATEGY" */
-  firstJob:
-    | "MARKETING_STRATEGY"
-    | "BRAND_MARKETING"
-    | "DIGITAL_MARKETING"
-    | "CONTENT_MARKETING"
-    | "VIRAL_MARKETING"
-    | "PERFORMANCE_MARKETING"
-    | "B2B_MARKETING"
-    | "CRM_MARKETING"
-    | "PRODUCT_MARKETING"
-    | "PARTNERSHIP_MARKETING"
-    | "GLOBAL_MARKETING"
-    | undefined;
+  firstJob: string;
   /** @example "BRAND_MARKETING" */
-  secondJob?:
-    | "MARKETING_STRATEGY"
-    | "BRAND_MARKETING"
-    | "DIGITAL_MARKETING"
-    | "CONTENT_MARKETING"
-    | "VIRAL_MARKETING"
-    | "PERFORMANCE_MARKETING"
-    | "B2B_MARKETING"
-    | "CRM_MARKETING"
-    | "PRODUCT_MARKETING"
-    | "PARTNERSHIP_MARKETING"
-    | "GLOBAL_MARKETING";
+  secondJob?: string;
   /** @example "DIGITAL_MARKETING" */
-  thirdJob?:
-    | "MARKETING_STRATEGY"
-    | "BRAND_MARKETING"
-    | "DIGITAL_MARKETING"
-    | "CONTENT_MARKETING"
-    | "VIRAL_MARKETING"
-    | "PERFORMANCE_MARKETING"
-    | "B2B_MARKETING"
-    | "CRM_MARKETING"
-    | "PRODUCT_MARKETING"
-    | "PARTNERSHIP_MARKETING"
-    | "GLOBAL_MARKETING";
+  thirdJob?: string;
   /**
    * @format int64
    * @example 1
@@ -194,24 +120,20 @@ export interface MatchExperienceRequestDto {
    */
   experienceId: number;
   /**
-   * @example "[직무 설명 (JD 원문)]
-   *
-   * CJ ENM 엔터테인먼트부문은
-   * 콘텐츠 기획 및 운영 전반을 담당할 인재를 모집합니다.
-   *
-   * 주요 업무
-   * - 콘텐츠 기획 및 운영 업무 지원
-   * - 디지털 콘텐츠 성과 분석 및 인사이트 도출
-   * - 유관 부서 및 외부 파트너와의 협업
-   *
+   * @example "업무 내용
+   *  고객센터의 각 채널 (Call Chat Mail App) 로 유입되는 고객 문의 운영 , 관리
+   *  VOC , Inquiry 분석 및 개선
+   *  신규사업, 마케팅, 이벤트 관련 고객 서비스 운영 지원
    * 자격 요건
-   * - 콘텐츠 및 엔터테인먼트 산업에 대한 관심
-   * - 데이터 기반으로 문제를 분석하고 개선안을 도출한 경험
-   * - 원활한 커뮤니케이션 및 협업 능력
-   *
-   * 우대 사항
-   * - 디지털 콘텐츠 또는 마케팅 관련 프로젝트 경험
-   * - 글로벌 콘텐츠 트렌드에 대한 이해"
+   *  3년 이상의 유관업무 경력이 있는 분 또는 프로세스 수립/개선 업무 경험이 있는분
+   *  유연한 사고와 원활한 커뮤니케이션 능력이 있는 분
+   *  주말 스케줄 근무 가능하신 분 - 1~2개월마다 1회 주말 근무 (주말근무시 : 11:00~20:00(휴게포함)
+   * 우대사항
+   *  온라인 커머스 또는 배달서비스 비즈니스에 대한 이해도가 있으신 분
+   *  고객 중심의 서비스 마인드 보유하신 분
+   *  변화에 빠르게 적응 가능하신 분
+   *  일본어 가능하신 분
+   * "
    */
   jobDescription: string;
 }
@@ -221,6 +143,10 @@ export interface AIReportResponseDto {
   id?: number;
   companyName?: string;
   experienceTitle?: string;
+  situation?: string;
+  task?: string;
+  action?: string;
+  result?: string;
   jobDescription?: string;
   perspectives?: Perspective[];
   density?: Density[];
@@ -382,7 +308,7 @@ export interface GetReportCompanyResponseDto {
   logo?: string;
 }
 
-export type ReissueTokenData = ReIssueTokenResponseDto;
+export type ReissueTokenData = AccessTokenResponseDto;
 
 export type AddUserInfoData = CommonApiResponse;
 
@@ -402,7 +328,18 @@ export type CreateExperienceData = number;
 
 export type GetReportListData = PageDto;
 
+export type MatchExperienceVirtualThreadData = AIReportResponseDto;
+
 export type MatchExperienceData = AIReportResponseDto;
+
+export type MatchAsyncData = AIReportResponseDto;
+
+export type MatchAsyncWebClientData = AIReportResponseDto;
+
+export type MatchExperienceWebfluxParallelData = AIReportResponseDto;
+
+/** @format int64 */
+export type MatchExperienceJobData = number;
 
 export type GetExperienceData = GetExperienceResponseDto;
 
@@ -647,12 +584,10 @@ export class Api<
      * @summary 액세스 토큰 재발급
      * @request POST:/api/v1/re-issued
      */
-    reissueToken: (data: ReIssueTokenRequestDto, params: RequestParams = {}) =>
+    reissueToken: (params: RequestParams = {}) =>
       this.request<ReissueTokenData, CustomErrorResponse>({
         path: `/api/v1/re-issued`,
         method: "POST",
-        body: data,
-        type: ContentType.Json,
         format: "json",
         ...params,
       }),
@@ -964,17 +899,124 @@ export class Api<
      * @description AI 리포트 생성 API입니다
      *
      * @tags AI-Report
-     * @name MatchExperience
+     * @name MatchExperienceVirtualThread
      * @summary AI 리포트 생성 API
      * @request POST:/api/v1/ai-reports
+     * @secure
+     */
+    matchExperienceVirtualThread: (
+      data: MatchExperienceRequestDto,
+      params: RequestParams = {}
+    ) =>
+      this.request<MatchExperienceVirtualThreadData, CustomErrorResponse>({
+        path: `/api/v1/ai-reports`,
+        method: "POST",
+        body: data,
+        secure: true,
+        type: ContentType.Json,
+        format: "json",
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags AI-Report
+     * @name MatchExperience
+     * @request POST:/api/v1/ai-reports/match/sync
      * @secure
      */
     matchExperience: (
       data: MatchExperienceRequestDto,
       params: RequestParams = {}
     ) =>
-      this.request<MatchExperienceData, CustomErrorResponse>({
-        path: `/api/v1/ai-reports`,
+      this.request<MatchExperienceData, any>({
+        path: `/api/v1/ai-reports/match/sync`,
+        method: "POST",
+        body: data,
+        secure: true,
+        type: ContentType.Json,
+        format: "json",
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags AI-Report
+     * @name MatchAsync
+     * @request POST:/api/v1/ai-reports/match/async
+     * @secure
+     */
+    matchAsync: (data: MatchExperienceRequestDto, params: RequestParams = {}) =>
+      this.request<MatchAsyncData, any>({
+        path: `/api/v1/ai-reports/match/async`,
+        method: "POST",
+        body: data,
+        secure: true,
+        type: ContentType.Json,
+        format: "json",
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags AI-Report
+     * @name MatchAsyncWebClient
+     * @request POST:/api/v1/ai-reports/match/async/webclient
+     * @secure
+     */
+    matchAsyncWebClient: (
+      data: MatchExperienceRequestDto,
+      params: RequestParams = {}
+    ) =>
+      this.request<MatchAsyncWebClientData, any>({
+        path: `/api/v1/ai-reports/match/async/webclient`,
+        method: "POST",
+        body: data,
+        secure: true,
+        type: ContentType.Json,
+        format: "json",
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags AI-Report
+     * @name MatchExperienceWebfluxParallel
+     * @request POST:/api/v1/ai-reports/match/async/parallel
+     * @secure
+     */
+    matchExperienceWebfluxParallel: (
+      data: MatchExperienceRequestDto,
+      params: RequestParams = {}
+    ) =>
+      this.request<MatchExperienceWebfluxParallelData, any>({
+        path: `/api/v1/ai-reports/match/async/parallel`,
+        method: "POST",
+        body: data,
+        secure: true,
+        type: ContentType.Json,
+        format: "json",
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags AI-Report
+     * @name MatchExperienceJob
+     * @request POST:/api/v1/ai-reports/match/async/jobs
+     * @secure
+     */
+    matchExperienceJob: (
+      data: MatchExperienceRequestDto,
+      params: RequestParams = {}
+    ) =>
+      this.request<MatchExperienceJobData, any>({
+        path: `/api/v1/ai-reports/match/async/jobs`,
         method: "POST",
         body: data,
         secure: true,
@@ -1098,8 +1140,8 @@ export class Api<
     getCompanyList: (
       query?: {
         keyword?: string;
-        industry?: string;
-        scale?: string;
+        industry?: string[];
+        scale?: string[];
         sort?: string;
         /**
          * @format int32

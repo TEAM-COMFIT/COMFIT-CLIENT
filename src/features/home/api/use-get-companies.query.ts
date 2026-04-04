@@ -16,8 +16,8 @@ const getCompanies = async ({
   const response = await api.companies.getCompanyList(
     {
       keyword,
-      industry,
-      scale,
+      industry: industry ? [industry] : undefined,
+      scale: scale ? [scale] : undefined,
       sort,
       page,
       isRecruited,
