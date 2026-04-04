@@ -19,4 +19,5 @@ export const ROUTES = {
   POLICY_PRIVACY: "/policy/privacy", // 개인정보처리방침
 
   MYPAGE: "/mypage",
+  BOOKMARK: "/bookmark",
 };

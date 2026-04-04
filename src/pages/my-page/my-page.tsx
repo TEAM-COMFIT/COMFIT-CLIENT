@@ -1,5 +1,6 @@
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
+import { ROUTES } from "@/app/routes/paths";
 import { useAuthStore } from "@/app/store";
 import { useGetProfile, useLogout } from "@/features/my-page";
 import { queryClient } from "@/shared/api";
@@ -9,9 +10,14 @@ import * as styles from "./my-page.css";
 import { MyPageCards } from "./ui/my-page-cards";
 
 const MyPage = () => {
+  const navigate = useNavigate();
   const { actions, isLoggedIn } = useAuthStore();
   const { data } = useGetProfile({ enabled: isLoggedIn });
   const { mutate: logout, isPending } = useLogout();
+
+  const handleBookmarkClick = () => {
+    navigate(ROUTES.BOOKMARK);
+  };
 
   if (!isLoggedIn) {
     return <Navigate to="/" replace />;
@@ -41,7 +47,7 @@ const MyPage = () => {
         </Button>
       </div>
 
-      <MyPageCards {...data} />
+      <MyPageCards {...data} onBookmarkClick={handleBookmarkClick} />
     </div>
   );
 };
