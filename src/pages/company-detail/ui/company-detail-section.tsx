@@ -18,7 +18,7 @@ import {
 } from "@/shared/config";
 import { Alert, Tag, Textbox } from "@/shared/ui";
 
-import * as styles from "./company-detail-section.css.ts";
+import * as styles from "./company-detail-section.css";
 
 type IssueItem = {
   href: string;
@@ -44,9 +44,6 @@ type CompanyDetailSummary = {
 interface CompanyDetailSectionProps {
   companyData: CompanyDetailSummary;
 }
-
-const getSectionClassName = (sectionStyle: string) =>
-  [styles.sectionBase, sectionStyle].join(" ");
 
 const CompanyDetailSection = ({ companyData }: CompanyDetailSectionProps) => {
   const {
@@ -110,7 +107,7 @@ const CompanyDetailSection = ({ companyData }: CompanyDetailSectionProps) => {
         </div>
       </section>
 
-      <section className={getSectionClassName(styles.keywordSection)}>
+      <section className={styles.keywordSection}>
         <h2 className={styles.keywordTitle}>기업 관련 키워드</h2>
 
         <div className={styles.tagRow}>
@@ -122,7 +119,7 @@ const CompanyDetailSection = ({ companyData }: CompanyDetailSectionProps) => {
         </div>
       </section>
 
-      <section className={getSectionClassName(styles.summarySection)}>
+      <section className={styles.summarySection}>
         <div className={styles.sectionTitleRow}>
           <img
             className={styles.sectionIcon}
@@ -133,15 +130,12 @@ const CompanyDetailSection = ({ companyData }: CompanyDetailSectionProps) => {
           <h2 className={styles.sectionTitle}>회사 한줄 요약</h2>
         </div>
 
-        <Textbox
-          type="large"
-          className={[styles.textboxContent, styles.summaryBox].join(" ")}
-        >
+        <Textbox type="large" className={styles.summaryBox}>
           {companyData.summary}
         </Textbox>
       </section>
 
-      <section className={getSectionClassName(styles.talentSection)}>
+      <section className={styles.talentSection}>
         <div className={styles.sectionTitleRow}>
           <img
             className={styles.sectionIcon}
@@ -152,15 +146,12 @@ const CompanyDetailSection = ({ companyData }: CompanyDetailSectionProps) => {
           <h2 className={styles.sectionTitle}>인재상</h2>
         </div>
 
-        <Textbox
-          type="large"
-          className={[styles.textboxContent, styles.talentBox].join(" ")}
-        >
+        <Textbox type="large" className={styles.talentBox}>
           {companyData.talentProfile}
         </Textbox>
       </section>
 
-      <section className={getSectionClassName(styles.issueSection)}>
+      <section className={styles.issueSection}>
         <div className={styles.sectionTitleRow}>
           <img
             className={styles.sectionIcon}

@@ -136,15 +136,18 @@ export const headerRight = style({
   alignItems: "center",
 });
 
-export const sectionBase = style({
+const sectionBase = style({
   display: "flex",
   flexDirection: "column",
 });
 
-export const keywordSection = style({
-  marginTop: "6rem",
-  gap: "1.6rem",
-});
+export const keywordSection = style([
+  sectionBase,
+  {
+    marginTop: "6rem",
+    gap: "1.6rem",
+  },
+]);
 
 export const keywordTitle = style({
   color: themeVars.color.black,
@@ -171,20 +174,29 @@ export const sectionTitle = style({
   ...themeVars.fontStyles.hline_b_18,
 });
 
-export const summarySection = style({
-  marginTop: "5.2rem",
-  gap: "1.6rem",
-});
+export const summarySection = style([
+  sectionBase,
+  {
+    marginTop: "5.2rem",
+    gap: "1.6rem",
+  },
+]);
 
-export const talentSection = style({
-  marginTop: "5.2rem",
-  gap: "1.6rem",
-});
+export const talentSection = style([
+  sectionBase,
+  {
+    marginTop: "5.2rem",
+    gap: "1.6rem",
+  },
+]);
 
-export const issueSection = style({
-  marginTop: "5.2rem",
-  gap: "1.6rem",
-});
+export const issueSection = style([
+  sectionBase,
+  {
+    marginTop: "5.2rem",
+    gap: "1.6rem",
+  },
+]);
 
 export const issueList = style({
   display: "flex",
@@ -192,21 +204,27 @@ export const issueList = style({
   gap: "1.2rem",
 });
 
-export const textboxContent = style({
+const textboxContent = style({
   whiteSpace: "pre-line",
   textAlign: "justify",
 });
 
-export const summaryBox = style({
-  display: "flex",
-  alignItems: "center",
-});
+export const summaryBox = style([
+  textboxContent,
+  {
+    display: "flex",
+    alignItems: "center",
+  },
+]);
 
-export const talentBox = style({
-  minHeight: "8rem",
-  display: "flex",
-  alignItems: "center",
-});
+export const talentBox = style([
+  textboxContent,
+  {
+    minHeight: "8rem",
+    display: "flex",
+    alignItems: "center",
+  },
+]);
 
 export const ctaBanner = style({
   marginTop: "7.8rem",
