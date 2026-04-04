@@ -17,7 +17,6 @@ import {
 } from "../../store/use-experience-hooks";
 import { DatePicker } from "../date-picker/date-picker";
 import { ExperienceLayout } from "../experience-layout/experience-layout";
-import * as layoutStyles from "../experience-layout/experience-layout.css";
 
 import * as s from "./experience-viewer.css";
 
@@ -33,11 +32,9 @@ const ExperienceViewer = () => {
 
   if (!current) {
     return (
-      <main className={layoutStyles.page}>
-        <div className={layoutStyles.outerSection}>
-          <p>경험 정보를 불러오는 중...</p>
-        </div>
-      </main>
+      <ExperienceLayout isDefault={false} onToggle={() => {}}>
+        <p>경험 정보를 불러오는 중...</p>
+      </ExperienceLayout>
     );
   }
 
