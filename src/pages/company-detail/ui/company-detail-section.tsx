@@ -51,7 +51,7 @@ const getSectionClassName = (sectionStyle: string) =>
 const CompanyDetailSection = ({ companyData }: CompanyDetailSectionProps) => {
   const {
     isBookmarked,
-    isAddingBookmark,
+    isBookmarkPending,
     isBookmarkErrorOpen,
     handleBookmarkClick,
     closeBookmarkError,
@@ -66,7 +66,7 @@ const CompanyDetailSection = ({ companyData }: CompanyDetailSectionProps) => {
   ].filter((keyword): keyword is string => keyword !== null);
 
   const bookmarkAriaLabel = isBookmarked
-    ? "기업 북마크 완료"
+    ? "기업 북마크 해제"
     : "기업 북마크 추가";
 
   return (
@@ -88,7 +88,7 @@ const CompanyDetailSection = ({ companyData }: CompanyDetailSectionProps) => {
                 aria-pressed={isBookmarked}
                 className={styles.bookmarkButton}
                 onClick={handleBookmarkClick}
-                disabled={isAddingBookmark}
+                disabled={isBookmarkPending}
               >
                 <IconBookmark
                   className={styles.bookmarkIcon({ active: isBookmarked })}

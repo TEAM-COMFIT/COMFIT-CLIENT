@@ -5,11 +5,13 @@ import { ROUTES } from "@/app/routes/paths";
 import {
   BookmarkEmptyState,
   BookmarkTable,
+  useBookmarkStore,
+  useDeleteBookmark,
   useGetBookmarkCompaniesQuery,
 } from "@/features/bookmark";
 import { IconBookmarkBefore, IconTrash } from "@/shared/assets/icons";
 import { modalStore } from "@/shared/model/store";
-import { Button, ModalBasic, Pagination, Search } from "@/shared/ui";
+import { Alert, Button, ModalBasic, Pagination, Search } from "@/shared/ui";
 
 import * as styles from "./bookmark-page.css";
 
@@ -26,6 +28,10 @@ const BookmarkPage = () => {
   const [rows, setRows] = useState<BookmarkRow[]>([]);
   const [selectedIds, setSelectedIds] = useState<Set<number>>(new Set());
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [isDeleteErrorOpen, setIsDeleteErrorOpen] = useState(false);
+  const setBookmarkOverride = useBookmarkStore(
+    (state) => state.setBookmarkOverride
+  );
 
   const keyword = searchParams.get(BOOKMARK_QUERY_KEY)?.trim() ?? "";
   const currentPageParam = Number(searchParams.get(BOOKMARK_PAGE_QUERY_KEY));
@@ -39,6 +45,8 @@ const BookmarkPage = () => {
     isLoading,
     isFetching,
   } = useGetBookmarkCompaniesQuery(currentPage);
+  const { mutateAsync: deleteBookmark, isPending: isDeletingBookmark } =
+    useDeleteBookmark();
   const [searchInput, setSearchInput] = useState(keyword);
 
   useEffect(() => {
@@ -164,10 +172,35 @@ const BookmarkPage = () => {
     });
   };
 
-  const handleDeleteSelected = () => {
-    setRows((prev) => prev.filter((row) => !selectedIds.has(row.id)));
+  const handleDeleteSelected = async () => {
+    const rowsToDelete = rows.filter((row) => selectedIds.has(row.id));
+    const deleteResults = await Promise.allSettled(
+      rowsToDelete.map((row) => deleteBookmark(row.companyId))
+    );
+
+    const succeededRows = rowsToDelete.filter(
+      (_, index) => deleteResults[index]?.status === "fulfilled"
+    );
+    const hasFailedDelete = deleteResults.some(
+      (result) => result.status === "rejected"
+    );
+
+    if (succeededRows.length > 0) {
+      const succeededRowIds = new Set(succeededRows.map((row) => row.id));
+
+      succeededRows.forEach((row) => {
+        setBookmarkOverride(row.companyId, false);
+      });
+
+      setRows((prev) => prev.filter((row) => !succeededRowIds.has(row.id)));
+    }
+
     setSelectedIds(new Set());
     modalStore.close(BOOKMARK_DELETE_MODAL_ID);
+
+    if (hasFailedDelete) {
+      setIsDeleteErrorOpen(true);
+    }
   };
 
   const handleOpenDeleteModal = () => {
@@ -228,7 +261,7 @@ const BookmarkPage = () => {
             <Button
               variant="secondary"
               size="medium"
-              disabled={isDeleteDisabled}
+              disabled={isDeleteDisabled || isDeletingBookmark}
               onClick={handleOpenDeleteModal}
               aria-label="북마크 삭제"
             >
@@ -264,6 +297,15 @@ const BookmarkPage = () => {
           />
         </section>
       )}
+
+      {isDeleteErrorOpen ? (
+        <Alert
+          variant="error"
+          title="오류"
+          description="북마크 삭제에 실패했습니다"
+          onClose={() => setIsDeleteErrorOpen(false)}
+        />
+      ) : null}
     </main>
   );
 };
