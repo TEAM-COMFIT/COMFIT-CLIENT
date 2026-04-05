@@ -27,7 +27,6 @@ const BookmarkPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [rows, setRows] = useState<BookmarkRow[]>([]);
   const [selectedIds, setSelectedIds] = useState<Set<number>>(new Set());
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isDeleteErrorOpen, setIsDeleteErrorOpen] = useState(false);
   const setBookmarkOverride = useBookmarkStore(
     (state) => state.setBookmarkOverride
@@ -56,16 +55,6 @@ const BookmarkPage = () => {
   useEffect(() => {
     setRows(bookmarkCompanies?.content ?? []);
   }, [bookmarkCompanies?.content]);
-
-  useEffect(() => {
-    const unsubscribe = modalStore.subscribe((modals) => {
-      setIsDeleteModalOpen(
-        modals.some((modal) => modal.id === BOOKMARK_DELETE_MODAL_ID)
-      );
-    });
-
-    return unsubscribe;
-  }, []);
 
   const filteredRows = useMemo(() => {
     if (!keyword) {
@@ -253,11 +242,7 @@ const BookmarkPage = () => {
             />
           </div>
 
-          <div
-            className={`${styles.deleteButtonWrap} ${
-              isDeleteModalOpen ? styles.deleteButtonWrapActive : ""
-            }`}
-          >
+          <div className={styles.deleteButtonWrap}>
             <Button
               variant="secondary"
               size="medium"
