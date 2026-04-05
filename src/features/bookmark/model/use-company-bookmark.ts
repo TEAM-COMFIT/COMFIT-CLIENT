@@ -22,7 +22,7 @@ const isDuplicateBookmarkError = (error: unknown) =>
 
 const updateCompanyBookmarkCache = (
   previousData: GetCompanyResponseDto | undefined,
-  isLiked: boolean
+  isBookmarked: boolean
 ) => {
   if (!previousData) {
     return previousData;
@@ -30,7 +30,7 @@ const updateCompanyBookmarkCache = (
 
   return {
     ...previousData,
-    isLiked,
+    isLiked: isBookmarked,
   };
 };
 
