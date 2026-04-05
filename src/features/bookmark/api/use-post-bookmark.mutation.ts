@@ -20,7 +20,7 @@ export const usePostBookmark = (options?: UsePostBookmarkOptions) => {
     mutationFn: (companyId: number) => postBookmark(companyId),
     onSuccess: (bookmarkId: number) => {
       queryClient.invalidateQueries({
-        queryKey: meQueryKey.all(),
+        queryKey: meQueryKey.bookmarkCompanyLists(),
       });
       options?.onSuccess?.(bookmarkId);
     },

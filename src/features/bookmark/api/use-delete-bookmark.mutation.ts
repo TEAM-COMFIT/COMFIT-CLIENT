@@ -19,7 +19,7 @@ export const useDeleteBookmark = (options?: UseDeleteBookmarkOptions) => {
     mutationFn: (companyId: number) => deleteBookmark(companyId),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: meQueryKey.all(),
+        queryKey: meQueryKey.bookmarkCompanyLists(),
       });
       options?.onSuccess?.();
     },
