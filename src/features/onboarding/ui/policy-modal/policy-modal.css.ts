@@ -31,9 +31,9 @@ export const modalContent = style({
   flexDirection: "column",
   gap: "2.4rem",
   textAlign: "left",
+  width: "40rem",
   height: "28rem",
   padding: "2rem 3rem",
-  marginBottom: "2rem",
   overflowY: "auto",
 
   selectors: {
