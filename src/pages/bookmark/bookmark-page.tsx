@@ -20,12 +20,12 @@ import type { BookmarkRow } from "@/features/bookmark";
 const BOOKMARK_QUERY_KEY = "keyword";
 const BOOKMARK_PAGE_QUERY_KEY = "page";
 const BOOKMARK_DELETE_MODAL_ID = "bookmark-delete-modal";
+// 검색 결과 페이징은 서버 페이지 크기 기준을 따릅니다.
 const BOOKMARK_PAGE_SIZE = 4;
 
 const BookmarkPage = () => {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
-  const [rows, setRows] = useState<BookmarkRow[]>([]);
   const [selectedIds, setSelectedIds] = useState<Set<number>>(new Set());
   const [isDeleteErrorOpen, setIsDeleteErrorOpen] = useState(false);
   const setBookmarkOverride = useBookmarkStore(
@@ -47,14 +47,14 @@ const BookmarkPage = () => {
   const { mutateAsync: deleteBookmark, isPending: isDeletingBookmark } =
     useDeleteBookmark();
   const [searchInput, setSearchInput] = useState(keyword);
+  const rows = useMemo<BookmarkRow[]>(
+    () => bookmarkCompanies?.content ?? [],
+    [bookmarkCompanies?.content]
+  );
 
   useEffect(() => {
     setSearchInput(keyword);
   }, [keyword]);
-
-  useEffect(() => {
-    setRows(bookmarkCompanies?.content ?? []);
-  }, [bookmarkCompanies?.content]);
 
   const filteredRows = useMemo(() => {
     if (!keyword) {
@@ -175,13 +175,9 @@ const BookmarkPage = () => {
     );
 
     if (succeededRows.length > 0) {
-      const succeededRowIds = new Set(succeededRows.map((row) => row.id));
-
       succeededRows.forEach((row) => {
         setBookmarkOverride(row.companyId, false);
       });
-
-      setRows((prev) => prev.filter((row) => !succeededRowIds.has(row.id)));
     }
 
     setSelectedIds(new Set());
