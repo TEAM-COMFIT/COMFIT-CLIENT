@@ -2,6 +2,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 
 import { ROUTES } from "@/app/routes/paths";
 import { useAuthStore } from "@/app/store";
+import { useBookmarkStore } from "@/features/bookmark";
 import { useGetProfile, useLogout } from "@/features/my-page";
 import { queryClient } from "@/shared/api";
 import { Button } from "@/shared/ui";
@@ -27,6 +28,7 @@ const MyPage = () => {
     logout(undefined, {
       onSettled: () => {
         actions.logout(); // 스토리지에서 토큰 삭제
+        useBookmarkStore.getState().resetBookmarkOverrides();
         queryClient.clear();
       },
     });

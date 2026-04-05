@@ -210,6 +210,7 @@ const BookmarkPage = () => {
   };
 
   const handleClickCompany = (companyId: number) => {
+    setBookmarkOverride(companyId, true);
     navigate(ROUTES.COMPANY(String(companyId)));
   };
 

@@ -1,5 +1,5 @@
 import { useQueryClient } from "@tanstack/react-query";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import { companyQueryKey } from "@/shared/api/config/query-key";
 import { isValidCustomError } from "@/shared/api/error-handler";
@@ -46,11 +46,14 @@ export const useCompanyBookmark = ({
   const setBookmarkOverride = useBookmarkStore(
     (state) => state.setBookmarkOverride
   );
-  const clearBookmarkOverride = useBookmarkStore(
-    (state) => state.clearBookmarkOverride
-  );
 
   const isBookmarked = bookmarkOverride ?? initialIsBookmarked;
+
+  useEffect(() => {
+    if (bookmarkOverride === undefined && initialIsBookmarked) {
+      setBookmarkOverride(companyId, true);
+    }
+  }, [bookmarkOverride, companyId, initialIsBookmarked, setBookmarkOverride]);
 
   const updateDetailQuery = useCallback(
     (nextIsBookmarked: boolean) => {
@@ -65,18 +68,17 @@ export const useCompanyBookmark = ({
 
   const { mutate: addBookmark, isPending: isAddingBookmark } = usePostBookmark({
     onSuccess: () => {
+      setBookmarkOverride(companyId, true);
       updateDetailQuery(true);
-      clearBookmarkOverride(companyId);
     },
     onError: (error) => {
       if (isDuplicateBookmarkError(error)) {
         setBookmarkOverride(companyId, true);
         updateDetailQuery(true);
-        clearBookmarkOverride(companyId);
         return;
       }
 
-      clearBookmarkOverride(companyId);
+      setBookmarkOverride(companyId, false);
       setIsBookmarkErrorOpen(true);
     },
   });
@@ -84,14 +86,14 @@ export const useCompanyBookmark = ({
   const { mutate: removeBookmark, isPending: isRemovingBookmark } =
     useDeleteBookmark({
       onSuccess: () => {
+        setBookmarkOverride(companyId, false);
         updateDetailQuery(false);
-        clearBookmarkOverride(companyId);
         queryClient.invalidateQueries({
           queryKey: companyQueryKey.detail(companyId),
         });
       },
       onError: () => {
-        clearBookmarkOverride(companyId);
+        setBookmarkOverride(companyId, true);
         setIsBookmarkErrorOpen(true);
       },
     });
