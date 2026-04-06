@@ -1,4 +1,5 @@
 export { default as Logo } from "./comfit_logo.png";
+
 export { default as KERORO } from "./comfit_web_status.jpg";
 export { default as Load } from "./company_info_loading.png";
 export { default as Company } from "./img_company.png";
@@ -35,3 +36,7 @@ export { default as ERROR } from "./error_img.png";
 export { default as SEARCH_IMG } from "./search_img.png";
 
 export { default as PROFILE } from "./icon_profile.png";
+
+// footer 이미지
+export { default as FooterLogo } from "./footer_logo.png";
+export { default as InstagramLogo } from "./logo_instagram.png";
