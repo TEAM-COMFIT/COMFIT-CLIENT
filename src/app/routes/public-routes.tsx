@@ -32,6 +32,12 @@ const CompanyDetailPage = lazy(() =>
   }))
 );
 
+const PolicyPage = lazy(() =>
+  import("@/pages/policy/policy-page").then((module) => ({
+    default: module.PolicyPage,
+  }))
+);
+
 export const guestRoutes = [{ path: ROUTES.LOGIN, element: <LoginPage /> }];
 
 export const publicRoutes = [
@@ -39,4 +45,6 @@ export const publicRoutes = [
   { path: ROUTES.LANDING, element: <LandingPage /> },
   { path: ROUTES.HOME, element: <HomePage /> },
   { path: ROUTES.COMPANY(), element: <CompanyDetailPage /> },
+  { path: ROUTES.POLICY_USE, element: <PolicyPage mode="USE" /> },
+  { path: ROUTES.POLICY_PRIVACY, element: <PolicyPage mode="PRIVACY" /> },
 ];

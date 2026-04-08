@@ -1,6 +1,7 @@
 import { useEffect, useCallback } from "react";
 import { useBlocker } from "react-router-dom";
 
+import { IconWarn } from "@/shared/assets/icons";
 import { modalStore } from "@/shared/model/store";
 import { ModalBasic } from "@/shared/ui";
 
@@ -65,12 +66,13 @@ export const useLeaveConfirm = () => {
     if (blocker.state === "blocked") {
       modalStore.open(
         <ModalBasic
-          title={`작성중인 내용이 있습니다.\n정말 나가시겠습니까?`}
-          subTitle="저장하지 않으면 내용이 사라져요."
-          closeText="이어서 작성"
-          confirmText="나가기"
-          onClose={cancelLeave}
-          onConfirm={confirmLeave}
+          icon={<IconWarn width={48} height={48} />}
+          title={`작성 중인 내용이 있어요`}
+          subTitle="저장하지 않으면 내용이 모두 사라져요."
+          closeText="나가기"
+          confirmText="계속 작성하기"
+          onClose={confirmLeave}
+          onConfirm={cancelLeave}
         />,
         0,
         undefined,

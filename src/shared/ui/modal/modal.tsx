@@ -28,9 +28,10 @@ interface ModalProps {
   autoPlay?: number;
   isOpen: boolean;
   onClose: () => void;
+  size?: "default" | "auto";
 }
 
-const Modal = ({ children, autoPlay, isOpen, onClose }: ModalProps) => {
+const Modal = ({ children, autoPlay, isOpen, onClose, size }: ModalProps) => {
   const ref = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
@@ -53,7 +54,7 @@ const Modal = ({ children, autoPlay, isOpen, onClose }: ModalProps) => {
   return (
     <modalContext.Provider value={{ onClose }}>
       <dialog ref={ref} onClick={handleBackdropClick} className={styles.modal}>
-        <div className={styles.modalContent}>{children}</div>
+        <div className={styles.modalContent({ size })}>{children}</div>
       </dialog>
     </modalContext.Provider>
   );
@@ -68,14 +69,12 @@ const XButton = () => {
   );
 };
 
-const Content = ({
-  children,
-  type,
-}: {
-  children: ReactNode;
-  type?: "default" | "auto";
-}) => {
-  return <div className={styles.Content({ type: type })}>{children}</div>;
+const Content = ({ children }: { children: ReactNode }) => {
+  return <div className={styles.Content}>{children}</div>;
+};
+
+const TitleGroup = ({ children }: { children: ReactNode }) => {
+  return <div className={styles.TitleGroup}>{children}</div>;
 };
 
 const Title = ({ children }: { children: ReactNode }) => {
@@ -84,6 +83,10 @@ const Title = ({ children }: { children: ReactNode }) => {
 
 const SubTitle = ({ children }: { children: ReactNode }) => {
   return <div className={styles.SubTitle}>{children}</div>;
+};
+
+const Icon = ({ children }: { children: ReactNode }) => {
+  return <div className={styles.Icon}>{children}</div>;
 };
 
 const Image = () => {
@@ -97,8 +100,10 @@ const Buttons = ({ children }: { children: ReactNode }) => {
 // 내보내기
 Modal.XButton = XButton;
 Modal.Content = Content;
+Modal.TitleGroup = TitleGroup;
 Modal.Title = Title;
 Modal.SubTitle = SubTitle;
+Modal.Icon = Icon;
 Modal.Image = Image;
 Modal.Buttons = Buttons;
 

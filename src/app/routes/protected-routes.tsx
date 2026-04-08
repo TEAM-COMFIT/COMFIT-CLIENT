@@ -44,6 +44,12 @@ const MyPage = lazy(() =>
   }))
 );
 
+const BookmarkPage = lazy(() =>
+  import("@/pages/bookmark/bookmark-page").then((module) => ({
+    default: module.BookmarkPage,
+  }))
+);
+
 export const protectedRoutes = [
   { path: ROUTES.ONBOARDING, element: <OnboardingPage /> },
   { path: ROUTES.EXPERIENCE_MATCHING, element: <ExperienceMatchingPage /> },
@@ -68,4 +74,5 @@ export const protectedRoutes = [
   },
 
   { path: ROUTES.MYPAGE, element: <MyPage /> },
+  { path: ROUTES.BOOKMARK, element: <BookmarkPage /> },
 ];

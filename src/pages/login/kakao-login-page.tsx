@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { useAuthStore } from "@/app/store";
@@ -9,7 +9,9 @@ const KakaoLoginPage = () => {
   const navigate = useNavigate();
   const { actions } = useAuthStore();
 
-  const code = new URL(window.location.href).searchParams.get("code");
+  const [code] = useState(() =>
+    new URL(window.location.href).searchParams.get("code")
+  );
 
   const { data } = useLogin(code ?? "");
 

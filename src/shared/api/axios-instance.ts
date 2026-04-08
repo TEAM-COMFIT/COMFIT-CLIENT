@@ -61,13 +61,13 @@ axiosInstance.interceptors.response.use(
         );
 
         // 새로 발급 받은 액세스 토큰 저장
-        const newAccessToken = data.accessToken;
+        const newAccessToken = data.result.accessToken;
         tokenStorage.set(newAccessToken);
 
         originalRequest.headers["Authorization"] = `Bearer ${newAccessToken}`;
         return axiosInstance(originalRequest); // 이전 요청 재시도
       } catch (refreshError) {
-        alert("리프레쉬 토큰 요청에 실패했습니다.");
+        alert("리프레쉬 토큰 요청에 실패했습니다. 다시 로그인해주세요.");
         tokenStorage.clear();
         window.location.replace("/login");
 

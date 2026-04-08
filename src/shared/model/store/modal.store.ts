@@ -5,6 +5,7 @@ interface ModalItem {
   content: ReactNode;
   onClose?: () => void;
   autoPlay?: number;
+  size?: "default" | "auto";
 }
 
 class ModalStore {
@@ -30,9 +31,10 @@ class ModalStore {
     content: ReactNode,
     autoPlay?: number,
     onClose?: () => void,
-    id: string = new Date().toString()
+    id: string = new Date().toString(),
+    size?: "default" | "auto"
   ) {
-    const newModal = { id, content, autoPlay, onClose }; // 새로 열고자 하는 모달
+    const newModal = { id, content, autoPlay, onClose, size }; // 새로 열고자 하는 모달
 
     // 기존 타이머(중복)가 있다면 제거
     if (this._timers.has(id)) {
