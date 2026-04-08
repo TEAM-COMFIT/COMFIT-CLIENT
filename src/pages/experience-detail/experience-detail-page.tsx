@@ -9,17 +9,13 @@ import {
   initExperienceDetail,
   useLeaveConfirm,
   useGetExperienceDetail,
-  hydrateExperienceFromApi,
+  applyExperienceDetailFromApi,
   EXPERIENCE_MESSAGES,
 } from "@/features/experience-detail";
 
 import type { ExperienceMode } from "@/features/experience-detail";
 
-interface ExperiencePageProps {
-  mode: ExperienceMode;
-}
-
-const ExperienceDetailPage = ({ mode }: ExperiencePageProps) => {
+const ExperienceDetailPage = ({ mode }: { mode: ExperienceMode }) => {
   const { id: experienceId } = useParams<{ id: string }>();
   const currentMode = useExperienceMode();
   useLeaveConfirm();
@@ -42,7 +38,7 @@ const ExperienceDetailPage = ({ mode }: ExperiencePageProps) => {
   useEffect(() => {
     if (data && initializedExperienceIdRef.current !== experienceId) {
       initializedExperienceIdRef.current = experienceId ?? null;
-      hydrateExperienceFromApi(data);
+      applyExperienceDetailFromApi(data);
     }
   }, [data, experienceId]);
 
