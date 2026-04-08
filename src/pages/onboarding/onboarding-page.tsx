@@ -55,11 +55,11 @@ const OnboardingPage = () => {
       educationLevel: selectedEducation ?? "HIGH_SCHOOL",
       universityId: Number(selectedUniversity?.id ?? 0),
 
-      firstIndustry: labelToCodeIndustry(industry[1]),
+      firstIndustry: labelToCodeIndustry(industry[1]) ?? "CONSUMER_GOODS",
       secondIndustry: labelToCodeIndustry(industry[2]) || undefined,
       thirdIndustry: labelToCodeIndustry(industry[3]) || undefined,
 
-      firstJob: labelToCodeJob(job[1]),
+      firstJob: labelToCodeJob(job[1]) ?? "MARKETING_STRATEGY",
       secondJob: labelToCodeJob(job[2]) || undefined,
       thirdJob: labelToCodeJob(job[3]) || undefined,
     };

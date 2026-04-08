@@ -60,8 +60,6 @@ export const deleteButtonWrap = style({
   display: "inline-flex",
 });
 
-export const deleteButtonWrapActive = style({});
-
 export const trashIcon = style({
   width: "2.4rem",
   height: "2.4rem",
@@ -91,12 +89,6 @@ globalStyle(`${deleteButtonWrap} > button:hover:not(:disabled)`, {
 });
 
 globalStyle(`${deleteButtonWrap} > button:active:not(:disabled)`, {
-  borderColor: themeVars.color.gray300,
-  backgroundColor: themeVars.color.white,
-  color: themeVars.color.gray300,
-});
-
-globalStyle(`${deleteButtonWrapActive} > button:not(:disabled)`, {
   borderColor: themeVars.color.gray300,
   backgroundColor: themeVars.color.white,
   color: themeVars.color.gray300,

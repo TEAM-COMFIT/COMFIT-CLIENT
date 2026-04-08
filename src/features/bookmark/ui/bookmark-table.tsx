@@ -1,7 +1,7 @@
 import { BookmarkCheckbox } from "./bookmark-checkbox";
 import * as styles from "./bookmark-table.css";
 
-import type { BookmarkRow } from "../config/bookmark-page.constants";
+import type { BookmarkRow } from "../types/bookmark.type";
 
 interface BookmarkTableProps {
   rows: BookmarkRow[];
@@ -61,7 +61,7 @@ const BookmarkTable = ({
               <button
                 type="button"
                 className={styles.companyButton}
-                onClick={() => onClickCompany(row.id)}
+                onClick={() => onClickCompany(row.companyId)}
               >
                 {row.companyName}
               </button>

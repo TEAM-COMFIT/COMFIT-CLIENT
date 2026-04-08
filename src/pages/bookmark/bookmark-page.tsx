@@ -3,28 +3,34 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 
 import { ROUTES } from "@/app/routes/paths";
 import {
-  BOOKMARK_MOCK_ROWS,
-  BOOKMARK_PAGE_SIZE,
   BookmarkEmptyState,
   BookmarkTable,
+  useBookmarkStore,
+  useDeleteBookmark,
+  useGetBookmarkCompaniesQuery,
 } from "@/features/bookmark";
 import { IconBookmarkBefore, IconTrash } from "@/shared/assets/icons";
 import { modalStore } from "@/shared/model/store";
-import { Button, ModalBasic, Pagination, Search } from "@/shared/ui";
+import { Alert, Button, ModalBasic, Pagination, Search } from "@/shared/ui";
 
 import * as styles from "./bookmark-page.css";
+
+import type { BookmarkRow } from "@/features/bookmark";
 
 const BOOKMARK_QUERY_KEY = "keyword";
 const BOOKMARK_PAGE_QUERY_KEY = "page";
 const BOOKMARK_DELETE_MODAL_ID = "bookmark-delete-modal";
+// 검색 결과 페이징은 서버 페이지 크기 기준을 따릅니다.
+const BOOKMARK_PAGE_SIZE = 4;
 
 const BookmarkPage = () => {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
-
-  const [rows, setRows] = useState(BOOKMARK_MOCK_ROWS);
   const [selectedIds, setSelectedIds] = useState<Set<number>>(new Set());
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [isDeleteErrorOpen, setIsDeleteErrorOpen] = useState(false);
+  const setBookmarkOverride = useBookmarkStore(
+    (state) => state.setBookmarkOverride
+  );
 
   const keyword = searchParams.get(BOOKMARK_QUERY_KEY)?.trim() ?? "";
   const currentPageParam = Number(searchParams.get(BOOKMARK_PAGE_QUERY_KEY));
@@ -32,24 +38,28 @@ const BookmarkPage = () => {
     Number.isInteger(currentPageParam) && currentPageParam > 0
       ? currentPageParam
       : 1;
+
+  const {
+    data: bookmarkCompanies,
+    isLoading,
+    isFetching,
+  } = useGetBookmarkCompaniesQuery(currentPage);
+  const { mutateAsync: deleteBookmark, isPending: isDeletingBookmark } =
+    useDeleteBookmark();
   const [searchInput, setSearchInput] = useState(keyword);
+  const rows = useMemo<BookmarkRow[]>(
+    () => bookmarkCompanies?.content ?? [],
+    [bookmarkCompanies?.content]
+  );
 
   useEffect(() => {
     setSearchInput(keyword);
   }, [keyword]);
 
-  useEffect(() => {
-    const unsubscribe = modalStore.subscribe((modals) => {
-      setIsDeleteModalOpen(
-        modals.some((modal) => modal.id === BOOKMARK_DELETE_MODAL_ID)
-      );
-    });
-
-    return unsubscribe;
-  }, []);
-
   const filteredRows = useMemo(() => {
-    if (!keyword) return rows;
+    if (!keyword) {
+      return rows;
+    }
 
     const normalizedKeyword = keyword.toLowerCase();
     return rows.filter((row) =>
@@ -57,14 +67,20 @@ const BookmarkPage = () => {
     );
   }, [keyword, rows]);
 
-  const totalPage = Math.ceil(filteredRows.length / BOOKMARK_PAGE_SIZE);
+  const totalPage = keyword
+    ? Math.ceil(filteredRows.length / BOOKMARK_PAGE_SIZE)
+    : (bookmarkCompanies?.totalPage ?? 0);
   const paginationTotalPage = Math.max(totalPage, 1);
   const resolvedCurrentPage = Math.min(currentPage, paginationTotalPage);
 
   const currentPageRows = useMemo(() => {
+    if (!keyword) {
+      return rows;
+    }
+
     const startIndex = (resolvedCurrentPage - 1) * BOOKMARK_PAGE_SIZE;
     return filteredRows.slice(startIndex, startIndex + BOOKMARK_PAGE_SIZE);
-  }, [filteredRows, resolvedCurrentPage]);
+  }, [filteredRows, keyword, resolvedCurrentPage, rows]);
 
   const visibleIds = useMemo(
     () => currentPageRows.map((row) => row.id),
@@ -75,7 +91,7 @@ const BookmarkPage = () => {
     visibleIds.length > 0 && visibleIds.every((id) => selectedIds.has(id));
 
   const isDeleteDisabled = selectedIds.size === 0;
-  const isBookmarkEmpty = rows.length === 0;
+  const isBookmarkEmpty = !isLoading && !isFetching && rows.length === 0;
   const isSearchResultEmpty = rows.length > 0 && filteredRows.length === 0;
   const showPagination = !isBookmarkEmpty && !isSearchResultEmpty;
 
@@ -145,10 +161,31 @@ const BookmarkPage = () => {
     });
   };
 
-  const handleDeleteSelected = () => {
-    setRows((prev) => prev.filter((row) => !selectedIds.has(row.id)));
+  const handleDeleteSelected = async () => {
+    const rowsToDelete = rows.filter((row) => selectedIds.has(row.id));
+    const deleteResults = await Promise.allSettled(
+      rowsToDelete.map((row) => deleteBookmark(row.companyId))
+    );
+
+    const succeededRows = rowsToDelete.filter(
+      (_, index) => deleteResults[index]?.status === "fulfilled"
+    );
+    const hasFailedDelete = deleteResults.some(
+      (result) => result.status === "rejected"
+    );
+
+    if (succeededRows.length > 0) {
+      succeededRows.forEach((row) => {
+        setBookmarkOverride(row.companyId, false);
+      });
+    }
+
     setSelectedIds(new Set());
     modalStore.close(BOOKMARK_DELETE_MODAL_ID);
+
+    if (hasFailedDelete) {
+      setIsDeleteErrorOpen(true);
+    }
   };
 
   const handleOpenDeleteModal = () => {
@@ -173,6 +210,7 @@ const BookmarkPage = () => {
   };
 
   const handleClickCompany = (companyId: number) => {
+    setBookmarkOverride(companyId, true);
     navigate(ROUTES.COMPANY(String(companyId)));
   };
 
@@ -201,15 +239,11 @@ const BookmarkPage = () => {
             />
           </div>
 
-          <div
-            className={`${styles.deleteButtonWrap} ${
-              isDeleteModalOpen ? styles.deleteButtonWrapActive : ""
-            }`}
-          >
+          <div className={styles.deleteButtonWrap}>
             <Button
               variant="secondary"
               size="medium"
-              disabled={isDeleteDisabled}
+              disabled={isDeleteDisabled || isDeletingBookmark}
               onClick={handleOpenDeleteModal}
               aria-label="북마크 삭제"
             >
@@ -245,6 +279,15 @@ const BookmarkPage = () => {
           />
         </section>
       )}
+
+      {isDeleteErrorOpen ? (
+        <Alert
+          variant="error"
+          title="오류"
+          description="북마크 삭제에 실패했습니다"
+          onClose={() => setIsDeleteErrorOpen(false)}
+        />
+      ) : null}
     </main>
   );
 };

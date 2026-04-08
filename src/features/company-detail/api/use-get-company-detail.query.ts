@@ -16,6 +16,9 @@ export const useGetCompanyDetail = (companyId: number) => {
     queryKey: companyQueryKey.detail(companyId),
     queryFn: () => getCompanyDetail(companyId),
     enabled: Number.isFinite(companyId) && companyId > 0,
+    staleTime: 0,
+    refetchOnMount: "always",
+    refetchOnWindowFocus: true,
     // secure: tr
     throwOnError: (error) =>
       !(isAxiosError(error) && error.response?.status === 404),
